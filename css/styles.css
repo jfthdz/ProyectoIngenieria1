@@ -133,11 +133,7 @@ body, html{
     border-radius: 10px;
     padding: 30px 10px;
     color: black;
-    background-color: var(--grey);
-    transition: all 150ms ease-in-out;
-}
-.card:hover{
-    transform: scale(1.01);
+    background-color: var(--grey)
 }
 .card_img img{
     width: 100px;
@@ -198,7 +194,7 @@ body, html{
         grid-template-columns: 1fr;
         padding: 70px 105px;
         font-size: larger;
-    }
+    }vision_infocard
     #equipo{
         grid-template-columns: repeat(2,1fr);
         font-size: larger;
@@ -241,4 +237,35 @@ body, html{
         justify-content: center;
         text-align: center;
     }
+}
+
+
+/* CSS Alonso */
+
+
+#caracteristicas{
+    display: flex;
+    padding: 3rem 13rem;
+    background-color: var(--grey);
+   
+    align-items: center;
+    justify-content: space-between;
+}
+.caracteristicas_img{
+    max-width: 100px;
+
+    padding-right: 10px;
+}
+.caracteristicas_img img{
+    max-width: 100%;
+    border-radius: 10px;
+}
+.caract_1{
+    
+    width: 100%;
+    color:black;
+    text-align: left;
+    background-color: var(--darkgrey);
+    padding: 10px;
+    border-radius: 10px;
 }
