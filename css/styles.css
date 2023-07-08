@@ -1,0 +1,244 @@
+body, html{
+    margin: 0px;
+}
+/* Paleta de colores BitByte */
+:root{
+    --lightblue: #A0D2EB;
+    --grey: #E5EAF5;
+    --lightpurple: #D0BDF4;
+    --purple: #8458B3;
+    --darkgrey: #494D5F;
+}
+.nav {
+    display: flex;
+    height: 6vh;
+    padding: 1.5rem 4rem;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav a{
+    text-decoration: none;
+    color: var(--darkgrey);
+    margin: 0px 10px;
+    transition: all 150ms ease-in-out;
+}
+.nav_logo, .nav_menu{
+    display: flex;
+    align-items: center;
+}
+.nav_logo img {
+    max-width: 100px;
+    margin-right: 20px;
+}
+.nav_menu a:hover{
+    transform: scale(1.05);
+}
+.nav_hamburger{
+    display: none;
+}
+.nav_hamburger span{
+    display: block;
+    width: 26px;
+    height: 2px;
+    background-color: var(--darkgrey);
+}
+.nav_hamburger span:not(last-child){
+    margin-bottom: 4px;
+}
+#mision{
+    display: flex;
+    padding: 3rem 13rem;
+    background-color: var(--darkgrey);
+    align-items: center;
+    justify-content: space-between;
+}
+.mision_img{
+    max-width: 50%;
+}
+.mision_img img{
+    max-width: 100%;
+    border-radius: 10px;
+}
+.mision_info{
+    max-width: 40%;
+    color: white;
+    text-align: left;
+}
+#vision{
+    display: flex;
+    padding: 3rem 13rem;
+    background-color: var(--grey);
+    align-items: center;
+    justify-content: space-between;
+}
+.vision_img{
+    max-width: 50%;
+}
+.vision_img img{
+    max-width: 100%;
+    border-radius: 10px;
+}
+.vision_info{
+    max-width: 40%;
+    color: var(--darkgrey);
+    text-align: left;
+}
+#valores {
+    display: grid;
+    text-align: center;
+    gap: 20px;
+    padding: 50px 155px;
+    color: white;
+    background-color: var(--darkgrey);
+    grid-template-columns: repeat(2, 1fr);
+}
+.valor{
+    padding: 15px 45px;
+}
+.valor_icon {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+    z-index: 1;
+}
+.valor_icon::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--lightpurple);
+    border-radius: 50%;
+    z-index: -1;
+}
+.valor_icon img {
+    display: block;
+    width: 70px;
+    object-fit: contain;
+}
+#equipo {
+    display: grid;
+    text-align: center;
+    gap: 25px;
+    color: black;
+    background-color: white;
+    padding: 30px 40px 50px 40px;
+    grid-template-columns: repeat(3, 1fr);
+}
+.card{
+    border-radius: 10px;
+    padding: 30px 10px;
+    color: black;
+    background-color: var(--grey);
+    transition: all 150ms ease-in-out;
+}
+.card:hover{
+    transform: scale(1.01);
+}
+.card_img img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+}
+.section_title {
+    margin: 0;
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 35px;
+}
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    color: white;
+    height: 15vh;
+    justify-content: space-between;
+    padding: 2rem 10rem 1rem 10rem;
+    background-color: var(--darkgrey);
+}
+.footer_logo img{
+    max-width: 100px;
+}
+.footer_last{
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 13px;
+}
+
+@media only screen and (max-width: 1024px){
+    #mision, #vision{
+        flex-direction: column;
+        padding: 4rem 8rem;
+    }
+    .mision_img, .mision_info, .vision_img, .vision_info{
+        max-width: 100%;
+        text-align: center;
+        font-size: larger;
+    }
+    .vision_img{
+        order: 1;
+    }
+    .vision_info{
+        order: 2;
+    }
+    #valores{
+        padding: 50px 105px;
+    }
+}
+
+@media only screen and (max-width: 820px){
+    #valores{
+        grid-template-columns: 1fr;
+        padding: 70px 105px;
+        font-size: larger;
+    }
+    #equipo{
+        grid-template-columns: repeat(2,1fr);
+        font-size: larger;
+    }
+    .footer{
+        padding: 30px 40px 10px 40px;
+    }
+}
+
+@media only screen and (max-width: 540px){
+    .nav{
+        padding: 1.5rem 1rem;
+    }
+    .nav_menu{
+        display: none;
+    }
+    .nav_hamburger{
+        display: block;
+    }
+    #mision, #vision{
+        flex-direction: column;
+        padding: 2rem 3rem;
+    }
+    .mision_img, .mision_info, .vision_img, .vision_info{
+        max-width: 100%;
+    }
+    #valores{
+        max-width: 100%;
+        gap: 5px;
+        grid-template-columns: 1fr;
+        padding: 50px;
+    }
+    #equipo{
+        grid-template-columns: 1fr;
+    }
+    .footer{
+        flex-direction: column;
+        height: 25vh;
+        flex-wrap: unset;
+        justify-content: center;
+        text-align: center;
+    }
+}
