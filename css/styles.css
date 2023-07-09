@@ -16,7 +16,7 @@ a{
 .nav {
     display: flex;
     height: 6vh;
-    padding: 1.5rem 4rem;
+    padding: 1.5% 6%;
     justify-content: space-between;
     align-items: center;
 }
@@ -292,11 +292,11 @@ a{
     font-weight: 500;
 }
 .nav_buscoempleo a:hover{
-    transform: scale(1.02);
+    color: #131314;
 }
 #contenido{
     margin: 2% 6%;
-    padding: 2% 9%;
+    padding: 3% 9%;
     color: white;
     border-radius: 10px;
     background-color: var(--darkgrey);
@@ -304,6 +304,18 @@ a{
 .encabezado-contenido{
     display: flex;
     align-items: center;
+    padding: 1.5%;
+    background-color: #585c70;
+    border-radius: 10px;
+}
+.boton-contenido{
+    border: 0;
+    width: 200px;
+    padding: 8px 0;
+    color: white;
+    font-size: 0.9rem;
+    border-radius: 10px;
+    background-color: var(--purple);
 }
 #footer_buscoempleo{
     background-color: var(--purple);
