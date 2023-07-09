@@ -1,5 +1,9 @@
 body, html{
     margin: 0px;
+    font-family: 'Montserrat', sans-serif;
+}
+a{
+    text-decoration: none;
 }
 /* Paleta de colores BitByte */
 :root{
@@ -17,7 +21,6 @@ body, html{
     align-items: center;
 }
 .nav a{
-    text-decoration: none;
     color: var(--darkgrey);
     margin: 0px 10px;
     transition: all 150ms ease-in-out;
@@ -148,22 +151,35 @@ body, html{
     text-align: center;
     font-size: 35px;
 }
+#footer_index{
+    background-color: var(--darkgrey);
+}
 .footer {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     color: white;
-    height: 15vh;
-    justify-content: space-between;
-    padding: 2rem 10rem 1rem 10rem;
-    background-color: var(--darkgrey);
+    padding: 1.5rem 10rem;
 }
 .footer_logo img{
     max-width: 100px;
 }
+.footer_first{
+    flex-basis: 50%;
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+.footer_first p{
+    color: white;
+}
+.footer_first:nth-child(2){
+    text-align: end;
+}
 .footer_last{
-    width: 100%;
-    text-align: center;
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding-top: 10px;
     font-size: 13px;
 }
@@ -231,18 +247,16 @@ body, html{
         grid-template-columns: 1fr;
     }
     .footer{
-        flex-direction: column;
-        height: 25vh;
-        flex-wrap: unset;
+        display: block;
         justify-content: center;
+        text-align: center;
+    }
+    .footer_first:nth-child(2){
         text-align: center;
     }
 }
 
-
 /* CSS Alonso */
-
-
 #caracteristicas{
     display: flex;
     padding: 3rem 13rem;
@@ -268,4 +282,87 @@ body, html{
     background-color: var(--darkgrey);
     padding: 10px;
     border-radius: 10px;
+}
+
+/* Estilos BuscoEmpleo */
+.nav_buscoempleo{
+    background-color: var(--grey);
+}
+.nav_buscoempleo a{
+    font-weight: 500;
+}
+.nav_buscoempleo a:hover{
+    transform: scale(1.02);
+}
+#contenido{
+    margin: 2% 6%;
+    padding: 2% 9%;
+    color: white;
+    border-radius: 10px;
+    background-color: var(--darkgrey);
+}
+.encabezado-contenido{
+    display: flex;
+    align-items: center;
+}
+#footer_buscoempleo{
+    background-color: var(--purple);
+}
+#footer_logo-buscoempleo img{
+    max-width: 150px;
+}
+
+/* Vista Candidato */
+#img-perfil{
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+}
+.vistaCandidato_img{
+    width: 150px;
+    height: 150px;
+    margin-left: 1%;
+}
+.vistaCandidato_info{
+    margin-left: 5%;
+    font-weight: 400;
+}
+.fechas{
+    display: flex;
+    align-items: center;
+    font-weight: 100;
+}
+.nav_barra-busqueda{
+    width: 40%;
+}
+.barra-busqueda{
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 30px;
+    background-color: white;
+    box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.15);
+}
+.barra-busqueda input{
+    background: transparent;
+    flex: 1;
+    border: 0;
+    outline: none;
+    padding: 24px 5px 24px 25px;
+    font-size: 14px;
+    color: var(--darkgrey);
+}
+::placeholder{
+    color: var(--darkgrey);
+}
+.barra-busqueda button img{
+    width: 25px;
+}
+.barra-busqueda button{
+    border: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
 }
