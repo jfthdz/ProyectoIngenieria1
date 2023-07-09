@@ -295,8 +295,8 @@ a{
     color: #131314;
 }
 #contenido{
-    margin: 2% 6%;
-    padding: 3% 9%;
+    margin: 2% 14%;
+    padding: 3% 5%;
     color: white;
     border-radius: 10px;
     background-color: var(--darkgrey);
@@ -318,7 +318,7 @@ a{
     background-color: var(--purple);
 }
 #footer_buscoempleo{
-    background-color: var(--purple);
+    background-color: black;
 }
 #footer_logo-buscoempleo img{
     max-width: 150px;
