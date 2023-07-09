@@ -378,3 +378,62 @@ a{
     background-color: white;
     cursor: pointer;
 }
+
+/* Inicio sesion */
+.contenido_login{
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 1%;
+}
+.division{
+    display: block;
+    width: 1px;
+    background-color: var(--grey);
+}
+.inicioSesion{
+    display: flex;
+    flex-direction: column;
+}
+.inicioSesion p{
+    margin: 0;
+    margin-bottom: 10px;
+}
+.inicioSesion input{
+    border: 0;
+    outline: none;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.inicioSesion button{
+    border: 0;
+    padding: 10px;
+    color: white;
+    margin: 20px 0;
+    font-weight: 600;
+    border-radius: 5px;
+    background-color: var(--purple);
+}
+.inicioSesion button:hover{
+    opacity: 80%;
+    cursor: pointer;
+}
+.inicioSesion a{
+    color: var(--lightblue);
+    font-weight: 300;
+    font-size: 14px;
+}
+.registrarse button{
+    width: 100%;
+    padding: 10px;
+    color: var(--darkgrey);
+    margin: 20px 0;
+    font-weight: 600;
+    border-radius: 5px;
+    background-color: var(--grey);
+    border: 1px solid var(--purple);
+}
+.registrarse button:hover{
+    opacity: 80%;
+    cursor: pointer;
+}
