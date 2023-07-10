@@ -28,6 +28,15 @@ function habilitarCamposEstudios(){
       }, 100);    
 }
 
+function habilitarCampoDescripcion(){
+    event.preventDefault();
+    var agregarDescripcion = document.getElementById("agregarDescripcion");
+    agregarDescripcion.style.display = "flex";
+    setTimeout(function() {
+        agregarDescripcion.classList.add("mostrar");
+      }, 100);    
+}
+
 function experienciaExtra(){
     event.preventDefault();
     var agregarExperiencia = document.getElementById("agregarExperiencia");
@@ -124,7 +133,6 @@ function validarFormulario() {
             errorGenero.innerText = "*Debe seleccionar una opción";
             camposIncompletos = true;
         }
-        console.log(valorGeneroSeleccionado);
 
         if (email.value === "") {
             email.style.border = "1px solid red";
@@ -169,6 +177,69 @@ function validarFormulario() {
             primerCampoIncompleto = password;
             } else if (profesion.value === "") {
             primerCampoIncompleto = profesion;
+            }
+
+            // Hacer scroll al primer campo incompleto
+            if (primerCampoIncompleto) {
+            primerCampoIncompleto.scrollIntoView({ behavior: "smooth" });
+            }
+
+            return false;
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+//Validar campos vacios formulario registrar candidato
+function validarFormularioEmpresa() {
+    try {
+        event.preventDefault();
+        var nombreEmpresa = document.getElementById("nombreEmpresa");
+        var emailEmpresa = document.getElementById("emailEmpresa");
+        var passwordEmpresa = document.getElementById("passwordEmpresa");
+        var camposIncompletos = false;
+
+        var errorNombreEmpresa = document.getElementById("errorNombreEmpresa");
+        var errorEmailEmpresa = document.getElementById("errorEmailEmpresa");
+        var errorPasswordEmpresa = document.getElementById("errorPasswordEmpresa");
+
+        if (nombreEmpresa.value === "") {
+            nombreEmpresa.style.border = "1px solid red";
+            errorNombreEmpresa.innerText = "*Campo necesario";
+            camposIncompletos = true;
+        } else {
+            nombreEmpresa.style.border = "0";
+            errorNombreEmpresa.innerText = "";
+        }
+
+        if (emailEmpresa.value === "") {
+            emailEmpresa.style.border = "1px solid red";
+            errorEmailEmpresa.innerText = "*Campo necesario";
+            camposIncompletos = true;
+        } else {
+            emailEmpresa.style.border = "0";
+            errorEmailEmpresa.innerText = "";
+        }
+
+        if (passwordEmpresa.value === "") {
+            passwordEmpresa.style.border = "1px solid red";
+            errorPasswordEmpresa.innerText = "*Campo necesario";
+            camposIncompletos = true;
+        } else {
+            passwordEmpresa.style.border = "0";
+            errorPasswordEmpresa.innerText = "";
+        }
+
+        // Si se encontraron campos incompletos, detener el envío del formulario
+        if (camposIncompletos) {
+            // Validar cual es el primer campo incompleto
+            var primerCampoIncompleto = null;
+            if (nombreEmpresa.value === "") {
+            primerCampoIncompleto = nombreEmpresa;
+            } else if (emailEmpresa.value === "") {
+            primerCampoIncompleto = emailEmpresa;
+            } else if (passwordEmpresa==="default") {
+            primerCampoIncompleto = passwordEmpresa;
             }
 
             // Hacer scroll al primer campo incompleto
