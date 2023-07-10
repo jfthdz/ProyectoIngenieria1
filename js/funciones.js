@@ -124,11 +124,9 @@ function validarFormulario() {
             errorApellidos.innerText = "";
         }
 
-        var generoSeleccionado = false;
         var valorGeneroSeleccionado = genero.value;
         if (valorGeneroSeleccionado!="default") {
             errorGenero.innerText = "";
-            generoSeleccionado = true;
         }else{
             errorGenero.innerText = "*Debe seleccionar una opción";
             camposIncompletos = true;
@@ -190,7 +188,7 @@ function validarFormulario() {
         console.log(error);
     }
 }
-//Validar campos vacios formulario registrar candidato
+//Validar campos vacios formulario registrar empresa
 function validarFormularioEmpresa() {
     try {
         event.preventDefault();
@@ -247,6 +245,53 @@ function validarFormularioEmpresa() {
             primerCampoIncompleto.scrollIntoView({ behavior: "smooth" });
             }
 
+            return false;
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+//Validar campos vacios invitar candidato
+function validarFormularioInvitarCandidato() {
+    try {
+        event.preventDefault();
+        var nombreCandidato = document.getElementById("nombreCandidato");
+        var emailCandidato = document.getElementById("emailCandidato");
+        var rolCandidato = document.getElementsByName("rolCandidato")[0];
+        var camposIncompletos = false;
+
+        var errorNombreCandidato = document.getElementById("errorNombreCandidato");
+        var errorEmailCandidato = document.getElementById("errorEmailCandidato");
+        var errorRol = document.getElementById("errorRol");
+
+        if (nombreCandidato.value === "") {
+            nombreCandidato.style.border = "1px solid red";
+            errorNombreCandidato.innerText = "*Campo necesario";
+            camposIncompletos = true;
+        } else {
+            nombreCandidato.style.border = "0";
+            errorNombreCandidato.innerText = "";
+        }
+
+        if (emailCandidato.value === "") {
+            emailCandidato.style.border = "1px solid red";
+            errorEmailCandidato.innerText = "*Campo necesario";
+            camposIncompletos = true;
+        } else {
+            emailCandidato.style.border = "0";
+            errorEmailCandidato.innerText = "";
+        }
+
+        var valorRolSeleccionado = rolCandidato.value;
+        if (valorRolSeleccionado!="default") {
+            errorRol.innerText = "";
+        }else{
+            errorRol.innerText = "*Debe seleccionar una opción";
+            camposIncompletos = true;
+        }
+
+        // Si se encontraron campos incompletos, detener el envío del formulario
+        if (camposIncompletos) {
             return false;
         }
     } catch (error) {

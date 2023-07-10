@@ -29,49 +29,26 @@
     </nav>
     <section id="contenido">
       <div class="form">
-        <h1>Crea tu cuenta de empresa</h1>
+        <h1>Invitar candidato</h1>
         <form
-          action="registrarEmpresa()"
-          method="post"
-          onsubmit="return validarFormularioEmpresa()"
+          action="invitarCandidato()"
+          onsubmit="return validarFormularioInvitarCandidato()"
         >
-          <div class="subir-foto">
-            <p>Foto de perfil de mi empresa</p>
-            <img
-              id="img-perfil"
-              class="fotoPerfil"
-              src="../images/fotoPerfilDefault.jpeg"
-              alt="Foto de perfil"
-            />
-            <label for="inputFotoPerfil">Subir imagen</label>
-            <input
-              type="file"
-              accept="image/jpeg, image/png, image/jpg"
-              name="fotoPerfil"
-              id="inputFotoPerfil"
-            />
-          </div>
-          <h2>Datos necesarios</h2>
-          <p>Nombre de la empresa</p>
-          <input type="text" name="nombreEmpresa" id="nombreEmpresa" />
-          <span id="errorNombreEmpresa" class="error"></span>
+          <p>Nombre y apellidos del candidato</p>
+          <input type="text" name="nombreCandidato" id="nombreCandidato" />
+          <span id="errorNombreCandidato" class="error"></span>
           <p>Correo electrónico</p>
-          <input type="text" name="emailEmpresa" id="emailEmpresa" />
-          <span id="errorEmailEmpresa" class="error"></span>
-          <p>Password</p>
-          <input type="password" name="passwordEmpresa" id="passwordEmpresa" />
-          <span id="errorPasswordEmpresa" class="error"></span>
-          <h2>Descripcion de mi empresa</h2>
-          <button class="boton-registro" onclick="habilitarCampoDescripcion()">
-            Agregar descripción
-          </button>
-          <div id="agregarDescripcion">
-            <p id="tituloDescripcion">Descripción sobre mi empresa</p>
-            <textarea type="text" name="contenidoDescripcion"></textarea>
-          </div>
-          <button id="botonCrearCuenta" type="submit">
-            Crear mi cuenta de empresa
-            <img src="../images/guardar-blanco.png" />
+          <input type="text" name="emailCandidato" id="emailCandidato" />
+          <span id="errorEmailCandidato" class="error"></span>
+          <p>Invitar al candidato como</p>
+          <select name="rolCandidato">
+            <option value="default" selected>Seleccione una opción</option>
+            <option value="1">Manager</option>
+            <option value="2">Reclutador</option>
+          </select>
+          <span id="errorRol" class="error"></span>
+          <button class="boton-registro" onclick="enviarInvitacion()">
+            Enviar invitación
           </button>
         </form>
       </div>
