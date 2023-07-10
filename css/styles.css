@@ -12,6 +12,7 @@ a{
     --lightpurple: #D0BDF4;
     --purple: #8458B3;
     --darkgrey: #494D5F;
+    --lightergrey: #585c70;
 }
 .nav {
     display: flex;
@@ -30,7 +31,7 @@ a{
     align-items: center;
 }
 .nav_logo img {
-    max-width: 100px;
+    max-width: 140px;
     margin-right: 20px;
 }
 .nav_menu a:hover{
@@ -296,7 +297,7 @@ a{
 }
 #contenido{
     margin: 2% 14%;
-    padding: 3% 5%;
+    padding: 3% 7%;
     color: white;
     border-radius: 10px;
     background-color: var(--darkgrey);
@@ -305,7 +306,7 @@ a{
     display: flex;
     align-items: center;
     padding: 1.5%;
-    background-color: #585c70;
+    background-color: var(--lightergrey);
     border-radius: 10px;
 }
 .boton-contenido{
@@ -436,4 +437,105 @@ a{
 .registrarse button:hover{
     opacity: 80%;
     cursor: pointer;
+}
+
+/* Registrar candidato */
+.registrarCandidato form{
+    display: flex;
+    flex-direction: column;
+    margin: 0 18%;
+    padding: 1% 7% 3% 7%;
+    border-radius: 5px;
+    background-color: var(--lightergrey);
+}
+#agregarExperiencia, #agregarEstudios{
+    display: none;
+    opacity: 0;
+    flex-direction: column;
+    transition: opacity 300ms ease-in;
+}
+.mostrar {
+    display: flex;
+    opacity: 1 !important;
+}
+.registrarCandidato h1{
+    margin-top: 0;
+    text-align: center;
+    font-size: 30px;
+}
+.registrarCandidato h2:not(:nth-child(2)){
+    margin-top: 3rem;
+}
+.registrarCandidato h2::after{
+    content: "";
+    width: 200px;
+    margin-top: 10px;
+    display: block;
+    position: absolute;
+    height: 3px;
+    background: var(--lightpurple);
+    transition: opacity 300ms ease-in-out;
+}
+.registrarCandidato input, .registrarCandidato textarea, .registrarCandidato select{
+    border: 0;
+    outline: none;
+    padding: 8px 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: var(--grey);
+}
+.registrarCandidato input::placeholder, .registrarCandidato textarea::placeholder{
+    opacity: 60%;
+}
+.registrarCandidato textarea{
+    height: 15vh;
+}
+.subir-foto{
+    align-items: center;
+}
+.subir-foto{
+    display: flex;
+    flex-direction: column;
+}
+#inputFotoPerfil, #inputCurriculum{
+    display: none;
+}
+.subir-foto label, .boton-registro, .registrarCandidato label{
+    border: 0;
+    padding: 10px;
+    color: white;
+    text-align: center;
+    font-size: 17px;
+    border-radius: 5px;
+    margin: 1.5rem 0 0.5rem 0;
+    background-color: var(--purple);
+}
+.subir-foto label:hover, .boton-registro:hover, .registrarCandidato label:hover{
+    opacity: 80%;
+    cursor: pointer;
+}
+.fotoPerfil{
+    width: 150px;
+    height: 150px;
+}
+#botonCrearCuenta{
+    display: flex;
+    justify-content: space-around;
+    border: 0;
+    width: 40%;
+    border-radius: 5px;
+    color: white;
+    padding: 20px;
+    font-size: 17px;
+    margin: 3rem 0 1rem 30%;
+    align-items: center;
+    background-color: black;
+}
+#botonCrearCuenta img{
+    width: 20px;
+}
+.error {
+    color: rgb(255, 0, 0);
+    font-size: 12px;
+    margin-top: 5px;
 }

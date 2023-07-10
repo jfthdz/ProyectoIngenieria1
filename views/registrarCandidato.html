@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="shortcut icon" href="../images/logo_tituloPagina.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <title>Busco Empleo</title>
+  </head>
+  <body>
+    <nav class="nav_buscoempleo nav">
+      <a href="../views/producto.html" class="nav_logo">
+        <img src="../images/buscoempleo.png" alt="" />
+      </a>
+      <div class="nav_barra-busqueda">
+        <form action="" method="get" class="barra-busqueda">
+          <input type="text" placeholder="Buscar..." name="barra-busqueda" />
+          <button type="submit"><img src="../images/busqueda.png" /></button>
+        </form>
+      </div>
+    </nav>
+    <section id="contenido">
+      <div class="registrarCandidato">
+        <h1>Crea tu cuenta</h1>
+        <form
+          action="registrarCandidato()"
+          method="post"
+          onsubmit="return validarFormulario()"
+        >
+          <div class="subir-foto">
+            <p>Mi foto de perfil</p>
+            <img
+              id="img-perfil"
+              class="fotoPerfil"
+              src="../images/fotoPerfilDefault.jpeg"
+              alt="Foto de perfil"
+            />
+            <label for="inputFotoPerfil">Subir imagen</label>
+            <input
+              type="file"
+              accept="image/jpeg, image/png, image/jpg"
+              name="fotoPerfil"
+              id="inputFotoPerfil"
+            />
+          </div>
+          <h2>Datos personales</h2>
+          <p>Nombre</p>
+          <input type="text" name="nombreCandidato" id="nombreCandidato" />
+          <span id="errorNombre" class="error"></span>
+          <p>Apellidos</p>
+          <input
+            type="text"
+            name="apellidosCandidato"
+            id="apellidosCandidato"
+          />
+          <span id="errorApellidos" class="error"></span>
+          <p>Género</p>
+          <select name="generoCandidato">
+            <option value="default" selected>Seleccione una opción</option>
+            <option value="1">Másculino</option>
+            <option value="2">Femenino</option>
+            <option value="3">Prefiero no especificar</option>
+          </select>
+          <span id="errorGenero" class="error"></span>
+          <h2>Datos de tu cuenta</h2>
+          <p>Correo electrónico</p>
+          <input type="text" name="emailCandidato" id="emailCandidato" />
+          <span id="errorEmail" class="error"></span>
+          <p>Password</p>
+          <input
+            type="password"
+            name="passwordCandidato"
+            id="passwordCandidato"
+          />
+          <span id="errorPassword" class="error"></span>
+          <h2>Experiencia laboral</h2>
+          <p>Titulo principal de tu perfil laboral</p>
+          <input
+            placeholder='Ej: "Ingeniero(a) en Sistemas","Estudiante de administración","Emprendedor(a)", etc'
+            type="text"
+            name="profesionCandidato"
+            id="profesionCandidato"
+          />
+          <span id="errorProfesion" class="error"></span>
+          <button class="boton-registro" onclick="habilitarCamposExperiencia()">
+            Agregar experiencia
+          </button>
+          <div id="agregarExperiencia">
+            <p id="tituloCargo">¿Qué cargo tuviste/tienes?</p>
+            <input
+              placeholder='Ej: "Diseñador(a)","Asistente","Coordinador(a)", etc'
+              type="text"
+              name="cargoExperienciaCadidato"
+            />
+            <p id="tituloEmpresa">Nombre de la empresa</p>
+            <input type="text" name="empresaExperienciaCandidato" />
+            <p id="tituloResponsabilidades">Tus logros y responsabilidades</p>
+            <textarea type="text" name="contenidoExperiencia"></textarea>
+            <p id="tituloFechaInicio">Fecha de inicio</p>
+            <input type="date" name="fechaInicioExperiencia" />
+            <p id="tituloFechaInicio">Fecha de finalización</p>
+            <input type="date" name="fechaFinalExperiencia" />
+            <button class="boton-registro" onclick="experienciaExtra()">
+              Agregar otra experiencia
+            </button>
+          </div>
+          <h2>Estudios</h2>
+          <p>Tu formación académica</p>
+          <button class="boton-registro" onclick="habilitarCamposEstudios()">
+            Agregar estudios
+          </button>
+          <div id="agregarEstudios">
+            <p id="tituloEstudio">Título otorgado</p>
+            <input
+              placeholder='Ej: "Ingeniería","Bachillerato","Técnico", etc'
+              type="text"
+              name="tituloEstudiocandidato"
+            />
+            <p id="tituloInstitucion">
+              Nombre de institución en la que estudiaste
+            </p>
+            <input type="text" name="institucionEstudioCandidato" />
+            <p id="tituloFechaInicio">Fecha de inicio</p>
+            <input type="date" name="fechaInicioEstudio" />
+            <p id="tituloFechaInicio">Fecha de finalización</p>
+            <input type="date" name="fechaFinalExperiencia" />
+            <button class="boton-registro" onclick="estudiosExtra()">
+              Agregar más estudios
+            </button>
+          </div>
+          <h2>Archivos</h2>
+          <label for="inputCurriculum">Subir mi curriculum</label>
+          <input
+            type="file"
+            accept="application/pdf"
+            name="curriculum"
+            id="inputCurriculum"
+          />
+          <button id="botonCrearCuenta" type="submit">
+            Crear mi cuenta
+            <img src="../images/guardar-blanco.png" />
+          </button>
+        </form>
+      </div>
+    </section>
+    <footer id="footer_buscoempleo" class="footer">
+      <div class="footer_first">
+        <a href="" id="footer_logo-buscoempleo" class="footer_logo">
+          <img src="../images/buscoempleonegro.png" />
+        </a>
+        <a href="../views/producto.html">
+          <p>Acerca de Busco Empleo</p>
+        </a>
+      </div>
+      <div class="footer_first">
+        <a href="" class="footer_logo">
+          <img src="../images/logo_nombre.jpg" />
+        </a>
+        <p>+506 2222-2222 | bitbyte@gmail.com</p>
+      </div>
+      <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
+    </footer>
+    <script src="../js/funciones.js"></script>
+  </body>
+</html>
