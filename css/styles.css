@@ -551,7 +551,7 @@ th {
 }
 
 #encabezadoContenido1{
-    background-color: rgb(233, 220, 220);   
+      
     width: 100%;
     display: inline-block; 
     text-align: center;
@@ -562,7 +562,7 @@ th {
 }
 #tipodeanuncio{
     background-color: rgb(157, 153, 153);
-    width: 25%;  
+    width: 20%;  
      margin:20px; 
      display: inline-block; 
      padding: 10px;
@@ -572,7 +572,7 @@ th {
  #estadoAnuncio
  {
     background-color: rgb(157, 153, 153);
-    width: 25%;       
+    width: 20%;        
     margin:20px;  
     display: inline-block;
     padding: 10px;
@@ -580,7 +580,7 @@ th {
 
  #monstrar {  
     background-color: rgb(157, 153, 153);
-    width: 25%;     
+    width: 20%;     
     margin:20px;  
     display: inline-block;
     padding: 10px;
@@ -590,7 +590,7 @@ th {
 
  #cajabusqueda{  
     background-color: rgb(157, 153, 153);
-    width: 10%;     
+    width: 20%;      
     margin:20px;  
     display: inline-block;
     padding: 10px;
