@@ -532,7 +532,7 @@ th {
     border-radius: 5px;
     background-color: var(--lightergrey);
 }
-#agregarExperiencia, #agregarEstudios{
+#agregarExperiencia, #agregarEstudios, #agregarDescripcion{
     display: none;
     opacity: 0;
     flex-direction: column;
@@ -606,12 +606,12 @@ th {
     display: flex;
     justify-content: space-around;
     border: 0;
-    width: 40%;
+    width: 50%;
     border-radius: 5px;
     color: white;
     padding: 20px;
     font-size: 17px;
-    margin: 3rem 0 1rem 30%;
+    margin: 3rem 0 1rem 25%;
     align-items: center;
     background-color: black;
 }
