@@ -106,6 +106,9 @@ function validarFormulario() {
         var errorPassword = document.getElementById("errorPassword");
         var errorProfesion = document.getElementById("errorProfesion");
 
+        //expresión regular para validar formato de correo
+        var regexEmail = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
+
         if (nombre.value === "") {
             nombre.style.border = "1px solid red";
             errorNombre.innerText = "*Campo necesario";
@@ -136,7 +139,11 @@ function validarFormulario() {
             email.style.border = "1px solid red";
             errorEmail.innerText = "*Campo necesario";
             camposIncompletos = true;
-        } else {
+        } else if(regexEmail.test(email.value)==false){
+            email.style.border = "1px solid red";
+            errorEmail.innerText = "*Ingrese un correo válido";
+            camposIncompletos = true;
+        }else{
             email.style.border = "0";
             errorEmail.innerText = "";
         }
@@ -201,6 +208,9 @@ function validarFormularioEmpresa() {
         var errorEmailEmpresa = document.getElementById("errorEmailEmpresa");
         var errorPasswordEmpresa = document.getElementById("errorPasswordEmpresa");
 
+        //expresión regular para validar formato de correo
+        var regexEmail = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
+
         if (nombreEmpresa.value === "") {
             nombreEmpresa.style.border = "1px solid red";
             errorNombreEmpresa.innerText = "*Campo necesario";
@@ -214,7 +224,11 @@ function validarFormularioEmpresa() {
             emailEmpresa.style.border = "1px solid red";
             errorEmailEmpresa.innerText = "*Campo necesario";
             camposIncompletos = true;
-        } else {
+        } else if(regexEmail.test(emailEmpresa.value)==false){
+            emailEmpresa.style.border = "1px solid red";
+            errorEmailEmpresa.innerText = "*Ingrese un correo válido";
+            camposIncompletos = true;
+        }else{
             emailEmpresa.style.border = "0";
             errorEmailEmpresa.innerText = "";
         }
@@ -264,6 +278,9 @@ function validarFormularioInvitarCandidato() {
         var errorEmailCandidato = document.getElementById("errorEmailCandidato");
         var errorRol = document.getElementById("errorRol");
 
+        //expresión regular para validar formato de correo
+        var regexEmail = new RegExp('[a-z0-9]+@[a-z]+.[a-z]{2,3}');
+
         if (nombreCandidato.value === "") {
             nombreCandidato.style.border = "1px solid red";
             errorNombreCandidato.innerText = "*Campo necesario";
@@ -277,7 +294,11 @@ function validarFormularioInvitarCandidato() {
             emailCandidato.style.border = "1px solid red";
             errorEmailCandidato.innerText = "*Campo necesario";
             camposIncompletos = true;
-        } else {
+        } else if(regexEmail.test(emailCandidato.value)==false){
+            emailCandidato.style.border = "1px solid red";
+            errorEmailCandidato.innerText = "*Ingrese un correo válido";
+            camposIncompletos = true;
+        }else{
             emailCandidato.style.border = "0";
             errorEmailCandidato.innerText = "";
         }
@@ -291,6 +312,67 @@ function validarFormularioInvitarCandidato() {
         }
 
         // Si se encontraron campos incompletos, detener el envío del formulario
+        if (camposIncompletos) {
+            return false;
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+function validarCampoCorreo(){
+    try {
+        event.preventDefault();
+        var emailCandidato = document.getElementById("emailCandidato");
+        var errorEmailCandidato = document.getElementById("errorEmailCandidato");
+        //expresión regular para validar formato de correo
+        var regexEmail = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
+
+        if (emailCandidato.value === "") {
+            emailCandidato.style.border = "1px solid red";
+            errorEmailCandidato.innerText = "*Campo necesario";
+            camposIncompletos = true;
+        } else if(regexEmail.test(emailCandidato.value)==false){
+            emailCandidato.style.border = "1px solid red";
+            errorEmailCandidato.innerText = "*Ingrese un correo válido";
+            camposIncompletos = true;
+        }else{
+            emailCandidato.style.border = "0";
+            errorEmailCandidato.innerText = "";
+        }
+
+        if (camposIncompletos) {
+            return false;
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+function validarCamposNuevoPassword(){
+    try {
+        event.preventDefault();
+        var codigoVerificacion = document.getElementById("codigoVerificacion");
+        var errorCodigoVerificacion = document.getElementById("errorCodigoVerificacion");
+        var nuevoPassword = document.getElementById("nuevoPassword");
+        var errorNuevoPassword = document.getElementById("errorNuevoPassword");
+
+        if (codigoVerificacion.value === "") {
+            codigoVerificacion.style.border = "1px solid red";
+            errorCodigoVerificacion.innerText = "*Campo necesario";
+            camposIncompletos = true;
+        } else {
+            codigoVerificacion.style.border = "0";
+            errorCodigoVerificacion.innerText = "";
+        }
+
+        if (nuevoPassword.value === "") {
+            nuevoPassword.style.border = "1px solid red";
+            errorNuevoPassword.innerText = "*Campo necesario";
+            camposIncompletos = true;
+        } else {
+            nuevoPassword.style.border = "0";
+            errorNuevoPassword.innerText = "";
+        }
+
         if (camposIncompletos) {
             return false;
         }

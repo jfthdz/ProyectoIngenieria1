@@ -415,7 +415,7 @@ a{
     border-radius: 5px;
     background-color: var(--purple);
 }
-.inicioSesion button:hover{
+.inicioSesion button:hover, .inicioSesion a:hover{
     opacity: 80%;
     cursor: pointer;
 }
@@ -524,10 +524,10 @@ th {
 }
 
 /* Registrar candidato */
-.form form{
+.form form, #crearNuevoPassword{
     display: flex;
     flex-direction: column;
-    margin: 0 18%;
+    margin: 0 18% 3% 18%;
     padding: 1% 7% 3% 7%;
     border-radius: 5px;
     background-color: var(--lightergrey);
@@ -594,7 +594,7 @@ th {
     margin: 1.5rem 0 0.5rem 0;
     background-color: var(--purple);
 }
-.subir-foto label:hover, .boton-registro:hover, .form label:hover{
+.subir-foto label:hover, .boton-registro:hover, .form label:hover, .vistaCandidato_info button:hover{
     opacity: 80%;
     cursor: pointer;
 }
