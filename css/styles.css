@@ -550,6 +550,46 @@ th {
    background-color:   #8458b3;
 }
 
+#tipodeanuncio11{
+    background-color: rgb(157, 153, 153);
+        width: 20%;      
+        margin:20px;  
+        display: inline-block;
+        padding: 10px;
+   
+   
+}
+
+
+#estadoAnuncio11{
+    background-color: rgb(157, 153, 153);
+        width: 20%;      
+        margin:20px;  
+        display: inline-block;
+        padding: 10px;
+   
+   
+}
+
+
+#monstrar11{  
+        background-color: rgb(157, 153, 153);
+        width: 20%;      
+        margin:20px;  
+        display: inline-block;
+        padding: 10px;
+}
+
+
+#cajabusqueda11{  
+    background-color: rgb(157, 153, 153);
+    width: 20%;      
+    margin:20px;  
+    display: inline-block;
+    padding: 10px;
+}
+
+
 #encabezadoContenido1{
       
     width: 100%;
@@ -596,3 +636,38 @@ th {
     padding: 10px;
  }
 
+ #listadoPostulaciones{  
+    background-color: rgb(157, 153, 153);
+    width: 20%;      
+    margin:20px;  
+    display: inline-block;
+    padding: 10px;
+ }
+
+ 
+            
+
+  #ordenarPor{  
+    background-color: rgb(157, 153, 153);
+    width: 20%;      
+    margin:20px;  
+    display: inline-block;
+    padding: 10px;
+ }
+
+               
+            
+   #buscar
+   {  
+    background-color: rgb(157, 153, 153);
+    width: 20%;      
+    margin:20px;  
+    display: inline-block;
+    padding: 10px;
+ }
+
+ #contenidocentral12{  
+   width: 100%;
+    display: inline-block; 
+    text-align: center;
+    margin:20px; 
