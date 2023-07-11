@@ -672,7 +672,7 @@ th {
     text-align: center;
     margin:20px; 
 }
-
+/* EJEMPLO */
 /* Registrar candidato */
 .form form, #crearNuevoPassword{
     display: flex;
