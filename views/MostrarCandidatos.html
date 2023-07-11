@@ -25,36 +25,45 @@
           <button type="submit"><img src="../images/busqueda.png" /></button>
         </form>
       </div>
+      <a href="../views/inicioSesion.html">Iniciar sesión</a>
     </nav>
-    <section id="contenido">
-      <div class="contenido_login">
-        <div class="inicioSesion">
-          <h1>Inicio de sesión</h1>
-          <h3>Inicia sesion con tu correo y contraseña</h3>
-          <p>Correo electrónico:</p>
-          <input type="text" name="email" id="email" />
-          <p>Contraseña:</p>
-          <input type="password" name="password" id="password" />
-          <button value="login" onclick="validarLogin()">Iniciar sesión</button>
-          <a href="../views/recuperarPassword.html"
-            >¿Has olvidado tu contraseña?</a
-          >
-        </div>
-        
-        <div class="division"></div>
-        <div class="registrarse">
-          <h1>¿Aún no estás registrado?</h1>
-          <p>Regístrate y encuentra los mejores anuncios de empleo</p>
-          <a href="../views/registrarCandidato.html">
-            <button>Regístrate</button>
-          </a>
-          <p>Ó registra tu empresa y publica tus anuncios laborales</p>
-          <a href="../views/registrarEmpresa.html">
-            <button>Registrar empresa</button>
-          </a>
-        </div>
+
+    <header class="sub-header">
+      <div class="options">
+        <ul>
+          <li><a href="../views/CrearOferas.html">Crear oferta</a></li>
+          <li>
+            <a href="../views/showOffers.html">Mostrar ofertas creadas</a>
+          </li>
+          <li>
+            <a href="../views/invitarCandidatos.html">Invitar candidatos</a>
+          </li>
+          <li>
+            <a href="../views/invitacionesCreadas.html"
+              >Mostrar invitaciones creadas</a
+            >
+          </li>
+          <li><a href="#">Revisar mis puestos</a></li>
+        </ul>
       </div>
-    </section>
+    </header>
+
+    <div id="contenido">
+      <div class="search-bar">
+        <form action="#" method="get">
+          <input
+            type="text"
+            name="q"
+            placeholder="Buscar..."
+            class="search-input-box"
+          />
+          <input type="submit" value="" />
+        </form>
+      </div>
+      <p class="search-results">Candidatos mostrados</p>
+      <div class="inner-box"></div>
+    </div>
+
     <footer id="footer_buscoempleo" class="footer">
       <div class="footer_first">
         <a

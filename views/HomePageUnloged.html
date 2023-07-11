@@ -16,7 +16,7 @@
   </head>
   <body>
     <nav class="nav_buscoempleo nav">
-      <a href="../views/MostrarCandidatos.html" class="nav_logo">
+      <a href="../views/producto.html" class="nav_logo">
         <img src="../images/buscoempleo.png" alt="" />
       </a>
       <div class="nav_barra-busqueda">
@@ -25,43 +25,35 @@
           <button type="submit"><img src="../images/busqueda.png" /></button>
         </form>
       </div>
+      <a href="../views/inicioSesion.html">Iniciar sesión</a>
     </nav>
-    <section id="contenido">
-      <div class="contenido_login">
-        <div class="inicioSesion">
-          <h1>Inicio de sesión</h1>
-          <h3>Inicia sesion con tu correo y contraseña</h3>
-          <p>Correo electrónico:</p>
-          <input type="text" name="email" id="email" />
-          <p>Contraseña:</p>
-          <input type="password" name="password" id="password" />
-          <button value="login" onclick="validarLogin()">Iniciar sesión</button>
-          <a href="../views/recuperarPassword.html"
-            >¿Has olvidado tu contraseña?</a
-          >
-        </div>
-        
-        <div class="division"></div>
-        <div class="registrarse">
-          <h1>¿Aún no estás registrado?</h1>
-          <p>Regístrate y encuentra los mejores anuncios de empleo</p>
-          <a href="../views/registrarCandidato.html">
-            <button>Regístrate</button>
-          </a>
-          <p>Ó registra tu empresa y publica tus anuncios laborales</p>
-          <a href="../views/registrarEmpresa.html">
-            <button>Registrar empresa</button>
-          </a>
-        </div>
+
+    <header class="header">
+      <div class="header-bg">
+        <img src="../images/banner.png" />
       </div>
-    </section>
+    </header>
+
+    <header class="sub-header">
+      <div class="options">
+        <ul>
+          <li><a href="#">Opción 1</a></li>
+          <li><a href="#">Opción 2</a></li>
+          <li><a href="#">Opción 3</a></li>
+          <li><a href="#">Opción 4</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Cambio: Agregar un contenedor para el botón -->
+    <div class="button-container">
+      <a href="#" class="image-button">Sign Up</a>
+    </div>
+    <!-- Fin del cambio -->
+
     <footer id="footer_buscoempleo" class="footer">
       <div class="footer_first">
-        <a
-          href="../views/MostrarCandidatos.html"
-          id="footer_logo-buscoempleo"
-          class="footer_logo"
-        >
+        <a href="" id="footer_logo-buscoempleo" class="footer_logo">
           <img src="../images/buscoempleonegro.png" />
         </a>
         <a href="../views/producto.html">
@@ -69,7 +61,7 @@
         </a>
       </div>
       <div class="footer_first">
-        <a href="../views/index.html" class="footer_logo">
+        <a href="" class="footer_logo">
           <img src="../images/logo_nombre.jpg" />
         </a>
         <p>+506 2222-2222 | bitbyte@gmail.com</p>

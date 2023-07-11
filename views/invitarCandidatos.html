@@ -25,34 +25,32 @@
           <button type="submit"><img src="../images/busqueda.png" /></button>
         </form>
       </div>
+      <a href="../views/inicioSesion.html">Iniciar sesión</a>
     </nav>
     <section id="contenido">
-      <div class="contenido_login">
-        <div class="inicioSesion">
-          <h1>Inicio de sesión</h1>
-          <h3>Inicia sesion con tu correo y contraseña</h3>
-          <p>Correo electrónico:</p>
-          <input type="text" name="email" id="email" />
-          <p>Contraseña:</p>
-          <input type="password" name="password" id="password" />
-          <button value="login" onclick="validarLogin()">Iniciar sesión</button>
-          <a href="../views/recuperarPassword.html"
-            >¿Has olvidado tu contraseña?</a
-          >
-        </div>
-        
-        <div class="division"></div>
-        <div class="registrarse">
-          <h1>¿Aún no estás registrado?</h1>
-          <p>Regístrate y encuentra los mejores anuncios de empleo</p>
-          <a href="../views/registrarCandidato.html">
-            <button>Regístrate</button>
-          </a>
-          <p>Ó registra tu empresa y publica tus anuncios laborales</p>
-          <a href="../views/registrarEmpresa.html">
-            <button>Registrar empresa</button>
-          </a>
-        </div>
+      <div class="form">
+        <h1>Invitar candidato</h1>
+        <form
+          action="invitarCandidato()"
+          onsubmit="return validarFormularioInvitarCandidato()"
+        >
+          <p>Nombre y apellidos del candidato</p>
+          <input type="text" name="nombreCandidato" id="nombreCandidato" />
+          <span id="errorNombreCandidato" class="error"></span>
+          <p>Correo electrónico</p>
+          <input type="text" name="emailCandidato" id="emailCandidato" />
+          <span id="errorEmailCandidato" class="error"></span>
+          <p>Invitar al candidato como</p>
+          <select name="rolCandidato">
+            <option value="default" selected>Seleccione una opción</option>
+            <option value="1">Manager</option>
+            <option value="2">Reclutador</option>
+          </select>
+          <span id="errorRol" class="error"></span>
+          <button class="boton-registro" onclick="enviarInvitacion()">
+            Enviar invitación
+          </button>
+        </form>
       </div>
     </section>
     <footer id="footer_buscoempleo" class="footer">
