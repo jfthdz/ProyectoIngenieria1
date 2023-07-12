@@ -594,6 +594,87 @@ a {
     display: block; /* Mostrar el menú desplegable al pasar el mouse sobre el botón */
 }
 
+/*fabian*/
+
+/* Estilos para el encabezado del contenido */
+#encabezadoContenido12 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    font-size: 25px;
+    
+}
+
+#encabezadoContenido12 div {
+    flex: 1;
+    margin: 0 10px;
+}
+
+/* Estilos para los select y el input de texto */
+#encabezadoContenido12 div select,
+#encabezadoContenido12 div input[type="text"] {
+    margin-left: 10px;
+    font-size: 16px; /* Tamaño de letra para Ordenar por y Buscar */
+}
+
+/* Estilos para el botón "Ir" */
+#encabezadoContenido12 div input[type="submit"] {
+    margin-left: 10px;
+    background-color: #918e8e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 16px; /* Tamaño de letra para el botón "Ir" */
+}
+
+#encabezadoContenido12 div input[type="submit"]:hover {
+    background-color: #a04594;
+}
+
+/* Estilos para la tabla */
+#contenidocentral12 {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#tabla2 {
+    margin: 0 auto;
+}
+
+#tabla2 thead th {
+    background-color: #4CAF50;
+    color: white;
+    text-align: left;
+    padding: 10px;
+    font-size: 16px; /* Tamaño de letra para los encabezados de la tabla */
+}
+
+#tabla2 tbody td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 14px; /* Tamaño de letra para los datos de la tabla */
+}
+
+#tabla2 tbody tr:nth-child(even) {
+    background-color: #e6e6e6;
+}
+
+#tabla2 tbody tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+
+
+/*Fabian*/
+
+
+
+
+
+
 
 /* Registrar candidato */
 .form form, #crearNuevoPassword{
