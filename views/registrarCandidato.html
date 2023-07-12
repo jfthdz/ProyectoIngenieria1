@@ -16,7 +16,11 @@
   </head>
   <body>
     <nav class="nav_buscoempleo nav">
-      <a href="../views/MostrarCandidatos.html" class="nav_logo">
+      <a
+        id="nav_logo-buscoempleo"
+        href="../views/MostrarCandidatos.html"
+        class="nav_logo"
+      >
         <img src="../images/buscoempleo.png" alt="" />
       </a>
       <div class="nav_barra-busqueda">
@@ -25,7 +29,7 @@
           <button type="submit"><img src="../images/busqueda.png" /></button>
         </form>
       </div>
-      <a href="../views/inicioSesion.html">Iniciar sesión</a>
+      <a id="opcionNav" href="../views/inicioSesion.html">Iniciar sesión</a>
     </nav>
     <section id="contenido">
       <div class="form">
@@ -173,5 +177,8 @@
       <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
     </footer>
     <script src="../js/funciones.js"></script>
+    <script>
+      cargarDatosUsuario();
+    </script>
   </body>
 </html>
