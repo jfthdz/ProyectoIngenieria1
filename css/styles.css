@@ -20,8 +20,8 @@ a {
 
 .nav {
     display: flex;
-    height: 6vh;
-    padding: 1.5% 6%;
+    min-height: 5.5vh;
+    padding: 0.3% 15%;
     justify-content: space-between;
     align-items: center;
 }
@@ -191,7 +191,7 @@ a {
     flex-wrap: wrap;
     align-items: center;
     color: white;
-    padding: 1.5rem 10rem;
+    padding: 0.3% 13%;
 }
 
 .footer_logo img {
@@ -467,6 +467,7 @@ a {
 
 .division {
     display: block;
+    margin: 0 6%;
     width: 1px;
     background-color: var(--grey);
 }
@@ -667,15 +668,6 @@ a {
 }
 
 
-
-/*Fabian*/
-
-
-
-
-
-
-
 /* Registrar candidato */
 .form form, #crearNuevoPassword{
     display: flex;
@@ -776,6 +768,10 @@ a {
     font-size: 12px;
     margin-top: 5px;
 }
+.borde-rojo{
+    border: 1px solid red;
+    transition: border-color 0.2s ease-in-out;
+}
 
 /* Estilos Vanessa*/
 .header {
@@ -785,57 +781,52 @@ a {
     padding: 6px;
     background-color: #E5EAF5;
   }
-
-  .header-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    
-  }
-  .header-bg img {
-    width: 100%;
-    height: 100%;
-    
-  }
-  .image-text {
+.header-bg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 65vh;
+    padding: 0 5%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position:center;
+}
+.image-text {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
-  }
+}
   
 /*Sub header*/
-  .sub-header {
+.sub-header {
     background-color: #494D5F;
     padding: 10px;
-  }
-  .options {
-    text-align: right;
-  }
-  .options ul {
+}
+.options {
+    text-align: center;
+}
+.options ul {
     display: inline-block;
     list-style-type: none;
     margin: 0;
     padding: 0; 
-  }
-  .options li {
+}
+.options li {
     display: inline;
     margin-left: 10px;
-  }
-  .options li:first-child {
+}
+.options li:first-child {
     margin-left: 0;
-  }
-  .options li a {
+}
+.options li a {
     text-decoration: none; /* Quita la línea horizontal */
     color: #A0D2EB; /* Cambia el color del texto */
     margin-left: 10px;
     margin-right: 20px;
-  }
+}
 /*Cuadro grande*/
   .outer-box {
     background-color: #E5EAF5;
@@ -883,3 +874,29 @@ a {
     font-size: 18px; /* Cambio: Ajusta el tamaño del texto */
     font-weight: bold; /* Cambio: Aplica el estilo en negrita */
   }
+
+  /* HomePage Jafet */
+.contenidoHomePage h1{
+    display: flex;
+    color: white;
+    margin-bottom: 2rem;
+    justify-content: center;
+}
+#registrarseHomePage{
+    display: flex;
+    color: white;
+    font-weight: 500;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 6rem;
+}
+.registrarCandidato_HomePage, .registrarEmpresa_HomePage{
+    text-align: center;
+    padding: 0 3%;
+}
+.headerLogged{
+    min-height: 40vh;
+}
+.grid-contenido{
+    margin: 2% 10% !important;
+}

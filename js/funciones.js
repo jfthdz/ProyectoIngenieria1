@@ -1,3 +1,83 @@
+var usuarios = [
+    {nombre:"Jafet",apellidos:"Hernandez Alfaro",email:"jafethernandez2206@gmail.com",pass:"admin",rol:"Developer",foto:"../images/jafet.jpg"},
+    {nombre:"Prueba",apellidos:"de usuarios",email:"prueba@gmail.com",pass:"123",rol:"Prueba",foto:"../images/fotoPerfilDefault.jpeg"}
+];
+
+var puestoTrabajo = [
+    {
+        empresa: "BCR",
+        titulo:"FrontEnd Developer",
+        rangoSalarial:"¢ 650 a 750 mil",
+        reqMinimo:`Experiencia previa en desarrollo web.
+        Conocimiento de HTML, CSS, JavaScript, PHP y MySQL.
+        Comprensión de los principios de diseño web.
+        Comprensión de los principios de programación.
+        Comprensión de los principios de seguridad web.
+        Capacidad para trabajar en equipo.
+        Mentalidad de aprendizaje.`,
+        reqDeseable:`Experiencia laboral de 2 años en desarrollo web.
+        Comprensión del desarrollo front-end utilizando frameworks Angular y/o React.
+        Experiencia con sistemas de control de versiones, como Git.
+        Conocimiento de metodologías ágiles de desarrollo y mejores prácticas.`,
+        plus:`Título en informática, ingeniería o un campo relacionado (o experiencia práctica equivalente).
+        Familiaridad con las API RESTful y su integración en aplicaciones web.`
+    },
+    {
+        empresa: "Amazon",
+        titulo:"Full Stack Developer",
+        rangoSalarial:"¢ 1 a 1,5 millones",
+        reqMinimo:`Experiencia previa en desarrollo web.
+        Conocimiento de HTML, CSS, JavaScript, PHP y MySQL.
+        Comprensión de los principios de diseño web.
+        Comprensión de los principios de programación.
+        Comprensión de los principios de seguridad web.
+        Capacidad para trabajar en equipo.
+        Mentalidad de aprendizaje.`,
+        reqDeseable:`Experiencia laboral de 2 años en desarrollo web.
+        Comprensión del desarrollo front-end utilizando frameworks Angular y/o React.
+        Experiencia con sistemas de control de versiones, como Git.
+        Conocimiento de metodologías ágiles de desarrollo y mejores prácticas.`,
+        plus:`Título en informática, ingeniería o un campo relacionado (o experiencia práctica equivalente).
+        Familiaridad con las API RESTful y su integración en aplicaciones web.`
+    },
+    {
+        empresa: "Intel",
+        titulo:"Backend Mid Developer",
+        rangoSalarial:"¢ 750 mil a 1 millón",
+        reqMinimo:`Experiencia previa en desarrollo web.
+        Conocimiento de HTML, CSS, JavaScript, PHP y MySQL.
+        Comprensión de los principios de diseño web.
+        Comprensión de los principios de programación.
+        Comprensión de los principios de seguridad web.
+        Capacidad para trabajar en equipo.
+        Mentalidad de aprendizaje.`,
+        reqDeseable:`Experiencia laboral de 2 años en desarrollo web.
+        Comprensión del desarrollo front-end utilizando frameworks Angular y/o React.
+        Experiencia con sistemas de control de versiones, como Git.
+        Conocimiento de metodologías ágiles de desarrollo y mejores prácticas.`,
+        plus:`Título en informática, ingeniería o un campo relacionado (o experiencia práctica equivalente).
+        Familiaridad con las API RESTful y su integración en aplicaciones web.`
+    },
+    {
+        empresa: "Cenfotec",
+        titulo:"UI/UX Designer",
+        rangoSalarial:"¢ 750 mil a 1 millón",
+        reqMinimo:`Experiencia previa en desarrollo web.
+        Conocimiento de HTML, CSS, JavaScript, PHP y MySQL.
+        Comprensión de los principios de diseño web.
+        Comprensión de los principios de programación.
+        Comprensión de los principios de seguridad web.
+        Capacidad para trabajar en equipo.
+        Mentalidad de aprendizaje.`,
+        reqDeseable:`Experiencia laboral de 2 años en desarrollo web.
+        Comprensión del desarrollo front-end utilizando frameworks Angular y/o React.
+        Experiencia con sistemas de control de versiones, como Git.
+        Conocimiento de metodologías ágiles de desarrollo y mejores prácticas.`,
+        plus:`Título en informática, ingeniería o un campo relacionado (o experiencia práctica equivalente).
+        Familiaridad con las API RESTful y su integración en aplicaciones web.`
+    }
+];
+
 //Smooth scroll del nav_menu en LandingPage Bitbyte
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -378,5 +458,127 @@ function validarCamposNuevoPassword(){
         }
     } catch (error) {
         console.log(error);
+    }
+}
+
+//Validar barra de busqueda vacia en el HomePage
+function validarBusquedaHomePage(){
+    try {
+        var formulario = document.getElementById("barraBusquedaForm");
+        var barraBusqueda = document.querySelector("input[name=barra-busqueda]");
+
+        if(barraBusqueda.value === ""){
+            formulario.classList.add("borde-rojo");
+            setTimeout(function() {
+                formulario.classList.remove("borde-rojo");
+            }, 2000);  
+            return false;
+        }
+        return true;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+/* Validar Inicio de sesion */
+function validarLogin(){
+    try {
+        var correoLogin = document.querySelector("#email");
+        var passLogin = document.querySelector("#password");
+        var errorLogin = document.querySelector("#errorLogin");
+        var camposIncompletos = false;
+        var encontrado = false;
+
+        if(correoLogin.value === ""){
+            correoLogin.style.border = "1px solid red";
+            camposIncompletos = true;
+        }else{
+            correoLogin.style.border = "0";
+            camposIncompletos = false;
+        }
+        console.log(camposIncompletos);
+        if(passLogin.value === ""){
+            passLogin.style.border = "1px solid red";
+            camposIncompletos = true;
+        }else{
+            passLogin.style.border = "0";
+            camposIncompletos = false;
+        }
+        console.log(camposIncompletos);
+
+        if(correoLogin.value != "" && passLogin.value != ""){
+            for(var usuario of usuarios){
+                if(correoLogin.value == usuario.email && passLogin.value == usuario.pass){
+                    alert(`Bienvenido ${usuario.nombre}`);
+                    encontrado = true;
+                    almacenarDatosUsuario(usuario);
+                    location.href = "../views/HomePageLogged.html";
+                    break;
+                }
+                if(!encontrado){
+                    errorLogin.innerText = "Correo o contraseña incorrectos. Inténtelo nuevamente"
+                    setTimeout(function(){
+                        errorLogin.innerText = "";
+                    },3000);
+                }
+            }
+        }  
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+function cargarDatosUsuario() {
+    try {
+        var opcionNav = document.querySelector("#opcionNav");
+        var usuarioLoggeado = obtenerDatosUsuario(); // Función para obtener el objeto completo del usuario
+    
+        if (usuarioLoggeado) {
+        var nombreUsuario = `${usuarioLoggeado.nombre} ${usuarioLoggeado.apellidos}`;
+        opcionNav.innerText = nombreUsuario;
+        }
+        console.log(usuarioLoggeado);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+function almacenarDatosUsuario(user){
+    sessionStorage.setItem("datosUsuarioLoggeado",JSON.stringify(user));
+}
+
+function obtenerDatosUsuario(){
+    var datosUsuarioJSON = sessionStorage.getItem("datosUsuarioLoggeado");
+    if(datosUsuarioJSON){
+        return JSON.parse(datosUsuarioJSON);
+    }else{
+        return null;
+    }
+}
+
+function cargarDatosPuestos(){
+    let num = 2;
+    var grid = document.querySelector("#equipo");
+
+    for(var puesto of puestoTrabajo){
+        var card = document.createElement("div");
+        var tituloPuesto = document.createElement("h3");
+        var empresa = document.createElement("p");
+        var rangoSalarial = document.createElement("p");
+    
+        card.classList.add("card");
+        tituloPuesto.innerText = puesto.titulo;
+        empresa.innerText = puesto.empresa;
+        rangoSalarial.innerText = puesto.rangoSalarial;
+        card.appendChild(tituloPuesto);
+        card.appendChild(empresa);
+        card.appendChild(rangoSalarial);
+        grid.appendChild(card);
+    
+        console.log(num);
+        num += 1;
+        if(num > 4){
+            break;
+        }
     }
 }
