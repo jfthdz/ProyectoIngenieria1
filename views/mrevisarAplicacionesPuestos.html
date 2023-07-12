@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="shortcut icon" href="../images/logo_tituloPagina.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <title>Busco Empleo</title>
+</head>
+
+<body>
+    <nav class="nav_buscoempleo nav">
+        <a href="../views/producto.html" class="nav_logo">
+            <img src="../images/buscoempleo.png" alt="" />
+        </a>
+        <div class="nav_barra-busqueda">
+            <form action="" method="get" class="barra-busqueda">
+                <input type="text" placeholder="Buscar..." name="barra-busqueda" />
+                <button type="submit"><img src="../images/busqueda.png" /></button>
+            </form>
+        </div>
+        <a href="#">Perfil</a>
+    </nav>
+
+    <section id="contenido">
+
+        <section id="contenido12">
+            <div id="encabezadoContenido12">
+                <div id="listadoPostulaciones2">
+                    <h3>Listado de postulaciones</h3>
+                </div>
+                <div id="ordenarPor2">
+                    Ordenar por
+                    <select name="ordenar2">
+                        <option value="puesto">Puesto</option>
+                        <option value="candidato">Candidato</option>
+                        <option value="experiencia">Experiencia</option>
+                        <option value="estado">Estado</option>
+                    </select>
+                </div>
+                <div id="buscar2">
+                    Buscar
+                    <input type="text" name="buscar2" placeholder="Ingrese término de búsqueda..." />
+                </div>
+                <div id="ir2">
+                    Ir
+                    <input type="number" name="ir2" min="1" max="10" />
+                </div>
+            </div>
+            <div id="contenidocentral12">
+                <table class="modern-table">
+                    <thead>
+                        <tr>
+                            <th>Puesto</th>
+                            <th>Candidato</th>
+                            <th>Experiencia</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ingeniero de Software</td>
+                            <td>Juan Perez</td>
+                            <td>5 años</td>
+                            <td>Contratado</td>
+                        </tr>
+                        <tr>
+                            <td>Analista de Sistemas</td>
+                            <td>Andrea Ramirez</td>
+                            <td>3 años</td>
+                            <td>Pendiente</td>
+                        </tr>
+                        <tr>
+                            <td>Desarrollador Web</td>
+                            <td>Marco Moles</td>
+                            <td>2 años</td>
+                            <td>Contratado</td>
+                        </tr>
+                        <tr>
+                            <td>Desarrollador Web</td>
+                            <td>Antonio Cales</td>
+                            <td>4 años</td>
+                            <td>Contratado</td>
+                        </tr>
+                        <tr>
+                            <td>Desarrollador Web</td>
+                            <td>Julio Mora</td>
+                            <td>7 años</td>
+                            <td>Contratado</td>
+                        </tr>
+                        <tr>
+                            <td>Desarrollador Web</td>
+                            <td>Julio Mora</td>
+                            <td>7 años</td>
+                            <td>Contratado</td>
+                        </tr>
+                        <tr>
+                            <td>Desarrollador Web</td>
+                            <td>Julio Mora</td>
+                            <td>7 años</td>
+                            <td>Contratado</td>
+                        </tr>
+                        <tr>
+                            <td>Desarrollador Web</td>
+                            <td>Julio Mora</td>
+                            <td>7 años</td>
+                            <td>Contratado</td>
+                        </tr>
+                        <!-- Agregar más filas según sea necesario -->
+                    </tbody>
+                </table>
+            </div> <!--#contenidocentral12-->
+        </section>
+        
+
+       
+    </section>
+
+
+    <footer id="footer_buscoempleo" class="footer">
+        <div class="footer_first">
+            <a href="" id="footer_logo-buscoempleo" class="footer_logo">
+                <img src="../images/buscoempleonegro.png" />
+            </a>
+            <a href="../views/producto.html">
+                <p>Acerca de Busco Empleo</p>
+            </a>
+        </div>
+        <div class="footer_first">
+            <a href="" class="footer_logo">
+                <img src="../images/logo_nombre.jpg" />
+            </a>
+            <p>+506 2222-2222 | bitbyte@gmail.com</p>
+        </div>
+        <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
+    </footer>
+    <script src="../js/funciones.js"></script>
+</body>
+
+</html>
