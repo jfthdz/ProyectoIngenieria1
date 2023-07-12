@@ -530,12 +530,21 @@ function validarLogin(){
 
 function cargarDatosUsuario() {
     try {
+        var logoNav = document.querySelector("#nav_logo-buscoempleo");
+        var logoFooter = document.querySelector("#footer_logo-buscoempleo");
         var opcionNav = document.querySelector("#opcionNav");
-        var usuarioLoggeado = obtenerDatosUsuario(); // Función para obtener el objeto completo del usuario
+        var usuarioLoggeado = obtenerDatosUsuario();
     
         if (usuarioLoggeado) {
-        var nombreUsuario = `${usuarioLoggeado.nombre} ${usuarioLoggeado.apellidos}`;
-        opcionNav.innerText = nombreUsuario;
+            var nombreUsuario = `${usuarioLoggeado.nombre} ${usuarioLoggeado.apellidos}`;
+            logoNav.href = "../views/HomePageLogged.html";
+            logoFooter.href = "../views/HomePageLogged.html";
+            opcionNav.innerText = nombreUsuario;
+            console.log("Loggeado!!!!");
+        }else{
+            logoNav.href = "../views/HomePageUnlogged.html";
+            logoFooter.href = "../views/HomePageUnlogged.html";
+            console.log("No loggeado :(((");
         }
         console.log(usuarioLoggeado);
     } catch (error) {
@@ -575,7 +584,6 @@ function cargarDatosPuestos(){
         card.appendChild(rangoSalarial);
         grid.appendChild(card);
     
-        console.log(num);
         num += 1;
         if(num > 4){
             break;
