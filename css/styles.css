@@ -527,7 +527,6 @@ a {
 }
 
 /* fabian  */
-
 .button-container {
     margin: 20px 30px 20px 0; /* Espacio alrededor de los botones */
 }
@@ -610,7 +609,6 @@ a {
 
 
 
-=======
 /* Registrar candidato */
 .form form, #crearNuevoPassword{
     display: flex;
