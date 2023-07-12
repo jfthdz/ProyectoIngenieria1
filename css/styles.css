@@ -527,152 +527,74 @@ a {
 }
 
 /* fabian  */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px;
+.button-container {
+    margin: 20px 30px 20px 0; /* Espacio alrededor de los botones */
 }
 
-th,
-td {
-    padding: 48px;
-    border: 1px solid black;
+.boton {
+    margin: 0 85px 0 0; /* Espacio entre los botones */
+    background-color: #918e8e; /* Color de fondo del botón */
+    color: white; /* Color de texto del botón */
+    border: none; /* Eliminar borde del botón */
+    cursor: pointer; /* Cambiar el cursor a pointer cuando se pasa sobre el botón */
+    transition: 0.3s; /* Efecto de transición suave al pasar el mouse sobre el botón */
+    padding: 15px;
+}
+
+.boton:hover {
+    background-color: #a04594; /* Color de fondo del botón al pasar el mouse sobre él */
+}
+
+.modern-table {
+    background-color: #f2f2f2; /* Color de fondo de la tabla */
+    color: #333; /* Color de texto de la tabla */
+    width: 100%; /* Asegura que la tabla ocupa todo el espacio disponible */
+    margin: 20px 0; /* Espacio alrededor de la tabla */
+}
+
+.modern-table th, .modern-table td {
+    padding: 10px;
     text-align: left;
-    background-color: rgb(250, 250, 250);
-    color: rgb(245, 239, 239);
 }
 
-th {
-   
-    text-align: center;
-    height:75px;
-    width: 5%;
-   background-color:   #8458b3;
+.modern-table tbody tr:nth-child(even) {
+    background-color: #e6e6e6; /* Color de fondo para las filas pares */
 }
 
-#tipodeanuncio11{
-    background-color: rgb(157, 153, 153);
-        width: 20%;      
-        margin:20px;  
-        display: inline-block;
-        padding: 10px;
-   
-   
+.modern-table tbody tr:nth-child(odd) {
+    background-color: #fff; /* Color de fondo para las filas impares */
 }
 
-
-#estadoAnuncio11{
-    background-color: rgb(157, 153, 153);
-        width: 20%;      
-        margin:20px;  
-        display: inline-block;
-        padding: 10px;
-   
-   
-}
-
-
-#monstrar11{  
-        background-color: rgb(157, 153, 153);
-        width: 20%;      
-        margin:20px;  
-        display: inline-block;
-        padding: 10px;
-}
-
-
-#cajabusqueda11{  
-    background-color: rgb(157, 153, 153);
-    width: 20%;      
-    margin:20px;  
+.desplegable {
+    position: relative;
     display: inline-block;
-    padding: 10px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    z-index: 1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Sombra alrededor del menú desplegable */
+    background-color: #f9f9f9; /* Color de fondo del menú desplegable */
+}
+
+.dropdown-content a {
+    color: black; /* Color de texto de los enlaces en el menú desplegable */
+    padding: 12px 16px; /* Espacio alrededor de los enlaces en el menú desplegable */
+    text-decoration: none; /* Eliminar subrayado de los enlaces en el menú desplegable */
+    display: block; /* Los enlaces en el menú desplegable se muestran en bloque */
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1; /* Color de fondo de los enlaces al pasar el mouse sobre ellos en el menú desplegable */
+}
+
+.desplegable:hover .dropdown-content {
+    display: block; /* Mostrar el menú desplegable al pasar el mouse sobre el botón */
 }
 
 
-#encabezadoContenido1{
-      
-    width: 100%;
-    display: inline-block; 
-    text-align: center;
-    margin:20px; 
-    
-  
-
-}
-#tipodeanuncio{
-    background-color: rgb(157, 153, 153);
-    width: 20%;  
-     margin:20px; 
-     display: inline-block; 
-     padding: 10px;
- }
-
-
- #estadoAnuncio
- {
-    background-color: rgb(157, 153, 153);
-    width: 20%;        
-    margin:20px;  
-    display: inline-block;
-    padding: 10px;
- }
-
- #monstrar {  
-    background-color: rgb(157, 153, 153);
-    width: 20%;     
-    margin:20px;  
-    display: inline-block;
-    padding: 10px;
-
- }
-
-
- #cajabusqueda{  
-    background-color: rgb(157, 153, 153);
-    width: 20%;      
-    margin:20px;  
-    display: inline-block;
-    padding: 10px;
- }
-
- #listadoPostulaciones{  
-    background-color: rgb(157, 153, 153);
-    width: 20%;      
-    margin:20px;  
-    display: inline-block;
-    padding: 10px;
- }
-
- 
-            
-
-  #ordenarPor{  
-    background-color: rgb(157, 153, 153);
-    width: 20%;      
-    margin:20px;  
-    display: inline-block;
-    padding: 10px;
- }
-
-               
-            
-   #buscar
-   {  
-    background-color: rgb(157, 153, 153);
-    width: 20%;      
-    margin:20px;  
-    display: inline-block;
-    padding: 10px;
- }
-
- #contenidocentral12{  
-   width: 100%;
-    display: inline-block; 
-    text-align: center;
-    margin:20px; 
-}
-/* EJEMPLO */
 /* Registrar candidato */
 .form form, #crearNuevoPassword{
     display: flex;
