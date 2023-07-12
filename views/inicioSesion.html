@@ -31,16 +31,18 @@
         <div class="inicioSesion">
           <h1>Inicio de sesión</h1>
           <h3>Inicia sesion con tu correo y contraseña</h3>
+
           <p>Correo electrónico:</p>
           <input type="text" name="email" id="email" />
           <p>Contraseña:</p>
           <input type="password" name="password" id="password" />
+          <span id="errorLogin" class="error"></span>
           <button value="login" onclick="validarLogin()">Iniciar sesión</button>
+
           <a href="../views/recuperarPassword.html"
             >¿Has olvidado tu contraseña?</a
           >
         </div>
-        
         <div class="division"></div>
         <div class="registrarse">
           <h1>¿Aún no estás registrado?</h1>
@@ -77,5 +79,8 @@
       <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
     </footer>
     <script src="../js/funciones.js"></script>
+    <script>
+      cargarDatosUsuario();
+    </script>
   </body>
 </html>
