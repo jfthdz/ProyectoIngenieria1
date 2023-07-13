@@ -333,7 +333,7 @@ a {
 }
 
 .caracteristicas_img img {
-    max-width: 100%;
+    max-width: 50%;
     border-radius: 10px;
 }
 
@@ -342,10 +342,49 @@ a {
     width: 100%;
     color: black;
     text-align: left;
-    background-color: var(--darkgrey);
+    background-color:#ffffff;
     padding: 10px;
     border-radius: 10px;
 }
+
+#ventajas_contenedor {
+    display: grid;
+    text-align: center;
+    gap: 25px;
+    color: black;
+    background-color: white;
+    padding: 30px 40px 50px 40px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.ventajas {
+    border-radius: 10px;
+    padding: 30px 10px;
+    color: black;
+    background-color:  #d0bdf4;
+}
+
+.ventajas_img img {
+    width: 100px;
+    height: 100px;
+ 
+    background-size: cover;
+    background-position: center;
+}
+
+.titulo_vetajas{
+background-color: #8458B3;
+padding: 20px;
+font-size:large;
+
+}
+
+.descripcion_ventajas{
+    background-color: #d0bdf4;
+    padding: 10px;
+    margin: 0px;
+    
+    }
 
 /* Estilos BuscoEmpleo */
 .nav_buscoempleo {
