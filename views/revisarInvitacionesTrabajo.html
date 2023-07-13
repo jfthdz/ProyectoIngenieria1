@@ -35,21 +35,18 @@
                     <h3>Anuncios de empleos</h3>
                 </div>
                 <div id="ordenarPor2">
-                    Ordenar por
-                    <select name="ordenar2">
+                    <label for="ordenar2">Ordenar por</label>
+                    <select name="ordenar2" id="ordenar2">
                         <option value="puesto">Puesto</option>
-                        <option value="candidato">Candidato</option>
-                        <option value="experiencia">Experiencia</option>
                         <option value="estado">Estado</option>
                     </select>
                 </div>
                 <div id="buscar2">
-                    Buscar
-                    <input type="text" name="buscar2" placeholder="Ingrese término de búsqueda..." />
+                    <label for="buscar2">Buscar</label>
+                    <input type="text" name="buscar2" id="buscar2" placeholder="Ingrese término de búsqueda..." />
                 </div>
                 <div id="ir2">
-                    Ir
-                    <input type="number" name="ir2" min="1" max="10" />
+                    <button onclick="irAPagina()">Ir</button>
                 </div>
             </div>
             <div id="contenidocentral12">
@@ -57,91 +54,81 @@
                     <thead>
                         <tr>
                             <th>Puesto</th>
-                            <th>Candidato</th>
-                            <th>Experiencia</th>
-
+                            <th>Empresa</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>Ingeniero de Software</td>
-                            <td>Juan Perez</td>
-                            <td>5 años</td>
-
+                            <td>Google</td>
                             <td>
                                 <button onclick="aplicarInvitacion()">Aplicar</button>
                                 <button onclick="rechazarInvitacion()">Rechazar</button>
+                                <button onclick="verDetalle()">Ver</button>
                             </td>
                         </tr>
                         <tr>
                             <td>Analista de Sistemas</td>
-                            <td>Andrea Ramirez</td>
-                            <td>3 años</td>
-
+                            <td>Microsoft</td>
                             <td>
                                 <button onclick="aplicarInvitacion()">Aplicar</button>
                                 <button onclick="rechazarInvitacion()">Rechazar</button>
+                                <button onclick="verDetalle()">Ver</button>
                             </td>
                         </tr>
                         <tr>
                             <td>Desarrollador Web</td>
-                            <td>Marco Moles</td>
-                            <td>2 años</td>
-
+                            <td>Amazon</td>
                             <td>
                                 <button onclick="aplicarInvitacion()">Aplicar</button>
                                 <button onclick="rechazarInvitacion()">Rechazar</button>
+                                <button onclick="verDetalle()">Ver</button>
                             </td>
                         </tr>
                         <tr>
                             <td>Desarrollador Web</td>
-                            <td>Antonio Cales</td>
-                            <td>4 años</td>
-
+                            <td>Apple</td>
                             <td>
                                 <button onclick="aplicarInvitacion()">Aplicar</button>
                                 <button onclick="rechazarInvitacion()">Rechazar</button>
+                                <button onclick="verDetalle()">Ver</button>
                             </td>
                         </tr>
                         <tr>
                             <td>Desarrollador Web</td>
-                            <td>Julio Mora</td>
-                            <td>7 años</td>
-
+                            <td>Facebook</td>
                             <td>
                                 <button onclick="aplicarInvitacion()">Aplicar</button>
                                 <button onclick="rechazarInvitacion()">Rechazar</button>
+                                <button onclick="verDetalle()">Ver</button>
                             </td>
                         </tr>
                         <tr>
                             <td>Desarrollador Web</td>
-                            <td>Julio Mora</td>
-                            <td>7 años</td>
-
+                            <td>Netflix</td>
                             <td>
                                 <button onclick="aplicarInvitacion()">Aplicar</button>
                                 <button onclick="rechazarInvitacion()">Rechazar</button>
+                                <button onclick="verDetalle()">Ver</button>
                             </td>
                         </tr>
                         <tr>
                             <td>Desarrollador Web</td>
-                            <td>Julio Mora</td>
-                            <td>7 años</td>
-
+                            <td>Uber</td>
                             <td>
                                 <button onclick="aplicarInvitacion()">Aplicar</button>
                                 <button onclick="rechazarInvitacion()">Rechazar</button>
+                                <button onclick="verDetalle()">Ver</button>
                             </td>
                         </tr>
                         <tr>
                             <td>Desarrollador Web</td>
-                            <td>Julio Mora</td>
-                            <td>7 años</td>
-
+                            <td>Airbnb</td>
                             <td>
                                 <button onclick="aplicarInvitacion()">Aplicar</button>
                                 <button onclick="rechazarInvitacion()">Rechazar</button>
+                                <button onclick="verDetalle()">Ver</button>
                             </td>
                         </tr>
                         <!-- Agregar más filas según sea necesario -->
@@ -151,18 +138,31 @@
             <!--#contenidocentral12-->
         </section>
     </section>
-
+    
     <script>
         function aplicarInvitacion() {
             // Lógica para aplicar a la invitación
             alert("Aplicar a la invitación");
         }
-
+    
         function rechazarInvitacion() {
             // Lógica para rechazar la invitación
             alert("Rechazar la invitación");
         }
+    
+        function verDetalle() {
+            // Lógica para ver el detalle de la oferta
+            alert("Ver detalle");
+        }
+    
+        function irAPagina() {
+            // Lógica para ir a una página específica
+            alert("Ir a la página");
+        }
     </script>
+    
+
+
 
 
     <footer id="footer_buscoempleo" class="footer">
