@@ -347,6 +347,7 @@ a {
     border-radius: 10px;
 }
 
+<<<<<<< Updated upstream
 #ventajas_contenedor {
     display: grid;
     text-align: center;
@@ -385,6 +386,10 @@ font-size:large;
     margin: 0px;
     
     }
+=======
+
+
+>>>>>>> Stashed changes
 
 /* Estilos BuscoEmpleo */
 .nav_buscoempleo {
