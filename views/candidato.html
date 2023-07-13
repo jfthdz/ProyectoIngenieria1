@@ -29,16 +29,23 @@
           <button type="submit"><img src="../images/busqueda.png" /></button>
         </form>
       </div>
-      <a id="opcionNav" href="../views/inicioSesion.html">Iniciar sesión</a>
-    </nav>
-    <section id="contenido">
-      <div class="encabezado-contenido">
+      <div id="divOpcionesNav">
+        <a id="opcionNav" href="../views/inicioSesion.html">Iniciar sesión</a>
         <img
           id="img-perfil"
-          class="vistaCandidato_img"
-          src="../images/jafet.jpg"
+          class="imgFotoPerfil"
+          src="../images/fotoPerfilDefault.jpeg"
+          onclick="irModificarCuenta()"
         />
-        <div class="vistaCandidato_info">
+        <button onclick="cerrarSesion()">
+          <img src="../images/logout.png" alt="Cerrar sesion" />
+        </button>
+      </div>
+    </nav>
+    <section id="contenido">
+      <div class="encabezado-contenido encabezado-contenidoCandidato">
+        <img id="img-perfil" class="imgFotoPerfil" src="../images/jafet.jpg" />
+        <div class="vistaSingular_info">
           <h1 id="nombre-candidato">Nombre y apellidos del candidato</h1>
           <p id="profesion-candidato">Nombre de la profesion</p>
           <a href="../views/invitarCandidatos.html">
