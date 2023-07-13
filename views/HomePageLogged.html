@@ -23,7 +23,18 @@
       >
         <img src="../images/buscoempleo.png" alt="" />
       </a>
-      <a id="opcionNav" href="../views/inicioSesion.html">Iniciar sesión</a>
+      <div id="divOpcionesNav">
+        <a id="opcionNav" href="../views/inicioSesion.html">Iniciar sesión</a>
+        <img
+          id="img-perfil"
+          class="imgFotoPerfil"
+          src="../images/fotoPerfilDefault.jpeg"
+          onclick="irModificarCuenta()"
+        />
+        <button onclick="cerrarSesion()">
+          <img src="../images/logout.png" alt="Cerrar sesion" />
+        </button>
+      </div>
     </nav>
     <header class="sub-header">
       <div class="options">
@@ -40,7 +51,11 @@
               >Mostrar invitaciones creadas</a
             >
           </li>
-          <li><a href="#">Revisar mis puestos</a></li>
+          <li>
+            <a href="../views/revisarAplicacionesPuestos.html"
+              >Revisar mis puestos</a
+            >
+          </li>
         </ul>
       </div>
     </header>

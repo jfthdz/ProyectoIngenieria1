@@ -33,7 +33,7 @@
     </nav>
     <section id="contenido">
       <div class="form">
-        <h1>Crea tu cuenta de empresa</h1>
+        <h1>Modificar mi cuenta de empresa</h1>
         <form
           action="registrarEmpresa()"
           method="post"
@@ -47,7 +47,7 @@
               src="../images/fotoPerfilDefault.jpeg"
               alt="Foto de perfil"
             />
-            <label for="inputFotoPerfil">Subir imagen</label>
+            <label for="inputFotoPerfil">Cambiar imagen</label>
             <input
               type="file"
               accept="image/jpeg, image/png, image/jpg"
@@ -55,26 +55,23 @@
               id="inputFotoPerfil"
             />
           </div>
-          <h2>Datos necesarios</h2>
+          <h2>Datos de mi empresa</h2>
           <p>Nombre de la empresa</p>
           <input type="text" name="nombreEmpresa" id="nombreEmpresa" />
           <span id="errorNombreEmpresa" class="error"></span>
           <p>Correo electrónico</p>
           <input type="text" name="emailEmpresa" id="emailEmpresa" />
           <span id="errorEmailEmpresa" class="error"></span>
-          <p>Password</p>
-          <input type="password" name="passwordEmpresa" id="passwordEmpresa" />
-          <span id="errorPasswordEmpresa" class="error"></span>
           <h2>Descripcion de mi empresa</h2>
           <button class="boton-registro" onclick="habilitarCampoDescripcion()">
-            Agregar descripción
+            Modificar descripción
           </button>
           <div id="agregarDescripcion">
             <p id="tituloDescripcion">Descripción sobre mi empresa</p>
             <textarea type="text" name="contenidoDescripcion"></textarea>
           </div>
           <button id="botonCrearCuenta" type="submit">
-            Crear mi cuenta de empresa
+            Guardar cambios
             <img src="../images/guardar-blanco.png" />
           </button>
         </form>

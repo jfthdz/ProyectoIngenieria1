@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="shortcut icon" href="../images/logo_tituloPagina.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <title>Busco Empleo</title>
+  </head>
+  <body>
+    <nav class="nav_buscoempleo nav">
+      <a
+        id="nav_logo-buscoempleo"
+        href="../views/MostrarCandidatos.html"
+        class="nav_logo"
+      >
+        <img src="../images/buscoempleo.png" alt="" />
+      </a>
+      <div class="nav_barra-busqueda">
+        <form action="" method="get" class="barra-busqueda">
+          <input type="text" placeholder="Buscar..." name="barra-busqueda" />
+          <button type="submit"><img src="../images/busqueda.png" /></button>
+        </form>
+      </div>
+      <a id="opcionNav" href="../views/inicioSesion.html">Iniciar sesión</a>
+    </nav>
+
+
+
+
+    <section id="contenido">
+        <div id="encabezadoContenido2" class="button-container">
+            <div class="desplegable">
+                <button class="boton modern-button">Mis Postulaciones</button>
+                <div class="dropdown-content">
+                    <a href="#">Activa</a>
+                    <a href="#">En proceso</a>
+                    <a href="#">Cancelada</a>
+                </div>
+            </div>
+        </div>
+    
+        <div id="contenidocentral">
+            <table class="modern-table">
+                <thead>
+                    <tr>
+                        <th>Detalle</th>
+                        <th>Estado</th>
+                        <th>Vacante</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong>Detalle de la oferta:</strong><br>
+                            <em>Descripción de la oferta de trabajo 1.</em><br>
+                            <em>Requisitos: habilidades, experiencia, etc.</em>
+                        </td>
+                        <td>En revisión</td>
+                        <td>Ingeniero de Software</td>
+                        <td>
+                            <a href="#">Ver instrucciones</a><br>
+                            <a href="#">Eliminar</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            
+                            <em>Descripción de la oferta de trabajo 2.</em><br>
+                            <em>Requisitos: habilidades, experiencia, etc.</em>
+                        </td>
+                        <td>Aceptada</td>
+                        <td>Analista de Sistemas</td>
+                        <td>
+                            <a href="#">Ver instrucciones</a><br>
+                            <a href="#">Eliminar</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            
+                            <em>Descripción de la oferta de trabajo 3.</em><br>
+                            <em>Requisitos: habilidades, experiencia, etc.</em>
+                        </td>
+                        <td>Denegada</td>
+                        <td>Desarrollador Web</td>
+                        <td>
+                            <a href="#">Eliminar</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                           
+                            <em>Descripción de la oferta de trabajo 4.</em><br>
+                            <em>Requisitos: habilidades, experiencia, etc.</em>
+                        </td>
+                        <td>Aceptada</td>
+                        <td>Desarrollador Web</td>
+                        <td>
+                            <a href="#">Ver instrucciones</a><br>
+                            <a href="#">Eliminar</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            
+                            <em>Descripción de la oferta de trabajo 5.</em><br>
+                            <em>Requisitos: habilidades, experiencia, etc.</em>
+                        </td>
+                        <td>Enviada</td>
+                        <td>Desarrollador Web</td>
+                        <td>
+                            <a href="#">Ver instrucciones</a><br>
+                            <a href="#">Eliminar</a>
+                        </td>
+                    </tr>
+                    <!-- Agregar más filas según sea necesario -->
+                </tbody>
+            </table>
+        </div>
+        <!--#contenidocentral-->
+    </section>
+    
+
+
+
+
+    <footer id="footer_buscoempleo" class="footer">
+      <div class="footer_first">
+        <a
+          href="../views/MostrarCandidatos.html"
+          id="footer_logo-buscoempleo"
+          class="footer_logo"
+        >
+          <img src="../images/buscoempleonegro.png" />
+        </a>
+        <a href="../views/producto.html">
+          <p>Acerca de Busco Empleo</p>
+        </a>
+      </div>
+      <div class="footer_first">
+        <a href="../views/index.html" class="footer_logo">
+          <img src="../images/logo_nombre.jpg" />
+        </a>
+        <p>+506 2222-2222 | bitbyte@gmail.com</p>
+      </div>
+      <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
+    </footer>
+    <script src="../js/funciones.js"></script>
+    <script>
+      cargarDatosUsuario();
+    </script>
+  </body>
+</html>

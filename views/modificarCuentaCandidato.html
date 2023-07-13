@@ -33,7 +33,7 @@
     </nav>
     <section id="contenido">
       <div class="form">
-        <h1>Crea tu cuenta</h1>
+        <h1>Modificar mi perfil</h1>
         <form
           action="registrarCandidato()"
           method="post"
@@ -47,7 +47,7 @@
               src="../images/fotoPerfilDefault.jpeg"
               alt="Foto de perfil"
             />
-            <label for="inputFotoPerfil">Subir imagen</label>
+            <label for="inputFotoPerfil">Cambiar imagen</label>
             <input
               type="file"
               accept="image/jpeg, image/png, image/jpg"
@@ -78,13 +78,6 @@
           <p>Correo electrónico</p>
           <input type="text" name="emailCandidato" id="emailCandidato" />
           <span id="errorEmail" class="error"></span>
-          <p>Password</p>
-          <input
-            type="password"
-            name="passwordCandidato"
-            id="passwordCandidato"
-          />
-          <span id="errorPassword" class="error"></span>
           <h2>Experiencia laboral</h2>
           <p>Titulo principal de tu perfil laboral</p>
           <input
@@ -141,7 +134,7 @@
             </button>
           </div>
           <h2>Archivos</h2>
-          <label for="inputCurriculum">Subir mi curriculum</label>
+          <label for="inputCurriculum">Subir nuevo curriculum</label>
           <input
             type="file"
             accept="application/pdf"
@@ -149,7 +142,7 @@
             id="inputCurriculum"
           />
           <button id="botonCrearCuenta" type="submit">
-            Crear mi cuenta
+            Guardar cambios
             <img src="../images/guardar-blanco.png" />
           </button>
         </form>
@@ -179,6 +172,7 @@
     <script src="../js/funciones.js"></script>
     <script>
       cargarDatosUsuario();
+      cargarFormularioModificarCandidato();
     </script>
   </body>
 </html>
