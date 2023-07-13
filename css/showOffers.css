@@ -28,7 +28,8 @@ body, html{
     height: 25px;
     border-radius: 20px;
     margin-right: 40px;
-}
+    border: none;
+    box-shadow: 3px 5px rgba(0, 0, 0, .2);}
 .space{
     flex-grow: 1;
 }
@@ -36,12 +37,14 @@ body, html{
     position: relative;
   }
   
+  .lupa{
+    text-decoration: none;
+    color: #000000;
+  }
   .search-icon {
     position: absolute;
-    top: 40%;
-    right: 10px;
-    transform: translateY(-20%);
-    pointer-events: none;
+    top: 30%;
+    right: 10px;    
     margin-right: 40px;
 
   }
@@ -92,7 +95,7 @@ body, html{
 .textfooter{
     font-size: 13px;
     color: #fff;
-    margin-top: 90px;
+    margin-top: 250px;
     
 }
 .textfooter2{
@@ -100,7 +103,7 @@ body, html{
     color: #fff;
     margin-right: 50px;
     
-    
+    margin-top: 20px;
 
     
     
@@ -108,6 +111,7 @@ body, html{
 .seleccion{
     color: white;
     text-decoration: none;
+    margin-left: 150px
     
 }
 .logo1{
@@ -115,6 +119,12 @@ body, html{
     cursor: pointer;
    
 }
+.cuadrito1{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
 
+}
 
 
