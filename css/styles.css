@@ -24,6 +24,7 @@ a {
     padding: 0.3% 15%;
     justify-content: space-between;
     align-items: center;
+    background-color: #e5eaf5;
 }
 
 .nav a {
@@ -249,6 +250,8 @@ a {
     #valores {
         padding: 50px 105px;
     }
+
+
 }
 
 @media only screen and (max-width: 820px) {
@@ -266,6 +269,8 @@ a {
     .footer {
         padding: 30px 40px 10px 40px;
     }
+
+
 }
 
 @media only screen and (max-width: 540px) {
@@ -282,7 +287,8 @@ a {
     }
 
     #mision,
-    #vision {
+    #vision
+     {
         flex-direction: column;
         padding: 2rem 3rem;
     }
@@ -294,7 +300,7 @@ a {
         max-width: 100%;
     }
 
-    #valores {
+    #valores{
         max-width: 100%;
         gap: 5px;
         grid-template-columns: 1fr;
@@ -314,11 +320,17 @@ a {
     .footer_first:nth-child(2) {
         text-align: center;
     }
+
+
 }
 
 /* CSS Alonso */
+
+
+
+
 #caracteristicas {
-    display: flex;
+    display: block;
     padding: 3rem 13rem;
     background-color: var(--grey);
 
@@ -338,6 +350,7 @@ a {
 }
 
 .caract_1 {
+    display: flex;
 
     width: 100%;
     color: black;
@@ -345,7 +358,21 @@ a {
     background-color:#ffffff;
     padding: 10px;
     border-radius: 10px;
+    margin-top: 20px;
 }
+
+.caract_1 img{
+
+    max-width: 8%;
+    border-radius: 10px;
+    background-color: var(--grey);
+    padding: 10px;
+}
+.caract_1 p{
+padding-left: 20px;
+align-items: center;
+}
+
 
 #ventajas_contenedor {
     display: grid;
