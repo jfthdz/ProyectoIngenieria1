@@ -780,6 +780,27 @@ a {
 #botonCrearCuenta img{
     width: 20px;
 }
+#botonVisitar{
+    display: flex;
+    justify-content: space-between;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    padding: 15px;
+    font-size: 17px;
+    align-items: center;
+    background-color: var(--purple);
+    transition: all 150ms ease-in-out;
+}
+#botonVisitar img{
+    margin-left: 10px;
+    width: 20px;
+}
+#botonVisitar:hover{
+    background-color: #604081 !important;
+    transform: scale(0.95) !important;
+    cursor: pointer;
+}
 .error {
     color: rgb(255, 0, 0);
     font-size: 12px;
