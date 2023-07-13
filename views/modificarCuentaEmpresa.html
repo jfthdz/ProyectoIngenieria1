@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="shortcut icon" href="../images/logo_tituloPagina.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <title>Busco Empleo</title>
+  </head>
+  <body>
+    <nav class="nav_buscoempleo nav">
+      <a
+        id="nav_logo-buscoempleo"
+        href="../views/MostrarCandidatos.html"
+        class="nav_logo"
+      >
+        <img src="../images/buscoempleo.png" alt="" />
+      </a>
+      <div class="nav_barra-busqueda">
+        <form action="" method="get" class="barra-busqueda">
+          <input type="text" placeholder="Buscar..." name="barra-busqueda" />
+          <button type="submit"><img src="../images/busqueda.png" /></button>
+        </form>
+      </div>
+      <a id="opcionNav" href="../views/inicioSesion.html">Iniciar sesión</a>
+    </nav>
+    <section id="contenido">
+      <div class="form">
+        <h1>Modificar mi cuenta de empresa</h1>
+        <form
+          action="registrarEmpresa()"
+          method="post"
+          onsubmit="return validarFormularioEmpresa()"
+        >
+          <div class="subir-foto">
+            <p>Foto de perfil de mi empresa</p>
+            <img
+              id="img-perfil"
+              class="imgFotoPerfil"
+              src="../images/fotoPerfilDefault.jpeg"
+              alt="Foto de perfil"
+            />
+            <label for="inputFotoPerfil">Cambiar imagen</label>
+            <input
+              type="file"
+              accept="image/jpeg, image/png, image/jpg"
+              name="fotoPerfil"
+              id="inputFotoPerfil"
+            />
+          </div>
+          <h2>Datos de mi empresa</h2>
+          <p>Nombre de la empresa</p>
+          <input type="text" name="nombreEmpresa" id="nombreEmpresa" />
+          <span id="errorNombreEmpresa" class="error"></span>
+          <p>Correo electrónico</p>
+          <input type="text" name="emailEmpresa" id="emailEmpresa" />
+          <span id="errorEmailEmpresa" class="error"></span>
+          <h2>Descripcion de mi empresa</h2>
+          <button class="boton-registro" onclick="habilitarCampoDescripcion()">
+            Modificar descripción
+          </button>
+          <div id="agregarDescripcion">
+            <p id="tituloDescripcion">Descripción sobre mi empresa</p>
+            <textarea type="text" name="contenidoDescripcion"></textarea>
+          </div>
+          <button id="botonCrearCuenta" type="submit">
+            Guardar cambios
+            <img src="../images/guardar-blanco.png" />
+          </button>
+        </form>
+      </div>
+    </section>
+    <footer id="footer_buscoempleo" class="footer">
+      <div class="footer_first">
+        <a
+          href="../views/MostrarCandidatos.html"
+          id="footer_logo-buscoempleo"
+          class="footer_logo"
+        >
+          <img src="../images/buscoempleonegro.png" />
+        </a>
+        <a href="../views/producto.html">
+          <p>Acerca de Busco Empleo</p>
+        </a>
+      </div>
+      <div class="footer_first">
+        <a href="../views/index.html" class="footer_logo">
+          <img src="../images/logo_nombre.jpg" />
+        </a>
+        <p>+506 2222-2222 | bitbyte@gmail.com</p>
+      </div>
+      <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
+    </footer>
+    <script src="../js/funciones.js"></script>
+    <script>
+      cargarDatosUsuario();
+    </script>
+  </body>
+</html>

@@ -1,6 +1,11 @@
 var usuarios = [
-    {nombre:"Jafet",apellidos:"Hernandez Alfaro",email:"jafethernandez2206@gmail.com",pass:"admin",rol:"Developer",foto:"../images/jafet.jpg",genero:"Másculino",profesion:"Desarrollador de software"},
-    {nombre:"Prueba",apellidos:"de usuarios",email:"prueba@gmail.com",pass:"123",rol:"Prueba",foto:"../images/fotoPerfilDefault.jpeg",genero:"Prefiero no especificar",profesion:"Test"}
+    {nombre:"Jafet",apellidos:"Hernandez Alfaro",email:"jafethernandez2206@gmail.com",pass:"admin",rol:"Desarrollo",foto:"../images/jafet.jpg",genero:"Másculino",profesion:"Desarrollador de software"},
+    {nombre:"Prueba",apellidos:"de usuarios",email:"prueba@gmail.com",pass:"123",rol:"Prueba",foto:"../images/fotoPerfilDefault.jpeg",genero:"Prefiero no especificar",profesion:"Test"},
+    {nombre:"Alonso",apellidos:"Aguero",email:"aaguero@ucenfotec.ac.cr",pass:"123",rol:"Soporte",foto:"../images/Alonso.jpg",genero:"Másculino",profesion:"Test"},
+    {nombre:"Vanessa",apellidos:"Villegas",email:"vvillegast@ucenfotec.ac.cr",pass:"123",rol:"Calidad",foto:"../images/vanessa.jpg",genero:"Femenino",profesion:"Test"},
+    {nombre:"Jose",apellidos:"Solis",email:"jsolisj@ucenfotec.ac.cr",pass:"123",rol:"Soporte",foto:"../images/jose.jpg",genero:"Másculino",profesion:"Test"},
+    {nombre:"Fabian",apellidos:"Mora",email:"fmoraq@ucenfotec.ac.cr",pass:"123",rol:"Calidad",foto:"../images/fabian.jpg",genero:"Másculino",profesion:"Test"},
+    {nombre:"Bryan",apellidos:"Bieta",email:"bbeitam@ucenfotec.ac.cr",pass:"123",rol:"General",foto:"../images/fotoPerfilDefault.jpeg",genero:"Másculino",profesion:"Test"}
 ];
 
 var puestoTrabajo = [
