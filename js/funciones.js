@@ -1,6 +1,6 @@
 var usuarios = [
-    {nombre:"Jafet",apellidos:"Hernandez Alfaro",email:"jafethernandez2206@gmail.com",pass:"admin",rol:"Developer",foto:"../images/jafet.jpg"},
-    {nombre:"Prueba",apellidos:"de usuarios",email:"prueba@gmail.com",pass:"123",rol:"Prueba",foto:"../images/fotoPerfilDefault.jpeg"}
+    {nombre:"Jafet",apellidos:"Hernandez Alfaro",email:"jafethernandez2206@gmail.com",pass:"admin",rol:"Developer",foto:"../images/jafet.jpg",genero:"Másculino",profesion:"Desarrollador de software"},
+    {nombre:"Prueba",apellidos:"de usuarios",email:"prueba@gmail.com",pass:"123",rol:"Prueba",foto:"../images/fotoPerfilDefault.jpeg",genero:"Prefiero no especificar",profesion:"Test"}
 ];
 
 var puestoTrabajo = [
@@ -77,6 +77,8 @@ var puestoTrabajo = [
         Familiaridad con las API RESTful y su integración en aplicaciones web.`
     }
 ];
+
+var codigoVerificacion;
 
 //Smooth scroll del nav_menu en LandingPage Bitbyte
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -404,6 +406,7 @@ function validarCampoCorreo(){
         event.preventDefault();
         var emailCandidato = document.getElementById("emailCandidato");
         var errorEmailCandidato = document.getElementById("errorEmailCandidato");
+        var camposIncompletos = false;
         //expresión regular para validar formato de correo
         var regexEmail = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
 
@@ -418,11 +421,15 @@ function validarCampoCorreo(){
         }else{
             emailCandidato.style.border = "0";
             errorEmailCandidato.innerText = "";
+            camposIncompletos = false;
         }
 
         if (camposIncompletos) {
             return false;
+        }else{
+            enviarCodigoVerificacion();
         }
+        
     } catch (error) {
         console.log(error);
     }
@@ -430,18 +437,20 @@ function validarCampoCorreo(){
 function validarCamposNuevoPassword(){
     try {
         event.preventDefault();
-        var codigoVerificacion = document.getElementById("codigoVerificacion");
+        var campoCodigoVerificacion = document.getElementById("codigoVerificacion");
         var errorCodigoVerificacion = document.getElementById("errorCodigoVerificacion");
         var nuevoPassword = document.getElementById("nuevoPassword");
         var errorNuevoPassword = document.getElementById("errorNuevoPassword");
+        var camposIncompletos = false;
 
-        if (codigoVerificacion.value === "") {
-            codigoVerificacion.style.border = "1px solid red";
+        if (campoCodigoVerificacion.value === "") {
+            campoCodigoVerificacion.style.border = "1px solid red";
             errorCodigoVerificacion.innerText = "*Campo necesario";
             camposIncompletos = true;
         } else {
-            codigoVerificacion.style.border = "0";
+            campoCodigoVerificacion.style.border = "0";
             errorCodigoVerificacion.innerText = "";
+            camposIncompletos = false;
         }
 
         if (nuevoPassword.value === "") {
@@ -451,14 +460,44 @@ function validarCamposNuevoPassword(){
         } else {
             nuevoPassword.style.border = "0";
             errorNuevoPassword.innerText = "";
+            camposIncompletos = false;
         }
 
         if (camposIncompletos) {
             return false;
+        }else{
+            if (campoCodigoVerificacion.value !== codigoVerificacion.toString()) {
+                campoCodigoVerificacion.style.border = "1px solid red";
+                errorCodigoVerificacion.innerText = "*Código de verificación incorrecto";
+                camposIncompletos = true;
+            } else if(campoCodigoVerificacion.value === codigoVerificacion.toString()) {
+                var mensajeExito = document.querySelector("#mensajeExito");
+                mensajeExito.style.display = "flex";
+                setTimeout(function() {
+                    mensajeExito.classList.add("mostrar");
+                }, 100); 
+                limpiarCamposNuevoPassword();
+                setTimeout(function() {
+                    mensajeExito.classList.remove("mostrar");
+                }, 3000); 
+                setTimeout(function() {
+                    mensajeExito.style.display = "none";
+                }, 3500); 
+            }
         }
     } catch (error) {
         console.log(error);
     }
+}
+
+function limpiarCamposNuevoPassword(){
+    var campoCodigoVerificacion = document.getElementById("codigoVerificacion");
+    var nuevoPassword = document.getElementById("nuevoPassword");
+    var emailCandidato = document.getElementById("emailCandidato");
+
+    campoCodigoVerificacion.value = "";
+    nuevoPassword.value = "";
+    emailCandidato.value = "";
 }
 
 //Validar barra de busqueda vacia en el HomePage
@@ -486,17 +525,26 @@ function validarLogin(){
         var correoLogin = document.querySelector("#email");
         var passLogin = document.querySelector("#password");
         var errorLogin = document.querySelector("#errorLogin");
+        var errorEmail = document.getElementById("errorEmail");
         var camposIncompletos = false;
         var encontrado = false;
+        var regexEmail = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
 
         if(correoLogin.value === ""){
             correoLogin.style.border = "1px solid red";
+            camposIncompletos = true;
+        } else if(regexEmail.test(correoLogin.value)==false){
+            correoLogin.style.border = "1px solid red";
+            errorEmail.innerText = "*Ingrese un correo válido";
+            setTimeout(function(){
+                errorEmail.innerText = "";
+            },3000);
             camposIncompletos = true;
         }else{
             correoLogin.style.border = "0";
             camposIncompletos = false;
         }
-        console.log(camposIncompletos);
+        
         if(passLogin.value === ""){
             passLogin.style.border = "1px solid red";
             camposIncompletos = true;
@@ -506,7 +554,7 @@ function validarLogin(){
         }
         console.log(camposIncompletos);
 
-        if(correoLogin.value != "" && passLogin.value != ""){
+        if(correoLogin.value != "" && passLogin.value != "" && regexEmail.test(correoLogin.value)==true){
             for(var usuario of usuarios){
                 if(correoLogin.value == usuario.email && passLogin.value == usuario.pass){
                     alert(`Bienvenido ${usuario.nombre}`);
@@ -534,12 +582,15 @@ function cargarDatosUsuario() {
         var logoFooter = document.querySelector("#footer_logo-buscoempleo");
         var opcionNav = document.querySelector("#opcionNav");
         var usuarioLoggeado = obtenerDatosUsuario();
+        var rutaFotoPeril
     
         if (usuarioLoggeado) {
             var nombreUsuario = `${usuarioLoggeado.nombre} ${usuarioLoggeado.apellidos}`;
+            rutaFotoPeril = usuarioLoggeado.foto;
             logoNav.href = "../views/HomePageLogged.html";
             logoFooter.href = "../views/HomePageLogged.html";
             opcionNav.innerText = nombreUsuario;
+            addFotoPerfil(rutaFotoPeril);
             console.log("Loggeado!!!!");
         }else{
             logoNav.href = "../views/HomePageUnlogged.html";
@@ -549,6 +600,33 @@ function cargarDatosUsuario() {
         console.log(usuarioLoggeado);
     } catch (error) {
         console.log(error);
+    }
+}
+
+function cargarFormularioModificarCandidato(){
+    var campoNombre = document.getElementById("nombreCandidato");
+    var campoApellidos = document.getElementById("apellidosCandidato");
+    var campoGenero = document.getElementsByName("generoCandidato")[0];
+    var campoEmail = document.getElementById("emailCandidato");
+    var campoProfesion = document.getElementById("profesionCandidato");
+    var usuarioLoggeado = obtenerDatosUsuario();
+
+    if(usuarioLoggeado){
+        campoNombre.value = usuarioLoggeado.nombre;
+        campoApellidos.value = usuarioLoggeado.apellidos;
+        campoGenero[0].value = usuarioLoggeado.genero;
+        campoEmail.value = usuarioLoggeado.email;
+        campoProfesion.value = usuarioLoggeado.profesion;
+
+        var generoSeleccionado = usuarioLoggeado.genero;
+        var opcionesGenero = campoGenero.options;
+
+        for (var i = 0; i < opcionesGenero.length; i++) {
+            if (opcionesGenero[i].value === generoSeleccionado) {
+                opcionesGenero[i].selected = true;
+                break;
+            }
+        }
     }
 }
 
@@ -589,4 +667,44 @@ function cargarDatosPuestos(){
             break;
         }
     }
+}
+
+function addFotoPerfil(rutaFoto){
+    var fotoPerfilNav = document.querySelector("#divOpcionesNav img");
+
+    fotoPerfilNav.style.display = "block";
+    fotoPerfil.src = rutaFoto;
+}
+
+function irModificarCuenta(){
+    location.href = "../views/modificarCuentaCandidato.html";
+}
+
+function cerrarSesion(){
+    sessionStorage.removeItem("datosUsuarioLoggeado");
+    location.href = "../views/HomePageUnlogged.html";
+}
+
+function enviarCodigoVerificacion(){
+    codigoVerificacion = obtenerCodigoVerificacion();
+    alert(`Código de verificación: ${codigoVerificacion}`);
+}
+
+function obtenerCodigoVerificacion(){
+    var codigo = Math.floor(Math.random()*90000);
+    return codigo;
+}
+
+function aplicarPuesto(){
+    var mensajeExito = document.querySelector("#mensajeExito");
+    mensajeExito.style.display = "flex";
+    setTimeout(function() {
+        mensajeExito.classList.add("mostrar");
+    }, 100); 
+    setTimeout(function() {
+        mensajeExito.classList.remove("mostrar");
+    }, 3000); 
+    setTimeout(function() {
+        mensajeExito.style.display = "none";
+    }, 3500);     
 }

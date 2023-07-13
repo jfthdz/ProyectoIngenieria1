@@ -29,33 +29,97 @@
           <button type="submit"><img src="../images/busqueda.png" /></button>
         </form>
       </div>
-      <a id="opcionNav" href="../views/inicioSesion.html">Iniciar sesión</a>
+      <div id="divOpcionesNav">
+        <a id="opcionNav" href="../views/inicioSesion.html">Iniciar sesión</a>
+        <img
+          id="img-perfil"
+          class="imgFotoPerfil"
+          src="../images/fotoPerfilDefault.jpeg"
+          onclick="irModificarCuenta()"
+        />
+        <button onclick="cerrarSesion()">
+          <img src="../images/logout.png" alt="Cerrar sesion" />
+        </button>
+      </div>
     </nav>
+    <section id="contenido">
+      <div class="encabezado-contenido">
+        <div class="vistaSingular_info">
+          <h1 id="titulo-puesto">Full stack developer .net</h1>
+          <div class="info-encabezado">
+            <h3 id="empresa-puesto">Cenfotec</h3>
+            <p id="fecha-puesto">Publicado el 12 de Julio del 2023</p>
+          </div>
+          <p id="empresa-rangoSalarial">¢ 1 a 1,5 millones</p>
+          <div class="aplicar-contenido">
+            <button class="boton-contenido" onclick="aplicarPuesto()">
+              Aplicar a este puesto
+            </button>
+            <div id="mensajeExito" class="mensajeExito-contenido">
+              <p>Aplicó al puesto con éxito</p>
+            </div>
+          </div>
+        </div>
+        <img
+          id="img-perfil-contenido"
+          class="imgFotoPerfil"
+          src="../images/fotoPerfilDefault.jpeg"
+        />
+      </div>
+      <div class="descripcion-contenido">
+        <h2>Requisitos minimos</h2>
+        <p id="contenido-reqminimos">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
+          ultricies at urna id pellentesque. Integer hendrerit vestibulum turpis
+          ut eleifend. Nam vel gravida ipsum. Nulla ultrices turpis iaculis,
+          fermentum lacus vitae, maximus elit. Curabitur quis nulla nisi. In
+          ultrices leo laoreet, viverra nulla eget, porttitor mi. Suspendisse
+          potenti. Mauris finibus scelerisque arcu ut rutrum.
+        </p>
+        <h2>Requisitos deseables</h2>
+        <p id="contenido-reqdeseables">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
+          ultricies at urna id pellentesque. Integer hendrerit vestibulum turpis
+          ut eleifend. Nam vel gravida ipsum. Nulla ultrices turpis iaculis,
+          fermentum lacus vitae, maximus elit. Curabitur quis nulla nisi. In
+          ultrices leo laoreet, viverra nulla eget, porttitor mi. Suspendisse
+          potenti. Mauris finibus scelerisque arcu ut rutrum.
+        </p>
+        <h2>Sería un plus</h2>
+        <p id="contenido-plus">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
+          ultricies at urna id pellentesque. Integer hendrerit vestibulum turpis
+          ut eleifend. Nam vel gravida ipsum. Nulla ultrices turpis iaculis,
+          fermentum lacus vitae, maximus elit. Curabitur quis nulla nisi. In
+          ultrices leo laoreet, viverra nulla eget, porttitor mi. Suspendisse
+          potenti. Mauris finibus scelerisque arcu ut rutrum.
+        </p>
+      </div>
+    </section>
+    <footer id="footer_buscoempleo" class="footer">
+      <div class="footer_first">
+        <a
+          href="../views/MostrarCandidatos.html"
+          id="footer_logo-buscoempleo"
+          class="footer_logo"
+        >
+          <img src="../images/buscoempleonegro.png" />
+        </a>
+        <a href="../views/producto.html">
+          <p>Acerca de Busco Empleo</p>
+        </a>
+      </div>
+      <div class="footer_first">
+        <a href="../views/index.html" class="footer_logo">
+          <img src="../images/logo_nombre.jpg" />
+        </a>
+        <p>+506 2222-2222 | bitbyte@gmail.com</p>
+      </div>
+      <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
+    </footer>
+    <script src="../js/funciones.js"></script>
+    <script>
+      cargarDatosUsuario();
+    </script>
   </body>
-  <footer id="footer_buscoempleo" class="footer">
-    <div class="footer_first">
-      <a
-        href="../views/MostrarCandidatos.html"
-        id="footer_logo-buscoempleo"
-        class="footer_logo"
-      >
-        <img src="../images/buscoempleonegro.png" />
-      </a>
-      <a href="../views/producto.html">
-        <p>Acerca de Busco Empleo</p>
-      </a>
-    </div>
-    <div class="footer_first">
-      <a href="../views/index.html" class="footer_logo">
-        <img src="../images/logo_nombre.jpg" />
-      </a>
-      <p>+506 2222-2222 | bitbyte@gmail.com</p>
-    </div>
-    <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
-  </footer>
-  <script src="../js/funciones.js"></script>
-  <script>
-    cargarDatosUsuario();
-  </script>
-</body>
 </html>

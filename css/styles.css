@@ -371,7 +371,29 @@ a {
 .encabezado-contenido {
     display: flex;
     align-items: center;
-    padding: 1.5%;
+    justify-content: space-between;
+    padding: 1rem 3rem 2rem 3rem;
+    background-color: var(--lightergrey);
+    border-radius: 10px;
+}
+
+.encabezado-contenidoCandidato{
+    justify-content: left !important;
+}
+
+.info-encabezado{
+    display: flex;
+    align-items: center;
+}
+.info-encabezado h3{
+    margin-right: 3rem;
+}
+
+.descripcion-contenido{
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0;
+    padding: 3% 5%;
     background-color: var(--lightergrey);
     border-radius: 10px;
 }
@@ -383,6 +405,7 @@ a {
     color: white;
     font-size: 0.9rem;
     border-radius: 10px;
+    margin-top: 1rem;
     background-color: var(--purple);
 }
 
@@ -395,20 +418,18 @@ a {
 }
 
 /* Vista Candidato */
-#img-perfil {
+
+.imgFotoPerfil{
     border-radius: 50%;
     background-size: cover;
     background-position: center;
-}
-
-.vistaCandidato_img {
     width: 150px;
     height: 150px;
     margin-left: 1%;
 }
 
-.vistaCandidato_info {
-    margin-left: 5%;
+.vistaSingular_info {
+    margin-left: 3%;
     font-weight: 400;
 }
 
@@ -743,10 +764,6 @@ a {
     opacity: 80%;
     cursor: pointer;
 }
-.fotoPerfil{
-    width: 150px;
-    height: 150px;
-}
 #botonCrearCuenta{
     display: flex;
     justify-content: space-around;
@@ -899,4 +916,46 @@ a {
 }
 .grid-contenido{
     margin: 2% 10% !important;
+}
+#divOpcionesNav{
+    display: flex;
+    width: 27%;
+    align-items: center;
+}
+#divOpcionesNav img{
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+#divOpcionesNav button{
+    border: 0;
+    width: 60px;
+    height: 60px;
+    margin-left: 10px;
+    background-color: var(--grey);
+    cursor: pointer;
+}
+#divOpcionesNav button img{
+    width: 30px;
+    height: 30px;
+}
+#mensajeExito{
+    display: none;
+    opacity: 0;
+    padding: 1.5rem;
+    margin: 0 18%;
+    color: var(--darkgrey);
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: opacity 300ms ease-in;
+    background-color: var(--lightpurple);
+}
+.aplicar-contenido{
+    display: flex;
+}
+.mensajeExito-contenido{
+    margin: 1rem 0 0 2rem !important;
+    padding: 0 0.7rem !important;
 }
