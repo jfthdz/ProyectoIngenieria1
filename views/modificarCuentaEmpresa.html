@@ -75,12 +75,54 @@
         </ul>
       </div>
     </header>
-
-    <div id="contenido" class="mostrar-contenido">
-      <h2>Candidatos disponibles</h2>
-      <div class="contenido-opciones"></div>
-    </div>
-
+    <section id="contenido">
+      <div class="form">
+        <h1>Modificar mi cuenta de empresa</h1>
+        <form
+          action="registrarEmpresa()"
+          method="post"
+          onsubmit="return validarFormularioEmpresa()"
+        >
+          <div class="subir-foto">
+            <p>Foto de perfil de mi empresa</p>
+            <img
+              id="img-perfil-modificar"
+              class="imgFotoPerfil"
+              src="../images/fotoPerfilDefault.jpeg"
+              alt="Foto de perfil"
+            />
+            <label onclick="modificarImagen()" for="inputFotoPerfil"
+              >Cambiar imagen</label
+            >
+            <input
+              type="file"
+              accept="image/jpeg, image/png, image/jpg"
+              name="fotoPerfil"
+              id="inputFotoPerfil"
+            />
+          </div>
+          <h2>Datos de mi empresa</h2>
+          <p>Nombre de la empresa</p>
+          <input type="text" name="nombreEmpresa" id="nombreEmpresa" />
+          <span id="errorNombreEmpresa" class="error"></span>
+          <p>Correo electrónico</p>
+          <input type="text" name="emailEmpresa" id="emailEmpresa" />
+          <span id="errorEmailEmpresa" class="error"></span>
+          <h2>Descripción de mi empresa</h2>
+          <button class="boton-registro" onclick="habilitarCampoDescripcion()">
+            Modificar descripción
+          </button>
+          <div id="agregarDescripcion">
+            <p id="tituloDescripcion">Descripción sobre mi empresa</p>
+            <textarea type="text" name="contenidoDescripcion"></textarea>
+          </div>
+          <button id="botonCrearCuenta" type="submit">
+            Guardar cambios
+            <img src="../images/guardar-blanco.png" />
+          </button>
+        </form>
+      </div>
+    </section>
     <footer id="footer_buscoempleo" class="footer">
       <div class="footer_first">
         <a
@@ -104,8 +146,9 @@
     </footer>
     <script src="../js/funciones.js"></script>
     <script>
+      cargarDatosUsuario();
       cargarDatosEmpresa();
-      cargarMostrarCandidatos();
+      cargarFormularioModificarEmpresa();
     </script>
   </body>
 </html>

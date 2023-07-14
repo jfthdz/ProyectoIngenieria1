@@ -33,7 +33,7 @@
         >
           <input
             type="text"
-            placeholder="Buscar candidato..."
+            placeholder="Buscar empleo..."
             name="barra-busqueda"
           />
           <button type="submit"><img src="../images/busqueda.png" /></button>
@@ -55,32 +55,53 @@
     <header id="sub-menu" class="sub-header">
       <div class="options">
         <ul>
-          <li><a href="../views/CrearOferas.html">Crear oferta</a></li>
           <li>
-            <a href="../views/showOffers.html">Mostrar ofertas creadas</a>
-          </li>
-          <li>
-            <a href="../views/invitarCandidatos.html">Invitar candidatos</a>
-          </li>
-          <li>
-            <a href="../views/invitacionesCreadas.html"
-              >Mostrar invitaciones creadas</a
+            <a href="../views/monstrarAplicacionesHechas.html"
+              >Mis aplicaciones</a
             >
           </li>
           <li>
-            <a href="../views/revisarAplicacionesPuestos.html"
-              >Revisar mis puestos</a
-            >
+            <a href="../views/revisarInvitacionesTrabajo.html">Invitaciones</a>
           </li>
         </ul>
       </div>
     </header>
-
-    <div id="contenido" class="mostrar-contenido">
-      <h2>Candidatos disponibles</h2>
-      <div class="contenido-opciones"></div>
-    </div>
-
+    <section id="contenido">
+      <div class="encabezado-contenido">
+        <div class="vistaSingular_info">
+          <h1 id="titulo-puesto">Full stack developer .net</h1>
+          <div class="info-encabezado">
+            <h3 id="empresa-puesto">Cenfotec</h3>
+            <p id="fecha-puesto">Publicado el</p>
+          </div>
+          <p id="empresa-rangoSalarial">¢ 1 a 1,5 millones</p>
+          <div class="aplicar-contenido">
+            <button class="boton-contenido" onclick="aplicarPuesto()">
+              Aplicar a este puesto
+            </button>
+            <div id="mensajeExito" class="mensajeExito-contenido">
+              <p>Aplicó al puesto con éxito</p>
+            </div>
+            <div id="mensajeWarning" class="warning-contenido">
+              <p>Debe iniciar sesion para aplicar a un puesto</p>
+            </div>
+          </div>
+        </div>
+        <img
+          id="img-perfil-contenido"
+          class="imgFotoPerfil"
+          src="../images/fotoPerfilDefault.jpeg"
+        />
+      </div>
+      <div class="descripcion-contenido">
+        <h2>Requisitos minimos</h2>
+        <p id="contenido-reqminimos">No hay datos.</p>
+        <h2>Requisitos deseables</h2>
+        <p id="contenido-reqdeseables">No hay datos.</p>
+        <h2>Sería un plus</h2>
+        <p id="contenido-plus">No hay datos.</p>
+      </div>
+    </section>
     <footer id="footer_buscoempleo" class="footer">
       <div class="footer_first">
         <a
@@ -104,8 +125,8 @@
     </footer>
     <script src="../js/funciones.js"></script>
     <script>
-      cargarDatosEmpresa();
-      cargarMostrarCandidatos();
+      cargarDatosUsuario();
+      cargarDatosOferta();
     </script>
   </body>
 </html>

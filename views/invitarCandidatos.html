@@ -16,17 +16,65 @@
   </head>
   <body>
     <nav class="nav_buscoempleo nav">
-      <a href="../views/MostrarCandidatos.html" class="nav_logo">
+      <a
+        id="nav_logo-buscoempleo"
+        href="../views/MostrarCandidatos.html"
+        class="nav_logo"
+      >
         <img src="../images/buscoempleo.png" alt="" />
       </a>
       <div class="nav_barra-busqueda">
-        <form action="" method="get" class="barra-busqueda">
-          <input type="text" placeholder="Buscar..." name="barra-busqueda" />
+        <form
+          id="barraBusquedaForm"
+          action=""
+          method="get"
+          class="barra-busqueda"
+          onsubmit="return validarBusquedaHomePage()"
+        >
+          <input
+            type="text"
+            placeholder="Buscar candidato..."
+            name="barra-busqueda"
+          />
           <button type="submit"><img src="../images/busqueda.png" /></button>
         </form>
       </div>
-      <a href="../views/inicioSesion.html">Iniciar sesión</a>
+      <div id="divOpcionesNav">
+        <a id="opcionNav" href="../views/inicioSesion.html">Iniciar sesión</a>
+        <img
+          id="img-perfil"
+          class="imgFotoPerfil"
+          src="../images/fotoPerfilDefault.jpeg"
+          onclick="irModificarCuenta()"
+        />
+        <button onclick="cerrarSesion()">
+          <img src="../images/logout.png" alt="Cerrar sesion" />
+        </button>
+      </div>
     </nav>
+    <header id="sub-menu" class="sub-header">
+      <div class="options">
+        <ul>
+          <li><a href="../views/CrearOferas.html">Crear oferta</a></li>
+          <li>
+            <a href="../views/showOffers.html">Mostrar ofertas creadas</a>
+          </li>
+          <li>
+            <a href="../views/invitarCandidatos.html">Invitar candidatos</a>
+          </li>
+          <li>
+            <a href="../views/invitacionesCreadas.html"
+              >Mostrar invitaciones creadas</a
+            >
+          </li>
+          <li>
+            <a href="../views/revisarAplicacionesPuestos.html"
+              >Revisar mis puestos</a
+            >
+          </li>
+        </ul>
+      </div>
+    </header>
     <section id="contenido">
       <div class="form">
         <h1>Invitar candidato</h1>
@@ -51,6 +99,9 @@
             Enviar invitación
           </button>
         </form>
+        <div id="mensajeExito">
+          <h2>¡Invitación enviada con éxito!</h2>
+        </div>
       </div>
     </section>
     <footer id="footer_buscoempleo" class="footer">
@@ -75,5 +126,9 @@
       <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
     </footer>
     <script src="../js/funciones.js"></script>
+    <script>
+      cargarDatosEmpresa();
+      cargarDatosInvitarCandidato();
+    </script>
   </body>
 </html>

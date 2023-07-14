@@ -16,44 +16,69 @@
   </head>
   <body>
     <nav class="nav_buscoempleo nav">
-      <a href="../views/producto.html" class="nav_logo">
+      <a
+        id="nav_logo-buscoempleo"
+        href="../views/MostrarCandidatos.html"
+        class="nav_logo"
+      >
         <img src="../images/buscoempleo.png" alt="" />
       </a>
       <div class="nav_barra-busqueda">
-        <form action="" method="get" class="barra-busqueda">
-          <input type="text" placeholder="Buscar..." name="barra-busqueda" />
+        <form
+          id="barraBusquedaForm"
+          action=""
+          method="get"
+          class="barra-busqueda"
+          onsubmit="return validarBusquedaHomePage()"
+        >
+          <input
+            type="text"
+            placeholder="Buscar empleo..."
+            name="barra-busqueda"
+          />
           <button type="submit"><img src="../images/busqueda.png" /></button>
         </form>
       </div>
-      <a href="../views/inicioSesion.html">Iniciar sesión</a>
-    </nav>
-
-    <header class="header">
-      <div class="header-bg">
-        <img src="../images/banner.png" />
+      <div id="divOpcionesNav">
+        <a id="opcionNav" href="../views/inicioSesion.html">Iniciar sesión</a>
+        <img
+          id="img-perfil"
+          class="imgFotoPerfil"
+          src="../images/fotoPerfilDefault.jpeg"
+          onclick="irModificarCuenta()"
+        />
+        <button onclick="cerrarSesion()">
+          <img src="../images/logout.png" alt="Cerrar sesion" />
+        </button>
       </div>
-    </header>
-
-    <header class="sub-header">
+    </nav>
+    <header id="sub-menu" class="sub-header">
       <div class="options">
         <ul>
-          <li><a href="#">Opción 1</a></li>
-          <li><a href="#">Opción 2</a></li>
-          <li><a href="#">Opción 3</a></li>
-          <li><a href="#">Opción 4</a></li>
+          <li>
+            <a href="../views/monstrarAplicacionesHechas.html"
+              >Mis aplicaciones</a
+            >
+          </li>
+          <li>
+            <a href="../views/revisarInvitacionesTrabajo.html">Invitaciones</a>
+          </li>
         </ul>
       </div>
     </header>
 
-    <!-- Cambio: Agregar un contenedor para el botón -->
-    <div class="button-container">
-      <a href="#" class="image-button">Sign Up</a>
+    <div id="contenido" class="mostrar-contenido">
+      <h2>Empleos disponibles</h2>
+      <div class="contenido-opciones"></div>
     </div>
-    <!-- Fin del cambio -->
 
     <footer id="footer_buscoempleo" class="footer">
       <div class="footer_first">
-        <a href="" id="footer_logo-buscoempleo" class="footer_logo">
+        <a
+          href="../views/mostrarOfertasTrabajo.html"
+          id="footer_logo-buscoempleo"
+          class="footer_logo"
+        >
           <img src="../images/buscoempleonegro.png" />
         </a>
         <a href="../views/producto.html">
@@ -61,7 +86,7 @@
         </a>
       </div>
       <div class="footer_first">
-        <a href="" class="footer_logo">
+        <a href="../views/index.html" class="footer_logo">
           <img src="../images/logo_nombre.jpg" />
         </a>
         <p>+506 2222-2222 | bitbyte@gmail.com</p>
@@ -69,5 +94,9 @@
       <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
     </footer>
     <script src="../js/funciones.js"></script>
+    <script>
+      cargarDatosUsuario();
+      cargarMostrarOfertas();
+    </script>
   </body>
 </html>

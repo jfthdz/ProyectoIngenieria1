@@ -1,34 +1,33 @@
-body, html{
+body,
+html {
     margin: 0px;
+    font-family: 'Montserrat', sans-serif;
 }
-.contenedor{
-   
-    background-color: #8458B3;
+a {
+    text-decoration: none;
 }
+:root {
+    --lightblue: #A0D2EB;
+    --grey: #E5EAF5;
+    --lightpurple: #D0BDF4;
+    --purple: #8458B3;
+    --darkgrey: #494D5F;
+    --lightergrey: #585c70;
+    --redError: rgb(255, 50, 50);
+}
+/*
 .barra{
     width: 100%;
-}
-.caja1{
-    width: 100%;
-    height: 45px;
-    background-color: #E5EAF5;
-}
-.caja2{
-    width: 100%;
-    height: 70px;
-    background-color: #ffff;
+    height: 90px;
     display: flex;
     align-items: center;
+    background-color: #E5EAF5;
 }
-.caja3{
-    width: 100%;
-    height: 45px;
-    background-color: #494D5F;
-}
+
 .image{
-    width: 50px;
-    height: 50px;
-    margin-left: 40px;
+    width: 140px;
+    margin-left: 103px;
+    cursor: pointer;
 }
 .name{
     font-size: 30px;
@@ -40,14 +39,28 @@ body, html{
     height: 25px;
     border-radius: 20px;
     margin-right: 40px;
-}
+    border: none;
+    box-shadow: 3px 5px rgba(0, 0, 0, .2);}
 .space{
     flex-grow: 1;
 }
+.search-container {
+    position: relative;
+  }
+  
+  .lupa{
+    text-decoration: none;
+    color: #000000;
+  }
+  .search-icon {
+    position: absolute;
+    top: 30%;
+    right: 10px;    
+    margin-right: 40px;
+
+  } */
 .oferta{
-    width: 100%;
     height: 70vh;
-    background-color: #fff;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -55,25 +68,23 @@ body, html{
 
 }
 .oferta2{
-    width: 85%;
     height: 30vh;
-    background-color: #E5EAF5;
+    border-radius: 10px;
+    background-color: var(--lightergrey);
     margin-bottom: 10px;
     
 }
-.titulo{
-    margin-left: 20px;
+.titulo, .subtitulo, .texto{
+    margin: 20px;
 }
-.subtitulo{
-    margin-left: 20px;
+.contenedor h1{
+    margin: 0;
 }
-.texto{
-    margin-left: 20px;
-}
+/*
 .footer{
     width: 100%;
-    height: 20vh;
-    background-color:#494D5F;
+    height: 36vh;
+    background-color:#000000;
     display: flex;
     align-items: center;
 
@@ -84,14 +95,14 @@ body, html{
     background-color: #E5EAF5;
 }
 .image2{
-    width: 100px;
-    height: 85px;
-    margin-left: 50px;
+    width: 150px;
+    margin-left: 160px;
+    cursor: pointer;
 }
 .textfooter{
     font-size: 13px;
     color: #fff;
-    margin-top: 90px;
+    margin-top: 250px;
     
 }
 .textfooter2{
@@ -99,4 +110,214 @@ body, html{
     color: #fff;
     margin-right: 50px;
     
+    margin-top: 20px;
+
+    
+    
+}
+.seleccion{
+    color: white;
+    text-decoration: none;
+    margin-left: 150px
+    
+}
+.logo1{
+    width: 100px;
+    cursor: pointer;
+   
+}
+.cuadrito1{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+
+} */
+
+
+.nav {
+    display: flex;
+    min-height: 5.5vh;
+    padding: 0.3% 15%;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav a {
+    color: var(--darkgrey);
+    margin: 0px 10px;
+    transition: all 150ms ease-in-out;
+}
+.nav_logo,
+.nav_menu {
+    display: flex;
+    align-items: center;
+}
+
+.nav_logo img {
+    max-width: 140px;
+    margin-right: 20px;
+}
+.nav_buscoempleo {
+    background-color: var(--grey);
+}
+
+.nav_buscoempleo a {
+    font-weight: 500;
+}
+
+.nav_buscoempleo a:hover {
+    color: #131314;
+}
+
+#contenido {
+    margin: 2% 14%;
+    padding: 3% 7%;
+    color: white;
+    border-radius: 10px;
+    background-color: var(--darkgrey);
+}
+.nav_barra-busqueda {
+    width: 40%;
+}
+
+.barra-busqueda {
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 30px;
+    background-color: white;
+    box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+.barra-busqueda input {
+    background: transparent;
+    flex: 1;
+    border: 0;
+    outline: none;
+    border-radius: 30px;
+    padding: 24px 5px 24px 25px;
+    font-size: 14px;
+    color: var(--darkgrey);
+}
+
+::placeholder {
+    color: var(--darkgrey);
+}
+
+.barra-busqueda button img {
+    width: 25px;
+}
+
+.barra-busqueda button {
+    border: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+}
+#divOpcionesNav{
+    display: flex;
+    flex-grow: 0;
+    align-items: center;
+}
+#divOpcionesNav img{
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+#divOpcionesNav button{
+    border: 0;
+    width: 60px;
+    height: 60px;
+    margin-left: 10px;
+    background-color: var(--grey);
+    cursor: pointer;
+}
+#divOpcionesNav button img{
+    width: 30px;
+    height: 30px;
+}
+.imgFotoPerfil{
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    width: 150px;
+    height: 150px;
+    margin-left: 1%;
+}
+#footer_index {
+    background-color: var(--darkgrey);
+}
+
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    color: white;
+    padding: 0.3% 13%;
+}
+
+.footer_logo img {
+    max-width: 100px;
+}
+
+.footer_first {
+    flex-basis: 50%;
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+.footer_first p {
+    color: white;
+}
+
+.footer_first:nth-child(2) {
+    text-align: end;
+}
+
+.footer_last {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    font-size: 13px;
+}
+#footer_buscoempleo {
+    background-color: black;
+}
+
+#footer_logo-buscoempleo img {
+    max-width: 150px;
+}
+.sub-header {
+    background-color: #494D5F;
+    padding: 10px;
+}
+.options {
+    text-align: center;
+}
+.options ul {
+    display: inline-block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0; 
+}
+.options li {
+    display: inline;
+    margin-left: 10px;
+}
+.options li:first-child {
+    margin-left: 0;
+}
+.options li a {
+    text-decoration: none; /* Quita la línea horizontal */
+    color: #A0D2EB; /* Cambia el color del texto */
+    margin-left: 10px;
+    margin-right: 20px;
+}
+.borde-rojo{
+    border: 1px solid var(--redError);
+    transition: border-color 0.2s ease-in-out;
 }

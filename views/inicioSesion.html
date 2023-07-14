@@ -16,31 +16,38 @@
   </head>
   <body>
     <nav class="nav_buscoempleo nav">
-      <a href="../views/MostrarCandidatos.html" class="nav_logo">
+      <a
+        id="nav_logo-buscoempleo"
+        href="../views/MostrarCandidatos.html"
+        class="nav_logo"
+      >
         <img src="../images/buscoempleo.png" alt="" />
       </a>
-      <div class="nav_barra-busqueda">
+      <!--<div class="nav_barra-busqueda">
         <form action="" method="get" class="barra-busqueda">
           <input type="text" placeholder="Buscar..." name="barra-busqueda" />
           <button type="submit"><img src="../images/busqueda.png" /></button>
         </form>
-      </div>
+      </div> -->
     </nav>
     <section id="contenido">
       <div class="contenido_login">
         <div class="inicioSesion">
           <h1>Inicio de sesión</h1>
-          <h3>Inicia sesion con tu correo y contraseña</h3>
+          <h3>Inicia sesión con tu correo y contraseña</h3>
+
           <p>Correo electrónico:</p>
+          <span id="errorEmail" class="error"></span>
           <input type="text" name="email" id="email" />
           <p>Contraseña:</p>
           <input type="password" name="password" id="password" />
+          <span id="errorLogin" class="error"></span>
           <button value="login" onclick="validarLogin()">Iniciar sesión</button>
+
           <a href="../views/recuperarPassword.html"
             >¿Has olvidado tu contraseña?</a
           >
         </div>
-        
         <div class="division"></div>
         <div class="registrarse">
           <h1>¿Aún no estás registrado?</h1>
@@ -77,5 +84,8 @@
       <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
     </footer>
     <script src="../js/funciones.js"></script>
+    <script>
+      cargarDatosUsuario();
+    </script>
   </body>
 </html>

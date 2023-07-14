@@ -15,20 +15,37 @@
     <title>Busco Empleo</title>
   </head>
   <body>
-    <nav class="nav_buscoempleo nav">
-      <a href="../views/MostrarCandidatos.html" class="nav_logo">
+    <nav id="nav-buscoempleo" class="nav_buscoempleo nav">
+      <a
+        id="nav_logo-buscoempleo"
+        href="../views/MostrarCandidatos.html"
+        class="nav_logo"
+      >
         <img src="../images/buscoempleo.png" alt="" />
       </a>
       <div class="nav_barra-busqueda">
-        <form action="" method="get" class="barra-busqueda">
-          <input type="text" placeholder="Buscar..." name="barra-busqueda" />
+        <form
+          id="barraBusquedaForm"
+          action=""
+          method="get"
+          class="barra-busqueda"
+          onsubmit="return validarBusquedaHomePage()"
+        >
+          <input
+            type="text"
+            placeholder="Buscar empleo..."
+            name="barra-busqueda"
+          />
           <button type="submit"><img src="../images/busqueda.png" /></button>
         </form>
       </div>
-      <a href="../views/inicioSesion.html">Iniciar sesión</a>
+      <a id="opcionNav" href="../views/inicioSesion.html">Iniciar sesión</a>
     </nav>
     <section id="contenido">
       <div class="form">
+        <div id="mensajeExito">
+          <h2>¡Cuenta de empresa creada con éxito!</h2>
+        </div>
         <h1>Crea tu cuenta de empresa</h1>
         <form
           action="registrarEmpresa()"
@@ -39,11 +56,13 @@
             <p>Foto de perfil de mi empresa</p>
             <img
               id="img-perfil"
-              class="fotoPerfil"
+              class="imgFotoPerfil"
               src="../images/fotoPerfilDefault.jpeg"
               alt="Foto de perfil"
             />
-            <label for="inputFotoPerfil">Subir imagen</label>
+            <label onclick="subirImagen()" for="inputFotoPerfil"
+              >Subir imagen</label
+            >
             <input
               type="file"
               accept="image/jpeg, image/png, image/jpg"
@@ -61,7 +80,7 @@
           <p>Password</p>
           <input type="password" name="passwordEmpresa" id="passwordEmpresa" />
           <span id="errorPasswordEmpresa" class="error"></span>
-          <h2>Descripcion de mi empresa</h2>
+          <h2>Descripción de mi empresa</h2>
           <button class="boton-registro" onclick="habilitarCampoDescripcion()">
             Agregar descripción
           </button>
@@ -98,5 +117,8 @@
       <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
     </footer>
     <script src="../js/funciones.js"></script>
+    <script>
+      cargarDatosUsuario();
+    </script>
   </body>
 </html>
