@@ -125,6 +125,66 @@ var puestoTrabajo = [
         Conocimiento de metodologías ágiles de desarrollo y mejores prácticas.`,
         plus:`Título en informática, ingeniería o un campo relacionado (o experiencia práctica equivalente).
         Familiaridad con las API RESTful y su integración en aplicaciones web.`
+    },
+    {
+        id: 5,
+        fecha: "30/05/2023",
+        empresa: "Tesla",
+        titulo:"Ingeniero Industrial",
+        rangoSalarial:"¢ 1 a 1,5 millones",
+        reqMinimo:`Experiencia previa en desarrollo web.
+        Conocimiento de HTML, CSS, JavaScript, PHP y MySQL.
+        Comprensión de los principios de diseño web.
+        Comprensión de los principios de programación.
+        Comprensión de los principios de seguridad web.
+        Capacidad para trabajar en equipo.
+        Mentalidad de aprendizaje.`,
+        reqDeseable:`Experiencia laboral de 2 años en desarrollo web.
+        Comprensión del desarrollo front-end utilizando frameworks Angular y/o React.
+        Experiencia con sistemas de control de versiones, como Git.
+        Conocimiento de metodologías ágiles de desarrollo y mejores prácticas.`,
+        plus:`Título en informática, ingeniería o un campo relacionado (o experiencia práctica equivalente).
+        Familiaridad con las API RESTful y su integración en aplicaciones web.`
+    },
+    {
+        id: 6,
+        fecha: "10/07/2023",
+        empresa: "Apple",
+        titulo:"Senior Full Stack developer",
+        rangoSalarial:"¢ 1 a 1,5 millones",
+        reqMinimo:`Experiencia previa en desarrollo web.
+        Conocimiento de HTML, CSS, JavaScript, PHP y MySQL.
+        Comprensión de los principios de diseño web.
+        Comprensión de los principios de programación.
+        Comprensión de los principios de seguridad web.
+        Capacidad para trabajar en equipo.
+        Mentalidad de aprendizaje.`,
+        reqDeseable:`Experiencia laboral de 2 años en desarrollo web.
+        Comprensión del desarrollo front-end utilizando frameworks Angular y/o React.
+        Experiencia con sistemas de control de versiones, como Git.
+        Conocimiento de metodologías ágiles de desarrollo y mejores prácticas.`,
+        plus:`Título en informática, ingeniería o un campo relacionado (o experiencia práctica equivalente).
+        Familiaridad con las API RESTful y su integración en aplicaciones web.`
+    },
+    {
+        id: 7,
+        fecha: "29/04/2023",
+        empresa: "Google",
+        titulo:"Asp.net Junior Developer",
+        rangoSalarial:"¢ 650 a 750 mil",
+        reqMinimo:`Experiencia previa en desarrollo web.
+        Conocimiento de HTML, CSS, JavaScript, PHP y MySQL.
+        Comprensión de los principios de diseño web.
+        Comprensión de los principios de programación.
+        Comprensión de los principios de seguridad web.
+        Capacidad para trabajar en equipo.
+        Mentalidad de aprendizaje.`,
+        reqDeseable:`Experiencia laboral de 2 años en desarrollo web.
+        Comprensión del desarrollo front-end utilizando frameworks Angular y/o React.
+        Experiencia con sistemas de control de versiones, como Git.
+        Conocimiento de metodologías ágiles de desarrollo y mejores prácticas.`,
+        plus:`Título en informática, ingeniería o un campo relacionado (o experiencia práctica equivalente).
+        Familiaridad con las API RESTful y su integración en aplicaciones web.`
     }
 ];
 

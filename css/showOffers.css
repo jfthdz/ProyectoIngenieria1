@@ -60,7 +60,6 @@ a {
 
   } */
 .oferta{
-    height: 70vh;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -75,10 +74,11 @@ a {
     
 }
 .titulo, .subtitulo, .texto{
+    display: flex;
     margin: 20px;
 }
 .contenedor h1{
-    margin: 0;
+    margin-top: 0;
 }
 /*
 .footer{
@@ -320,4 +320,12 @@ a {
 .borde-rojo{
     border: 1px solid var(--redError);
     transition: border-color 0.2s ease-in-out;
+}
+.descripcion-contenido{
+    display: flex;
+    flex-direction: column;
+    margin: 1%;
+    padding: 2%;
+    background-color: var(--lightergrey);
+    border-radius: 10px;
 }
