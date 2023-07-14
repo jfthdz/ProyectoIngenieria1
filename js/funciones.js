@@ -341,7 +341,7 @@ function modificarImagen(){
     console.log(fotoPerfil);
 }
 
-//Validar campos vacios formulario registrar candidato
+//Validar formulario registrar candidato
 function validarFormulario() {
     try {
         event.preventDefault();
@@ -467,7 +467,119 @@ function validarFormulario() {
     }
 }
 
-//Validar campos vacios formulario registrar empresa
+//Validar formulario modificar candidato
+function validarFormularioModificar() {
+    try {
+        event.preventDefault();
+        var nombre = document.getElementById("nombreCandidato");
+        var apellidos = document.getElementById("apellidosCandidato");
+        var genero = document.getElementsByName("generoCandidato")[0];
+        var email = document.getElementById("emailCandidato");
+        var profesion = document.getElementById("profesionCandidato");
+        var camposIncompletos = false;
+
+        var errorNombre = document.getElementById("errorNombre");
+        var errorApellidos = document.getElementById("errorApellidos");
+        var errorGenero = document.getElementById("errorGenero");
+        var errorEmail = document.getElementById("errorEmail");
+        var errorProfesion = document.getElementById("errorProfesion");
+
+        //expresión regular para validar formato de correo
+        var regexEmail = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
+
+        if (nombre.value === "") {
+            nombre.style.border = "1px solid var(--redError)";
+            errorNombre.innerText = "*Campo necesario";
+            camposIncompletos = true;
+        } else {
+            nombre.style.border = "0";
+            errorNombre.innerText = "";
+        }
+
+        if (apellidos.value === "") {
+            apellidos.style.border = "1px solid var(--redError)";
+            errorApellidos.innerText = "*Campo necesario";
+            camposIncompletos = true;
+        } else {
+            apellidos.style.border = "0";
+            errorApellidos.innerText = "";
+        }
+
+        var valorGeneroSeleccionado = genero.value;
+        if (valorGeneroSeleccionado!="default") {
+            errorGenero.innerText = "";
+        }else{
+            errorGenero.innerText = "*Debe seleccionar una opción";
+            camposIncompletos = true;
+        }
+
+        if (email.value === "") {
+            email.style.border = "1px solid var(--redError)";
+            errorEmail.innerText = "*Campo necesario";
+            camposIncompletos = true;
+        } else if(regexEmail.test(email.value)==false){
+            email.style.border = "1px solid var(--redError)";
+            errorEmail.innerText = "*Ingrese un correo válido";
+            camposIncompletos = true;
+        }else{
+            email.style.border = "0";
+            errorEmail.innerText = "";
+        }
+
+        if (profesion.value === "") {
+            profesion.style.border = "1px solid var(--redError)";
+            errorProfesion.innerText = "*Campo necesario";
+            camposIncompletos = true;
+        } else {
+            profesion.style.border = "0";
+            errorProfesion.innerText = "";
+        }
+
+        // Si se encontraron campos incompletos, detener el envío del formulario
+        if (camposIncompletos) {
+            // Validar cual es el primer campo incompleto
+            var primerCampoIncompleto = null;
+            if (nombre.value === "") {
+            primerCampoIncompleto = nombre;
+            } else if (apellidos.value === "") {
+            primerCampoIncompleto = apellidos;
+            } else if (valorGeneroSeleccionado==="default") {
+            primerCampoIncompleto = genero;
+            } else if (email.value === "") {
+            primerCampoIncompleto = email;
+            } else if (profesion.value === "") {
+            primerCampoIncompleto = profesion;
+            }
+
+            // Hacer scroll al primer campo incompleto
+            if (primerCampoIncompleto) {
+            primerCampoIncompleto.scrollIntoView({ behavior: "smooth" });
+            }
+
+            return false;
+        }else{
+            var navBuscoEmpleo = document.querySelector("#nav-buscoempleo");
+            var mensajeExito = document.querySelector("#mensajeExito");
+            mensajeExito.style.display = "flex";
+            setTimeout(function() {
+                mensajeExito.classList.add("mostrar");
+                navBuscoEmpleo.scrollIntoView({behavior: "smooth"});
+            }, 100);
+           // deshabilitarCamposEstudios();
+            //deshabilitarCamposExperiencia();
+            setTimeout(function() {
+                mensajeExito.classList.remove("mostrar");
+            }, 3000); 
+            setTimeout(function() {
+                mensajeExito.style.display = "none";
+            }, 3500); 
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+//Validar formulario registrar empresa
 function validarFormularioEmpresa() {
     try {
         event.preventDefault();
@@ -526,6 +638,65 @@ function validarFormularioEmpresa() {
                 navBuscoEmpleo.scrollIntoView({behavior: "smooth"});
             }, 100); 
             limpiarCamposRegistrarEmpresa();
+            setTimeout(function() {
+                mensajeExito.classList.remove("mostrar");
+            }, 3000); 
+            setTimeout(function() {
+                mensajeExito.style.display = "none";
+            }, 3500); 
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+//Validar formulario modificar empresa
+function validarFormularioModificarEmpresa() {
+    try {
+        event.preventDefault();
+        var nombreEmpresa = document.getElementById("nombreEmpresa");
+        var emailEmpresa = document.getElementById("emailEmpresa");
+        var camposIncompletos = false;
+
+        var errorNombreEmpresa = document.getElementById("errorNombreEmpresa");
+        var errorEmailEmpresa = document.getElementById("errorEmailEmpresa");
+
+        //expresión regular para validar formato de correo
+        var regexEmail = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
+
+        if (nombreEmpresa.value === "") {
+            nombreEmpresa.style.border = "1px solid var(--redError)";
+            errorNombreEmpresa.innerText = "*Campo necesario";
+            camposIncompletos = true;
+        } else {
+            nombreEmpresa.style.border = "0";
+            errorNombreEmpresa.innerText = "";
+        }
+
+        if (emailEmpresa.value === "") {
+            emailEmpresa.style.border = "1px solid var(--redError)";
+            errorEmailEmpresa.innerText = "*Campo necesario";
+            camposIncompletos = true;
+        } else if(regexEmail.test(emailEmpresa.value)==false){
+            emailEmpresa.style.border = "1px solid var(--redError)";
+            errorEmailEmpresa.innerText = "*Ingrese un correo válido";
+            camposIncompletos = true;
+        }else{
+            emailEmpresa.style.border = "0";
+            errorEmailEmpresa.innerText = "";
+        }
+
+        // Si se encontraron campos incompletos, detener el envío del formulario
+        if (camposIncompletos) {
+            return false;
+        }else{
+            var navBuscoEmpleo = document.querySelector("#nav-buscoempleo");
+            var mensajeExito = document.querySelector("#mensajeExito");
+            mensajeExito.style.display = "flex";
+            setTimeout(function() {
+                mensajeExito.classList.add("mostrar");
+                navBuscoEmpleo.scrollIntoView({behavior: "smooth"});
+            }, 100); 
             setTimeout(function() {
                 mensajeExito.classList.remove("mostrar");
             }, 3000); 
@@ -909,7 +1080,6 @@ function cargarFormularioModificarCandidato(){
         campoGenero.value = usuarioLoggeado.genero;
         campoEmail.value = usuarioLoggeado.email;
         campoProfesion.value = usuarioLoggeado.profesion;
-        console.log(fotoPerfil);
     }
 }
 
