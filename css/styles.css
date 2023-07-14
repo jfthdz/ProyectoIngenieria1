@@ -1025,6 +1025,23 @@ font-size:large;
 #botonCrearCuenta img{
     width: 20px;
 }
+
+#botonCrearOferta{
+    display: flex;
+    justify-content: space-around;
+    border: 0;
+    width: 50%;
+    border-radius: 5px;
+    color: white;
+    padding: 20px;
+    font-size: 17px;
+    margin: 3rem 0 1rem 25%;
+    align-items: center;
+    background-color: black;
+}
+#botonCrearOferta img{
+    width: 20px;
+}
 #botonVisitar{
     display: flex;
     justify-content: space-between;
