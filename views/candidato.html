@@ -24,8 +24,18 @@
         <img src="../images/buscoempleo.png" alt="" />
       </a>
       <div class="nav_barra-busqueda">
-        <form action="" method="get" class="barra-busqueda">
-          <input type="text" placeholder="Buscar..." name="barra-busqueda" />
+        <form
+          id="barraBusquedaForm"
+          action=""
+          method="get"
+          class="barra-busqueda"
+          onsubmit="return validarBusquedaHomePage()"
+        >
+          <input
+            type="text"
+            placeholder="Buscar candidato..."
+            name="barra-busqueda"
+          />
           <button type="submit"><img src="../images/busqueda.png" /></button>
         </form>
       </div>
@@ -42,12 +52,39 @@
         </button>
       </div>
     </nav>
+    <header id="sub-menu" class="sub-header">
+      <div class="options">
+        <ul>
+          <li><a href="../views/CrearOferas.html">Crear oferta</a></li>
+          <li>
+            <a href="../views/showOffers.html">Mostrar ofertas creadas</a>
+          </li>
+          <li>
+            <a href="../views/invitarCandidatos.html">Invitar candidatos</a>
+          </li>
+          <li>
+            <a href="../views/invitacionesCreadas.html"
+              >Mostrar invitaciones creadas</a
+            >
+          </li>
+          <li>
+            <a href="../views/revisarAplicacionesPuestos.html"
+              >Revisar mis puestos</a
+            >
+          </li>
+        </ul>
+      </div>
+    </header>
     <section id="contenido">
       <div class="encabezado-contenido encabezado-contenidoCandidato">
-        <img id="img-perfil" class="imgFotoPerfil" src="../images/jafet.jpg" />
+        <img
+          id="img-perfil-candidato"
+          class="imgFotoPerfil"
+          src="../images/fotoPerfilDefault.jpeg"
+        />
         <div class="vistaSingular_info">
-          <h1 id="nombre-candidato">Nombre y apellidos del candidato</h1>
-          <p id="profesion-candidato">Nombre de la profesion</p>
+          <h1 id="nombre-candidato"></h1>
+          <p id="profesion-candidato"></p>
           <a href="../views/invitarCandidatos.html">
             <button class="boton-contenido">Invitar</button>
           </a>
@@ -55,34 +92,21 @@
       </div>
       <div class="descripcion-contenido">
         <h2>Experiencia laboral</h2>
-        <h3 id="titulo-experiencia">Titulo de la experiencia</h3>
-        <p id="contenido-experiencia">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-          ultricies at urna id pellentesque. Integer hendrerit vestibulum turpis
-          ut eleifend. Nam vel gravida ipsum. Nulla ultrices turpis iaculis,
-          fermentum lacus vitae, maximus elit. Curabitur quis nulla nisi. In
-          ultrices leo laoreet, viverra nulla eget, porttitor mi. Suspendisse
-          potenti. Mauris finibus scelerisque arcu ut rutrum.
-        </p>
+        <h3 id="titulo-experiencia"></h3>
+        <p id="empresa-experiencia">Empresa:</p>
+        <p id="contenido-experiencia"></p>
         <div class="fechas">
-          <p id="fecha-inicio">Fecha inicio</p>
+          <p id="fecha-inicio-exp"></p>
           <p>-</p>
-          <p id="fecha-final">Fecha finalizacion</p>
+          <p id="fecha-final-exp"></p>
         </div>
         <h2>Estudios</h2>
-        <h3 id="titulo-estudios">Titulo del estudio</h3>
-        <p id="contenido-estudios">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-          ultricies at urna id pellentesque. Integer hendrerit vestibulum turpis
-          ut eleifend. Nam vel gravida ipsum. Nulla ultrices turpis iaculis,
-          fermentum lacus vitae, maximus elit. Curabitur quis nulla nisi. In
-          ultrices leo laoreet, viverra nulla eget, porttitor mi. Suspendisse
-          potenti. Mauris finibus scelerisque arcu ut rutrum.
-        </p>
+        <h3 id="titulo-estudios"></h3>
+        <p id="institucion-estudios">Institución:</p>
         <div class="fechas">
-          <p id="fecha-inicio">Fecha inicio</p>
+          <p id="fecha-inicio-est"></p>
           <p>-</p>
-          <p id="fecha-final">Fecha finalizacion</p>
+          <p id="fecha-final-est"></p>
         </div>
       </div>
     </section>
@@ -110,6 +134,8 @@
     <script src="../js/funciones.js"></script>
     <script>
       cargarDatosUsuario();
+      cargarDatosCandidato();
+      cargarDatosEmpresa();
     </script>
   </body>
 </html>

@@ -15,7 +15,7 @@
     <title>Busco Empleo</title>
   </head>
   <body>
-    <nav class="nav_buscoempleo nav">
+    <nav id="sub-menu" class="nav_buscoempleo nav">
       <a
         id="nav_logo-buscoempleo"
         href="../views/MostrarCandidatos.html"
@@ -24,21 +24,61 @@
         <img src="../images/buscoempleo.png" alt="" />
       </a>
       <div class="nav_barra-busqueda">
-        <form action="" method="get" class="barra-busqueda">
-          <input type="text" placeholder="Buscar..." name="barra-busqueda" />
+        <form
+          id="barraBusquedaForm"
+          action=""
+          method="get"
+          class="barra-busqueda"
+          onsubmit="return validarBusquedaHomePage()"
+        >
+          <input
+            type="text"
+            placeholder="Buscar candidato..."
+            name="barra-busqueda"
+          />
           <button type="submit"><img src="../images/busqueda.png" /></button>
         </form>
       </div>
-      <a id="opcionNav" href="../views/inicioSesion.html">Iniciar sesión</a>
-    </nav>
-   
-          >
-        </div>
-        <div class="division"></div>
-       
-          </a>
-        </div>
+      <div id="divOpcionesNav">
+        <a id="opcionNav" href="../views/inicioSesion.html">Iniciar sesión</a>
+        <img
+          id="img-perfil"
+          class="imgFotoPerfil"
+          src="../images/fotoPerfilDefault.jpeg"
+          onclick="irModificarCuenta()"
+        />
+        <button onclick="cerrarSesion()">
+          <img src="../images/logout.png" alt="Cerrar sesion" />
+        </button>
       </div>
+    </nav>
+    <header class="sub-header">
+      <div class="options">
+        <ul>
+          <li><a href="../views/CrearOferas.html">Crear oferta</a></li>
+          <li>
+            <a href="../views/showOffers.html">Mostrar ofertas creadas</a>
+          </li>
+          <li>
+            <a href="../views/invitarCandidatos.html">Invitar candidatos</a>
+          </li>
+          <li>
+            <a href="../views/invitacionesCreadas.html"
+              >Mostrar invitaciones creadas</a
+            >
+          </li>
+          <li>
+            <a href="../views/revisarAplicacionesPuestos.html"
+              >Revisar mis puestos</a
+            >
+          </li>
+        </ul>
+      </div>
+    </header>
+    <section id="contenido">
+      <!--AQUI
+          VA SU CODIGO
+          BRYAN !!!! -->
     </section>
     <footer id="footer_buscoempleo" class="footer">
       <div class="footer_first">
@@ -63,7 +103,7 @@
     </footer>
     <script src="../js/funciones.js"></script>
     <script>
-      cargarDatosUsuario();
+      cargarDatosEmpresa();
     </script>
   </body>
 </html>

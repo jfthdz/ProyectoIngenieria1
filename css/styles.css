@@ -16,6 +16,8 @@ a {
     --purple: #8458B3;
     --darkgrey: #494D5F;
     --lightergrey: #585c70;
+    --redError: rgb(255, 50, 50);
+    --warning: rgb(253, 225, 100);
 }
 
 .nav {
@@ -434,6 +436,10 @@ font-size:large;
     background-color: var(--darkgrey);
 }
 
+.mostrar-contenido{
+    padding: 1.5% 5% !important;
+}
+
 .encabezado-contenido {
     display: flex;
     align-items: center;
@@ -464,6 +470,30 @@ font-size:large;
     border-radius: 10px;
 }
 
+.contenido-opciones{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+    border-radius: 10px;
+}
+.opcion{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: var(--lightergrey);
+    align-items: center;
+}
+.opcion-info{
+    display: flex;
+    align-items: center;
+    flex-grow: 2;
+}
+.opcion-info img{
+    margin-right: 1rem;
+}
+
 .boton-contenido {
     border: 0;
     width: 200px;
@@ -473,6 +503,11 @@ font-size:large;
     border-radius: 10px;
     margin-top: 1rem;
     background-color: var(--purple);
+}
+
+.boton-contenido:hover {
+    opacity: 70%;
+    cursor: pointer;
 }
 
 #footer_buscoempleo {
@@ -502,9 +537,17 @@ font-size:large;
 .fechas {
     display: flex;
     align-items: center;
-    font-weight: 100;
+    font-weight: 200;
 }
-
+#institucion-estudios, #titulo-estudios, .fechas p, 
+#contenido-experiencia, #titulo-experiencia, #empresa-experiencia,
+#contenido-reqminimos, #contenido-reqdeseables, #contenido-plus{
+    margin-top: 0;
+}
+.contenido-estudios{
+    display: flex;
+    align-items: center;
+}
 .nav_barra-busqueda {
     width: 40%;
 }
@@ -523,6 +566,7 @@ font-size:large;
     flex: 1;
     border: 0;
     outline: none;
+    border-radius: 30px;
     padding: 24px 5px 24px 25px;
     font-size: 14px;
     color: var(--darkgrey);
@@ -775,7 +819,6 @@ font-size:large;
     opacity: 1 !important;
 }
 .form h1{
-    margin-top: 0;
     text-align: center;
     font-size: 30px;
 }
@@ -868,12 +911,14 @@ font-size:large;
     cursor: pointer;
 }
 .error {
-    color: rgb(255, 0, 0);
+    color: var(--redError);
+    font-weight: 500;
     font-size: 12px;
     margin-top: 5px;
+    font-size: 16px;
 }
 .borde-rojo{
-    border: 1px solid red;
+    border: 1px solid var(--redError);
     transition: border-color 0.2s ease-in-out;
 }
 
@@ -947,9 +992,6 @@ font-size:large;
     color: rgb(82, 82, 82);
     
   }
-  .search-results {
-    margin-bottom: 10px;
-  }
   .inner-box {
     width: 100%;
     height: 200px;
@@ -1006,7 +1048,6 @@ font-size:large;
 }
 #divOpcionesNav{
     display: flex;
-    width: 27%;
     align-items: center;
 }
 #divOpcionesNav img{
@@ -1039,10 +1080,41 @@ font-size:large;
     transition: opacity 300ms ease-in;
     background-color: var(--lightpurple);
 }
+#mensajeExito h2{
+    margin: 1rem 0;
+}
+#mensajeWarning{
+    display: none;
+    opacity: 0;
+    padding: 1.5rem;
+    margin: 0 18%;
+    color: var(--darkgrey);
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: opacity 300ms ease-in;
+    background-color: var(--warning);
+}
+#mensajeWarning h2{
+    margin: 1rem 0;
+}
+.warning-contenido{
+    margin: 1rem 0 0 2rem !important;
+    padding: 0 0.7rem !important;
+}
 .aplicar-contenido{
     display: flex;
 }
 .mensajeExito-contenido{
     margin: 1rem 0 0 2rem !important;
     padding: 0 0.7rem !important;
+}
+.imgFotoPerfilMostrarCandidato{
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    width: 100px;
+    height: 100px;
+    margin-left: 1%;
 }

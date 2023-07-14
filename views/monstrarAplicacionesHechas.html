@@ -24,113 +24,134 @@
         <img src="../images/buscoempleo.png" alt="" />
       </a>
       <div class="nav_barra-busqueda">
-        <form action="" method="get" class="barra-busqueda">
-          <input type="text" placeholder="Buscar..." name="barra-busqueda" />
+        <form
+          id="barraBusquedaForm"
+          action=""
+          method="get"
+          class="barra-busqueda"
+          onsubmit="return validarBusquedaHomePage()"
+        >
+          <input
+            type="text"
+            placeholder="Buscar empleo..."
+            name="barra-busqueda"
+          />
           <button type="submit"><img src="../images/busqueda.png" /></button>
         </form>
       </div>
-      <a id="opcionNav" href="../views/inicioSesion.html">Iniciar sesión</a>
+      <div id="divOpcionesNav">
+        <a id="opcionNav" href="../views/inicioSesion.html">Iniciar sesión</a>
+        <img
+          id="img-perfil"
+          class="imgFotoPerfil"
+          src="../images/fotoPerfilDefault.jpeg"
+          onclick="irModificarCuenta()"
+        />
+        <button onclick="cerrarSesion()">
+          <img src="../images/logout.png" alt="Cerrar sesion" />
+        </button>
+      </div>
     </nav>
-
-
-
+    <header id="sub-menu" class="sub-header">
+      <div class="options">
+        <ul>
+          <li>
+            <a href="../views/monstrarAplicacionesHechas.html"
+              >Mis aplicaciones</a
+            >
+          </li>
+          <li>
+            <a href="../views/revisarInvitacionesTrabajo.html">Invitaciones</a>
+          </li>
+        </ul>
+      </div>
+    </header>
 
     <section id="contenido">
-        <div id="encabezadoContenido2" class="button-container">
-            <div class="desplegable">
-                <button class="boton modern-button">Mis Postulaciones</button>
-                <div class="dropdown-content">
-                    <a href="#">Activa</a>
-                    <a href="#">En proceso</a>
-                    <a href="#">Cancelada</a>
-                </div>
-            </div>
+      <div id="encabezadoContenido2" class="button-container">
+        <div class="desplegable">
+          <button class="boton modern-button">Mis Postulaciones</button>
+          <div class="dropdown-content">
+            <a href="#">Activa</a>
+            <a href="#">En proceso</a>
+            <a href="#">Cancelada</a>
+          </div>
         </div>
-    
-        <div id="contenidocentral">
-            <table class="modern-table">
-                <thead>
-                    <tr>
-                        <th>Detalle</th>
-                        <th>Estado</th>
-                        <th>Vacante</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <strong>Detalle de la oferta:</strong><br>
-                            <em>Descripción de la oferta de trabajo 1.</em><br>
-                            <em>Requisitos: habilidades, experiencia, etc.</em>
-                        </td>
-                        <td>En revisión</td>
-                        <td>Ingeniero de Software</td>
-                        <td>
-                            
-                            <a href="#">Eliminar</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            
-                            <em>Descripción de la oferta de trabajo 2.</em><br>
-                            <em>Requisitos: habilidades, experiencia, etc.</em>
-                        </td>
-                        <td>Aceptada</td>
-                        <td>Analista de Sistemas</td>
-                        <td>
-                            
-                            <a href="#">Eliminar</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            
-                            <em>Descripción de la oferta de trabajo 3.</em><br>
-                            <em>Requisitos: habilidades, experiencia, etc.</em>
-                        </td>
-                        <td>Denegada</td>
-                        <td>Desarrollador Web</td>
-                        <td>
-                            <a href="#">Eliminar</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                           
-                            <em>Descripción de la oferta de trabajo 4.</em><br>
-                            <em>Requisitos: habilidades, experiencia, etc.</em>
-                        </td>
-                        <td>Aceptada</td>
-                        <td>Desarrollador Web</td>
-                        <td>
-                           
-                            <a href="#">Eliminar</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            
-                            <em>Descripción de la oferta de trabajo 5.</em><br>
-                            <em>Requisitos: habilidades, experiencia, etc.</em>
-                        </td>
-                        <td>Enviada</td>
-                        <td>Desarrollador Web</td>
-                        <td>
-                           
-                            <a href="#">Eliminar</a>
-                        </td>
-                    </tr>
-                    <!-- Agregar más filas según sea necesario -->
-                </tbody>
-            </table>
-        </div>
-        <!--#contenidocentral-->
-    </section>   
+      </div>
 
-
-
+      <div id="contenidocentral">
+        <table class="modern-table">
+          <thead>
+            <tr>
+              <th>Detalle</th>
+              <th>Estado</th>
+              <th>Vacante</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <strong>Detalle de la oferta:</strong><br />
+                <em>Descripción de la oferta de trabajo 1.</em><br />
+                <em>Requisitos: habilidades, experiencia, etc.</em>
+              </td>
+              <td>En revisión</td>
+              <td>Ingeniero de Software</td>
+              <td>
+                <a href="#">Eliminar</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <em>Descripción de la oferta de trabajo 2.</em><br />
+                <em>Requisitos: habilidades, experiencia, etc.</em>
+              </td>
+              <td>Aceptada</td>
+              <td>Analista de Sistemas</td>
+              <td>
+                <a href="#">Eliminar</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <em>Descripción de la oferta de trabajo 3.</em><br />
+                <em>Requisitos: habilidades, experiencia, etc.</em>
+              </td>
+              <td>Denegada</td>
+              <td>Desarrollador Web</td>
+              <td>
+                <a href="#">Eliminar</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <em>Descripción de la oferta de trabajo 4.</em><br />
+                <em>Requisitos: habilidades, experiencia, etc.</em>
+              </td>
+              <td>Aceptada</td>
+              <td>Desarrollador Web</td>
+              <td>
+                <a href="#">Eliminar</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <em>Descripción de la oferta de trabajo 5.</em><br />
+                <em>Requisitos: habilidades, experiencia, etc.</em>
+              </td>
+              <td>Enviada</td>
+              <td>Desarrollador Web</td>
+              <td>
+                <a href="#">Eliminar</a>
+              </td>
+            </tr>
+            <!-- Agregar más filas según sea necesario -->
+          </tbody>
+        </table>
+      </div>
+      <!--#contenidocentral-->
+    </section>
 
     <footer id="footer_buscoempleo" class="footer">
       <div class="footer_first">

@@ -15,7 +15,7 @@
     <title>Busco Empleo</title>
   </head>
   <body>
-    <nav class="nav_buscoempleo nav">
+    <nav id="nav-buscoempleo" class="nav_buscoempleo nav">
       <a
         id="nav_logo-buscoempleo"
         href="../views/MostrarCandidatos.html"
@@ -24,8 +24,18 @@
         <img src="../images/buscoempleo.png" alt="" />
       </a>
       <div class="nav_barra-busqueda">
-        <form action="" method="get" class="barra-busqueda">
-          <input type="text" placeholder="Buscar..." name="barra-busqueda" />
+        <form
+          id="barraBusquedaForm"
+          action="../views/mostrarOfertasTrabajo.html"
+          method="get"
+          class="barra-busqueda"
+          onsubmit="return validarBusquedaHomePage()"
+        >
+          <input
+            type="text"
+            placeholder="Buscar empleo..."
+            name="barra-busqueda"
+          />
           <button type="submit"><img src="../images/busqueda.png" /></button>
         </form>
       </div>
@@ -33,6 +43,9 @@
     </nav>
     <section id="contenido">
       <div class="form">
+        <div id="mensajeExito">
+          <h2>¡Cuenta creada con éxito!</h2>
+        </div>
         <h1>Crea tu cuenta</h1>
         <form
           action="registrarCandidato()"
@@ -47,7 +60,9 @@
               src="../images/fotoPerfilDefault.jpeg"
               alt="Foto de perfil"
             />
-            <label for="inputFotoPerfil">Subir imagen</label>
+            <label onclick="subirImagen()" for="inputFotoPerfil"
+              >Subir imagen</label
+            >
             <input
               type="file"
               accept="image/jpeg, image/png, image/jpg"

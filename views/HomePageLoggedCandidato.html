@@ -16,13 +16,42 @@
   </head>
   <body>
     <nav id="nav_homePage" class="nav_buscoempleo nav">
-      <a href="../views/HomePageUnlogged.html" class="nav_logo">
+      <a
+        id="nav_logo-buscoempleo"
+        href="../views/producto.html"
+        class="nav_logo"
+      >
         <img src="../images/buscoempleo.png" alt="" />
       </a>
-      <a id="opcionNav" href="../views/inicioSesion.html">Iniciar sesión</a>
+      <div id="divOpcionesNav">
+        <a id="opcionNav" href="../views/inicioSesion.html">Iniciar sesión</a>
+        <img
+          id="img-perfil"
+          class="imgFotoPerfil"
+          src="../images/fotoPerfilDefault.jpeg"
+          onclick="irModificarCuenta()"
+        />
+        <button onclick="cerrarSesion()">
+          <img src="../images/logout.png" alt="Cerrar sesion" />
+        </button>
+      </div>
     </nav>
+    <header id="sub-menu" class="sub-header">
+      <div class="options">
+        <ul>
+          <li>
+            <a href="../views/monstrarAplicacionesHechas.html"
+              >Mis aplicaciones</a
+            >
+          </li>
+          <li>
+            <a href="../views/revisarInvitacionesTrabajo.html">Invitaciones</a>
+          </li>
+        </ul>
+      </div>
+    </header>
     <div
-      class="header-bg"
+      class="header-bg headerLogged"
       style="background-image: url('../images/banner.png')"
     >
       <div class="contenidoHomePage">
@@ -41,30 +70,14 @@
           />
           <button type="submit"><img src="../images/busqueda.png" /></button>
         </form>
-        <div id="registrarseHomePage" class="registrarse">
-          <h1>¿Aún no estás registrado?</h1>
-          <div class="registrarCandidato_HomePage">
-            <p>Regístrate y encuentra los mejores anuncios de empleo</p>
-            <a href="../views/registrarCandidato.html">
-              <button>Regístrate</button>
-            </a>
-          </div>
-          <div class="registrarEmpresa_HomePage">
-            <p>Ó registra tu empresa y publica tus anuncios laborales</p>
-            <a href="../views/registrarEmpresa.html">
-              <button>Registrar empresa</button>
-            </a>
-          </div>
-        </div>
       </div>
+    </div>
+    <div id="equipo" class="grid-contenido">
+      <h2 class="section_title">Puestos que te podrían interesar</h2>
     </div>
     <footer id="footer_buscoempleo" class="footer">
       <div class="footer_first">
-        <a
-          href="../views/HomePageUnlogged.html"
-          id="footer_logo-buscoempleo"
-          class="footer_logo"
-        >
+        <a href="" id="footer_logo-buscoempleo" class="footer_logo">
           <img src="../images/buscoempleonegro.png" />
         </a>
         <a href="../views/producto.html">
@@ -82,6 +95,8 @@
     <script src="../js/funciones.js"></script>
     <script>
       cargarDatosUsuario();
+      cargarDatosPuestosHomePage();
+      eliminarDatosCandidatoSeleccionado();
     </script>
   </body>
 </html>
