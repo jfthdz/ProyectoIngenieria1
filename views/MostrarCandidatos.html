@@ -24,15 +24,35 @@
         <img src="../images/buscoempleo.png" alt="" />
       </a>
       <div class="nav_barra-busqueda">
-        <form action="" method="get" class="barra-busqueda">
-          <input type="text" placeholder="Buscar..." name="barra-busqueda" />
+        <form
+          id="barraBusquedaForm"
+          action=""
+          method="get"
+          class="barra-busqueda"
+          onsubmit="return validarBusquedaHomePage()"
+        >
+          <input
+            type="text"
+            placeholder="Buscar candidato..."
+            name="barra-busqueda"
+          />
           <button type="submit"><img src="../images/busqueda.png" /></button>
         </form>
       </div>
-      <a id="opcionNav" href="../views/inicioSesion.html">Iniciar sesión</a>
+      <div id="divOpcionesNav">
+        <a id="opcionNav" href="../views/inicioSesion.html">Iniciar sesión</a>
+        <img
+          id="img-perfil"
+          class="imgFotoPerfil"
+          src="../images/fotoPerfilDefault.jpeg"
+          onclick="irModificarCuenta()"
+        />
+        <button onclick="cerrarSesion()">
+          <img src="../images/logout.png" alt="Cerrar sesion" />
+        </button>
+      </div>
     </nav>
-
-    <header class="sub-header">
+    <header id="sub-menu" class="sub-header">
       <div class="options">
         <ul>
           <li><a href="../views/CrearOferas.html">Crear oferta</a></li>
@@ -47,25 +67,18 @@
               >Mostrar invitaciones creadas</a
             >
           </li>
-          <li><a href="#">Revisar mis puestos</a></li>
+          <li>
+            <a href="../views/revisarAplicacionesPuestos.html"
+              >Revisar mis puestos</a
+            >
+          </li>
         </ul>
       </div>
     </header>
 
-    <div id="contenido">
-      <div class="search-bar">
-        <form action="#" method="get">
-          <input
-            type="text"
-            name="q"
-            placeholder="Buscar..."
-            class="search-input-box"
-          />
-          <input type="submit" value="" />
-        </form>
-      </div>
-      <p class="search-results">Candidatos mostrados</p>
-      <div class="inner-box"></div>
+    <div id="contenido" class="mostrar-contenido">
+      <h2>Candidatos disponibles</h2>
+      <div class="contenido-opciones"></div>
     </div>
 
     <footer id="footer_buscoempleo" class="footer">
@@ -91,7 +104,8 @@
     </footer>
     <script src="../js/funciones.js"></script>
     <script>
-      cargarDatosUsuario();
+      cargarDatosEmpresa();
+      cargarMostrarCandidatos();
     </script>
   </body>
 </html>

@@ -36,7 +36,7 @@
         </button>
       </div>
     </nav>
-    <header class="sub-header">
+    <header id="sub-menu" class="sub-header">
       <div class="options">
         <ul>
           <li><a href="../views/CrearOferas.html">Crear oferta</a></li>
@@ -64,7 +64,7 @@
       style="background-image: url('../images/banner.png')"
     >
       <div class="contenidoHomePage">
-        <h1>Encuentra tu empleo ideal</h1>
+        <h1>Encuentra al candidato ideal</h1>
         <form
           id="barraBusquedaForm"
           action="../views/MostrarCandidatos.html"
@@ -72,13 +72,17 @@
           class="barra-busqueda"
           onsubmit="return validarBusquedaHomePage()"
         >
-          <input type="text" placeholder="Buscar..." name="barra-busqueda" />
+          <input
+            type="text"
+            placeholder="Buscar candidato..."
+            name="barra-busqueda"
+          />
           <button type="submit"><img src="../images/busqueda.png" /></button>
         </form>
       </div>
     </div>
     <div id="equipo" class="grid-contenido">
-      <h2 class="section_title">Puestos que te podrían interesar</h2>
+      <h2 class="section_title">Candidatos que podrían trabajar contigo</h2>
     </div>
     <footer id="footer_buscoempleo" class="footer">
       <div class="footer_first">
@@ -99,8 +103,9 @@
     </footer>
     <script src="../js/funciones.js"></script>
     <script>
-      cargarDatosUsuario();
-      cargarDatosPuestos();
+      cargarDatosEmpresa();
+      cargarDatosCandidatosHomePage();
+      eliminarDatosCandidatoSeleccionado();
     </script>
   </body>
 </html>
