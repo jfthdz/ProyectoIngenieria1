@@ -15,7 +15,7 @@
     <title>Busco Empleo</title>
   </head>
   <body>
-    <nav class="nav_buscoempleo nav">
+    <nav id="nav-buscoempleo" class="nav_buscoempleo nav">
       <a
         id="nav_logo-buscoempleo"
         href="../views/MostrarCandidatos.html"
@@ -68,11 +68,14 @@
     </header>
     <section id="contenido">
       <div class="form">
+        <div id="mensajeExito">
+          <h2>¡Cuenta modificada con éxito!</h2>
+        </div>
         <h1>Modificar mi perfil</h1>
         <form
           action="registrarCandidato()"
           method="post"
-          onsubmit="return validarFormulario()"
+          onsubmit="return validarFormularioModificar()"
         >
           <div class="subir-foto">
             <p>Mi foto de perfil</p>

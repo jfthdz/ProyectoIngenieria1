@@ -15,7 +15,7 @@
     <title>Busco Empleo</title>
   </head>
   <body>
-    <nav class="nav_buscoempleo nav">
+    <nav id="nav-buscoempleo" class="nav_buscoempleo nav">
       <a
         id="nav_logo-buscoempleo"
         href="../views/MostrarCandidatos.html"
@@ -77,11 +77,14 @@
     </header>
     <section id="contenido">
       <div class="form">
+        <div id="mensajeExito">
+          <h2>¡Cuenta de empresa modificada con éxito!</h2>
+        </div>
         <h1>Modificar mi cuenta de empresa</h1>
         <form
           action="registrarEmpresa()"
           method="post"
-          onsubmit="return validarFormularioEmpresa()"
+          onsubmit="return validarFormularioModificarEmpresa()"
         >
           <div class="subir-foto">
             <p>Foto de perfil de mi empresa</p>
