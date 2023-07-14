@@ -26,7 +26,7 @@ a {
     padding: 0.3% 15%;
     justify-content: space-between;
     align-items: center;
-    background-color: #e5eaf5;
+    background-color: white;
 }
 
 .nav a {
@@ -63,6 +63,56 @@ a {
 
 .nav_hamburger span:not(last-child) {
     margin-bottom: 4px;
+}
+
+
+.navProducto {
+    display: flex;
+    min-height: 5.5vh;
+    padding: 0.3% 15%;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e5eaf5;
+}
+
+.navProducto a {
+    color: var(--darkgrey);
+    margin: 0px 10px;
+    transition: all 150ms ease-in-out;
+}
+
+.nav_logoProducto,
+.nav_menuProducto {
+    display: flex;
+    align-items: center;
+}
+
+.nav_logoProducto img {
+    max-width: 140px;
+    margin-right: 20px;
+}
+
+.nav_menuProducto a:hover {
+    transform: scale(1.05);
+}
+
+.nav_hamburgerProducto {
+    display: none;
+}
+
+.nav_hamburgerProducto span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background-color: var(--darkgrey);
+}
+
+.nav_hamburgerProducto span:not(last-child) {
+    margin-bottom: 4px;
+}
+
+.nav_logoProducto{
+    flex-grow: 2;
 }
 
 #mision {
@@ -215,6 +265,28 @@ a {
     text-align: end;
 }
 
+.footer_firstProducto {
+    flex-basis: 50%;
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+.footer_firstProducto:nth-child(1){
+    display: flex;
+    align-items: center;
+}
+.footer_firstProducto:nth-child(1) a{
+    margin-left: 2%;
+}
+
+.footer_firstProducto p {
+    color: white;
+}
+
+.footer_firstProducto:nth-child(2) {
+    text-align: end;
+}
+
 .footer_last {
     flex-basis: 100%;
     display: flex;
@@ -225,7 +297,6 @@ a {
 }
 
 @media only screen and (max-width: 1024px) {
-
     #mision,
     #vision {
         flex-direction: column;
@@ -253,17 +324,37 @@ a {
         padding: 50px 105px;
     }
 
+    .navProducto {
+        padding: 1.5rem 1rem;
+    }
 
+    .nav_menuProducto {
+        display: none;
+    }
+
+    .nav_hamburgerProducto {
+        display: block;
+    }
 }
 
 @media only screen and (max-width: 820px) {
+    .nav_logo h1{
+        display: none;
+    }
+    .nav_menuProducto {
+        display: none;
+    }
+
+    .nav_hamburgerProducto {
+        display: block;
+    }
     #valores {
         grid-template-columns: 1fr;
         padding: 70px 105px;
         font-size: larger;
     }
 
-    vision_infocard #equipo {
+    #equipo {
         grid-template-columns: repeat(2, 1fr);
         font-size: larger;
     }
@@ -272,7 +363,21 @@ a {
         padding: 30px 40px 10px 40px;
     }
 
-
+    #ventajas_contenedor {
+        grid-template-columns: 1fr !important;
+    }
+    .caract_1 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .caract_1 p{
+        text-align: center;
+    }
+    .footer_firstProducto:nth-child(1) a{
+        margin-left: 0;
+    }
 }
 
 @media only screen and (max-width: 540px) {
@@ -319,21 +424,49 @@ a {
         text-align: center;
     }
 
-    .footer_first:nth-child(2) {
+    .footer_firstProducto:nth-child(2) {
         text-align: center;
     }
 
-
+    #caracteristicas {
+        padding: 3% 7% !important;
+    }
+    .footer_firstProducto:nth-child(1){
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+}
+@media only screen and (max-width: 370px) {
+    body{
+        font-size: smaller;
+    }
+    .nav_Visitar{
+        display: none;
+    }
+    #ventajas_contenedor {
+        padding: 5% !important;
+    }
+    #equipo {
+        padding: 5%;
+    }
+    .card {
+        padding: 20px 5px;
+        font-size: smaller;
+    }
+    .valor{
+        font-size: smaller;
+        padding: 15px 10px;
+    }
 }
 
 /* CSS Alonso */
-
-
-
-
 #caracteristicas {
-    display: block;
-    padding: 3rem 13rem;
+    display: flex;
+    flex-direction: column;
+    padding: 3% 13%;
     background-color: var(--grey);
 
     align-items: center;
@@ -353,7 +486,6 @@ a {
 
 .caract_1 {
     display: flex;
-
     width: 100%;
     color: black;
     text-align: left;
@@ -364,18 +496,22 @@ a {
 }
 
 .caract_1 img{
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
 
-    max-width: 8%;
+    padding: 10px;
     border-radius: 10px;
     background-color: var(--grey);
-    padding: 10px;
 }
+
 .caract_1 p{
-padding-left: 20px;
-align-items: center;
+    display: flex;
+    padding-left: 2%;
+    align-items: center;
+    justify-content: center;
 }
-
-
 #ventajas_contenedor {
     display: grid;
     text-align: center;
