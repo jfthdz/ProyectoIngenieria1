@@ -650,6 +650,104 @@ function validarFormularioEmpresa() {
     }
 }
 
+function validarFormularioCrearOferta() {
+    try {
+        event.preventDefault();
+        var tituloOferta = document.getElementById("tituloOferta");
+        var descripcionOferta = document.getElementById("descripcionOferta");
+        var rangoInicialOferta = document.getElementById("rangoInicialOferta");
+        var rangoMaximoOferta = document.getElementById("rangoMaximoOferta");
+        var ubicacionOferta = document.getElementById("ubicacionOferta");
+        var camposIncompletos = false;
+
+        var errorTituloOferta = document.getElementById("errorTituloOferta");
+        var errorDescripcionOferta = document.getElementById("errorDescripcionOferta");
+        var errorRangoInicialOferta = document.getElementById("errorRangoInicialOferta");
+        var errorRangoMaximoOferta = document.getElementById("errorRangoMaximoOferta");
+        var errorUbicacionOferta = document.getElementById("errorUbicacionOferta");
+
+        if (tituloOferta.value === "") {
+            tituloOferta.style.border = "1px solid var(--redError)";
+            errorTituloOferta.innerText = "*Campo necesario";
+            camposIncompletos = true;
+        } else {
+            tituloOferta.style.border = "0";
+            errorTituloOferta.innerText = "";
+        }
+
+        if (descripcionOferta.value === "") {
+            descripcionOferta.style.border = "1px solid var(--redError)";
+            errorDescripcionOferta.innerText = "*Campo necesario";
+            camposIncompletos = true;
+        } else {
+            descripcionOferta.style.border = "0";
+            errorDescripcionOferta.innerText = "";
+        }
+        
+        if (rangoInicialOferta.value === "") {
+            rangoInicialOferta.style.border = "1px solid var(--redError)";
+            errorRangoInicialOferta.innerText = "*Campo necesario";
+            camposIncompletos = true;
+        } else {
+            rangoInicialOferta.style.border = "0";
+            errorRangoInicialOferta.innerText = "";
+        }
+        if (rangoMaximoOferta.value === "") {
+            rangoMaximoOferta.style.border = "1px solid var(--redError)";
+            errorRangoMaximoOferta.innerText = "*Campo necesario";
+            camposIncompletos = true;
+        } else {
+            rangoMaximoOferta.style.border = "0";
+            errorRangoMaximoOferta.innerText = "";
+        }
+
+        if (ubicacionOferta.value === "") {
+            ubicacionOferta.style.border = "1px solid var(--redError)";
+            errorUbicacionOferta.innerText = "*Campo necesario";
+            camposIncompletos = true;
+        } else {
+            descripcionOferta.style.border = "0";
+            errorUbicacionOferta.innerText = "";
+        }
+
+        // Si se encontraron campos incompletos, detener el envío del formulario
+        if (camposIncompletos) {
+            return false;
+        }else{
+            var navBuscoEmpleo = document.querySelector("#sub-menu");
+            var mensajeExito = document.querySelector("#mensajeExito");
+            mensajeExito.style.display = "flex";
+            setTimeout(function() {
+                mensajeExito.classList.add("mostrar");
+                navBuscoEmpleo.scrollIntoView({behavior: "smooth"});
+            }, 100); 
+            limpiarCamposCrearOferta();
+            setTimeout(function() {
+                mensajeExito.classList.remove("mostrar");
+            }, 3000); 
+            setTimeout(function() {
+                mensajeExito.style.display = "none";
+            }, 3500); 
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+function limpiarCamposCrearOferta(){
+    var tituloOferta = document.getElementById("tituloOferta");
+    var descripcionOferta = document.getElementById("descripcionOferta");
+    var rangoInicialOferta = document.getElementById("rangoInicialOferta");
+    var rangoMaximoOferta = document.getElementById("rangoMaximoOferta");
+    var ubicacionOferta = document.getElementById("ubicacionOferta");
+
+    tituloOferta.value = "";
+    descripcionOferta.value = "";
+    rangoInicialOferta.value = "";
+    rangoMaximoOferta.value = "";
+    ubicacionOferta.value = "";
+}
+
 //Validar formulario modificar empresa
 function validarFormularioModificarEmpresa() {
     try {
