@@ -75,7 +75,94 @@
         </ul>
       </div>
     </header>
+<section id="contenido">
+      <!--AQUI
+          VA SU CODIGO
+          BRYAN !!!! -->
+    </section>
+    !DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="shortcut icon" href="../images/logo_tituloPagina.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <title>Busco Empleo</title>
+  </head>
+  <body>
+    <nav class="nav_buscoempleo nav">
+      <a href="../views/MostrarCandidatos.html" class="nav_logo">
+        <img src="../images/buscoempleo.png" alt="" />
+      </a>
+      <div class="nav_barra-busqueda">
+        <form action="" method="get" class="barra-busqueda">
+          <input type="text" placeholder="Buscar..." name="barra-busqueda" />
+          <button type="submit"><img src="../images/busqueda.png" /></button>
+        </form>
+      </div>
+    </nav>
+    <section>
+      <h2>Crear oferta laboral</h2>
+      <form action="procesar_oferta.php" method="post">
+        <div>
+          <label for="titulo">Título:</label>
+          <input type="text" id="titulo" name="titulo" required>
+        </div>
+        <div>
+          <label for="descripcion">Descripción:</label>
+          <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+        </div>
+        <div>
+          <label for="salario">Salario:</label>
+          <input type="text" id="salario" name="salario" required>
+        </div>
+        <div>
+          <label for="ubicacion">Ubicación:</label>
+          <input type="text" id="ubicacion" name="ubicacion" required>
+        </div>
+        <div>
+          <input type="submit" value="Crear oferta">
+        </div>
+      </form>
+    </section>
 
+    <div class="division"></div>
+
+      </a>
+    </div>
+  </section>
+
+    <footer id="footer_buscoempleo" class="footer">
+      <div class="footer_first">
+        <a
+          href="../views/MostrarCandidatos.html"
+          id="footer_logo-buscoempleo"
+          class="footer_logo"
+        >
+          <img src="../images/buscoempleonegro.png" />
+        </a>
+        <a href="../views/producto.html">
+          <p>Acerca de Busco Empleo</p>
+        </a>
+      </div>
+      <div class="footer_first">
+        <a href="../views/index.html" class="footer_logo">
+          <img src="../images/logo_nombre.jpg" />
+        </a>
+        <p>+506 2222-2222 | bitbyte@gmail.com</p>
+      </div>
+      <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
+    </footer>
+    <script src="../js/funciones.js"></script>
+  </body>
+</html>
 
     <footer id="footer_buscoempleo" class="footer">
       <div class="footer_first">
