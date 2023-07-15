@@ -76,53 +76,6 @@
       </div>
     </header>
 
-    <section id="contenido">
-      <div class="form">
-        <div id="mensajeExito">
-          <h2>¡Oferta de empleo creada con éxito!</h2>
-        </div>
-        <h1>Crear oferta laboral</h1>
-        <form
-          action="registrarCrearEmpresa()"
-          method="post"
-          onsubmit="return validarFormularioCrearOferta()"
-        >
-          <h2>Datos necesarios</h2>
-          <p>Título</p>
-          <input type="text" name="tituloOferta" id="tituloOferta" />
-          <span id="errorTituloOferta" class="error"></span>
-          <p>Descripción</p>
-          <textarea
-            type="text"
-            name="descripcionOferta"
-            id="descripcionOferta"
-          ></textarea>
-          <span id="errorDescripcionOferta" class="error"></span>
-          <p>Rango salarial</p>
-          <input
-            type="text"
-            placeholder="Escriba el salario inicial"
-            name="rangoInicialOferta"
-            id="rangoInicialOferta"
-          />
-          <span id="errorRangoInicialOferta" class="error"></span>
-          <input
-            type="text"
-            placeholder="Escriba el salario máximo"
-            name="rangoMaximoOferta"
-            id="rangoMaximoOferta"
-          />
-          <span id="errorRangoMaximoOferta" class="error"></span>
-          <p>Ubicación</p>
-          <input type="text" name="ubicacionOferta" id="ubicacionOferta" />
-          <span id="errorUbicacionOferta" class="error"></span>
-          <button id="botonCrearOferta" type="submit">
-            Crear mi oferta laboral
-            <img src="../images/guardar-blanco.png" />
-          </button>
-        </form>
-      </div>
-    </section>
 
     <footer id="footer_buscoempleo" class="footer">
       <div class="footer_first">
