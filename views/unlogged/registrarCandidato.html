@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="../css/styles.css" />
-    <link rel="shortcut icon" href="../images/logo_tituloPagina.png" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <link rel="shortcut icon" href="../../images/logo_tituloPagina.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,15 +18,15 @@
     <nav id="nav-buscoempleo" class="nav_buscoempleo nav">
       <a
         id="nav_logo-buscoempleo"
-        href="../views/MostrarCandidatos.html"
+        href="../unlogged/HomePageUnlogged.html"
         class="nav_logo"
       >
-        <img src="../images/buscoempleo.png" alt="" />
+        <img src="../../images/buscoempleo.png" alt="" />
       </a>
       <div class="nav_barra-busqueda">
         <form
           id="barraBusquedaForm"
-          action=""
+          action="../candidato/mostrarOfertasTrabajo.html"
           method="get"
           class="barra-busqueda"
           onsubmit="return validarBusquedaHomePage()"
@@ -36,57 +36,32 @@
             placeholder="Buscar empleo..."
             name="barra-busqueda"
           />
-          <button type="submit"><img src="../images/busqueda.png" /></button>
+          <button type="submit"><img src="../../images/busqueda.png" /></button>
         </form>
       </div>
-      <div id="divOpcionesNav">
-        <a id="opcionNav" href="../views/inicioSesion.html">Iniciar sesión</a>
-        <img
-          id="img-perfil"
-          class="imgFotoPerfil"
-          src="../images/fotoPerfilDefault.jpeg"
-          onclick="irModificarCuenta()"
-        />
-        <button onclick="cerrarSesion()">
-          <img src="../images/logout.png" alt="Cerrar sesion" />
-        </button>
-      </div>
+      <a id="opcionNav" href="../unlogged/inicioSesion.html">Iniciar sesión</a>
     </nav>
-    <header id="sub-menu" class="sub-header">
-      <div class="options">
-        <ul>
-          <li>
-            <a href="../views/monstrarAplicacionesHechas.html"
-              >Mis aplicaciones</a
-            >
-          </li>
-          <li>
-            <a href="../views/revisarInvitacionesTrabajo.html">Invitaciones</a>
-          </li>
-        </ul>
-      </div>
-    </header>
     <section id="contenido">
       <div class="form">
         <div id="mensajeExito">
-          <h2>¡Cuenta modificada con éxito!</h2>
+          <h2>¡Cuenta creada con éxito!</h2>
         </div>
-        <h1>Modificar mi perfil</h1>
+        <h1>Crea tu cuenta</h1>
         <form
           action="registrarCandidato()"
           method="post"
-          onsubmit="return validarFormularioModificar()"
+          onsubmit="return validarFormulario()"
         >
           <div class="subir-foto">
             <p>Mi foto de perfil</p>
             <img
-              id="img-perfil-modificar"
+              id="img-perfil"
               class="imgFotoPerfil"
-              src="../images/fotoPerfilDefault.jpeg"
+              src="../../images/fotoPerfilDefault.jpeg"
               alt="Foto de perfil"
             />
-            <label onclick="modificarImagen()" for="inputFotoPerfil"
-              >Cambiar imagen</label
+            <label onclick="subirImagen()" for="inputFotoPerfil"
+              >Subir imagen</label
             >
             <input
               type="file"
@@ -118,6 +93,13 @@
           <p>Correo electrónico</p>
           <input type="text" name="emailCandidato" id="emailCandidato" />
           <span id="errorEmail" class="error"></span>
+          <p>Password</p>
+          <input
+            type="password"
+            name="passwordCandidato"
+            id="passwordCandidato"
+          />
+          <span id="errorPassword" class="error"></span>
           <h2>Experiencia laboral</h2>
           <p>Título principal de tu perfil laboral</p>
           <input
@@ -174,7 +156,7 @@
             </button>
           </div>
           <h2>Archivos</h2>
-          <label for="inputCurriculum">Subir nuevo currículum</label>
+          <label for="inputCurriculum">Subir mi currículum</label>
           <input
             type="file"
             accept="application/pdf"
@@ -182,8 +164,8 @@
             id="inputCurriculum"
           />
           <button id="botonCrearCuenta" type="submit">
-            Guardar cambios
-            <img src="../images/guardar-blanco.png" />
+            Crear mi cuenta
+            <img src="../../images/guardar-blanco.png" />
           </button>
         </form>
       </div>
@@ -191,28 +173,27 @@
     <footer id="footer_buscoempleo" class="footer">
       <div class="footer_first">
         <a
-          href="../views/MostrarCandidatos.html"
+          href="../unlogged/HomePageUnlogged.html"
           id="footer_logo-buscoempleo"
           class="footer_logo"
         >
-          <img src="../images/buscoempleonegro.png" />
+          <img src="../../images/buscoempleonegro.png" />
         </a>
-        <a href="../views/producto.html">
+        <a href="../landingpageBuscoEmpleo/producto.html">
           <p>Acerca de Busco Empleo</p>
         </a>
       </div>
       <div class="footer_first">
-        <a href="../views/index.html" class="footer_logo">
-          <img src="../images/logo_nombre.jpg" />
+        <a href="../landingpageBitbyte/index.html" class="footer_logo">
+          <img src="../../images/logo_nombre.jpg" />
         </a>
         <p>+506 2222-2222 | bitbyte@gmail.com</p>
       </div>
       <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
     </footer>
-    <script src="../js/funciones.js"></script>
+    <script src="../../js/funciones.js"></script>
     <script>
       cargarDatosUsuario();
-      cargarFormularioModificarCandidato();
     </script>
   </body>
 </html>

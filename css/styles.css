@@ -16,7 +16,7 @@ a {
     --purple: #8458B3;
     --darkgrey: #494D5F;
     --lightergrey: #585c70;
-    --redError: rgb(255, 50, 50);
+    --redError: rgb(255, 89, 89);
     --warning: rgb(253, 225, 100);
 }
 
@@ -1064,11 +1064,16 @@ font-size:large;
     cursor: pointer;
 }
 .error {
-    color: var(--redError);
-    font-weight: 500;
-    font-size: 12px;
-    margin-top: 5px;
+    display: none;
+    font-weight: 600;
+    padding: 1%;
+    font-size: 15px;
+    margin: 0.3rem 0 1rem 0;
     font-size: 16px;
+    width: fit-content;
+    border-radius: 5px;
+    color: var(--darkgrey);
+    background-color: var(--redError);
 }
 .borde-rojo{
     border: 1px solid var(--redError);
@@ -1270,4 +1275,7 @@ font-size:large;
     width: 100px;
     height: 100px;
     margin-left: 1%;
+}
+#rangoMaximoOferta{
+    margin-top: 0.7rem;
 }

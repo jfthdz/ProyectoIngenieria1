@@ -1,7 +1,7 @@
 var usuarios = [
     {
         id: 1, nombre:"Jafet",apellidos:"Hernández Alfaro",email:"jafethernandez2206@gmail.com",
-        pass:"admin",rol:"Desarrollo",foto:"../images/jafet.jpg",
+        pass:"admin",rol:"Desarrollo",foto:"../../images/jafet.jpg",
         genero:"1",profesion:"Coordinador Desarrollo",
         expTitulo: "Desarollador de software",expEmpresa: "Softtek",
         expContenido: `Toma de requerimientos con el cliente
@@ -9,42 +9,41 @@ var usuarios = [
         Desarrollo Front End y Back End de aplicaciones con C#,Typescript, Javascript, HTML5, SQLServer
         Solución de incidencias
         Mantenimiento de aplicaciones web`, 
-        expFechaInicio: "01/01/2021", expFechaFinal: "",
+        expFechaInicio: "01/01/2021", expFechaFinal: "", expActualmente: true,
         estTitulo: "Bachillerato en Ingeniería de software", estInstitucion: "Universidad Cenfotec",
-        estFechaInicio: "01/01/2021", estFechaFinal: ""
+        estFechaInicio: "01/01/2021", estFechaFinal: "", estActualmente: true
     },
     {
         id: 2, nombre:"Vanessa",apellidos:"Villegas",email:"vvillegast@ucenfotec.ac.cr",
-        pass:"123",rol:"Calidad",foto:"../images/vanessa.jpg",
+        pass:"123",rol:"Calidad",foto:"../../images/vanessa.jpg",
         genero:"2",profesion:"Coordinadora Calidad"
     },
     {
         id: 3, nombre:"Alonso",apellidos:"Aguero",email:"aaguero@ucenfotec.ac.cr",
-        pass:"123",rol:"Soporte",foto:"../images/Alonso.jpg",
+        pass:"123",rol:"Soporte",foto:"../../images/Alonso.jpg",
         genero:"1",profesion:"Coordinador Soporte"
     },
     {
         id: 4, nombre:"Prueba",apellidos:"de usuarios",email:"prueba@gmail.com",pass:"123",
-        rol:"Prueba",foto:"../images/fotoPerfilDefault.jpeg",
+        rol:"Prueba",foto:"../../images/fotoPerfilDefault.jpeg",
         genero:"3",profesion:"Test"
     },
     {
         id: 5, nombre:"Jose",apellidos:"Solís",email:"jsolisj@ucenfotec.ac.cr",
-        pass:"123",rol:"Soporte",foto:"../images/jose.jpg",
+        pass:"123",rol:"Soporte",foto:"../../images/jose.jpg",
         genero:"1",profesion:"Coordinador Soporte"
     },
     {
         id: 6, nombre:"Fabián",apellidos:"Mora",email:"fmoraq@ucenfotec.ac.cr",
-        pass:"123",rol:"Calidad",foto:"../images/fabian.jpg",
+        pass:"123",rol:"Calidad",foto:"../../images/fabian.jpg",
         genero:"1",profesion:"Coordinador Calidad"
     },
     {
         id: 7, nombre:"Bryan",apellidos:"Bieta",email:"bbeitam@ucenfotec.ac.cr",
-        pass:"123",rol:"General",foto:"../images/fotoPerfilDefault.jpeg",
+        pass:"123",rol:"General",foto:"../../images/fotoPerfilDefault.jpeg",
         genero:"1",profesion:"Coordinador General"
     }
 ];
-
 var puestoTrabajo = [
     {
         id: 1,
@@ -190,35 +189,35 @@ var puestoTrabajo = [
 
 var empresas = [
     {
-        id:1, nombre:"Microsoft", email: "microsoft@outlook.com", pass: "123", foto: "../images/microsoft-logo.jpg",
+        id:1, nombre:"Microsoft", email: "microsoft@outlook.com", pass: "123", foto: "../../images/microsoft-logo.jpg",
         descripcion: `Microsoft Corp. es una compañía estadounidense vinculada al desarrollo, fabricación, entrega de licencias y respaldo de un amplio rango de productos de software y servicios para diferentes tipos de dispositivos computacionales.`
     },
     {
-        id:2, nombre:"Google", email: "google@gmail.com", pass: "123", foto: "../images/google-logo.jpg",
+        id:2, nombre:"Google", email: "google@gmail.com", pass: "123", foto: "../../images/google-logo.jpg",
         descripcion: `Nuestra misión es organizar la información del mundo para que todos puedan acceder a ella y usarla.`
     },
     {
-        id:3, nombre:"Tesla", email: "tesla@tesla.com", pass: "123", foto: "../images/tesla-logo.jpg",
+        id:3, nombre:"Tesla", email: "tesla@tesla.com", pass: "123", foto: "../../images/tesla-logo.jpg",
         descripcion: `Nuestros vehículos son de los más seguros del mundo. Después de la seguridad, nuestro objetivo es hacer que en cada Tesla se encuentre el mayor disfrute que se pueda tener en un vehículo.`
     },
     {
-        id:4, nombre:"Meta", email: "meta@meta.com", pass: "123", foto: "../images/meta-logo.jpg",
+        id:4, nombre:"Meta", email: "meta@meta.com", pass: "123", foto: "../../images/meta-logo.jpg",
         descripcion: `Cuando Facebook se lanzó en 2004, cambió la forma en que las personas se conectan. Apps como Messenger, Instagram y WhatsApp brindaron aún más herramientas a miles de millones de personas en todo el mundo. Ahora, Meta trasciende las pantallas 2D e incursiona en experiencias envolventes, como la realidad aumentada y la realidad virtual, para impulsar la próxima evolución de la tecnología social.`
     },
     {
-        id:5, nombre:"Universidad Cenfotec", email: "ucenfotec@ucenfotec.ac.cr", pass: "123", foto: "../images/logo-cenfotec.png",
+        id:5, nombre:"Universidad Cenfotec", email: "ucenfotec@ucenfotec.ac.cr", pass: "123", foto: "../../images/logo-cenfotec.png",
         descripcion: `La Universidad Cenfotec aspira a ser reconocida como una institución académica de excelencia que impulsa el desarrollo innovador, integral y sostenible de la sociedad mediante la investigación, la extensión y la formación de profesionales en computación e informática.`
     },
     {
-        id:6, nombre:"Intel", email: "intel@intel.com", pass: "123", foto: "../images/intel-logo.png",
+        id:6, nombre:"Intel", email: "intel@intel.com", pass: "123", foto: "../../images/intel-logo.png",
         descripcion: `Creamos tecnología revolucionaria que mejore la vida de todas las personas sobre la tierra.`
     },
     {
-        id:7, nombre:"Apple", email: "apple@apple.com", pass: "123", foto: "../images/logo-apple.png",
+        id:7, nombre:"Apple", email: "apple@apple.com", pass: "123", foto: "../../images/logo-apple.png",
         descripcion: `El mundo está en constante cambio. Y las empresas también. El hardware, el software y los servicios de Apple se integran a la perfección para ofrecer a tus equipos de trabajo el poder y la versatilidad que necesitan, dondequiera que los necesiten.`
     },
     {
-        id:8, nombre:"Amazon", email: "amazon@amazon.com", pass: "123", foto: "../images/amazon-logo.jpg",
+        id:8, nombre:"Amazon", email: "amazon@amazon.com", pass: "123", foto: "../../images/amazon-logo.jpg",
         descripcion: `Descubre nuestra empresa y nuestra tecnología. La tienda más centrada en el cliente del mundo.`
     }
 ];
@@ -366,58 +365,70 @@ function validarFormulario() {
         if (nombre.value === "") {
             nombre.style.border = "1px solid var(--redError)";
             errorNombre.innerText = "*Campo necesario";
+            errorNombre.style.display = "block";
             camposIncompletos = true;
         } else {
             nombre.style.border = "0";
             errorNombre.innerText = "";
+            errorNombre.style.display = "none";
         }
 
         if (apellidos.value === "") {
             apellidos.style.border = "1px solid var(--redError)";
             errorApellidos.innerText = "*Campo necesario";
+            errorApellidos.style.display = "block";
             camposIncompletos = true;
         } else {
             apellidos.style.border = "0";
             errorApellidos.innerText = "";
+            errorApellidos.style.display = "none";
         }
 
         var valorGeneroSeleccionado = genero.value;
         if (valorGeneroSeleccionado!="default") {
             errorGenero.innerText = "";
+            errorGenero.style.display = "none";
         }else{
             errorGenero.innerText = "*Debe seleccionar una opción";
-            camposIncompletos = true;
+            errorGenero.style.display = "block";
         }
 
         if (email.value === "") {
             email.style.border = "1px solid var(--redError)";
             errorEmail.innerText = "*Campo necesario";
+            errorEmail.style.display = "block";
             camposIncompletos = true;
         } else if(regexEmail.test(email.value)==false){
             email.style.border = "1px solid var(--redError)";
             errorEmail.innerText = "*Ingrese un correo válido";
+            errorEmail.style.display = "block";
             camposIncompletos = true;
         }else{
             email.style.border = "0";
             errorEmail.innerText = "";
+            errorEmail.style.display = "none";
         }
 
         if (password.value === "") {
             password.style.border = "1px solid var(--redError)";
             errorPassword.innerText = "*Campo necesario";
+            errorPassword.style.display = "block";
             camposIncompletos = true;
         } else {
             password.style.border = "0";
             errorPassword.innerText = "";
+            errorPassword.style.display = "none";
         }
 
         if (profesion.value === "") {
             profesion.style.border = "1px solid var(--redError)";
             errorProfesion.innerText = "*Campo necesario";
+            errorProfesion.style.display = "block";
             camposIncompletos = true;
         } else {
             profesion.style.border = "0";
             errorProfesion.innerText = "";
+            errorProfesion.style.display = "none";
         }
 
         // Si se encontraron campos incompletos, detener el envío del formulario
@@ -490,49 +501,60 @@ function validarFormularioModificar() {
         if (nombre.value === "") {
             nombre.style.border = "1px solid var(--redError)";
             errorNombre.innerText = "*Campo necesario";
+            errorNombre.style.display = "block";
             camposIncompletos = true;
         } else {
             nombre.style.border = "0";
             errorNombre.innerText = "";
+            errorNombre.style.display = "none";
         }
 
         if (apellidos.value === "") {
             apellidos.style.border = "1px solid var(--redError)";
             errorApellidos.innerText = "*Campo necesario";
+            errorApellidos.style.display = "block";
             camposIncompletos = true;
         } else {
             apellidos.style.border = "0";
             errorApellidos.innerText = "";
+            errorApellidos.style.display = "none";
         }
 
         var valorGeneroSeleccionado = genero.value;
         if (valorGeneroSeleccionado!="default") {
             errorGenero.innerText = "";
+            errorGenero.style.display = "none";
         }else{
             errorGenero.innerText = "*Debe seleccionar una opción";
+            errorGenero.style.display = "block";
             camposIncompletos = true;
         }
 
         if (email.value === "") {
             email.style.border = "1px solid var(--redError)";
             errorEmail.innerText = "*Campo necesario";
+            errorEmail.style.display = "block";
             camposIncompletos = true;
         } else if(regexEmail.test(email.value)==false){
             email.style.border = "1px solid var(--redError)";
             errorEmail.innerText = "*Ingrese un correo válido";
+            errorEmail.style.display = "block";
             camposIncompletos = true;
         }else{
             email.style.border = "0";
             errorEmail.innerText = "";
+            errorEmail.style.display = "none";
         }
 
         if (profesion.value === "") {
             profesion.style.border = "1px solid var(--redError)";
             errorProfesion.innerText = "*Campo necesario";
+            errorProfesion.style.display = "block";
             camposIncompletos = true;
         } else {
             profesion.style.border = "0";
             errorProfesion.innerText = "";
+            errorProfesion.style.display = "none";
         }
 
         // Si se encontraron campos incompletos, detener el envío del formulario
@@ -598,32 +620,39 @@ function validarFormularioEmpresa() {
         if (nombreEmpresa.value === "") {
             nombreEmpresa.style.border = "1px solid var(--redError)";
             errorNombreEmpresa.innerText = "*Campo necesario";
+            errorNombreEmpresa.style.display = "block";
             camposIncompletos = true;
         } else {
             nombreEmpresa.style.border = "0";
             errorNombreEmpresa.innerText = "";
+            errorNombreEmpresa.style.display = "none";
         }
 
         if (emailEmpresa.value === "") {
             emailEmpresa.style.border = "1px solid var(--redError)";
             errorEmailEmpresa.innerText = "*Campo necesario";
+            errorEmailEmpresa.style.display = "block";
             camposIncompletos = true;
         } else if(regexEmail.test(emailEmpresa.value)==false){
             emailEmpresa.style.border = "1px solid var(--redError)";
             errorEmailEmpresa.innerText = "*Ingrese un correo válido";
+            errorEmailEmpresa.style.display = "block";
             camposIncompletos = true;
         }else{
             emailEmpresa.style.border = "0";
             errorEmailEmpresa.innerText = "";
+            errorEmailEmpresa.style.display = "none";
         }
 
         if (passwordEmpresa.value === "") {
             passwordEmpresa.style.border = "1px solid var(--redError)";
             errorPasswordEmpresa.innerText = "*Campo necesario";
+            errorPasswordEmpresa.style.display = "block";
             camposIncompletos = true;
         } else {
             passwordEmpresa.style.border = "0";
             errorPasswordEmpresa.innerText = "";
+            errorPasswordEmpresa.style.display = "none";
         }
 
         // Si se encontraron campos incompletos, detener el envío del formulario
@@ -659,6 +688,8 @@ function validarFormularioCrearOferta() {
         var rangoMaximoOferta = document.getElementById("rangoMaximoOferta");
         var ubicacionOferta = document.getElementById("ubicacionOferta");
         var camposIncompletos = false;
+        
+        console.log(tituloOferta);
 
         var errorTituloOferta = document.getElementById("errorTituloOferta");
         var errorDescripcionOferta = document.getElementById("errorDescripcionOferta");
@@ -669,45 +700,50 @@ function validarFormularioCrearOferta() {
         if (tituloOferta.value === "") {
             tituloOferta.style.border = "1px solid var(--redError)";
             errorTituloOferta.innerText = "*Campo necesario";
+            errorTituloOferta.style.display = "block";
             camposIncompletos = true;
         } else {
             tituloOferta.style.border = "0";
-            errorTituloOferta.innerText = "";
+            errorTituloOferta.style.display = "none";
         }
 
         if (descripcionOferta.value === "") {
             descripcionOferta.style.border = "1px solid var(--redError)";
             errorDescripcionOferta.innerText = "*Campo necesario";
+            errorDescripcionOferta.style.display = "block";
             camposIncompletos = true;
         } else {
             descripcionOferta.style.border = "0";
-            errorDescripcionOferta.innerText = "";
+            errorDescripcionOferta.style.display = "none";
         }
         
         if (rangoInicialOferta.value === "") {
             rangoInicialOferta.style.border = "1px solid var(--redError)";
             errorRangoInicialOferta.innerText = "*Campo necesario";
+            errorRangoInicialOferta.style.display = "block";
             camposIncompletos = true;
         } else {
             rangoInicialOferta.style.border = "0";
-            errorRangoInicialOferta.innerText = "";
+            errorRangoInicialOferta.style.display = "none";
         }
         if (rangoMaximoOferta.value === "") {
             rangoMaximoOferta.style.border = "1px solid var(--redError)";
             errorRangoMaximoOferta.innerText = "*Campo necesario";
+            errorRangoMaximoOferta.style.display = "block";
             camposIncompletos = true;
         } else {
             rangoMaximoOferta.style.border = "0";
-            errorRangoMaximoOferta.innerText = "";
+            errorRangoMaximoOferta.style.display = "none";
         }
 
         if (ubicacionOferta.value === "") {
             ubicacionOferta.style.border = "1px solid var(--redError)";
             errorUbicacionOferta.innerText = "*Campo necesario";
+            errorUbicacionOferta.style.display = "block";
             camposIncompletos = true;
         } else {
-            descripcionOferta.style.border = "0";
-            errorUbicacionOferta.innerText = "";
+            ubicacionOferta.style.border = "0";
+            errorUbicacionOferta.style.display = "none";
         }
 
         // Si se encontraron campos incompletos, detener el envío del formulario
@@ -765,6 +801,7 @@ function validarFormularioModificarEmpresa() {
         if (nombreEmpresa.value === "") {
             nombreEmpresa.style.border = "1px solid var(--redError)";
             errorNombreEmpresa.innerText = "*Campo necesario";
+            errorNombreEmpresa.style.display = "block";
             camposIncompletos = true;
         } else {
             nombreEmpresa.style.border = "0";
@@ -1001,7 +1038,7 @@ function limpiarCamposRegistrarCandidato(){
     var divAgregarEstudios = document.querySelector("#agregarEstudios");
     var inputsAgregarEstudios = document.querySelectorAll("#agregarExperiencia > input");
     
-    fotoPerfil.src = "../images/fotoPerfilDefault.jpeg"
+    fotoPerfil.src = "../../images/fotoPerfilDefault.jpeg"
     nombre.value = "";
     apellidos.value = "";
     genero.value = "default";
@@ -1062,7 +1099,7 @@ function limpiarCamposRegistrarEmpresa(){
     var agregarDescripcion = document.querySelector("#agregarDescripcion");
     var textAreaAgregarDescripcion = document.querySelector("#agregarDescripcion textarea");
     
-    fotoPerfil.src = "../images/fotoPerfilDefault.jpeg"
+    fotoPerfil.src = "../../images/fotoPerfilDefault.jpeg"
     nombreEmpresa.value = "";
     emailEmpresa.value = "";
     passwordEmpresa.value = "";
@@ -1131,7 +1168,7 @@ function validarLogin(){
                 if(usuarioEncontrado.pass === passLogin.value){
                     alert(`Bienvenido ${usuarioEncontrado.nombre}`);
                     almacenarDatosUsuario(usuarioEncontrado);
-                    location.href = "../views/HomePageLoggedCandidato.html";
+                    location.href = "../candidato/HomePageLoggedCandidato.html";
                 }else{
                     errorLogin.innerText = "Correo o contraseña incorrectos. Inténtelo nuevamente"
                     setTimeout(function(){
@@ -1142,7 +1179,7 @@ function validarLogin(){
                 if(empresaEncontrada.pass === passLogin.value){
                     alert(`Bienvenido ${empresaEncontrada.nombre}`);
                     almacenarDatosEmpresa(empresaEncontrada);
-                    location.href = "../views/HomePageLoggedEmpresa.html";
+                    location.href = "../empresa/HomePageLoggedEmpresa.html";
                 }else{
                     errorLogin.innerText = "Correo o contraseña incorrectos. Inténtelo nuevamente"
                     setTimeout(function(){
@@ -1211,17 +1248,17 @@ function cargarDatosUsuario() {
             var apellidoUsuario = ""+usuarioLoggeado.apellidos;
             var iniciales = `${nombreUsuario.slice(0,1)}${apellidoUsuario.slice(0,1)}`;
             rutaFotoPeril = usuarioLoggeado.foto;
-            logoNav.href = "../views/HomePageLoggedCandidato.html";
-            logoFooter.href = "../views/HomePageLoggedCandidato.html";
-            opcionNav.href = "../views/modificarCuentaCandidato.html";
-            document.querySelector("#barraBusquedaForm").action = "../views/mostrarOfertasTrabajo.html";
+            logoNav.href = "../candidato/HomePageLoggedCandidato.html";
+            logoFooter.href = "../candidato/HomePageLoggedCandidato.html";
+            opcionNav.href = "../candidato/modificarCuentaCandidato.html";
+            document.querySelector("#barraBusquedaForm").action = "../candidato/mostrarOfertasTrabajo.html";
             opcionNav.innerText = iniciales;
             addFotoPerfil(rutaFotoPeril);
             console.log("Loggeado!!!!");
         }else{
-            logoNav.href = "../views/HomePageUnlogged.html";
-            logoFooter.href = "../views/HomePageUnlogged.html";
-            opcionNav.href = "../views/inicioSesion.html";
+            logoNav.href = "../unlogged/HomePageUnlogged.html";
+            logoFooter.href = "../unlogged/HomePageUnlogged.html";
+            opcionNav.href = "../unlogged/inicioSesion.html";
             subMenu.style.display = "none";
             logoutBoton.style.display = "none";
             imgPerfil.style.display = "none";
@@ -1258,17 +1295,17 @@ function cargarDatosEmpresa() {
     
         if (empresaLoggeada) {
             rutaFotoPeril = empresaLoggeada.foto;
-            logoNav.href = "../views/HomePageLoggedEmpresa.html";
-            logoFooter.href = "../views/HomePageLoggedEmpresa.html";
-            opcionNav.href = "../views/modificarCuentaEmpresa.html";
-            document.querySelector("#barraBusquedaForm").action = "../views/mostrarCandidatos.html";
+            logoNav.href = "../empresa/HomePageLoggedEmpresa.html";
+            logoFooter.href = "../empresa/HomePageLoggedEmpresa.html";
+            opcionNav.href = "../empresa/modificarCuentaEmpresa.html";
+            document.querySelector("#barraBusquedaForm").action = "../empresa/mostrarCandidatos.html";
             opcionNav.style.display = "none";
             addFotoPerfil(rutaFotoPeril);
             console.log("Loggeado!!!!");
         }else{
-            logoNav.href = "../views/HomePageUnlogged.html";
-            logoFooter.href = "../views/HomePageUnlogged.html";
-            opcionNav.href = "../views/inicioSesion.html";
+            logoNav.href = "../unlogged/HomePageUnlogged.html";
+            logoFooter.href = "../unlogged/HomePageUnlogged.html";
+            opcionNav.href = "../unlogged/inicioSesion.html";
             subMenu.style.display = "none";
             logoutBoton.style.display = "none";
             imgPerfil.style.display = "none";
@@ -1310,7 +1347,7 @@ function cargarDatosPuestosHomePage(){
         if(empresaEncontrada){
             fotoEmpresa.src = empresaEncontrada.foto;
         }else{
-            fotoEmpresa.src = "../images/fotoPerfilDefault.jpeg";
+            fotoEmpresa.src = "../../images/fotoPerfilDefault.jpeg";
         }
     
         divFotoEmpresa.classList.add("card_img");
@@ -1387,7 +1424,7 @@ function cargarMostrarCandidatos(){
         opcionImg.src = candidato.foto;
         opcionNombre.innerText = `${candidato.nombre} ${candidato.apellidos}`;
         opcionProfesion.innerText = candidato.profesion;
-        opcionBotonLink.href = "../views/candidato.html";
+        opcionBotonLink.href = "../empresa/candidato.html";
         botonVer.innerText = "Ver";
         botonVer.setAttribute("onclick", `guardarCandidatoSeleccionado(${candidato.id})`);
 
@@ -1433,13 +1470,13 @@ function cargarMostrarOfertas(){
         if(empresaEncontrada){
             opcionImgEmpresa.src = empresaEncontrada.foto;
         }else{
-            opcionImgEmpresa.src = "../images/fotoPerfilDefault.jpeg";
+            opcionImgEmpresa.src = "../../images/fotoPerfilDefault.jpeg";
         }
 
         opcionTituloPuesto.innerText = oferta.titulo;
         opcionEmpresa.innerText = oferta.empresa;
         opcionRangoSalarial.innerText = oferta.rangoSalarial;
-        opcionBotonLink.href = "../views/ofertasTrabajo.html";
+        opcionBotonLink.href = "../candidato/ofertasTrabajo.html";
         botonVer.innerText = "Ver";
         botonVer.setAttribute("onclick", `guardarOfertaSeleccionado(${oferta.id})`);
 
@@ -1523,12 +1560,15 @@ function cargarDatosCandidato(){
             institucionEstudios.innerText += " "+candidato.estInstitucion;
             fechaInicioEst.innerText = candidato.estFechaInicio;
             fechaFinalEst.innerText = candidato.estFechaFinal;
-            if(candidato.estFechaFinal === ""){
-                fechaFinalEst.innerText = "Actualmente";
+            
+            if(candidato.expActualmente){
+                fechaFinalEst.textContent = "Actualmente";
             }
-            if(candidato.expFechaFinal === ""){
-                fechaFinalExp.innerText = "Actualmente";
+            if(candidato.estActualmente){
+                fechaFinalExp.textContent = "Actualmente";
             }
+
+            console.log(candidato);
             
         }
     } catch (error) {
@@ -1616,16 +1656,16 @@ function irModificarCuenta(){
     var usuarioLoggeado = obtenerDatosUsuario();
     var empresaLoggeada = obtenerDatosEmpresa();
     if(usuarioLoggeado){
-        location.href = "../views/modificarCuentaCandidato.html";
+        location.href = "../candidato/modificarCuentaCandidato.html";
     }else if(empresaLoggeada){
-        location.href = "../views/modificarCuentaEmpresa.html";
+        location.href = "../empresa/modificarCuentaEmpresa.html";
     }
 }
 
 function cerrarSesion(){
     sessionStorage.removeItem("datosUsuarioLoggeado");
     sessionStorage.removeItem("datosEmpresaLoggeada");
-    location.href = "../views/HomePageUnlogged.html";
+    location.href = "../unlogged/HomePageUnlogged.html";
 }
 
 function enviarCodigoVerificacion(){
