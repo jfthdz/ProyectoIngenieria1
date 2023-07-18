@@ -411,7 +411,7 @@ a {
         max-width: 100%;
         gap: 5px;
         grid-template-columns: 1fr;
-        padding: 50px;
+        padding: 50px 20px;
     }
 
     #equipo {
