@@ -806,19 +806,23 @@ function validarFormularioModificarEmpresa() {
         } else {
             nombreEmpresa.style.border = "0";
             errorNombreEmpresa.innerText = "";
+            errorNombreEmpresa.style.display = "none";
         }
 
         if (emailEmpresa.value === "") {
             emailEmpresa.style.border = "1px solid var(--redError)";
             errorEmailEmpresa.innerText = "*Campo necesario";
+            errorEmailEmpresa.style.display = "block";
             camposIncompletos = true;
         } else if(regexEmail.test(emailEmpresa.value)==false){
             emailEmpresa.style.border = "1px solid var(--redError)";
             errorEmailEmpresa.innerText = "*Ingrese un correo válido";
+            errorEmailEmpresa.style.display = "block";
             camposIncompletos = true;
         }else{
             emailEmpresa.style.border = "0";
             errorEmailEmpresa.innerText = "";
+            errorEmailEmpresa.style.display = "none";
         }
 
         // Si se encontraron campos incompletos, detener el envío del formulario
@@ -863,30 +867,37 @@ function validarFormularioInvitarCandidato() {
         if (nombreCandidato.value === "") {
             nombreCandidato.style.border = "1px solid var(--redError)";
             errorNombreCandidato.innerText = "*Campo necesario";
+            errorNombreCandidato.style.display = "block";
             camposIncompletos = true;
         } else {
             nombreCandidato.style.border = "0";
             errorNombreCandidato.innerText = "";
+            errorNombreCandidato.style.display = "none";
         }
 
         if (emailCandidato.value === "") {
             emailCandidato.style.border = "1px solid var(--redError)";
             errorEmailCandidato.innerText = "*Campo necesario";
+            errorEmailCandidato.style.display = "block";
             camposIncompletos = true;
         } else if(regexEmail.test(emailCandidato.value)==false){
             emailCandidato.style.border = "1px solid var(--redError)";
             errorEmailCandidato.innerText = "*Ingrese un correo válido";
+            errorEmailCandidato.style.display = "block";
             camposIncompletos = true;
         }else{
             emailCandidato.style.border = "0";
             errorEmailCandidato.innerText = "";
+            errorEmailCandidato.style.display = "none";
         }
 
         var valorRolSeleccionado = rolCandidato.value;
         if (valorRolSeleccionado!="default") {
             errorRol.innerText = "";
+            errorRol.style.display = "none";
         }else{
             errorRol.innerText = "*Debe seleccionar una opción";
+            errorRol.style.display = "block";
             camposIncompletos = true;
         }
 
@@ -925,14 +936,17 @@ function validarCampoCorreo(){
         if (emailCandidato.value === "") {
             emailCandidato.style.border = "1px solid var(--redError)";
             errorEmailCandidato.innerText = "*Campo necesario";
+            errorEmailCandidato.style.display = "block";
             camposIncompletos = true;
         } else if(regexEmail.test(emailCandidato.value)==false){
             emailCandidato.style.border = "1px solid var(--redError)";
             errorEmailCandidato.innerText = "*Ingrese un correo válido";
+            errorEmailCandidato.style.display = "block";
             camposIncompletos = true;
         }else{
             emailCandidato.style.border = "0";
             errorEmailCandidato.innerText = "";
+            errorEmailCandidato.style.display = "none";
             camposIncompletos = false;
         }
 
@@ -959,20 +973,24 @@ function validarCamposNuevoPassword(){
         if (campoCodigoVerificacion.value === "") {
             campoCodigoVerificacion.style.border = "1px solid var(--redError)";
             errorCodigoVerificacion.innerText = "*Campo necesario";
+            errorCodigoVerificacion.style.display = "block";
             camposIncompletos = true;
         } else {
             campoCodigoVerificacion.style.border = "0";
             errorCodigoVerificacion.innerText = "";
+            errorCodigoVerificacion.style.display = "none";
             camposIncompletos = false;
         }
 
         if (nuevoPassword.value === "") {
             nuevoPassword.style.border = "1px solid var(--redError)";
             errorNuevoPassword.innerText = "*Campo necesario";
+            errorNuevoPassword.style.display = "block";
             camposIncompletos = true;
         } else {
             nuevoPassword.style.border = "0";
             errorNuevoPassword.innerText = "";
+            errorNuevoPassword.style.display = "none";
             camposIncompletos = false;
         }
 
@@ -982,6 +1000,7 @@ function validarCamposNuevoPassword(){
             if (campoCodigoVerificacion.value !== codigoVerificacion.toString()) {
                 campoCodigoVerificacion.style.border = "1px solid var(--redError)";
                 errorCodigoVerificacion.innerText = "*Código de verificación incorrecto";
+                errorCodigoVerificacion.style.display = "block";
                 camposIncompletos = true;
             } else if(campoCodigoVerificacion.value === codigoVerificacion.toString()) {
                 var mensajeExito = document.querySelector("#mensajeExito");
@@ -1110,21 +1129,26 @@ function limpiarCamposRegistrarEmpresa(){
 
 //Validar barra de busqueda vacia en el HomePage
 function validarBusquedaHomePage(){
-    try {
+ /*   try {
         var formulario = document.getElementById("barraBusquedaForm");
         var barraBusqueda = document.querySelector("input[name=barra-busqueda]");
+        var errorBusqueda = document.querySelector("#errorBusqueda");
 
         if(barraBusqueda.value === ""){
             formulario.classList.add("borde-rojo");
+            errorBusqueda.innerText = "*Campo necesario";
+            errorBusqueda.style.display = "block";
             setTimeout(function() {
                 formulario.classList.remove("borde-rojo");
+                errorBusqueda.innerText = "";
+                errorBusqueda.style.display = "none";
             }, 2000);  
             return false;
         }
         return true;
     } catch (error) {
         console.log(error);
-    }
+    } */
 }
 
 /* Validar Inicio de sesion */
@@ -1140,24 +1164,34 @@ function validarLogin(){
 
         if(correoLogin.value === ""){
             correoLogin.style.border = "1px solid var(--redError)";
+            errorEmail.innerText = "*Campo necesario";
+            errorEmail.style.display = "block";
             camposIncompletos = true;
         } else if(regexEmail.test(correoLogin.value)==false){
             correoLogin.style.border = "1px solid var(--redError)";
             errorEmail.innerText = "*Ingrese un correo válido";
+            errorEmail.style.display = "block";
             setTimeout(function(){
                 errorEmail.innerText = "";
+                errorEmail.style.display = "none";
             },3000);
             camposIncompletos = true;
         }else{
             correoLogin.style.border = "0";
+            errorEmail.innerText = "";
+            errorEmail.style.display = "none";
             camposIncompletos = false;
         }
         
         if(passLogin.value === ""){
             passLogin.style.border = "1px solid var(--redError)";
+            errorLogin.innerText = "*Campo necesario";
+            errorLogin.style.display = "block";
             camposIncompletos = true;
         }else{
             passLogin.style.border = "0";
+            errorLogin.innerText = "";
+            errorLogin.style.display = "none";
             camposIncompletos = false;
         }
 
@@ -1171,8 +1205,10 @@ function validarLogin(){
                     location.href = "../candidato/HomePageLoggedCandidato.html";
                 }else{
                     errorLogin.innerText = "Correo o contraseña incorrectos. Inténtelo nuevamente"
+                    errorLogin.style.display = "block";
                     setTimeout(function(){
-                    errorLogin.innerText = "";
+                        errorLogin.innerText = "";
+                        errorLogin.style.display = "none";
                     },3000);
                 }
             } else if(empresaEncontrada) {
@@ -1182,14 +1218,18 @@ function validarLogin(){
                     location.href = "../empresa/HomePageLoggedEmpresa.html";
                 }else{
                     errorLogin.innerText = "Correo o contraseña incorrectos. Inténtelo nuevamente"
+                    errorLogin.style.display = "block";
                     setTimeout(function(){
-                    errorLogin.innerText = "";
+                        errorLogin.innerText = "";
+                        errorLogin.style.display = "none";
                     },3000);
                 }
             }else{
                 errorLogin.innerText = "Correo no encontrado. Revisa los datos e intenta de nuevo"
+                errorLogin.style.display = "block";
                 setTimeout(function(){
-                errorLogin.innerText = "";
+                    errorLogin.innerText = "";
+                    errorLogin.style.display = "none";
                 },3000);
             }
         }  
