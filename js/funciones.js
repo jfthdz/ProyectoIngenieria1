@@ -1750,3 +1750,6 @@ function aplicarPuesto(){
 
        
 }
+function mifuncion(){
+    console.log("imprimir")
+}
