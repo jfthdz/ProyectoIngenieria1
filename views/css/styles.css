@@ -1,0 +1,1311 @@
+body,
+html {
+    margin: 0px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Paleta de colores BitByte */
+:root {
+    --lightblue: #A0D2EB;
+    --grey: #E5EAF5;
+    --lightpurple: #D0BDF4;
+    --purple: #8458B3;
+    --darkgrey: #494D5F;
+    --lightergrey: #585c70;
+    --redError: rgb(255, 89, 89);
+    --warning: rgb(253, 225, 100);
+}
+
+.nav {
+    display: flex;
+    min-height: 5.5vh;
+    padding: 0.3% 15%;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+}
+
+.nav a {
+    color: var(--darkgrey);
+    margin: 0px 10px;
+    transition: all 150ms ease-in-out;
+}
+
+.nav_logo,
+.nav_menu {
+    display: flex;
+    align-items: center;
+}
+
+.nav_logo img {
+    max-width: 140px;
+    margin-right: 20px;
+}
+
+.nav_menu a:hover {
+    transform: scale(1.05);
+}
+
+.nav_hamburger {
+    display: none;
+}
+
+.nav_hamburger span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background-color: var(--darkgrey);
+}
+
+.nav_hamburger span:not(last-child) {
+    margin-bottom: 4px;
+}
+
+
+.navProducto {
+    display: flex;
+    min-height: 5.5vh;
+    padding: 0.3% 15%;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e5eaf5;
+}
+
+.navProducto a {
+    color: var(--darkgrey);
+    margin: 0px 10px;
+    transition: all 150ms ease-in-out;
+}
+
+.nav_logoProducto,
+.nav_menuProducto {
+    display: flex;
+    align-items: center;
+}
+
+.nav_logoProducto img {
+    max-width: 140px;
+    margin-right: 20px;
+}
+
+.nav_menuProducto a:hover {
+    transform: scale(1.05);
+}
+
+.nav_hamburgerProducto {
+    display: none;
+}
+
+.nav_hamburgerProducto span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background-color: var(--darkgrey);
+}
+
+.nav_hamburgerProducto span:not(last-child) {
+    margin-bottom: 4px;
+}
+
+.nav_logoProducto{
+    flex-grow: 2;
+}
+
+#mision {
+    display: flex;
+    padding: 3rem 13rem;
+    background-color: var(--darkgrey);
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mision_img {
+    max-width: 50%;
+}
+
+.mision_img img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.mision_info {
+    max-width: 40%;
+    color: white;
+    text-align: left;
+}
+
+#vision {
+    display: flex;
+    padding: 3rem 13rem;
+    background-color: var(--grey);
+    align-items: center;
+    justify-content: space-between;
+}
+
+.vision_img {
+    max-width: 50%;
+}
+
+.vision_img img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.vision_info {
+    max-width: 40%;
+    color: var(--darkgrey);
+    text-align: left;
+}
+
+#valores {
+    display: grid;
+    text-align: center;
+    gap: 20px;
+    padding: 50px 155px;
+    color: white;
+    background-color: var(--darkgrey);
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.valor {
+    padding: 15px 45px;
+}
+
+.valor_icon {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+    z-index: 1;
+}
+
+.valor_icon::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--lightpurple);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.valor_icon img {
+    display: block;
+    width: 70px;
+    object-fit: contain;
+}
+
+#equipo {
+    display: grid;
+    text-align: center;
+    gap: 25px;
+    color: black;
+    background-color: white;
+    padding: 30px 40px 50px 40px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.card {
+    border-radius: 10px;
+    padding: 30px 10px;
+    color: black;
+    background-color: var(--grey)
+}
+
+.card_img img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+}
+
+.section_title {
+    margin: 0;
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 35px;
+}
+
+#footer_index {
+    background-color: var(--darkgrey);
+}
+
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    color: white;
+    padding: 2% 13%;
+}
+
+.footer_logo img {
+    max-width: 100px;
+}
+
+.footer_first {
+    flex-basis: 50%;
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+.footer_first p {
+    color: white;
+}
+
+.footer_first:nth-child(2) {
+    text-align: end;
+}
+
+.footer_firstProducto {
+    flex-basis: 50%;
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+.footer_firstProducto:nth-child(1){
+    display: flex;
+    align-items: center;
+}
+.footer_firstProducto:nth-child(1) a{
+    margin-left: 2%;
+}
+
+.footer_firstProducto p {
+    color: white;
+}
+
+.footer_firstProducto:nth-child(2) {
+    text-align: end;
+}
+
+.footer_last {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    font-size: 13px;
+}
+
+@media only screen and (max-width: 1024px) {
+    #mision,
+    #vision {
+        flex-direction: column;
+        padding: 4rem 8rem;
+    }
+
+    .mision_img,
+    .mision_info,
+    .vision_img,
+    .vision_info {
+        max-width: 100%;
+        text-align: center;
+        font-size: larger;
+    }
+
+    .vision_img {
+        order: 1;
+    }
+
+    .vision_info {
+        order: 2;
+    }
+
+    #valores {
+        padding: 50px 105px;
+    }
+
+    .navProducto {
+        padding: 1.5rem 1rem;
+    }
+
+    .nav_menuProducto {
+        display: none;
+    }
+
+    .nav_hamburgerProducto {
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 820px) {
+    .nav_logo h1{
+        display: none;
+    }
+    .nav_menuProducto {
+        display: none;
+    }
+
+    .nav_hamburgerProducto {
+        display: block;
+    }
+    #valores {
+        grid-template-columns: 1fr;
+        padding: 70px 105px;
+        font-size: larger;
+    }
+
+    #equipo {
+        grid-template-columns: repeat(2, 1fr);
+        font-size: larger;
+    }
+
+    .footer {
+        padding: 30px 40px 10px 40px;
+    }
+
+    #ventajas_contenedor {
+        grid-template-columns: 1fr !important;
+    }
+    .caract_1 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .caract_1 p{
+        text-align: center;
+    }
+    .footer_firstProducto:nth-child(1) a{
+        margin-left: 0;
+    }
+}
+
+@media only screen and (max-width: 540px) {
+    .nav {
+        padding: 1.5rem 1rem;
+    }
+
+    .nav_menu {
+        display: none;
+    }
+
+    .nav_hamburger {
+        display: block;
+    }
+
+    #mision,
+    #vision
+     {
+        flex-direction: column;
+        padding: 2rem 3rem;
+    }
+
+    .mision_img,
+    .mision_info,
+    .vision_img,
+    .vision_info {
+        max-width: 100%;
+    }
+
+    #valores{
+        max-width: 100%;
+        gap: 5px;
+        grid-template-columns: 1fr;
+        padding: 50px 20px;
+    }
+
+    #equipo {
+        grid-template-columns: 1fr;
+    }
+
+    .footer {
+        display: block;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer_firstProducto:nth-child(2) {
+        text-align: center;
+    }
+
+    #caracteristicas {
+        padding: 3% 7% !important;
+    }
+    .footer_firstProducto:nth-child(1){
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+}
+@media only screen and (max-width: 370px) {
+    body{
+        font-size: smaller;
+    }
+    .nav_Visitar{
+        display: none;
+    }
+    #ventajas_contenedor {
+        padding: 5% !important;
+    }
+    #equipo {
+        padding: 5%;
+    }
+    .card {
+        padding: 20px 5px;
+        font-size: smaller;
+    }
+    .valor{
+        font-size: smaller;
+        padding: 15px 10px;
+    }
+}
+
+/* CSS Alonso */
+#caracteristicas {
+    display: flex;
+    flex-direction: column;
+    padding: 3% 13%;
+    background-color: var(--grey);
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+.caracteristicas_img {
+    max-width: 100px;
+
+    padding-right: 10px;
+}
+
+.caracteristicas_img img {
+    max-width: 50%;
+    border-radius: 10px;
+}
+
+.caract_1 {
+    display: flex;
+    width: 100%;
+    color: black;
+    text-align: left;
+    background-color:#ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.caract_1 img{
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+
+    padding: 10px;
+    border-radius: 10px;
+    background-color: var(--grey);
+}
+
+.caract_1 p{
+    display: flex;
+    padding-left: 2%;
+    align-items: center;
+    justify-content: center;
+}
+#ventajas_contenedor {
+    display: grid;
+    text-align: center;
+    gap: 25px;
+    color: black;
+    background-color: white;
+    padding: 30px 40px 50px 40px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.ventajas {
+    border-radius: 10px;
+    padding: 30px 10px;
+    color: black;
+    background-color:  #d0bdf4;
+}
+
+.ventajas_img img {
+    width: 100px;
+    height: 100px;
+ 
+    background-size: cover;
+    background-position: center;
+}
+
+.titulo_vetajas{
+background-color: #8458B3;
+padding: 20px;
+font-size:large;
+
+}
+
+.descripcion_ventajas{
+    background-color: #d0bdf4;
+    padding: 10px;
+    margin: 0px;
+    
+    }
+
+/* Estilos BuscoEmpleo */
+.nav_buscoempleo {
+    background-color: var(--grey);
+}
+
+.nav_buscoempleo a {
+    font-weight: 500;
+}
+
+.nav_buscoempleo a:hover {
+    color: #131314;
+}
+
+#contenido {
+    margin: 2% 14%;
+    padding: 3% 7%;
+    color: white;
+    border-radius: 10px;
+    background-color: var(--darkgrey);
+}
+
+.mostrar-contenido{
+    padding: 1.5% 5% !important;
+}
+
+.encabezado-contenido {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 3rem 2rem 3rem;
+    background-color: var(--lightergrey);
+    border-radius: 10px;
+}
+
+.encabezado-contenidoCandidato{
+    justify-content: left !important;
+}
+
+.info-encabezado{
+    display: flex;
+    align-items: center;
+}
+.info-encabezado h3{
+    margin-right: 3rem;
+}
+
+.descripcion-contenido{
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0;
+    padding: 3% 5%;
+    background-color: var(--lightergrey);
+    border-radius: 10px;
+}
+
+.contenido-opciones{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+    border-radius: 10px;
+}
+.opcion{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: var(--lightergrey);
+    align-items: center;
+}
+.opcion-info{
+    display: flex;
+    align-items: center;
+    flex-grow: 2;
+}
+.opcion-info img{
+    margin-right: 1rem;
+}
+
+.boton-contenido {
+    border: 0;
+    width: 200px;
+    padding: 8px 0;
+    color: white;
+    font-size: 0.9rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    background-color: var(--purple);
+}
+
+.boton-contenido:hover {
+    opacity: 70%;
+    cursor: pointer;
+}
+
+#footer_buscoempleo {
+    background-color: black;
+}
+
+#footer_logo-buscoempleo img {
+    max-width: 150px;
+}
+
+/* Vista Candidato */
+
+.imgFotoPerfil{
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    width: 150px;
+    height: 150px;
+    margin-left: 1%;
+}
+
+.vistaSingular_info {
+    margin-left: 3%;
+    font-weight: 400;
+}
+
+.fechas {
+    display: flex;
+    align-items: center;
+    font-weight: 200;
+}
+#institucion-estudios, #titulo-estudios, .fechas p, 
+#contenido-experiencia, #titulo-experiencia, #empresa-experiencia,
+#contenido-reqminimos, #contenido-reqdeseables, #contenido-plus{
+    margin-top: 0;
+}
+.contenido-estudios{
+    display: flex;
+    align-items: center;
+}
+.nav_barra-busqueda {
+    width: 40%;
+}
+
+.barra-busqueda {
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 30px;
+    background-color: white;
+    box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+.barra-busqueda input {
+    background: transparent;
+    flex: 1;
+    border: 0;
+    outline: none;
+    border-radius: 30px;
+    padding: 24px 5px 24px 25px;
+    font-size: 14px;
+    color: var(--darkgrey);
+}
+
+::placeholder {
+    color: var(--darkgrey);
+}
+
+.barra-busqueda button img {
+    width: 25px;
+}
+
+.barra-busqueda button {
+    border: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+}
+
+/* Inicio sesion */
+.contenido_login {
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 1%;
+}
+
+.division {
+    display: block;
+    margin: 0 6%;
+    width: 1px;
+    background-color: var(--grey);
+}
+
+.inicioSesion {
+    display: flex;
+    flex-direction: column;
+}
+
+.inicioSesion p {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.inicioSesion input {
+    border: 0;
+    outline: none;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.inicioSesion button {
+    border: 0;
+    padding: 10px;
+    color: white;
+    margin: 20px 0;
+    font-weight: 600;
+    border-radius: 5px;
+    background-color: var(--purple);
+}
+
+.inicioSesion button:hover, .inicioSesion a:hover{
+    opacity: 80%;
+    cursor: pointer;
+}
+
+.inicioSesion a {
+    color: var(--lightblue);
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.registrarse button {
+    width: 100%;
+    padding: 10px;
+    color: var(--darkgrey);
+    margin: 20px 0;
+    font-weight: 600;
+    border-radius: 5px;
+    background-color: var(--grey);
+    border: 1px solid var(--purple);
+}
+
+.registrarse button:hover {
+    opacity: 80%;
+    cursor: pointer;
+}
+
+/* fabian  */
+.button-container {
+    margin: 20px 30px 20px 0; /* Espacio alrededor de los botones */
+}
+
+.boton {
+    margin: 0 85px 0 0; /* Espacio entre los botones */
+    background-color: #918e8e; /* Color de fondo del botón */
+    color: white; /* Color de texto del botón */
+    border: none; /* Eliminar borde del botón */
+    cursor: pointer; /* Cambiar el cursor a pointer cuando se pasa sobre el botón */
+    transition: 0.3s; /* Efecto de transición suave al pasar el mouse sobre el botón */
+    padding: 15px;
+}
+
+.boton:hover {
+    background-color: #a04594; /* Color de fondo del botón al pasar el mouse sobre él */
+}
+
+.modern-table {
+    background-color: #f2f2f2; /* Color de fondo de la tabla */
+    color: #333; /* Color de texto de la tabla */
+    width: 100%; /* Asegura que la tabla ocupa todo el espacio disponible */
+    margin: 20px 0; /* Espacio alrededor de la tabla */
+}
+
+.modern-table th, .modern-table td {
+    padding: 10px;
+    text-align: left;
+}
+
+.modern-table tbody tr:nth-child(even) {
+    background-color: #e6e6e6; /* Color de fondo para las filas pares */
+}
+
+.modern-table tbody tr:nth-child(odd) {
+    background-color: #fff; /* Color de fondo para las filas impares */
+}
+
+.desplegable {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    z-index: 1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Sombra alrededor del menú desplegable */
+    background-color: #f9f9f9; /* Color de fondo del menú desplegable */
+}
+
+.dropdown-content a {
+    color: black; /* Color de texto de los enlaces en el menú desplegable */
+    padding: 12px 16px; /* Espacio alrededor de los enlaces en el menú desplegable */
+    text-decoration: none; /* Eliminar subrayado de los enlaces en el menú desplegable */
+    display: block; /* Los enlaces en el menú desplegable se muestran en bloque */
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1; /* Color de fondo de los enlaces al pasar el mouse sobre ellos en el menú desplegable */
+}
+
+.desplegable:hover .dropdown-content {
+    display: block; /* Mostrar el menú desplegable al pasar el mouse sobre el botón */
+}
+
+/*fabian*/
+
+/* Estilos para el encabezado del contenido */
+#encabezadoContenido12 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    font-size: 25px;
+    
+}
+
+#encabezadoContenido12 div {
+    flex: 1;
+    margin: 0 10px;
+}
+
+/* Estilos para los select y el input de texto */
+#encabezadoContenido12 div select,
+#encabezadoContenido12 div input[type="text"] {
+    margin-left: 10px;
+    font-size: 16px; /* Tamaño de letra para Ordenar por y Buscar */
+}
+
+/* Estilos para el botón "Ir" */
+#encabezadoContenido12 div input[type="submit"] {
+    margin-left: 10px;
+    background-color: #918e8e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 16px; /* Tamaño de letra para el botón "Ir" */
+}
+
+#encabezadoContenido12 div input[type="submit"]:hover {
+    background-color: #a04594;
+}
+
+/* Estilos para la tabla */
+#contenidocentral12 {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#tabla2 {
+    margin: 0 auto;
+}
+
+#tabla2 thead th {
+    background-color: #4CAF50;
+    color: white;
+    text-align: left;
+    padding: 10px;
+    font-size: 16px; /* Tamaño de letra para los encabezados de la tabla */
+}
+
+#tabla2 tbody td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 14px; /* Tamaño de letra para los datos de la tabla */
+}
+
+#tabla2 tbody tr:nth-child(even) {
+    background-color: #e6e6e6;
+}
+
+#tabla2 tbody tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+
+/* Registrar candidato */
+.form form, #crearNuevoPassword{
+    display: flex;
+    flex-direction: column;
+    margin: 0 18% 3% 18%;
+    padding: 1% 7% 3% 7%;
+    border-radius: 5px;
+    background-color: var(--lightergrey);
+}
+#agregarExperiencia, #agregarEstudios, #agregarDescripcion{
+    display: none;
+    opacity: 0;
+    flex-direction: column;
+    transition: opacity 300ms ease-in;
+}
+.mostrar {
+    display: flex;
+    opacity: 1 !important;
+}
+.form h1{
+    text-align: center;
+    font-size: 30px;
+}
+.form h2:not(:nth-child(2)){
+    margin-top: 3rem;
+}
+.form h2::after{
+    content: "";
+    width: 200px;
+    margin-top: 10px;
+    display: block;
+    position: absolute;
+    height: 3px;
+    background: var(--lightpurple);
+    transition: opacity 300ms ease-in-out;
+}
+.form input, .form textarea, .form select{
+    border: 0;
+    outline: none;
+    padding: 8px 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: var(--grey);
+}
+.form input::placeholder, .form textarea::placeholder{
+    opacity: 60%;
+}
+.form textarea{
+    height: 15vh;
+}
+.subir-foto{
+    align-items: center;
+}
+.subir-foto{
+    display: flex;
+    flex-direction: column;
+}
+#inputFotoPerfil, #inputCurriculum{
+    display: none;
+}
+.subir-foto label, .boton-registro, .form label{
+    border: 0;
+    padding: 10px;
+    color: white;
+    text-align: center;
+    font-size: 17px;
+    border-radius: 5px;
+    margin: 1.5rem 0 0.5rem 0;
+    background-color: var(--purple);
+}
+.subir-foto label:hover, .boton-registro:hover, .form label:hover, .vistaCandidato_info button:hover{
+    opacity: 80%;
+    cursor: pointer;
+}
+#botonCrearCuenta{
+    display: flex;
+    justify-content: space-around;
+    border: 0;
+    width: 50%;
+    border-radius: 5px;
+    color: white;
+    padding: 20px;
+    font-size: 17px;
+    margin: 3rem 0 1rem 25%;
+    align-items: center;
+    background-color: black;
+}
+#botonCrearCuenta img{
+    width: 20px;
+}
+
+#botonCrearOferta{
+    display: flex;
+    justify-content: space-around;
+    border: 0;
+    width: 50%;
+    border-radius: 5px;
+    color: white;
+    padding: 20px;
+    font-size: 17px;
+    margin: 3rem 0 1rem 25%;
+    align-items: center;
+    background-color: black;
+}
+#botonCrearOferta img{
+    width: 20px;
+}
+#botonVisitar{
+    display: flex;
+    justify-content: space-between;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    padding: 15px;
+    font-size: 17px;
+    align-items: center;
+    background-color: var(--purple);
+    transition: all 150ms ease-in-out;
+}
+#botonVisitar img{
+    margin-left: 10px;
+    width: 20px;
+}
+#botonVisitar:hover{
+    background-color: #604081 !important;
+    transform: scale(0.95) !important;
+    cursor: pointer;
+}
+.error {
+    display: none;
+    font-weight: 600;
+    padding: 1%;
+    font-size: 15px;
+    margin: 0.3rem 0 1rem 0;
+    font-size: 16px;
+    width: fit-content;
+    border-radius: 5px;
+    color: var(--darkgrey);
+    background-color: var(--redError);
+}
+.borde-rojo{
+    border: 1px solid var(--redError);
+    transition: border-color 0.2s ease-in-out;
+}
+
+/* Estilos Vanessa*/
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px;
+    background-color: #E5EAF5;
+  }
+.header-bg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 65vh;
+    padding: 0 5%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position:center;
+}
+.image-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+  
+/*Sub header*/
+.sub-header {
+    background-color: #494D5F;
+    padding: 10px;
+}
+.options {
+    text-align: center;
+}
+.options ul {
+    display: inline-block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0; 
+}
+.options li {
+    display: inline;
+    margin-left: 10px;
+}
+.options li:first-child {
+    margin-left: 0;
+}
+.options li a {
+    text-decoration: none;
+    color: #A0D2EB;
+    margin-left: 10px;
+    margin-right: 20px;
+}
+/*Cuadro grande*/
+  .outer-box {
+    background-color: #E5EAF5;
+    padding: 20px;
+    margin-top: 50px;
+    width:90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .outer-box .search-bar .search-input-box {
+    width: 150px; /* Cambia el valor */
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(82, 82, 82);
+    
+  }
+  .inner-box {
+    width: 100%;
+    height: 200px;
+    background-color: var(--grey);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .button-container {
+    margin-top: 20px; /* Cambio: Agregar un margen superior al contenedor del botón */
+  }
+  .image-button {
+    display: inline-block;
+    padding: 10px 25px;
+    background-color: #ffffff;
+    color: #000000;
+    text-decoration: none;
+    border-radius: 20%; /* Cambio: Aplicar bordes circulares */
+    margin-left: 20%;
+  }
+  .image-text h2 {
+    font-size: 28px; /* Cambio: Ajusta el tamaño del texto */
+    font-weight: bold; /* Cambio: Aplica el estilo en negrita */
+  }
+  
+  .image-text p {
+    font-size: 18px; /* Cambio: Ajusta el tamaño del texto */
+    font-weight: bold; /* Cambio: Aplica el estilo en negrita */
+  }
+
+  /* HomePage Jafet */
+.contenidoHomePage h1{
+    display: flex;
+    color: white;
+    margin-bottom: 2rem;
+    justify-content: center;
+}
+#registrarseHomePage{
+    display: flex;
+    color: white;
+    font-weight: 500;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 6rem;
+}
+.registrarCandidato_HomePage, .registrarEmpresa_HomePage{
+    text-align: center;
+    padding: 0 3%;
+}
+.headerLogged{
+    min-height: 40vh;
+}
+.grid-contenido{
+    margin: 2% 10% !important;
+}
+#divOpcionesNav{
+    display: flex;
+    align-items: center;
+}
+#divOpcionesNav img{
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+#divOpcionesNav button{
+    border: 0;
+    width: 60px;
+    height: 60px;
+    margin-left: 10px;
+    background-color: var(--grey);
+    cursor: pointer;
+}
+#divOpcionesNav button img{
+    width: 30px;
+    height: 30px;
+}
+#mensajeExito{
+    display: none;
+    opacity: 0;
+    padding: 1.5rem;
+    margin: 0 18%;
+    color: var(--darkgrey);
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: opacity 300ms ease-in;
+    background-color: var(--lightpurple);
+}
+#mensajeExito h2{
+    margin: 1rem 0;
+}
+#mensajeWarning{
+    display: none;
+    opacity: 0;
+    padding: 1.5rem;
+    margin: 0 18%;
+    color: var(--darkgrey);
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: opacity 300ms ease-in;
+    background-color: var(--warning);
+}
+#mensajeWarning h2{
+    margin: 1rem 0;
+}
+.warning-contenido{
+    margin: 1rem 0 0 2rem !important;
+    padding: 0 0.7rem !important;
+}
+.aplicar-contenido{
+    display: flex;
+}
+.mensajeExito-contenido{
+    margin: 1rem 0 0 2rem !important;
+    padding: 0 0.7rem !important;
+}
+.imgFotoPerfilMostrarCandidato{
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    width: 100px;
+    height: 100px;
+    margin-left: 1%;
+}
+#rangoMaximoOferta{
+    margin-top: 0.7rem;
+}
+
+/* 404 */
+.page-not-found{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: var(--grey);
+    min-height: 100vh;
+}
+.page-not-found img{
+    margin-top: 0;
+    width: 40%;
+}
+.page-not-found h1{
+    margin: 0;
+}
+.boton-volver{
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    padding: 15px;
+    font-size: 17px;
+    align-items: center;
+    background-color: black;
+}
+.boton-volver:hover{
+    opacity: 90%;
+    cursor: pointer;
+}

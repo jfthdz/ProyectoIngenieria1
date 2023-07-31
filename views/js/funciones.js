@@ -1747,9 +1747,4 @@ function aplicarPuesto(){
             mensajeWarning.style.display = "none";
         }, 3500);  
     }
-
-       
-}
-function mifuncion(){
-    console.log("imprimir")
 }
