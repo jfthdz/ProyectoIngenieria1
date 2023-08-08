@@ -1,0 +1,66 @@
+{
+    "id":1, 
+    "nombre":"Universidad Cenfotec", 
+    "email": "ucenfotec@ucenfotec.ac.cr", 
+    "pass": "123", 
+    "foto": "/images/logo-cenfotec.png",
+    "descripcion": "La Universidad Cenfotec aspira a ser reconocida como una institución académica de excelencia que impulsa el desarrollo innovador, integral y sostenible de la sociedad mediante la investigación, la extensión y la formación de profesionales en computación e informática.",
+    "puesto":[
+        {
+            "nombre":"Full Stack Developer",
+            "rango_salarial":"¢ 1 a 1,5 millones",
+            "fecha_creacion": "01/07/2023",
+            "requisito_minimo":"Experiencia previa en desarrollo web.\nConocimiento de HTML, CSS, JavaScript, PHP y MySQL.\nComprensión de los principios de diseño web.\nComprensión de los principios de programación.\nComprensión de los principios de seguridad web.\nCapacidad para trabajar en equipo.\nMentalidad de aprendizaje.",
+            "requisito_deseable":"Experiencia laboral de 2 años en desarrollo web.\nComprensión del desarrollo front-end utilizando frameworks Angular y/o React.\nExperiencia con sistemas de control de versiones, como Git.\nConocimiento de metodologías ágiles de desarrollo y mejores prácticas.",
+            "aptitudes_plus":"Título en informática, ingeniería o un campo relacionado (o experiencia práctica equivalente).\nFamiliaridad con las API RESTful y su integración en aplicaciones web.",
+            "disponible": true,
+            "publico": true,
+            "privado": false
+        },
+        {
+            "nombre":"Full Stack Developer",
+            "rango_salarial":"¢ 1 a 1,5 millones",
+            "fecha_creacion": "01/07/2023",
+            "requisito_minimo":"Experiencia previa en desarrollo web.\nConocimiento de HTML, CSS, JavaScript, PHP y MySQL.\nComprensión de los principios de diseño web.\nComprensión de los principios de programación.\nComprensión de los principios de seguridad web.\nCapacidad para trabajar en equipo.\nMentalidad de aprendizaje.",
+            "requisito_deseable":"Experiencia laboral de 2 años en desarrollo web.\nComprensión del desarrollo front-end utilizando frameworks Angular y/o React.\nExperiencia con sistemas de control de versiones, como Git.\nConocimiento de metodologías ágiles de desarrollo y mejores prácticas.",
+            "aptitudes_plus":"Título en informática, ingeniería o un campo relacionado (o experiencia práctica equivalente).\nFamiliaridad con las API RESTful y su integración en aplicaciones web.",
+            "disponible": true,
+            "publico": true,
+            "privado": false
+        },
+        {
+            "nombre":"Full Stack Developer",
+            "rango_salarial":"¢ 1 a 1,5 millones",
+            "fecha_creacion": "01/07/2023",
+            "requisito_minimo":"Experiencia previa en desarrollo web.\nConocimiento de HTML, CSS, JavaScript, PHP y MySQL.\nComprensión de los principios de diseño web.\nComprensión de los principios de programación.\nComprensión de los principios de seguridad web.\nCapacidad para trabajar en equipo.\nMentalidad de aprendizaje.",
+            "requisito_deseable":"Experiencia laboral de 2 años en desarrollo web.\nComprensión del desarrollo front-end utilizando frameworks Angular y/o React.\nExperiencia con sistemas de control de versiones, como Git.\nConocimiento de metodologías ágiles de desarrollo y mejores prácticas.",
+            "aptitudes_plus":"Título en informática, ingeniería o un campo relacionado (o experiencia práctica equivalente).\nFamiliaridad con las API RESTful y su integración en aplicaciones web.",
+            "disponible": true,
+            "publico": true,
+            "privado": false
+        }
+    ],
+    "integrante":[
+        {
+            "id": 1,
+            "email":"admin@gmail.com",
+            "pass":"admin",
+            "rol":"admin",
+            "estado": 1
+        },
+        {
+            "id": 2,
+            "email":"manager@gmail.com",
+            "pass":"manager",
+            "rol":"manager",
+            "estado": 1
+        },
+        {
+            "id": 3,
+            "email":"recluta@gmail.com",
+            "pass":"recluta",
+            "rol":"recluta",
+            "estado": 1
+        }
+    ]
+}

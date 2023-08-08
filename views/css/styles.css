@@ -337,49 +337,6 @@ a {
     }
 }
 
-@media only screen and (max-width: 820px) {
-    .nav_logo h1{
-        display: none;
-    }
-    .nav_menuProducto {
-        display: none;
-    }
-
-    .nav_hamburgerProducto {
-        display: block;
-    }
-    #valores {
-        grid-template-columns: 1fr;
-        padding: 70px 105px;
-        font-size: larger;
-    }
-
-    #equipo {
-        grid-template-columns: repeat(2, 1fr);
-        font-size: larger;
-    }
-
-    .footer {
-        padding: 30px 40px 10px 40px;
-    }
-
-    #ventajas_contenedor {
-        grid-template-columns: 1fr !important;
-    }
-    .caract_1 {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .caract_1 p{
-        text-align: center;
-    }
-    .footer_firstProducto:nth-child(1) a{
-        margin-left: 0;
-    }
-}
-
 @media only screen and (max-width: 540px) {
     .nav {
         padding: 1.5rem 1rem;
@@ -944,7 +901,7 @@ font-size:large;
     border-radius: 5px;
     background-color: var(--lightergrey);
 }
-#agregarExperiencia, #agregarEstudios, #agregarDescripcion{
+.agregarExperiencia, .agregarEstudios, #agregarDescripcion{
     display: none;
     opacity: 0;
     flex-direction: column;
@@ -991,6 +948,11 @@ font-size:large;
 .subir-foto{
     display: flex;
     flex-direction: column;
+}
+.ai-c{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 #inputFotoPerfil, #inputCurriculum{
     display: none;
@@ -1308,4 +1270,52 @@ font-size:large;
 .boton-volver:hover{
     opacity: 90%;
     cursor: pointer;
+}
+@media only screen and (max-width: 820px) {
+    .nav_logo h1{
+        display: none;
+    }
+    .nav_menuProducto {
+        display: none;
+    }
+
+    .nav_hamburgerProducto {
+        display: block;
+    }
+    #valores {
+        grid-template-columns: 1fr;
+        padding: 70px 105px;
+        font-size: larger;
+    }
+
+    #equipo {
+        grid-template-columns: repeat(2, 1fr);
+        font-size: larger;
+    }
+
+    .footer {
+        padding: 30px 40px 10px 40px;
+    }
+
+    #ventajas_contenedor {
+        grid-template-columns: 1fr !important;
+    }
+    .caract_1 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .caract_1 p{
+        text-align: center;
+    }
+    .footer_firstProducto:nth-child(1) a{
+        margin-left: 0;
+    }
+    #contenido {
+        margin: 2% 5%;
+    }
+    .form form, #crearNuevoPassword{
+        margin: 0
+    }
 }

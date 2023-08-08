@@ -1,0 +1,30 @@
+{
+    "id": 1,
+    "nombre":"Jafet",
+    "apellidos":"Hernández Alfaro",
+    "email":"jafethernandez2206@gmail.com",
+    "pass":"admin",
+    "rol":"admin",
+    "foto":"/images/jafet.jpg",
+    "genero":"1",
+    "profesion":"Coordinador Desarrollo",
+    "experiencia":[
+        {
+            "cargo": "Desarollador de software",
+            "empresa": "Softtek",
+            "contenido": "Toma de requerimientos con el cliente.\nAnálisis de requerimientos y diseño de aplicaciones.\nDesarrollo Front End y Back End de aplicaciones con C#,Typescript, Javascript, HTML5, SQLServer.\nSolución de incidencias.\nMantenimiento de aplicaciones web", 
+            "fecha_inicio": "01/01/2021", 
+            "fecha_final": "", 
+            "actualmente": true
+        }
+    ],
+    "estudio":[
+        {
+            "titulo": "Bachillerato en Ingeniería de software", 
+            "institucion": "Universidad Cenfotec",
+            "fecha_inicio": "01/01/2021", 
+            "fecha_final": "", 
+            "actualmente": true
+        }
+    ]
+}
