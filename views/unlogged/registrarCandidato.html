@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="../../css/styles.css" />
-    <link rel="shortcut icon" href="../../images/logo_tituloPagina.png" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="shortcut icon" href="/images/logo_tituloPagina.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,15 +18,15 @@
     <nav id="nav-buscoempleo" class="nav_buscoempleo nav">
       <a
         id="nav_logo-buscoempleo"
-        href="../unlogged/HomePageUnlogged.html"
+        href="/unlogged/HomePageUnlogged.html"
         class="nav_logo"
       >
-        <img src="../../images/buscoempleo.png" alt="" />
+        <img src="/images/buscoempleo.png" alt="" />
       </a>
       <div class="nav_barra-busqueda">
         <form
           id="barraBusquedaForm"
-          action="../candidato/mostrarOfertasTrabajo.html"
+          action="/candidato/mostrarOfertasTrabajo.html"
           method="get"
           class="barra-busqueda"
           onsubmit="return validarBusquedaHomePage()"
@@ -36,10 +36,10 @@
             placeholder="Buscar empleo..."
             name="barra-busqueda"
           />
-          <button type="submit"><img src="../../images/busqueda.png" /></button>
+          <button type="submit"><img src="/images/busqueda.png" /></button>
         </form>
       </div>
-      <a id="opcionNav" href="../unlogged/inicioSesion.html">Iniciar sesión</a>
+      <a id="opcionNav" href="/unlogged/inicioSesion.html">Iniciar sesión</a>
     </nav>
     <section id="contenido">
       <div class="form">
@@ -48,28 +48,29 @@
         </div>
         <h1>Crea tu cuenta</h1>
         <form
-          action="registrarCandidato()"
+          id="form-registrar-candidato"
           method="post"
           onsubmit="return validarFormulario()"
         >
+          <p class="ai-c">Mi foto de perfil</p>
           <div class="subir-foto">
-            <p>Mi foto de perfil</p>
             <img
               id="img-perfil"
-              class="imgFotoPerfil"
-              src="../../images/fotoPerfilDefault.jpeg"
+              class="imgFotoPerfil ai-c"
+              src="/images/fotoPerfilDefault.jpeg"
               alt="Foto de perfil"
             />
-            <label onclick="subirImagen()" for="inputFotoPerfil"
-              >Subir imagen</label
-            >
-            <input
-              type="file"
-              accept="image/jpeg, image/png, image/jpg"
-              name="fotoPerfil"
-              id="inputFotoPerfil"
-            />
           </div>
+          <label class="ai-c" onclick="subirImagen()" for="inputFotoPerfil"
+            >Subir imagen</label
+          >
+          <input
+            type="file"
+            accept="image/jpeg, image/png, image/jpg"
+            name="fotoPerfil"
+            id="inputFotoPerfil"
+            class="ai-c"
+          />
           <h2>Datos personales</h2>
           <p>Nombre</p>
           <input type="text" name="nombreCandidato" id="nombreCandidato" />
@@ -112,21 +113,21 @@
           <button class="boton-registro" onclick="habilitarCamposExperiencia()">
             Agregar experiencia
           </button>
-          <div id="agregarExperiencia">
+          <div id="agregarExperiencia" class="agregarExperiencia">
             <p id="tituloCargo">¿Qué cargo tuviste/tienes?</p>
             <input
               placeholder='Ej: "Diseñador(a)","Asistente","Coordinador(a)", etc'
               type="text"
-              name="cargoExperienciaCadidato"
+              name="cargoExperienciaCandidato[]"
             />
             <p id="tituloEmpresa">Nombre de la empresa</p>
-            <input type="text" name="empresaExperienciaCandidato" />
+            <input type="text" name="empresaExperienciaCandidato[]" />
             <p id="tituloResponsabilidades">Tus logros y responsabilidades</p>
-            <textarea type="text" name="contenidoExperiencia"></textarea>
+            <textarea type="text" name="contenidoExperiencia[]"></textarea>
             <p id="tituloFechaInicio">Fecha de inicio</p>
-            <input type="date" name="fechaInicioExperiencia" />
-            <p id="tituloFechaInicio">Fecha de finalización</p>
-            <input type="date" name="fechaFinalExperiencia" />
+            <input type="date" name="fechaInicioExperiencia[]" />
+            <p id="tituloFechaFinal">Fecha de finalización</p>
+            <input type="date" name="fechaFinalExperiencia[]" />
             <button class="boton-registro" onclick="experienciaExtra()">
               Agregar otra experiencia
             </button>
@@ -136,21 +137,21 @@
           <button class="boton-registro" onclick="habilitarCamposEstudios()">
             Agregar estudios
           </button>
-          <div id="agregarEstudios">
+          <div id="agregarEstudios" class="agregarEstudios">
             <p id="tituloEstudio">Título otorgado</p>
             <input
               placeholder='Ej: "Ingeniería","Bachillerato","Técnico", etc'
               type="text"
-              name="tituloEstudiocandidato"
+              name="tituloEstudioCandidato[]"
             />
             <p id="tituloInstitucion">
               Nombre de institución en la que estudiaste
             </p>
-            <input type="text" name="institucionEstudioCandidato" />
+            <input type="text" name="institucionEstudioCandidato[]" />
             <p id="tituloFechaInicio">Fecha de inicio</p>
-            <input type="date" name="fechaInicioEstudio" />
+            <input type="date" name="fechaInicioEstudio[]" />
             <p id="tituloFechaInicio">Fecha de finalización</p>
-            <input type="date" name="fechaFinalExperiencia" />
+            <input type="date" name="fechaFinalEstudio[]" />
             <button class="boton-registro" onclick="estudiosExtra()">
               Agregar más estudios
             </button>
@@ -165,7 +166,7 @@
           />
           <button id="botonCrearCuenta" type="submit">
             Crear mi cuenta
-            <img src="../../images/guardar-blanco.png" />
+            <img src="/images/guardar-blanco.png" />
           </button>
         </form>
       </div>
@@ -173,27 +174,24 @@
     <footer id="footer_buscoempleo" class="footer">
       <div class="footer_first">
         <a
-          href="../unlogged/HomePageUnlogged.html"
+          href="/unlogged/HomePageUnlogged.html"
           id="footer_logo-buscoempleo"
           class="footer_logo"
         >
-          <img src="../../images/buscoempleonegro.png" />
+          <img src="/images/buscoempleonegro.png" />
         </a>
-        <a href="../landingpageBuscoEmpleo/producto.html">
+        <a href="/landingpageBuscoEmpleo/producto.html">
           <p>Acerca de Busco Empleo</p>
         </a>
       </div>
       <div class="footer_first">
-        <a href="../landingpageBitbyte/index.html" class="footer_logo">
-          <img src="../../images/logo_nombre.jpg" />
+        <a href="/index.html" class="footer_logo">
+          <img src="/images/logo_nombre.jpg" />
         </a>
         <p>+506 2222-2222 | bitbyte@gmail.com</p>
       </div>
       <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
     </footer>
-    <script src="../../js/funciones.js"></script>
-    <script>
-      cargarDatosUsuario();
-    </script>
+    <script src="/js/candidatoCliente.js"></script>
   </body>
 </html>

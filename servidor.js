@@ -5,6 +5,8 @@ const multer = require("multer");
 const app=express();
 app.use(multer({}).any());
 
+const candidatoController = require("./controllers/candidatoController")(app);
+
 const directorioEstaticos = path.join( __dirname, "views"); 
 app.use(express.static( directorioEstaticos ));
 console.log("Directorio archivos estáticos: " + directorioEstaticos);
