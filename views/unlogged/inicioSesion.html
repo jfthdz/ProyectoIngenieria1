@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="../../css/styles.css" />
-    <link rel="shortcut icon" href="../../images/logo_tituloPagina.png" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="shortcut icon" href="/images/logo_tituloPagina.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,33 +18,32 @@
     <nav class="nav_buscoempleo nav">
       <a
         id="nav_logo-buscoempleo"
-        href="../unlogged/HomePageUnlogged.html"
+        href="/unlogged/HomePageUnlogged.html"
         class="nav_logo"
       >
-        <img src="../../images/buscoempleo.png" alt="" />
+        <img src="/images/buscoempleo.png" alt="" />
       </a>
-      <!--<div class="nav_barra-busqueda">
-        <form action="" method="get" class="barra-busqueda">
-          <input type="text" placeholder="Buscar..." name="barra-busqueda" />
-          <button type="submit"><img src="../images/busqueda.png" /></button>
-        </form>
-      </div> -->
     </nav>
     <section id="contenido">
       <div class="contenido_login">
         <div class="inicioSesion">
           <h1>Inicio de sesión</h1>
           <h3>Inicia sesión con tu correo y contraseña</h3>
-
-          <p>Correo electrónico:</p>
-          <input type="text" name="email" id="email" />
-          <span id="errorEmail" class="error"></span>
-          <p>Contraseña:</p>
-          <input type="password" name="password" id="password" />
-          <span id="errorLogin" class="error"></span>
-          <button value="login" onclick="validarLogin()">Iniciar sesión</button>
-
-          <a href="../unlogged/recuperarPassword.html"
+          <form
+            id="form-login"
+            class="inicioSesion"
+            onsubmit="return validarCamposLogin()"
+            method="POST"
+          >
+            <p>Correo electrónico:</p>
+            <input type="text" name="email" id="email" />
+            <span id="errorEmail" class="error"></span>
+            <p>Contraseña:</p>
+            <input type="password" name="password" id="password" />
+            <span id="errorLogin" class="error"></span>
+            <button value="login" type="submit">Iniciar sesión</button>
+          </form>
+          <a href="/unlogged/recuperarPassword.html"
             >¿Has olvidado tu contraseña?</a
           >
         </div>
@@ -52,11 +51,11 @@
         <div class="registrarse">
           <h1>¿Aún no estás registrado?</h1>
           <p>Regístrate y encuentra los mejores anuncios de empleo</p>
-          <a href="../unlogged/registrarCandidato.html">
+          <a href="/unlogged/registrarCandidato.html">
             <button>Regístrate</button>
           </a>
           <p>Ó registra tu empresa y publica tus anuncios laborales</p>
-          <a href="../unlogged/registrarEmpresa.html">
+          <a href="/unlogged/registrarEmpresa.html">
             <button>Registrar empresa</button>
           </a>
         </div>
@@ -83,9 +82,6 @@
       </div>
       <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
     </footer>
-    <script src="../../js/funciones.js"></script>
-    <script>
-      cargarDatosUsuario();
-    </script>
+    <script src="/js/loginCliente.js"></script>
   </body>
 </html>

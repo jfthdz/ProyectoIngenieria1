@@ -32,4 +32,16 @@ module.exports = function(){
             console.log(error);
         }
     }
+
+    this.updateCandidatos = async function(candidatoData, candidatoId){
+        try {
+            let connection = await mongodb.connect();
+            await connection.db().collection("Candidatos").updateOne({_id: candidatoId._id},{$set:candidatoData});
+            await connection.close();
+
+            console.log(`Candidato agregado: ${candidatoData}`);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }

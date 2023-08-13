@@ -14,12 +14,11 @@ module.exports = function(appCandidatos){
 
     appCandidatos.post("/candidatos/addCandidatos", async function(req,res){
         try {
-            //let nuevoCandidato = req.body;
             const nuevoCandidato = {
                 nombre: req.body.nombreCandidato,
                 apellidos: req.body.apellidosCandidato,
                 email: req.body.emailCandidato,
-                pass: req.body.passwordCandidato,
+                password: req.body.passwordCandidato,
                 foto: req.body.fotoPerfil,
                 genero: req.body.generoCandidato,
                 profesion: req.body.profesionCandidato,
@@ -51,6 +50,47 @@ module.exports = function(appCandidatos){
             console.log(error);
             console.log(req.body);
             res.send({message:"Hubo un error al agregar el candidato"});
+        }
+    });
+
+    appCandidatos.post("/candidatos/updateCandidatos", async function(req,res){
+        try {
+            const candidatoId = { _id: req.body._id };
+            const nuevoCandidato = {
+                nombre: req.body.nombreCandidato,
+                apellidos: req.body.apellidosCandidato,
+                email: req.body.emailCandidato,
+                foto: req.body.fotoPerfil,
+                genero: req.body.generoCandidato,
+                profesion: req.body.profesionCandidato,
+                experiencia: req.body.cargoExperienciaCandidato.map((cargo, index) => {
+                    return{
+                        cargo,
+                        empresa: req.body.empresaExperienciaCandidato[index],
+                        contenido: req.body.contenidoExperiencia[index],
+                        fecha_inicio: req.body.fechaInicioExperiencia[index],
+                        fecha_final: req.body.fechaFinalExperiencia[index],
+                    }
+                }),
+                estudio: req.body.tituloEstudioCandidato.map((titulo, index) => {
+                    return{
+                        titulo,
+                        institucion: req.body.institucionEstudioCandidato[index],
+                        fecha_inicio: req.body.fechaInicioEstudio[index],
+                        fecha_final: req.body.fechaFinalEstudio[index],
+                    }
+                })
+            }; 
+
+            await model.updateCandidatos(nuevoCandidato, candidatoId);
+
+            console.log(nuevoCandidato);
+            res.send({message:"Perfil modificado con exito"});
+            
+        } catch (error) {
+            console.log(error);
+            console.log(req.body);
+            res.send({message:"Hubo un error al modificar el perfil"});
         }
     });
 }
