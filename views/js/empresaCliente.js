@@ -81,10 +81,15 @@ function limpiarCamposRegistrarEmpresa() {
 
 async function registrarEmpresa() {
     const empresaData = new FormData(document.querySelector("#form-registrar-empresa"));
-    const url = "/empresas/addEmpresa"
+    const url = "/empresas/addEmpresa";
+    const empresaObject = {};
+    empresaData.forEach((value, key) =>{
+        empresaObject[key]= value;
+    });
+    console.log(empresaObject);
 
     try {
-        const response = await fetch(url, {
+        const response = await fetch(url,{
             body: empresaData,
             method: "POST"
         });
@@ -114,4 +119,13 @@ async function registrarEmpresa() {
     } catch (error) {
         console.log(error);
     }
+}
+
+function habilitarCampoDescripcion(){
+    event.preventDefault();
+    var agregarDescripcion = document.getElementById("agregarDescripcion");
+    agregarDescripcion.style.display = "flex";
+    setTimeout(function() {
+        agregarDescripcion.classList.add("mostrar");
+      }, 100);    
 }

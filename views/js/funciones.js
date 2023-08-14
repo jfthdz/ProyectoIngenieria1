@@ -237,15 +237,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-function habilitarCampoDescripcion(){
-    event.preventDefault();
-    var agregarDescripcion = document.getElementById("agregarDescripcion");
-    agregarDescripcion.style.display = "flex";
-    setTimeout(function() {
-        agregarDescripcion.classList.add("mostrar");
-      }, 100);    
-}
-
 //subir foto de perfil en registrar candidato
 function subirImagen(){
     let fotoPerfil = document.getElementById("img-perfil");

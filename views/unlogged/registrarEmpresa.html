@@ -48,33 +48,33 @@
         </div>
         <h1>Crea tu cuenta de empresa</h1>
         <form
-          action="registrarEmpresa()"
-          method="post"
+          id="form-registrar-empresa"
+          method="POST"
           onsubmit="return validarFormularioEmpresa()"
         >
+          <p class="ai-c">Foto de perfil de mi empresa</p>
           <div class="subir-foto">
-            <p>Foto de perfil de mi empresa</p>
             <img
               id="img-perfil"
               class="imgFotoPerfil"
               src="../../images/fotoPerfilDefault.jpeg"
               alt="Foto de perfil"
             />
-            <label onclick="subirImagen()" for="inputFotoPerfil"
-              >Subir imagen</label
-            >
-            <input
-              type="file"
-              accept="image/jpeg, image/png, image/jpg"
-              name="fotoPerfil"
-              id="inputFotoPerfil"
-            />
           </div>
+          <label class="ai-c" onclick="subirImagen()" for="inputFotoPerfil"
+            >Subir imagen</label
+          >
+          <input
+            type="file"
+            accept="image/jpeg, image/png, image/jpg"
+            name="fotoPerfil"
+            id="inputFotoPerfil"
+            class="ai-c"
+          />
           <h2>Datos necesarios</h2>
           <p>Nombre de la empresa</p>
           <input type="text" name="nombreEmpresa" id="nombreEmpresa" />
-          <span id="errorNombreEmpresa" 
-          class="error"></span>
+          <span id="errorNombreEmpresa" class="error"></span>
           <p>Correo electrónico</p>
           <input type="text" name="emailEmpresa" id="emailEmpresa" />
           <span id="errorEmailEmpresa" class="error"></span>
@@ -118,8 +118,5 @@
       <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
     </footer>
     <script src="/js/empresaCliente.js"></script>
-    <script>
-      cargarDatosUsuario();
-    </script>
   </body>
 </html>

@@ -18,7 +18,30 @@ module.exports = function(appEmpresas){
                 nombre: req.body.nombreEmpresa,
                 correo: req.body.emailEmpresa,
                 password: req.body.passwordEmpresa,
-                descripcion: req.body.contenidoDescripcion
+                descripcion: req.body.contenidoDescripcion,
+                integrante:[
+                    {
+                        id: 1,
+                        email: "",
+                        pass: "",
+                        rol: "Admin",
+                        estado: 0
+                    },
+                    {
+                        id: 2,
+                        email: "",
+                        pass: "",
+                        rol: "Manager",
+                        estado: 0
+                    },
+                    {
+                        id: 3,
+                        email: "",
+                        pass: "",
+                        rol: "Recluta",
+                        estado: 0
+                    },
+                ]
             }; 
         
             await model.postEmpresa(nuevaEmpresa);
