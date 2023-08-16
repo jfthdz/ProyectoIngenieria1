@@ -6,9 +6,9 @@ const app=express();
 app.use(multer({dest: './views/uploads'}).any());
 
 const candidatoController = require("./controllers/candidatoController")(app);
+const puestosController = require("./controllers/puestosController")(app);
 const loginController = require("./controllers/loginController")(app);
 const empresaController = require("./controllers/empresaController")(app);
-
 
 const directorioEstaticos = path.join( __dirname, "views"); 
 app.use(express.static( directorioEstaticos ));
