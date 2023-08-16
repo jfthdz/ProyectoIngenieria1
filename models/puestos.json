@@ -1,0 +1,38 @@
+[
+    {
+        "empresa_id": 1,
+        "nombre":"Full Stack Developer",
+        "rango_salarial":"¢ 1 a 1,5 millones",
+        "fecha_creacion": "01/07/2023",
+        "requisito_minimo":"Experiencia previa en desarrollo web.\nConocimiento de HTML, CSS, JavaScript, PHP y MySQL.\nComprensión de los principios de diseño web.\nComprensión de los principios de programación.\nComprensión de los principios de seguridad web.\nCapacidad para trabajar en equipo.\nMentalidad de aprendizaje.",
+        "requisito_deseable":"Experiencia laboral de 2 años en desarrollo web.\nComprensión del desarrollo front-end utilizando frameworks Angular y/o React.\nExperiencia con sistemas de control de versiones, como Git.\nConocimiento de metodologías ágiles de desarrollo y mejores prácticas.",
+        "aptitudes_plus":"Título en informática, ingeniería o un campo relacionado (o experiencia práctica equivalente).\nFamiliaridad con las API RESTful y su integración en aplicaciones web.",
+        "disponible": true,
+        "publico": true,
+        "privado": false
+    },
+    {
+        "empresa_id": 2,
+        "nombre":"Full Stack Developer",
+        "rango_salarial":"¢ 1 a 1,5 millones",
+        "fecha_creacion": "01/07/2023",
+        "requisito_minimo":"Experiencia previa en desarrollo web.\nConocimiento de HTML, CSS, JavaScript, PHP y MySQL.\nComprensión de los principios de diseño web.\nComprensión de los principios de programación.\nComprensión de los principios de seguridad web.\nCapacidad para trabajar en equipo.\nMentalidad de aprendizaje.",
+        "requisito_deseable":"Experiencia laboral de 2 años en desarrollo web.\nComprensión del desarrollo front-end utilizando frameworks Angular y/o React.\nExperiencia con sistemas de control de versiones, como Git.\nConocimiento de metodologías ágiles de desarrollo y mejores prácticas.",
+        "aptitudes_plus":"Título en informática, ingeniería o un campo relacionado (o experiencia práctica equivalente).\nFamiliaridad con las API RESTful y su integración en aplicaciones web.",
+        "disponible": true,
+        "publico": true,
+        "privado": false
+    },
+    {
+        "empresa_id": 3,
+        "nombre":"Full Stack Developer",
+        "rango_salarial":"¢ 1 a 1,5 millones",
+        "fecha_creacion": "01/07/2023",
+        "requisito_minimo":"Experiencia previa en desarrollo web.\nConocimiento de HTML, CSS, JavaScript, PHP y MySQL.\nComprensión de los principios de diseño web.\nComprensión de los principios de programación.\nComprensión de los principios de seguridad web.\nCapacidad para trabajar en equipo.\nMentalidad de aprendizaje.",
+        "requisito_deseable":"Experiencia laboral de 2 años en desarrollo web.\nComprensión del desarrollo front-end utilizando frameworks Angular y/o React.\nExperiencia con sistemas de control de versiones, como Git.\nConocimiento de metodologías ágiles de desarrollo y mejores prácticas.",
+        "aptitudes_plus":"Título en informática, ingeniería o un campo relacionado (o experiencia práctica equivalente).\nFamiliaridad con las API RESTful y su integración en aplicaciones web.",
+        "disponible": true,
+        "publico": true,
+        "privado": false
+    }
+]

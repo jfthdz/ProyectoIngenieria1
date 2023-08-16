@@ -13,7 +13,7 @@ module.exports = function(appCandidatos){
             res.send({message:"Hubo un error al obtener los datos de los candidatos"});            
         }
     });
-
+    
     appCandidatos.post("/candidatos/addCandidatos", async function(req,res){
         try {
             let fotoPerfilPath = null;
