@@ -287,6 +287,18 @@ function limpiarCamposRegistrarCandidato(){
 
 async function registrarCandidato(){
     const candidatoData = new FormData(document.querySelector("#form-registrar-candidato"));
+    
+    if(candidatoData.get("fotoPerfil").name === ""){
+        const fotoPorDefecto = "/images/fotoPerfilDefault.jpeg";
+        candidatoData.set("fotoPerfil", fotoPorDefecto);
+    }
+
+    const candidatoObjeto = {};
+    candidatoData.forEach((value, key)=>{
+        candidatoObjeto[key]=value;
+    });
+    console.log(candidatoObjeto);
+
     const url = "/candidatos/addCandidatos"
 
     try {
@@ -296,9 +308,8 @@ async function registrarCandidato(){
         });
 
         if(response.ok){
-            const datos = Object.entries(candidatoData.entries());
-            const jsonString = JSON.stringify(datos);
-            console.log(jsonString);
+            const datos = await response.json();
+            console.log(datos);
 
             var navBuscoEmpleo = document.querySelector("#nav-buscoempleo");
             var mensajeExito = document.querySelector("#mensajeExito");
@@ -453,7 +464,7 @@ function cargarFormularioModificarCandidato(){
         campoEmail.value = usuarioLoggeado.email;
         campoProfesion.value = usuarioLoggeado.profesion;
 
-        if(usuarioLoggeado.experiencia[0].cargo != ""){
+        if(usuarioLoggeado.experiencia.length > 0){
             var agregarExperiencia = document.getElementById("agregarExperiencia");
             var botonAgregarExperiencia = document.getElementById("boton-agregar-experiencia");
             botonAgregarExperiencia.disabled = true;
@@ -485,7 +496,7 @@ function cargarFormularioModificarCandidato(){
             }
         }
 
-        if(usuarioLoggeado.estudio[0].titulo != ""){
+        if(usuarioLoggeado.estudio.length > 0){
             var agregarEstudios = document.getElementById("agregarEstudios");
             var botonAgregarEstudio = document.getElementById("boton-agregar-estudios");
             botonAgregarEstudio.disabled = true;
@@ -578,14 +589,8 @@ function habilitarCamposModificarEstudios(){
 async function modificarCandidato(){
     const candidatoData = new FormData(document.querySelector("#form-modificar-candidato"));
     const usuarioLoggeado = obtenerDatosUsuario();
-    const _id = usuarioLoggeado._id;
+    const _id = usuarioLoggeado._id.toString();
     candidatoData.append("_id",_id);
-
-    const candidatoDataObject = {};
-    candidatoData.forEach((value, key) => {
-        candidatoDataObject[key] = value;
-    });
-    console.log(candidatoDataObject);
     
     const url = "/candidatos/updateCandidatos"
 
@@ -596,8 +601,8 @@ async function modificarCandidato(){
         });
 
         if(response.ok){
-            const datos = await response.json();
-            console.log(datos);
+            //Actualizamos el Candidato Modificado en el item del sessionStorage
+            almacenarDatosCandidatoModificado(_id);
 
             var navBuscoEmpleo = document.querySelector("#nav-buscoempleo");
             var mensajeExito = document.querySelector("#mensajeExito");
@@ -612,6 +617,33 @@ async function modificarCandidato(){
             setTimeout(function() {
                 mensajeExito.style.display = "none";
             }, 3500); 
+        }else{
+            console.log("Error al enviar los datos");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function almacenarDatosCandidatoModificado(candidatoId){
+    const url = "/candidatos/getCandidatoPorId"
+    const data = new FormData();
+    data.append("_id", candidatoId);
+
+    try {
+        const response = await fetch(url,{
+            body: data,
+            method: "POST"
+        });
+
+        if(response.ok){
+            const datos = await response.json();
+            const candidatoModificado = datos.candidatoEncontrado;
+            if(candidatoModificado){
+                sessionStorage.setItem("datosUsuarioLoggeado", JSON.stringify(candidatoModificado));
+            }else{
+                console.log("No se pudo actualizar el sessionStorage")
+            }
         }else{
             console.log("Error al enviar los datos");
         }

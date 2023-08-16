@@ -487,6 +487,7 @@ function cargarDatosUsuario() {
         var rutaFotoPeril;
     
         if (usuarioLoggeado) {
+            console.log(usuarioLoggeado.foto);
             var nombreUsuario = ""+usuarioLoggeado.nombre;
             var apellidoUsuario = ""+usuarioLoggeado.apellidos;
             var iniciales = `${nombreUsuario.slice(0,1)}${apellidoUsuario.slice(0,1)}`;
@@ -928,9 +929,13 @@ function eliminarDatosCandidatoSeleccionado(){
 
 function addFotoPerfil(rutaFoto){
     var fotoPerfilNav = document.querySelector("#divOpcionesNav img");
-
     fotoPerfilNav.style.display = "block";
-    fotoPerfilNav.src = rutaFoto;
+
+    const partes = rutaFoto.split("\\");
+    const indiceUploads = partes.indexOf("uploads");
+    const rutaCorredida = partes.slice(indiceUploads).join("/");
+
+    fotoPerfilNav.src = `/${rutaCorredida}`;
 }
 
 function addFotoPerfilModificarCandidato(rutaFoto){
