@@ -129,3 +129,43 @@ function habilitarCampoDescripcion(){
         agregarDescripcion.classList.add("mostrar");
       }, 100);    
 }
+
+// Modificar cuenta de empresa
+async function modificarCuentaEmpresa() {
+    const empresaData = new FormData(document.querySelector("#form-actualizar-empresa"));
+    const url = `/empresas/actualizarEmpresa/idDeLaEmpresa`; 
+    const empresaObject = {};
+
+    empresaData.forEach((value, key) => {
+        empresaObject[key] = value;
+    });
+
+    try {
+        const response = await fetch(url, {
+            body: JSON.stringify(empresaObject),
+            method: "post", 
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+        if (response.ok) {
+            const datos = await response.json();
+            console.log(datos);
+
+            // Manejar el éxito
+        } else {
+            console.log("Error al enviar los datos");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// Llama a la función modificarCuentaEmpresa cuando se envíe el formulario de modificación
+document.querySelector("#form-actualizar-empresa").addEventListener("submit", function(event) {
+    event.preventDefault();
+    if (validarFormularioModificarEmpresa()) {
+        modificarCuentaEmpresa();
+    }
+});

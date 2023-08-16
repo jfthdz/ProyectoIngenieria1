@@ -12,6 +12,20 @@ module.exports = function(appEmpresas){
         }
     });
 
+
+    appEmpresas.put("/empresas/actualizarEmpresa/:id", async function(req, res) {
+        try {
+            const empresaId = req.params.id;
+            const datosActualizados = req.body;
+            await model.updateEmpresa(empresaId, datosActualizados);
+            res.status(200).json({ message: "Empresa actualizada con éxito" });
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ message: "Hubo un error al actualizar la empresa" });
+        }
+    });
+
+
     appEmpresas.post("/empresas/addEmpresa", async function(req,res){
         try {
             const nuevaEmpresa = {

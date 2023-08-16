@@ -31,4 +31,19 @@ module.exports = function(){
             console.log(error);
         }
     }
+
+    this.updateEmpresa = async function(id, empresaData) {
+        try {
+            let connection = await mongodb.connect();
+            await connection.db().collection("Empresas").updateOne(
+                { _id: ObjectId(id) },
+                { $set: empresaData }
+            );
+            await connection.close();
+            console.log(`Empresa actualizada: ${empresaData}`);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
 }
