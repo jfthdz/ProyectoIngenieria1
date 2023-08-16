@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="../../css/styles.css" />
-    <link rel="shortcut icon" href="../../images/logo_tituloPagina.png" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="shortcut icon" href="/images/logo_tituloPagina.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,10 +18,10 @@
     <nav id="nav-buscoempleo" class="nav_buscoempleo nav">
       <a
         id="nav_logo-buscoempleo"
-        href="../unlogged/HomePageUnlogged.html"
+        href="/unlogged/HomePageUnlogged.html"
         class="nav_logo"
       >
-        <img src="../../images/buscoempleo.png" alt="" />
+        <img src="/images/buscoempleo.png" alt="" />
       </a>
       <div class="nav_barra-busqueda">
         <form
@@ -36,21 +36,19 @@
             placeholder="Buscar empleo..."
             name="barra-busqueda"
           />
-          <button type="submit"><img src="../../images/busqueda.png" /></button>
+          <button type="submit"><img src="/images/busqueda.png" /></button>
         </form>
       </div>
       <div id="divOpcionesNav">
-        <a id="opcionNav" href="../unlogged/inicioSesion.html"
-          >Iniciar sesión</a
-        >
+        <a id="opcionNav" href="/unlogged/inicioSesion.html">Iniciar sesión</a>
         <img
           id="img-perfil"
           class="imgFotoPerfil"
-          src="../../images/fotoPerfilDefault.jpeg"
+          src="/images/fotoPerfilDefault.jpeg"
           onclick="irModificarCuenta()"
         />
         <button onclick="cerrarSesion()">
-          <img src="../../images/logout.png" alt="Cerrar sesion" />
+          <img src="/images/logout.png" alt="Cerrar sesion" />
         </button>
       </div>
     </nav>
@@ -77,7 +75,7 @@
         </div>
         <h1>Modificar mi perfil</h1>
         <form
-          action="registrarCandidato()"
+          id="form-modificar-candidato"
           method="post"
           onsubmit="return validarFormularioModificar()"
         >
@@ -86,7 +84,7 @@
             <img
               id="img-perfil-modificar"
               class="imgFotoPerfil"
-              src="../../images/fotoPerfilDefault.jpeg"
+              src="/images/fotoPerfilDefault.jpeg"
               alt="Foto de perfil"
             />
             <label onclick="modificarImagen()" for="inputFotoPerfil"
@@ -131,52 +129,24 @@
             id="profesionCandidato"
           />
           <span id="errorProfesion" class="error"></span>
-          <button class="boton-registro" onclick="habilitarCamposExperiencia()">
+          <button
+            class="boton-registro"
+            id="boton-agregar-experiencia"
+            onclick="habilitarCamposModificarExperiencia()"
+          >
             Agregar experiencia
           </button>
-          <div id="agregarExperiencia">
-            <p id="tituloCargo">¿Qué cargo tuviste/tienes?</p>
-            <input
-              placeholder='Ej: "Diseñador(a)","Asistente","Coordinador(a)", etc'
-              type="text"
-              name="cargoExperienciaCadidato"
-            />
-            <p id="tituloEmpresa">Nombre de la empresa</p>
-            <input type="text" name="empresaExperienciaCandidato" />
-            <p id="tituloResponsabilidades">Tus logros y responsabilidades</p>
-            <textarea type="text" name="contenidoExperiencia"></textarea>
-            <p id="tituloFechaInicio">Fecha de inicio</p>
-            <input type="date" name="fechaInicioExperiencia" />
-            <p id="tituloFechaInicio">Fecha de finalización</p>
-            <input type="date" name="fechaFinalExperiencia" />
-            <button class="boton-registro" onclick="experienciaExtra()">
-              Agregar otra experiencia
-            </button>
-          </div>
+          <div id="agregarExperiencia" class="agregarExperiencia"></div>
           <h2>Estudios</h2>
           <p>Tu formación académica</p>
-          <button class="boton-registro" onclick="habilitarCamposEstudios()">
+          <button
+            class="boton-registro"
+            id="boton-agregar-estudios"
+            onclick="habilitarCamposModificarEstudios()"
+          >
             Agregar estudios
           </button>
-          <div id="agregarEstudios">
-            <p id="tituloEstudio">Título otorgado</p>
-            <input
-              placeholder='Ej: "Ingeniería","Bachillerato","Técnico", etc'
-              type="text"
-              name="tituloEstudiocandidato"
-            />
-            <p id="tituloInstitucion">
-              Nombre de institución en la que estudiaste
-            </p>
-            <input type="text" name="institucionEstudioCandidato" />
-            <p id="tituloFechaInicio">Fecha de inicio</p>
-            <input type="date" name="fechaInicioEstudio" />
-            <p id="tituloFechaInicio">Fecha de finalización</p>
-            <input type="date" name="fechaFinalExperiencia" />
-            <button class="boton-registro" onclick="estudiosExtra()">
-              Agregar más estudios
-            </button>
-          </div>
+          <div id="agregarEstudios" class="agregarEstudios"></div>
           <h2>Archivos</h2>
           <label for="inputCurriculum">Subir nuevo currículum</label>
           <input
@@ -187,7 +157,7 @@
           />
           <button id="botonCrearCuenta" type="submit">
             Guardar cambios
-            <img src="../../images/guardar-blanco.png" />
+            <img src="/images/guardar-blanco.png" />
           </button>
         </form>
       </div>
@@ -213,7 +183,8 @@
       </div>
       <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
     </footer>
-    <script src="../../js/funciones.js"></script>
+    <script src="/js/candidatoCliente.js"></script>
+    <script src="/js/funciones.js"></script>
     <script>
       cargarDatosUsuario();
       cargarFormularioModificarCandidato();
