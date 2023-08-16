@@ -16,6 +16,13 @@
             "fecha_inicio": "01/01/2021", 
             "fecha_final": "", 
             "actualmente": true
+        },
+        {
+            "cargo": "Analista de Datos",
+            "empresa": "Data Analytics Inc.",
+            "contenido": "Análisis de datos para tomar decisiones estratégicas...",
+            "fecha_inicio": "2020-03-15",
+            "fecha_final": "2022-01-15","actualmente":false
         }
     ],
     "estudio":[
