@@ -32,7 +32,7 @@ function validarFormularioCrearOferta() {
         }else{
             opcionPrivada.style.border = "0";
             opcionPublica.style.border = "0";
-            errorTituloOferta.style.display = "none";
+            errorEstado.style.display = "none";
         }
 
         if (tituloOferta.value === "") {
@@ -135,7 +135,13 @@ async function addPuesto(){
     const puestoData = new FormData(document.querySelector("#form-add-Puesto"));
     const url = "/puestos/addPuestos"
 
+    const empresaLoggeada = obtenerDatosEmpresa();
+    if(empresaLoggeada){
+        const empresaId = empresaLoggeada._id;
+        puestoData.append("empresaId",empresaId)
+    }
     puestoData.append("tipo",estadoOferta);
+    
     const puestoObject = {};
     puestoData.forEach((value, key) =>{
         puestoObject[key]= value;

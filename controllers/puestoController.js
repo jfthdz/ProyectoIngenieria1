@@ -19,6 +19,7 @@ module.exports = function(appPuestos){
 
             const nuevoPuesto = {
                 nombre: req.body.tituloOferta,
+                empresa_id: req.body.empresaId,
                 requisito_minimo: req.body.reqMinimos,
                 requisito_deseable: req.body.reqDeseables,
                 aptitudes_plus: req.body.plus,
