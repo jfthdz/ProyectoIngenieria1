@@ -1525,3 +1525,66 @@ a {
         margin: 0
     }
 }
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .user-list {
+    background-color: #494D5F;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    color: rgb(0, 0, 0);
+    width: 600px;
+  }
+  .user-header {
+    text-align: center;
+    margin-bottom: 15px;
+    color: white;
+  }
+  .user-box {
+    background-color: rgba(255, 255, 255, 0.333);
+    padding: 10px;
+    border-radius: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+    width: 370px;
+    margin: 0 auto;
+  }
+  .user-details {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  .user-title {
+    color: black;
+    font-weight: bold;
+    width: 100px;
+  }
+  .user-item {
+    display: flex;
+    flex-direction: column; /* Apila elementos verticalmente */
+    gap: 5px; /* Espacio entre elementos */
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+  }
+  .user-item:last-child {
+    border-bottom: none;
+  }
+  .user-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .delete-btn {
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+  }
+  .edit-btn {
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+  }
+  
