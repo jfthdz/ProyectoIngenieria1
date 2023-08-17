@@ -1,6 +1,7 @@
 //Variable global 
 let candidatoSeleccionado;
 let listaCandidatos = {};
+let listaPuestosPorEmpresa = {};
 
 // Validar formulario registrar empresa
 function validarFormularioEmpresa() {
@@ -425,5 +426,79 @@ function cargarDatosCandidato(){
         }
     } catch (error) {
         console.log(error);
+    }
+}
+
+async function cargarOfertasPorEmpresa(){
+    const url = "/puestos/findPuestosPorEmpresa"
+    const empresaLoggeada = obtenerDatosEmpresa();
+    const data = new FormData();
+    if(empresaLoggeada){
+        data.append("empresa_id",empresaLoggeada._id);
+    }
+    console.log(empresaLoggeada._id);
+    try {
+        const response = await fetch(url,{
+            body : data,
+            method : "POST"
+        });
+
+        if(response.ok){
+            listaPuestosPorEmpresa = await response.json();
+            if(listaPuestosPorEmpresa){
+                cargarOfertasCreadas(listaPuestosPorEmpresa);
+            }
+        }else{
+            console.log("Error al enviar los datos");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+function cargarOfertasCreadas(puestosPorEmpresa){
+    var contenidoOfertasCreadas = document.querySelector("#ofertas-creadas");
+
+    for(var puesto of puestosPorEmpresa){
+        var oferta = document.createElement("div");
+        var ofertaTitulo = document.createElement("h2");
+        var infoTitulo = document.createElement("div");
+        var ofertaRangoSalarial = document.createElement("p");
+        var ofertaFechaCreacion = document.createElement("p");
+        var ReqMinimoTitulo = document.createElement("h3");
+        var ofertaReqMinimo = document.createElement("p");
+        var ReqDeseableTitulo = document.createElement("h3");
+        var ofertaReqDeseable = document.createElement("p");
+        var PlusTitulo = document.createElement("h3");
+        var ofertaPlus = document.createElement("p");
+        var ofertaUbicacion = document.createElement("p");
+        
+        oferta.classList.add("descripcion-contenido");
+        infoTitulo.classList.add("info-titulo");
+
+        ofertaTitulo.innerText = puesto.nombre;
+        ofertaRangoSalarial.innerText = puesto.rango_salarial;
+        ofertaFechaCreacion.innerText = "Publicado el "+puesto.fecha_creacion;
+        ReqMinimoTitulo.innerText = "Requisitos mínimos";
+        ofertaReqMinimo.innerText = puesto.requisito_minimo;
+        ReqDeseableTitulo.innerText = "Requisitos deseables";
+        ofertaReqDeseable.innerText = puesto.requisito_deseable;
+        PlusTitulo.innerText = "Aptitudes plus";
+        ofertaPlus.innerText = puesto.aptitudes_plus;
+        ofertaUbicacion.innerText = "Ubicación: "+puesto.ubicacion_oferta;
+
+        oferta.appendChild(ofertaTitulo);
+        infoTitulo.appendChild(ofertaRangoSalarial);
+        infoTitulo.appendChild(ofertaFechaCreacion);
+        oferta.appendChild(infoTitulo);
+        oferta.appendChild(ReqMinimoTitulo);
+        oferta.appendChild(ofertaReqMinimo);
+        oferta.appendChild(ReqDeseableTitulo);
+        oferta.appendChild(ofertaReqDeseable);
+        oferta.appendChild(PlusTitulo);
+        oferta.appendChild(ofertaPlus);
+        oferta.appendChild(ofertaUbicacion);
+
+        contenidoOfertasCreadas.appendChild(oferta);
     }
 }

@@ -18,12 +18,25 @@ module.exports = function(appPuestos){
             await model.postPuestosporId(puestoId._id);
 
             console.log(puestoId);
-            res.send({message:"Candidato guardado con exito"});
+            res.send({message:"Puesto encontrado"});
             
         } catch (error) {
             console.log(error);
             console.log(req.body);
-            res.send({message:"Hubo un error al agregar el candidato"});
+            res.send({message:"Hubo un error al buscar el puesto"});
+        }
+    });
+
+    appPuestos.post("/puestos/findPuestosPorEmpresa", async function(req,res){
+        try {
+            const empresaId = { _id:req.body.empresa_id };
+            const puestosPorEmpresa = await model.findPuestosPorEmpresa(empresaId._id);
+
+            res.send(puestosPorEmpresa);
+        } catch (error) {
+            console.log(error);
+            console.log(req.body);
+            res.send({message:"Hubo un error al buscar los puestos"});
         }
     });
 }

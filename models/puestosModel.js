@@ -32,4 +32,16 @@ module.exports = function(){
             console.log(error);
         }
     }
+
+    this.findPuestosPorEmpresa = async function(empresaId){
+        try {
+            let connection = await mongodb.connect();
+            let puestos = await connection.db().collection("Puestos").find({empresa_id: empresaId}).toArray();
+            await connection.close();
+
+            return puestos;
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
