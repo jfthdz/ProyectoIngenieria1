@@ -6,6 +6,7 @@ const app=express();
 app.use(multer({}).any());
 
 const candidatoController = require("./controllers/candidatoController")(app);
+const puestoController = require("./controllers/puestoController")(app);
 
 const directorioEstaticos = path.join( __dirname, "views"); 
 app.use(express.static( directorioEstaticos ));
