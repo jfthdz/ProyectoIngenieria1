@@ -457,6 +457,7 @@ function cargarFormularioModificarCandidato(){
 
     if(usuarioLoggeado){
         rutaFotoPeril = usuarioLoggeado.foto
+        sessionStorage.setItem("rutaFotoPerfil", rutaFotoPeril);
         addFotoPerfilModificarCandidato(rutaFotoPeril);
         campoNombre.value = usuarioLoggeado.nombre;
         campoApellidos.value = usuarioLoggeado.apellidos;
@@ -465,64 +466,68 @@ function cargarFormularioModificarCandidato(){
         campoProfesion.value = usuarioLoggeado.profesion;
 
         if(usuarioLoggeado.experiencia.length > 0){
-            var agregarExperiencia = document.getElementById("agregarExperiencia");
-            var botonAgregarExperiencia = document.getElementById("boton-agregar-experiencia");
-            botonAgregarExperiencia.disabled = true;
+            if(usuarioLoggeado.experiencia[0].cargo != ""){
+                var agregarExperiencia = document.getElementById("agregarExperiencia");
+                var botonAgregarExperiencia = document.getElementById("boton-agregar-experiencia");
+                botonAgregarExperiencia.disabled = true;
 
-            for(let index=0; index < usuarioLoggeado.experiencia.length; index++){
-                var nuevaExperiencia = document.createElement("div");
-                nuevaExperiencia.classList.add("agregarExperiencia");
-                nuevaExperiencia.classList.add("mostrar");
-                nuevaExperiencia.style.display = "flex";
-                agregarExperiencia.classList.add("mostrar");
-                agregarExperiencia.style.display = "flex";
+                for(let index=0; index < usuarioLoggeado.experiencia.length; index++){
+                    var nuevaExperiencia = document.createElement("div");
+                    nuevaExperiencia.classList.add("agregarExperiencia");
+                    nuevaExperiencia.classList.add("mostrar");
+                    nuevaExperiencia.style.display = "flex";
+                    agregarExperiencia.classList.add("mostrar");
+                    agregarExperiencia.style.display = "flex";
 
-                nuevaExperiencia.innerHTML = `<p id="tituloCargo">Nombre del cargo</p>
-                                            <input placeholder='Ej: "Diseñador(a)","Asistente","Coordinador(a)", etc'
-                                            type="text" name="cargoExperienciaCandidato[]" value="${usuarioLoggeado.experiencia[index].cargo}"/>
-                                            <p id="tituloEmpresa">Nombre de la empresa</p>
-                                            <input type="text" name="empresaExperienciaCandidato[]" value="${usuarioLoggeado.experiencia[index].empresa}"/>
-                                            <p id="tituloResponsabilidades">Tus logros y responsabilidades</p>
-                                            <textarea type="text" name="contenidoExperiencia[]" rows="3">${usuarioLoggeado.experiencia[index].contenido}</textarea>
-                                            <p id="tituloFechaInicio">Fecha de inicio</p>
-                                            <input type="date" name="fechaInicioExperiencia[]" value="${usuarioLoggeado.experiencia[index].fecha_inicio}"/>
-                                            <p id="tituloFechaInicio">Fecha de finalización</p>
-                                            <input type="date" name="fechaFinalExperiencia[]" value="${usuarioLoggeado.experiencia[index].fecha_final}"/>
-                                            <button class="boton-registro" onclick="experienciaExtra()">
-                                            Agregar otra experiencia
-                                            </button>`;
-                
-                agregarExperiencia.appendChild(nuevaExperiencia);        
+                    nuevaExperiencia.innerHTML = `<p id="tituloCargo">Nombre del cargo</p>
+                                                <input placeholder='Ej: "Diseñador(a)","Asistente","Coordinador(a)", etc'
+                                                type="text" name="cargoExperienciaCandidato[]" value="${usuarioLoggeado.experiencia[index].cargo}"/>
+                                                <p id="tituloEmpresa">Nombre de la empresa</p>
+                                                <input type="text" name="empresaExperienciaCandidato[]" value="${usuarioLoggeado.experiencia[index].empresa}"/>
+                                                <p id="tituloResponsabilidades">Tus logros y responsabilidades</p>
+                                                <textarea type="text" name="contenidoExperiencia[]" rows="3">${usuarioLoggeado.experiencia[index].contenido}</textarea>
+                                                <p id="tituloFechaInicio">Fecha de inicio</p>
+                                                <input type="date" name="fechaInicioExperiencia[]" value="${usuarioLoggeado.experiencia[index].fecha_inicio}"/>
+                                                <p id="tituloFechaInicio">Fecha de finalización</p>
+                                                <input type="date" name="fechaFinalExperiencia[]" value="${usuarioLoggeado.experiencia[index].fecha_final}"/>
+                                                <button class="boton-registro" onclick="experienciaExtra()">
+                                                Agregar otra experiencia
+                                                </button>`;
+                    
+                    agregarExperiencia.appendChild(nuevaExperiencia);        
+                }
             }
         }
 
         if(usuarioLoggeado.estudio.length > 0){
-            var agregarEstudios = document.getElementById("agregarEstudios");
-            var botonAgregarEstudio = document.getElementById("boton-agregar-estudios");
-            botonAgregarEstudio.disabled = true;
+            if(usuarioLoggeado.estudio[0].titulo != ""){
+                var agregarEstudios = document.getElementById("agregarEstudios");
+                var botonAgregarEstudio = document.getElementById("boton-agregar-estudios");
+                botonAgregarEstudio.disabled = true;
 
-            for(let index=0; index < usuarioLoggeado.experiencia.length; index++){
-                var nuevoEstudio = document.createElement("div");
-                nuevoEstudio.classList.add("agregarExperiencia");
-                nuevoEstudio.classList.add("mostrar");
-                nuevoEstudio.style.display = "flex";
-                agregarEstudios.classList.add("mostrar");
-                agregarEstudios.style.display = "flex";
+                for(let index=0; index < usuarioLoggeado.experiencia.length; index++){
+                    var nuevoEstudio = document.createElement("div");
+                    nuevoEstudio.classList.add("agregarExperiencia");
+                    nuevoEstudio.classList.add("mostrar");
+                    nuevoEstudio.style.display = "flex";
+                    agregarEstudios.classList.add("mostrar");
+                    agregarEstudios.style.display = "flex";
 
-                nuevoEstudio.innerHTML = `<p id="tituloEstudio">Título otorgado</p>
-                                        <input placeholder='Ej: "Ingeniería","Bachillerato","Técnico", etc'
-                                        type="text" name="tituloEstudioCandidato[]" value="${usuarioLoggeado.estudio[index].titulo}"/>
-                                        <p id="tituloInstitucion">Nombre de la institución</p>
-                                        <input type="text" name="institucionEstudioCandidato[]" value="${usuarioLoggeado.estudio[index].institucion}"/>
-                                        <p id="tituloFechaInicio">Fecha de inicio</p>
-                                        <input type="date" name="fechaInicioEstudio[]" value="${usuarioLoggeado.estudio[index].fecha_inicio}"/>
-                                        <p id="tituloFechaInicio">Fecha de finalización</p>
-                                        <input type="date" name="fechaFinalEstudio[]" value="${usuarioLoggeado.estudio[index].fecha_final}"/>
-                                        <button class="boton-registro" onclick="estudiosExtra()">
-                                        Agregar más estudios
-                                        </button>`;
-                
-                agregarEstudios.appendChild(nuevoEstudio);        
+                    nuevoEstudio.innerHTML = `<p id="tituloEstudio">Título otorgado</p>
+                                            <input placeholder='Ej: "Ingeniería","Bachillerato","Técnico", etc'
+                                            type="text" name="tituloEstudioCandidato[]" value="${usuarioLoggeado.estudio[index].titulo}"/>
+                                            <p id="tituloInstitucion">Nombre de la institución</p>
+                                            <input type="text" name="institucionEstudioCandidato[]" value="${usuarioLoggeado.estudio[index].institucion}"/>
+                                            <p id="tituloFechaInicio">Fecha de inicio</p>
+                                            <input type="date" name="fechaInicioEstudio[]" value="${usuarioLoggeado.estudio[index].fecha_inicio}"/>
+                                            <p id="tituloFechaInicio">Fecha de finalización</p>
+                                            <input type="date" name="fechaFinalEstudio[]" value="${usuarioLoggeado.estudio[index].fecha_final}"/>
+                                            <button class="boton-registro" onclick="estudiosExtra()">
+                                            Agregar más estudios
+                                            </button>`;
+                    
+                    agregarEstudios.appendChild(nuevoEstudio);        
+                }
             }
         }
     }
@@ -592,6 +597,11 @@ async function modificarCandidato(){
     const _id = usuarioLoggeado._id.toString();
     candidatoData.append("_id",_id);
     
+    const rutaFoto = sessionStorage.getItem("rutaFotoPerfil")
+    if(candidatoData.get("fotoPerfil").name === ""){
+        candidatoData.set("fotoPerfil", rutaFoto);
+    }
+
     const url = "/candidatos/updateCandidatos"
 
     try {

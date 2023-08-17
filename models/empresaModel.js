@@ -26,7 +26,29 @@ module.exports = function(){
             await connection.db().collection("Empresas").insertOne(empresaData);
             await connection.close();
 
-            console.log(`Empresa agregada: ${empresaData}`);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    this.updateEmpresa = async function(empresaData, empresaId){
+        try {
+            let connection = await mongodb.connect();
+            await connection.db().collection("Empresas").updateOne({_id: new ObjectId(empresaId._id)},{$set:empresaData});
+            await connection.close();
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    this.getEmpresaPorId = async function(empresaId){
+        try {
+            let connection = await mongodb.connect();
+            let empresa = await connection.db().collection("Empresas").findOne({_id: new ObjectId(empresaId._id)});
+            await connection.close();
+
+            return empresa;
         } catch (error) {
             console.log(error);
         }

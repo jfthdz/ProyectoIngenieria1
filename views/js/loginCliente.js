@@ -55,6 +55,12 @@ async function buscarUsuario(){
     event.preventDefault();
     const loginData = new FormData(document.querySelector("#form-login"));
 
+    const loginObject = {};
+    loginData.forEach((value, key) =>{
+        loginObject[key]= value;
+    });
+    console.log(loginObject);
+
     const url = "/api/login";
     try {
         const response = await fetch(url,{
@@ -75,10 +81,6 @@ async function buscarUsuario(){
         }else if(response.status === 401){
             errorLogin.innerText = "Correo o contraseña incorrectos. Inténtelo nuevamente"
             errorLogin.style.display = "block";
-            setTimeout(function(){
-                errorLogin.innerText = "";
-                errorLogin.style.display = "none";
-            },3000);
         }else{
             console.log("Error al enviar los datos");
         }

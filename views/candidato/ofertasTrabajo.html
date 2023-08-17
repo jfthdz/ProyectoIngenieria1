@@ -73,12 +73,12 @@
     <section id="contenido">
       <div class="encabezado-contenido">
         <div class="vistaSingular_info">
-          <h1 id="titulo-puesto">Full stack developer .net</h1>
+          <h1 id="titulo-puesto"></h1>
           <div class="info-encabezado">
-            <h3 id="empresa-puesto">Cenfotec</h3>
+            <h3 id="empresa-puesto"></h3>
             <p id="fecha-puesto">Publicado el</p>
           </div>
-          <p id="empresa-rangoSalarial">¢ 1 a 1,5 millones</p>
+          <p id="empresa-rangoSalarial"></p>
           <div class="aplicar-contenido">
             <button class="boton-contenido" onclick="aplicarPuesto()">
               Aplicar a este puesto
@@ -127,10 +127,11 @@
       </div>
       <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
     </footer>
-    <script src="../../js/funciones.js"></script>
+    <script src="/js/funciones.js"></script>
+    <script src="/js/puestosCliente.js"></script>
     <script>
+      obtenerEmpresas();
       cargarDatosUsuario();
-      cargarDatosOferta();
     </script>
   </body>
 </html>
