@@ -468,22 +468,6 @@ function validarFormularioEmpresa() {
     }
 }
 
-
-
-function limpiarCamposCrearOferta(){
-    var tituloOferta = document.getElementById("tituloOferta");
-    var descripcionOferta = document.getElementById("descripcionOferta");
-    var rangoInicialOferta = document.getElementById("rangoInicialOferta");
-    var rangoMaximoOferta = document.getElementById("rangoMaximoOferta");
-    var ubicacionOferta = document.getElementById("ubicacionOferta");
-
-    tituloOferta.value = "";
-    descripcionOferta.value = "";
-    rangoInicialOferta.value = "";
-    rangoMaximoOferta.value = "";
-    ubicacionOferta.value = "";
-}
-
 //Validar formulario modificar empresa
 function validarFormularioModificarEmpresa() {
     try {

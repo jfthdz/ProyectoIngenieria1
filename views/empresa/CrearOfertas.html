@@ -85,22 +85,50 @@
         </div>
         <h1>Crear oferta laboral</h1>
         <form
-        id="form-add-Puesto"
+          id="form-add-Puesto"
           action="registrarCrearEmpresa()"
           method="post"
           onsubmit="return validarFormularioCrearOferta()"
         >
           <h2>Datos necesarios</h2>
+          <div class="container-opciones">
+            <label
+              class="opcionEstado"
+              onclick="cambiarEstado('publico')"
+              for="publico"
+            >
+              Pública
+            </label>
+            <label
+              class="opcionEstado"
+              onclick="cambiarEstado('privado')"
+              for="privado"
+            >
+              Privada
+            </label>
+          </div>
+          <span id="errorEstado" class="error"></span>
           <p>Título</p>
           <input type="text" name="tituloOferta" id="tituloOferta" />
           <span id="errorTituloOferta" class="error"></span>
-          <p>Descripción</p>
+          <p>Requisitos mínimos</p>
           <textarea
             type="text"
-            name="descripcionOferta"
-            id="descripcionOferta"
+            name="reqMinimos"
+            id="reqMinimos"
+            rows="1"
           ></textarea>
-          <span id="errorDescripcionOferta" class="error"></span>
+          <span id="errorReqMinimos" class="error"></span>
+          <p>Requisitos deseables</p>
+          <textarea
+            type="text"
+            name="reqDeseables"
+            id="reqDeseables"
+          ></textarea>
+          <span id="errorReqDeseables" class="error"></span>
+          <p>Aptitudes plus</p>
+          <textarea type="text" name="plus" id="plus"></textarea>
+          <span id="errorPlus" class="error"></span>
           <p>Rango salarial</p>
           <input
             type="text"

@@ -14,13 +14,20 @@ module.exports = function(appPuestos){
 
     appPuestos.post("/puestos/addPuestos", async function(req,res){
         try {
-            //Utilizar el HTLM de CrearOfertas como base 
+            const fechaActual = new Date();
+            const fechaFormato = fechaActual.toISOString().split('T')[0];
+
             const nuevoPuesto = {
-                tituloOferta: req.body.tituloOfertaPuesto,
-                descripcionOferta: req.body.descripcionOfertaPuesto,
-                rangoInicialOferta: req.body.rangoInicialOfertaPuesto,
-                rangoMaximoOferta: req.body.erangoMaximoOfertaPuesto,
-                ubicacionOferta: req.body.ubicacionOfertaPuesto
+                nombre: req.body.tituloOferta,
+                requisito_minimo: req.body.reqMinimos,
+                requisito_deseable: req.body.reqDeseables,
+                aptitudes_plus: req.body.plus,
+                rango_salarial: `¢ ${req.body.rangoInicialOferta} a ${req.body.rangoMaximoOferta}`,
+                ubicacion_oferta: req.body.ubicacionOferta,
+                fecha_creacion : fechaFormato,
+                disponible : true,
+                tipo: req.body.tipo,
+                aplicantes: []
             }; 
 
             await model.postPuesto(nuevoPuesto);
@@ -34,6 +41,7 @@ module.exports = function(appPuestos){
             res.send({message:"Hubo un error al agregar el Puesto"});
         }
     });
+
     appPuestos.post("/puestos/updatePuestos", async function(req,res){
         try {
             //Utilizar el HTLM de CrearOfertas como base 

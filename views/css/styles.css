@@ -8,6 +8,10 @@ a {
     text-decoration: none;
 }
 
+input[type="radio"] {
+    display: none; /* Oculta los radio buttons originales */
+}
+
 /* Paleta de colores BitByte */
 :root {
     --lightblue: #A0D2EB;
@@ -1271,6 +1275,16 @@ font-size:large;
     opacity: 90%;
     cursor: pointer;
 }
+
+.container-opciones{
+    display: flex;
+    gap: 10px;
+}
+
+.opcionEstado{
+    flex-grow: 1;
+}
+
 @media only screen and (max-width: 820px) {
     .nav_logo h1{
         display: none;
