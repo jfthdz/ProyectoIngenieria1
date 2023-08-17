@@ -87,6 +87,7 @@
           action="registrarEmpresa()"
           method="post"
           onsubmit="return validarFormularioModificarEmpresa()"
+          id="form-modificar-empresa"
         >
           <div class="subir-foto">
             <p>Foto de perfil de mi empresa</p>
@@ -114,8 +115,12 @@
           <input type="text" name="emailEmpresa" id="emailEmpresa" />
           <span id="errorEmailEmpresa" class="error"></span>
           <h2>Descripción de mi empresa</h2>
-          <button class="boton-registro" onclick="habilitarCampoDescripcion()">
-            Modificar descripción
+          <button
+            class="boton-registro"
+            id="boton-agregar-descripcion"
+            onclick="habilitarCampoDescripcion()"
+          >
+            Agregar descripción
           </button>
           <div id="agregarDescripcion">
             <p id="tituloDescripcion">Descripción sobre mi empresa</p>
@@ -150,6 +155,7 @@
       <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
     </footer>
     <script src="../../js/funciones.js"></script>
+    <script src="../../js/empresaCliente.js"></script>
     <script>
       cargarDatosEmpresa();
       cargarFormularioModificarEmpresa();

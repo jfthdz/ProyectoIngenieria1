@@ -73,12 +73,29 @@ module.exports = function(appCandidatos){
 
     appCandidatos.post("/candidatos/updateCandidatos", async function(req,res){
         try {
+            let fotoPerfilPath = null;
+            let curriculumPath = null;
+            if(req.files.length > 0){
+                const fotoPerfil = req.files[0].filename;
+                fotoPerfilPath = path.join(__dirname, "../views/uploads", fotoPerfil);
+                fs.renameSync(req.files[0].path, fotoPerfilPath);
+            }
+            if(req.files.length > 1){
+                const curriculum = req.files[1].filename;
+                curriculumPath = path.join(__dirname, "../views/uploads", curriculum);
+                fs.renameSync(req.files[1].path, curriculumPath);
+            }
+
+            console.log(req.files);
+            console.log("files length: "+req.files.length);
+            console.log("fotoPerfilPath: "+ fotoPerfilPath);
+
             const candidatoId = { _id: req.body._id };
             const nuevoCandidato = {
                 nombre: req.body.nombreCandidato,
                 apellidos: req.body.apellidosCandidato,
                 email: req.body.emailCandidato,
-                foto: req.body.fotoPerfil,
+                foto: fotoPerfilPath ? fotoPerfilPath : req.body.fotoPerfil,
                 genero: req.body.generoCandidato,
                 profesion: req.body.profesionCandidato,
                 experiencia: req.body.cargoExperienciaCandidato ? req.body.cargoExperienciaCandidato.map((cargo, index) => {
@@ -102,7 +119,7 @@ module.exports = function(appCandidatos){
 
             await model.updateCandidatos(nuevoCandidato, candidatoId);
 
-            //console.log(nuevoCandidato);
+            console.log(nuevoCandidato);
             res.send({message:"Perfil modificado con exito", candidatoData: nuevoCandidato});
             
         } catch (error) {

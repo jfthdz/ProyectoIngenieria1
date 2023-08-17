@@ -12,7 +12,7 @@ module.exports = function(){
     this.findEmpresaByEmail = async function(email, password){
         try {
             let connection = await mongodb.connect();
-            let empresa = await connection.db().collection("Empresas").findOne({email: email, password: password});
+            let empresa = await connection.db().collection("Empresas").findOne({correo: email, password: password});
             await connection.close();
 
             return empresa ? empresa : false;
