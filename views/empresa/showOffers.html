@@ -77,41 +77,10 @@
         </ul>
       </div>
     </header>
+
     <div id="contenido">
-      <div class="contenedor">
-        <h1>Ofertas creadas</h1>
-        <div class="oferta">
-          <div class="descripcion-contenido">
-            <h2 class="titulo">Asistente Administrativo</h2>
-            <span class="subtitulo">Descripción</span>
-            <p class="texto">
-              Buscamos un asistente administrativo para brindar apoyo en tareas
-              administrativas y de oficina. Las responsabilidades incluyen la
-              gestión de documentos, coordinación de reuniones, atención
-              telefónica y asistencia en la preparación de informes. Requisitos:
-              diploma de escuela secundaria, habilidades de comunicación
-              efectivas y dominio de herramientas de oficina. Se valorará
-              experiencia previa en roles administrativos. Ubicación: Ciudad
-              ABC. Interesados enviar CV a careers@xyzcompany.com.
-            </p>
-          </div>
-          <div class="descripcion-contenido">
-            <h2 class="titulo">Desarrollador de software</h2>
-            <span class="subtitulo">Descripción</span>
-            <p class="texto">
-              Estamos buscando un desarrollador de software altamente talentoso
-              y motivado para unirse a nuestro equipo. Serás responsable de
-              diseñar, desarrollar y mantener aplicaciones de software según los
-              requisitos del cliente. Requisitos: título universitario en
-              informática o campo relacionado, sólidos conocimientos en
-              lenguajes de programación como Java o Python, experiencia en
-              desarrollo web y habilidades de resolución de problemas.
-              Ubicación: Ciudad XYZ. Interesados enviar CV y muestras de trabajo
-              a jobs@abccorp.com.!
-            </p>
-          </div>
-        </div>
-      </div>
+      <h1>Ofertas creadas</h1>
+      <div id="ofertas-creadas"></div>
     </div>
 
     <footer id="footer_buscoempleo" class="footer">
@@ -135,9 +104,11 @@
       </div>
       <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
     </footer>
-    <script src="../../js/funciones.js"></script>
+    <script src="/js/funciones.js"></script>
+    <script src="/js/empresaCliente.js"></script>
     <script>
       cargarDatosEmpresa();
+      cargarOfertasPorEmpresa();
     </script>
   </body>
 </html>

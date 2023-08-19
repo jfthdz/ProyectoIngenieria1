@@ -1,4 +1,3 @@
-var codigoVerificacion;
 var ofertaSeleccionada;
 
 //Smooth scroll del nav_menu en LandingPage Bitbyte
@@ -109,114 +108,6 @@ function validarFormularioInvitarCandidato() {
     }
 }
 
-function validarCampoCorreo(){
-    try {
-        event.preventDefault();
-        var emailCandidato = document.getElementById("emailCandidato");
-        var errorEmailCandidato = document.getElementById("errorEmailCandidato");
-        var camposIncompletos = false;
-        //expresión regular para validar formato de correo
-        var regexEmail = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
-
-        if (emailCandidato.value === "") {
-            emailCandidato.style.border = "1px solid var(--redError)";
-            errorEmailCandidato.innerText = "*Campo necesario";
-            errorEmailCandidato.style.display = "block";
-            camposIncompletos = true;
-        } else if(regexEmail.test(emailCandidato.value)==false){
-            emailCandidato.style.border = "1px solid var(--redError)";
-            errorEmailCandidato.innerText = "*Ingrese un correo válido";
-            errorEmailCandidato.style.display = "block";
-            camposIncompletos = true;
-        }else{
-            emailCandidato.style.border = "0";
-            errorEmailCandidato.innerText = "";
-            errorEmailCandidato.style.display = "none";
-            camposIncompletos = false;
-        }
-
-        if (camposIncompletos) {
-            return false;
-        }else{
-            enviarCodigoVerificacion();
-        }
-        
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-function validarCamposNuevoPassword(){
-    try {
-        event.preventDefault();
-        var campoCodigoVerificacion = document.getElementById("codigoVerificacion");
-        var errorCodigoVerificacion = document.getElementById("errorCodigoVerificacion");
-        var nuevoPassword = document.getElementById("nuevoPassword");
-        var errorNuevoPassword = document.getElementById("errorNuevoPassword");
-        var camposIncompletos = false;
-
-        if (campoCodigoVerificacion.value === "") {
-            campoCodigoVerificacion.style.border = "1px solid var(--redError)";
-            errorCodigoVerificacion.innerText = "*Campo necesario";
-            errorCodigoVerificacion.style.display = "block";
-            camposIncompletos = true;
-        } else {
-            campoCodigoVerificacion.style.border = "0";
-            errorCodigoVerificacion.innerText = "";
-            errorCodigoVerificacion.style.display = "none";
-            camposIncompletos = false;
-        }
-
-        if (nuevoPassword.value === "") {
-            nuevoPassword.style.border = "1px solid var(--redError)";
-            errorNuevoPassword.innerText = "*Campo necesario";
-            errorNuevoPassword.style.display = "block";
-            camposIncompletos = true;
-        } else {
-            nuevoPassword.style.border = "0";
-            errorNuevoPassword.innerText = "";
-            errorNuevoPassword.style.display = "none";
-            camposIncompletos = false;
-        }
-
-        if (camposIncompletos) {
-            return false;
-        }else{
-            if (campoCodigoVerificacion.value !== codigoVerificacion.toString()) {
-                campoCodigoVerificacion.style.border = "1px solid var(--redError)";
-                errorCodigoVerificacion.innerText = "*Código de verificación incorrecto";
-                errorCodigoVerificacion.style.display = "block";
-                camposIncompletos = true;
-            } else if(campoCodigoVerificacion.value === codigoVerificacion.toString()) {
-                var mensajeExito = document.querySelector("#mensajeExito");
-                mensajeExito.style.display = "flex";
-                setTimeout(function() {
-                    mensajeExito.classList.add("mostrar");
-                }, 100); 
-                limpiarCamposNuevoPassword();
-                setTimeout(function() {
-                    mensajeExito.classList.remove("mostrar");
-                }, 3000); 
-                setTimeout(function() {
-                    mensajeExito.style.display = "none";
-                }, 3500); 
-            }
-        }
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-function limpiarCamposNuevoPassword(){
-    var campoCodigoVerificacion = document.getElementById("codigoVerificacion");
-    var nuevoPassword = document.getElementById("nuevoPassword");
-    var emailCandidato = document.getElementById("emailCandidato");
-
-    campoCodigoVerificacion.value = "";
-    nuevoPassword.value = "";
-    emailCandidato.value = "";
-}
-
 function limpiarCamposInvitarCandidato(){
     var nombreCandidato = document.getElementById("nombreCandidato");
     var emailCandidato = document.getElementById("emailCandidato");
@@ -225,30 +116,6 @@ function limpiarCamposInvitarCandidato(){
     nombreCandidato.value = "";
     emailCandidato.value = "";
     rolCandidato.value = "default";
-}
-
-//Validar barra de busqueda vacia en el HomePage
-function validarBusquedaHomePage(){
- /*   try {
-        var formulario = document.getElementById("barraBusquedaForm");
-        var barraBusqueda = document.querySelector("input[name=barra-busqueda]");
-        var errorBusqueda = document.querySelector("#errorBusqueda");
-
-        if(barraBusqueda.value === ""){
-            formulario.classList.add("borde-rojo");
-            errorBusqueda.innerText = "*Campo necesario";
-            errorBusqueda.style.display = "block";
-            setTimeout(function() {
-                formulario.classList.remove("borde-rojo");
-                errorBusqueda.innerText = "";
-                errorBusqueda.style.display = "none";
-            }, 2000);  
-            return false;
-        }
-        return true;
-    } catch (error) {
-        console.log(error);
-    } */
 }
 
 function cargarDatosUsuario() {
@@ -459,16 +326,6 @@ function cerrarSesion(){
     sessionStorage.removeItem("datosUsuarioLoggeado");
     sessionStorage.removeItem("datosEmpresaLoggeada");
     location.href = "../unlogged/HomePageUnlogged.html";
-}
-
-function enviarCodigoVerificacion(){
-    codigoVerificacion = obtenerCodigoVerificacion();
-    alert(`Código de verificación: ${codigoVerificacion}`);
-}
-
-function obtenerCodigoVerificacion(){
-    var codigo = Math.floor(Math.random()*90000);
-    return codigo;
 }
 
 function aplicarPuesto(){

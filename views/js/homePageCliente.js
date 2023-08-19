@@ -11,7 +11,6 @@ async function obtenerEmpresas(){
 
         if(response.ok){
             listaEmpresas = await response.json();
-            console.log(listaEmpresas);
         }else{
             console.log("Error al enviar los datos");
         }
@@ -28,7 +27,6 @@ async function cargarCandidatos(){
 
         if(response.ok){
             listaCandidatos = await response.json();
-            console.log(listaCandidatos);
             cargarDatosCandidatosHomePage(listaCandidatos);
         }else{
             console.log("Error al enviar los datos");

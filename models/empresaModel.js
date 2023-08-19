@@ -13,7 +13,6 @@ module.exports = function(){
             let empresas = await connection.db().collection("Empresas").find().toArray();
             await connection.close();
 
-            console.log(empresas);
             return empresas;
         } catch (error) {
             console.log(error);

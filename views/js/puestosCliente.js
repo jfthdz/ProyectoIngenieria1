@@ -1,6 +1,40 @@
 let listaOfertas = {};
 let listaEmpresas = {};
 
+window.addEventListener("DOMContentLoaded", function(){
+    if(this.window.location.pathname.endsWith("mostrarOfertasTrabajo.html")){
+        const terminoBusqueda = new URLSearchParams(this.window.location.search).get("barra-busqueda");
+        if(terminoBusqueda){
+            console.log("encontro busqueda");
+            obtenerPuestosPorBusqueda(terminoBusqueda);
+        }else{
+            obtenerPuestos();
+        }
+    }
+});
+
+async function obtenerPuestosPorBusqueda(terminoBusqueda){
+    const url = `/puestos/getPuestosBySearch?search=${encodeURIComponent(terminoBusqueda)}`;
+
+    try {
+        const response = await fetch(url);
+
+        if(response.status === 200){
+            listaOfertas = await response.json();
+            setTimeout(function() {
+                cargarMostrarOfertas(listaOfertas);
+            }, 100);
+            console.log(busqueda);
+        }else if(response.status === 204){
+            resultNotFound();
+        }else{
+            console.log("Error al enviar los datos");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 async function obtenerPuestos(){
     const url = "/puestos/getPuestos"
 
@@ -9,15 +43,29 @@ async function obtenerPuestos(){
 
         if(response.ok){
             listaOfertas = await response.json();
-            console.log(listaOfertas);
-            cargarMostrarOfertas(listaOfertas);
-
+            setTimeout(function() {
+                cargarMostrarOfertas(listaOfertas);
+            }, 100);
         }else{
             console.log("Error al enviar los datos");
         }
     } catch (error) {
         console.log(error);
     }
+}
+
+function resultNotFound(){
+    const tituloPag = document.querySelector("#titulo-mostrar-ofertas");
+    const contenidoOpciones = document.querySelector("#contenido > div");
+    const notFound = document.createElement("h3");
+    const txt = document.createElement("p");
+
+    tituloPag.innerText = "";
+    notFound.innerText = "No hay ninguna oferta laboral que coincida con tu búsqueda...";
+    txt.innerText = "Por favor inténtalo de nuevo cambiando tu búsqueda.";
+
+    contenidoOpciones.appendChild(notFound);
+    contenidoOpciones.appendChild(txt);
 }
 
 async function obtenerEmpresas(){
@@ -28,7 +76,6 @@ async function obtenerEmpresas(){
 
         if(response.ok){
             listaEmpresas = await response.json();
-            console.log(listaEmpresas);
         }else{
             console.log("Error al enviar los datos");
         }
@@ -112,6 +159,7 @@ async function cargarDatosOferta(){
         var empresaPuesto = document.querySelector("#empresa-puesto");
         var fechaPuesto = document.querySelector("#fecha-puesto");
         var empresaRangoSalarial = document.querySelector("#empresa-rangoSalarial");
+        var ubicacionPuesto = document.querySelector("#ubicacion-puesto");
         var imgPerfilEmpresa = document.querySelector("#img-perfil-contenido");
         let nombreEmpresa;
         
@@ -120,40 +168,37 @@ async function cargarDatosOferta(){
         var contenidoPlus = document.querySelector("#contenido-plus");
     
         var puesto = obtenerDatosOfertaSeleccionada();
-        console.log(puesto);
 
-        if(puesto){
-            const empresaEncontrada = await listaEmpresas.find(empresa => empresa._id == puesto.empresa_id);
-
-            if(empresaEncontrada){
-                console.log(empresaEncontrada);
-                nombreEmpresa = empresaEncontrada.nombre;
-                const src = empresaEncontrada.foto;
-                if(src.startsWith("/images/")){
-                    imgPerfilEmpresa.src = empresaEncontrada.foto;
-                }else{
-                    const partes = src.split("\\");
-                    const indiceUploads = partes.indexOf("uploads");
-                    const rutaCorredida = partes.slice(indiceUploads).join("/");
-
-                    imgPerfilEmpresa.src = `/${rutaCorredida}`;
-                } 
+        setTimeout(function() {
+            if(puesto){
+                const empresaEncontrada = listaEmpresas.find(empresa => empresa._id == puesto.empresa_id);
+    
+                if(empresaEncontrada){
+                    nombreEmpresa = empresaEncontrada.nombre;
+                    const src = empresaEncontrada.foto;
+                    if(src.startsWith("/images/")){
+                        imgPerfilEmpresa ? imgPerfilEmpresa.src = empresaEncontrada.foto : false;
+                    }else{
+                        const partes = src.split("\\");
+                        const indiceUploads = partes.indexOf("uploads");
+                        const rutaCorredida = partes.slice(indiceUploads).join("/");
+    
+                        imgPerfilEmpresa ? imgPerfilEmpresa.src = `/${rutaCorredida}` : false;
+                    } 
+                }
+    
+                tituloPuesto.innerText = puesto.nombre;
+                empresaPuesto.innerText = "Empresa: "+nombreEmpresa;
+                fechaPuesto.innerText += "Publicado el "+puesto.fecha_creacion;
+                empresaRangoSalarial.innerText = puesto.rango_salarial;
+                ubicacionPuesto.innerText = puesto.ubicacion_oferta;
+    
+                contenidoReqMinimo.innerText = puesto.requisito_minimo;
+                contenidoReqDeseables.innerText = puesto.requisito_deseable;
+                contenidoPlus.innerText = puesto.aptitudes_plus;
             }
-
-            tituloPuesto.innerText = puesto.nombre;
-            empresaPuesto.innerText = nombreEmpresa;
-            fechaPuesto.innerText += " "+puesto.fecha_creacion;
-            empresaRangoSalarial.innerText = puesto.rango_salarial;
-
-            contenidoReqMinimo.innerText = puesto.requisito_minimo;
-            contenidoReqDeseables.innerText = puesto.requisito_deseable;
-            contenidoPlus.innerText = puesto.aptitudes_plus;
-        }
+          }, 100); 
     } catch (error) {
         console.log(error);
     }
 }
-
-setTimeout(function() {
-    cargarDatosOferta();
-}, 90); 
