@@ -74,11 +74,16 @@
       <div class="encabezado-contenido">
         <div class="vistaSingular_info">
           <h1 id="titulo-puesto"></h1>
-          <div class="info-encabezado">
-            <h3 id="empresa-puesto"></h3>
-            <p id="fecha-puesto">Publicado el</p>
+          <div id="grid-info-puesto">
+            <div>
+              <p id="empresa-puesto"></p>
+              <p id="empresa-rangoSalarial"></p>
+            </div>
+            <div>
+              <p id="fecha-puesto"></p>
+              <p id="ubicacion-puesto"></p>
+            </div>
           </div>
-          <p id="empresa-rangoSalarial"></p>
           <div class="aplicar-contenido">
             <button class="boton-contenido" onclick="aplicarPuesto()">
               Aplicar a este puesto
@@ -132,6 +137,7 @@
     <script>
       obtenerEmpresas();
       cargarDatosUsuario();
+      cargarDatosOferta();
     </script>
   </body>
 </html>

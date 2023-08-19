@@ -1,62 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <link rel="shortcut icon" href="../../images/logo_tituloPagina.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <title>Busco Empleo</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="stylesheet" href="../../css/styles.css" />
-  <link rel="shortcut icon" href="../../images/logo_tituloPagina.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap"
-    rel="stylesheet" />
-  <title>Busco Empleo</title>
-</head>
+  <body>
+    <nav class="nav_buscoempleo nav">
+      <a
+        id="nav_logo-buscoempleo"
+        href="../unlogged/HomePageUnlogged.html"
+        class="nav_logo"
+      >
+        <img src="../../images/buscoempleo.png" alt="" />
+      </a>
+      <div class="nav_barra-busqueda">
+        <form
+          id="barraBusquedaForm"
+          action=""
+          method="get"
+          class="barra-busqueda"
+          onsubmit="return validarBusquedaHomePage()"
+        >
+          <input
+            type="text"
+            placeholder="Buscar empleo..."
+            name="barra-busqueda"
+          />
+          <button type="submit"><img src="../../images/busqueda.png" /></button>
+        </form>
+      </div>
+      <div id="divOpcionesNav">
+        <a id="opcionNav" href="../unlogged/inicioSesion.html"
+          >Iniciar sesión</a
+        >
+        <img
+          id="img-perfil"
+          class="imgFotoPerfil"
+          src="../../images/fotoPerfilDefault.jpeg"
+          onclick="irModificarCuenta()"
+        />
+        <button onclick="cerrarSesion()">
+          <img src="../../images/logout.png" alt="Cerrar sesion" />
+        </button>
+      </div>
+    </nav>
+    <header id="sub-menu" class="sub-header">
+      <div class="options">
+        <ul>
+          <li>
+            <a href="../candidato/monstrarAplicacionesHechas.html"
+              >Mis aplicaciones</a
+            >
+          </li>
+          <li>
+            <a href="../candidato/revisarInvitacionesTrabajo.html"
+              >Invitaciones</a
+            >
+          </li>
+        </ul>
+      </div>
+    </header>
 
-<body>
-  <nav class="nav_buscoempleo nav">
-    <a id="nav_logo-buscoempleo" href="../unlogged/HomePageUnlogged.html" class="nav_logo">
-      <img src="../../images/buscoempleo.png" alt="" />
-    </a>
-    <div class="nav_barra-busqueda">
-      <form id="barraBusquedaForm" action="" method="get" class="barra-busqueda"
-        onsubmit="return validarBusquedaHomePage()">
-        <input type="text" placeholder="Buscar empleo..." name="barra-busqueda" />
-        <button type="submit"><img src="../../images/busqueda.png" /></button>
-      </form>
-    </div>
-    <div id="divOpcionesNav">
-      <a id="opcionNav" href="../unlogged/inicioSesion.html">Iniciar sesión</a>
-      <img id="img-perfil" class="imgFotoPerfil" src="../../images/fotoPerfilDefault.jpeg"
-        onclick="irModificarCuenta()" />
-      <button onclick="cerrarSesion()">
-        <img src="../../images/logout.png" alt="Cerrar sesion" />
-      </button>
-    </div>
-  </nav>
-  <header id="sub-menu" class="sub-header">
-    <div class="options">
-      <ul>
-        <li>
-          <a href="../candidato/monstrarAplicacionesHechas.html">Mis aplicaciones</a>
-        </li>
-        <li>
-          <a href="../candidato/revisarInvitacionesTrabajo.html">Invitaciones</a>
-        </li>
-      </ul>
-    </div>
-  </header>
-
-  <section id="contenido">
-    <section id="contenido12">
+    <section id="contenido">
+      <h1>Anuncios de empleos</h1>
       <div id="encabezadoContenido12">
-        <div id="listadoPostulaciones2">
-          <h3>Anuncios de empleos</h3>
-        </div>
-
-
-
         <div id="ordenarPor2">
           <label for="ordenar2">Ordenar</label>
           <select name="ordenar2" id="ordenar2">
@@ -65,15 +83,12 @@
           </select>
         </div>
 
-
-
         <div id="buscar2">
           Buscar
           <input type="text" name="buscar2" placeholder="Buscar por" />
         </div>
 
         <button class="btn primary">Buscar</button>
-
       </div>
       <div id="contenidocentral12">
         <table class="modern-table">
@@ -163,51 +178,53 @@
       </div>
       <!--#contenidocentral12-->
     </section>
-  </section>
 
-  <script>
-    function aplicarInvitacion() {
-      // Lógica para aplicar a la invitación
-      alert("Aplicar a la invitación");
-    }
+    <script>
+      function aplicarInvitacion() {
+        // Lógica para aplicar a la invitación
+        alert("Aplicar a la invitación");
+      }
 
-    function rechazarInvitacion() {
-      // Lógica para rechazar la invitación
-      alert("Rechazar la invitación");
-    }
+      function rechazarInvitacion() {
+        // Lógica para rechazar la invitación
+        alert("Rechazar la invitación");
+      }
 
-    function verDetalle() {
-      // Lógica para ver el detalle de la oferta
-      alert("Ver detalle");
-    }
+      function verDetalle() {
+        // Lógica para ver el detalle de la oferta
+        alert("Ver detalle");
+      }
 
-    function irAPagina() {
-      // Lógica para ir a una página específica
-      alert("Ir a la página");
-    }
-  </script>
+      function irAPagina() {
+        // Lógica para ir a una página específica
+        alert("Ir a la página");
+      }
+    </script>
 
-  <footer id="footer_buscoempleo" class="footer">
-    <div class="footer_first">
-      <a href="../unlogged/HomePageUnlogged.html" id="footer_logo-buscoempleo" class="footer_logo">
-        <img src="../../images/buscoempleonegro.png" />
-      </a>
-      <a href="../landingpageBuscoEmpleo/producto.html">
-        <p>Acerca de Busco Empleo</p>
-      </a>
-    </div>
-    <div class="footer_first">
-      <a href="../landingpageBitbyte/index.html" class="footer_logo">
-        <img src="../../images/logo_nombre.jpg" />
-      </a>
-      <p>+506 2222-2222 | bitbyte@gmail.com</p>
-    </div>
-    <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
-  </footer>
-  <script src="../../js/funciones.js"></script>
-  <script>
-    cargarDatosUsuario();
-  </script>
-</body>
-
+    <footer id="footer_buscoempleo" class="footer">
+      <div class="footer_first">
+        <a
+          href="../unlogged/HomePageUnlogged.html"
+          id="footer_logo-buscoempleo"
+          class="footer_logo"
+        >
+          <img src="../../images/buscoempleonegro.png" />
+        </a>
+        <a href="../landingpageBuscoEmpleo/producto.html">
+          <p>Acerca de Busco Empleo</p>
+        </a>
+      </div>
+      <div class="footer_first">
+        <a href="../landingpageBitbyte/index.html" class="footer_logo">
+          <img src="../../images/logo_nombre.jpg" />
+        </a>
+        <p>+506 2222-2222 | bitbyte@gmail.com</p>
+      </div>
+      <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
+    </footer>
+    <script src="../../js/funciones.js"></script>
+    <script>
+      cargarDatosUsuario();
+    </script>
+  </body>
 </html>
