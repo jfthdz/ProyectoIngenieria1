@@ -46,7 +46,6 @@ module.exports = function(appCandidatos){
 
             console.log(nuevoCandidato);
             res.send({message:"Candidato guardado con exito"});
-            
         } catch (error) {
             console.log(error);
             console.log(req.body);
