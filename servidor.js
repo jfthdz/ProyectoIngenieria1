@@ -9,7 +9,6 @@ const candidatoController = require("./controllers/candidatoController")(app);
 const puestosController = require("./controllers/puestosController")(app);
 const loginController = require("./controllers/loginController")(app);
 const empresaController = require("./controllers/empresaController")(app);
-const puestoController = require("./controllers/puestoController")(app);
 
 const directorioEstaticos = path.join( __dirname, "views"); 
 app.use(express.static( directorioEstaticos ));

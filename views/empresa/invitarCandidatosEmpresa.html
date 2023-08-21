@@ -55,8 +55,8 @@
       </div>
     </nav>
     <header id="sub-menu" class="sub-header">
-      <div class="options">
-        <ul>
+      <div id="options" class="options">
+        <ul id="options-ul">
           <li><a href="../empresa/CrearOfertas.html">Crear oferta</a></li>
           <li>
             <a href="../empresa/showOffers.html">Mostrar ofertas creadas</a>
@@ -79,10 +79,14 @@
     </header>
     <section id="contenido">
       <div class="form">
-        <h1>Invitar candidato</h1>
+        <div id="mensajeExito">
+          <h2>¡Invitación enviada con éxito!</h2>
+        </div>
+        <h1>Invitar usuario</h1>
         <form
+          id="form-invitar-empresa"
           action="invitarCandidato()"
-          onsubmit="return validarFormularioInvitarCandidato()"
+          onsubmit="return validarFormularioInvitarEmpresa()"
         >
           <p>Nombre y apellidos del candidato</p>
           <input type="text" name="nombreCandidato" id="nombreCandidato" />
@@ -97,13 +101,8 @@
             <option value="2">Reclutador</option>
           </select>
           <span id="errorRol" class="error"></span>
-          <button class="boton-registro" onclick="enviarInvitacion()">
-            Enviar invitación
-          </button>
+          <button class="boton-registro">Enviar invitación</button>
         </form>
-        <div id="mensajeExito">
-          <h2>¡Invitación enviada con éxito!</h2>
-        </div>
       </div>
     </section>
     <footer id="footer_buscoempleo" class="footer">
@@ -127,7 +126,9 @@
       </div>
       <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
     </footer>
-    <script src="../../js/funciones.js"></script>
+    <script src="/js/funciones.js"></script>
+    <script src="/js/empresaCliente.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
     <script>
       cargarDatosEmpresa();
       cargarDatosInvitarCandidato();

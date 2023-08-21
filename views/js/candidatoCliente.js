@@ -661,3 +661,29 @@ async function almacenarDatosCandidatoModificado(candidatoId){
         console.log(error);
     }
 }
+
+function popupConfirmacion(){
+    event.preventDefault();
+    const popup = document.querySelector("#popup");
+
+    popup.style.display = "flex";
+    setTimeout(function() {
+        popup.classList.add("mostrar");
+      }, 100);  
+
+    const opcionesEliminar = document.querySelector(".opciones-eliminar");
+    opcionesEliminar.addEventListener("click", (event) => {
+        event.preventDefault();
+        const botonClickeado = event.target;
+
+        if (botonClickeado.id === "opcion-si") {
+            console.log("Se hizo clic en el botón Sí");
+        } else if (botonClickeado.id === "opcion-no") {
+            console.log("Se hizo clic en el botón No");
+            setTimeout(function() {
+                popup.classList.remove("mostrar");
+            }, 100); 
+            popup.style.display = "none";
+        }
+    });
+}

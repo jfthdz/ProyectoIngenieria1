@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="../../css/styles.css" />
-    <link rel="shortcut icon" href="../../images/logo_tituloPagina.png" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="shortcut icon" href="/images/logo_tituloPagina.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,43 +18,43 @@
     <nav id="nav_homePage" class="nav_buscoempleo nav">
       <a
         id="nav_logo-buscoempleo"
-        href="../unlogged/HomePageUnlogged.html"
+        href="/unlogged/HomePageUnlogged.html"
         class="nav_logo"
       >
-        <img src="../../images/buscoempleo.png" alt="" />
+        <img src="/images/buscoempleo.png" alt="" />
       </a>
       <div id="divOpcionesNav">
-        <a id="opcionNav" href="../unlogged/inicioSesion.html"
-          >Iniciar sesión</a
-        >
+        <a id="opcionNav" href="/unlogged/inicioSesion.html">Iniciar sesión</a>
         <img
           id="img-perfil"
           class="imgFotoPerfil"
-          src="../../images/fotoPerfilDefault.jpeg"
+          src="/images/fotoPerfilDefault.jpeg"
           onclick="irModificarCuenta()"
         />
         <button onclick="cerrarSesion()">
-          <img src="../../images/logout.png" alt="Cerrar sesion" />
+          <img src="/images/logout.png" alt="Cerrar sesion" />
         </button>
       </div>
     </nav>
     <header id="sub-menu" class="sub-header">
-      <div class="options">
-        <ul>
-          <li><a href="../empresa/CrearOfertas.html">Crear oferta</a></li>
+      <div id="options" class="options">
+        <ul id="options-ul">
+          <li><a href="/empresa/CrearOfertas.html">Crear oferta</a></li>
           <li>
-            <a href="../empresa/showOffers.html">Mostrar ofertas creadas</a>
+            <a href="/empresa/showOffers.html">Mostrar ofertas creadas</a>
           </li>
           <li>
-            <a href="../empresa/invitarCandidatos.html">Invitar candidatos</a>
+            <a href="/empresa/invitarCandidatosEmpresa.html"
+              >Invitar usuarios</a
+            >
           </li>
           <li>
-            <a href="../empresa/invitacionesCreadas.html"
+            <a href="/empresa/invitacionesCreadas.html"
               >Mostrar invitaciones creadas</a
             >
           </li>
           <li>
-            <a href="../empresa/revisarAplicacionesPuestos.html"
+            <a href="/empresa/revisarAplicacionesPuestos.html"
               >Revisar mis puestos</a
             >
           </li>
@@ -63,13 +63,13 @@
     </header>
     <div
       class="header-bg headerLogged"
-      style="background-image: url('../../images/banner.png')"
+      style="background-image: url('/images/banner.png')"
     >
       <div class="contenidoHomePage">
         <h1>Encuentra al candidato ideal</h1>
         <form
           id="barraBusquedaForm"
-          action="../empresa/MostrarCandidatos.html"
+          action="/empresa/MostrarCandidatos.html"
           method="get"
           class="barra-busqueda"
           onsubmit="return validarBusquedaHomePage()"
@@ -79,7 +79,7 @@
             placeholder="Buscar candidato..."
             name="barra-busqueda"
           />
-          <button type="submit"><img src="../../images/busqueda.png" /></button>
+          <button type="submit"><img src="/images/busqueda.png" /></button>
         </form>
       </div>
     </div>
@@ -89,15 +89,15 @@
     <footer id="footer_buscoempleo" class="footer">
       <div class="footer_first">
         <a href="" id="footer_logo-buscoempleo" class="footer_logo">
-          <img src="../../images/buscoempleonegro.png" />
+          <img src="/images/buscoempleonegro.png" />
         </a>
-        <a href="../landingpageBuscoEmpleo/">
+        <a href="/landingpageBuscoEmpleo/">
           <p>Acerca de Busco Empleo</p>
         </a>
       </div>
       <div class="footer_first">
-        <a href="../landingpageBitbyte/index.html" class="footer_logo">
-          <img src="../../images/logo_nombre.jpg" />
+        <a href="/landingpageBitbyte/index.html" class="footer_logo">
+          <img src="/images/logo_nombre.jpg" />
         </a>
         <p>+506 2222-2222 | bitbyte@gmail.com</p>
       </div>

@@ -79,6 +79,14 @@ async function buscarUsuario(){
             }else if(userObject.userType === "candidato"){
                 sessionStorage.setItem("datosUsuarioLoggeado",JSON.stringify(userObject));
                 location.href = "/candidato/HomePageLoggedCandidato.html";
+            }else if(userObject.userType === "integrante"){
+                const integranteLoggeando = userObject.integrante.find(integrante => integrante.email === loginObject.email);
+
+                if(integranteLoggeando){
+                    userObject.integrante = [integranteLoggeando];
+                    sessionStorage.setItem("datosIntegranteLoggeado",JSON.stringify(userObject));
+                    location.href = "/empresa/HomePageLoggedEmpresa.html";
+                } 
             }
         }else if(response.status === 401){
             errorLogin.innerText = "Correo o contraseña incorrectos. Inténtelo nuevamente"
@@ -142,8 +150,8 @@ async function buscarUsuarioPorCorreo(){
 
         if(response.ok){
             const datos = await response.json();
-            const userTempData = { userId: datos._id };
-            sessionStorage.setItem("userTempData", userTempData);
+            const userId = {_id: datos._id};
+            sessionStorage.setItem("userTempData", JSON.stringify(userId));
             enviarCodigoVerificacion();
         }else if(response.status === 401){
             email.style.border = "1px solid var(--redError)";
@@ -246,19 +254,28 @@ function limpiarCamposNuevoPassword(){
 }
 
 async function updatePassword(){
-    const nuevoPassword = document.querySelector("#nuevoPassword");
+    const data = new FormData();
+    const nuevoPassword = document.querySelector("#nuevoPassword").value;
     const dataActual = sessionStorage.getItem("userTempData");
-    dataActual.newPassword = nuevoPassword.value;
+    const dataObjeto = JSON.parse(dataActual);
+    dataObjeto.newPassword = nuevoPassword;
+
+    data.append("userId", dataObjeto._id);
+    data.append("newPassword", dataObjeto.newPassword);
+    
     const url = "/api/updatePassword";
 
-    console.log(dataActual);
     try {
         const response = await fetch(url,{
-            body: dataActual,
+            body: data,
             method: "POST"
         });
 
         if(response.ok){
+            const mensajeCorreoEnviado = document.querySelector("#mensajeCorreoEnviado");
+            mensajeCorreoEnviado.classList.remove("mostrar");
+            mensajeCorreoEnviado.style.display = "none";
+
             var mensajeExito = document.querySelector("#mensajeExito");
             mensajeExito.style.display = "flex";
             setTimeout(function() {

@@ -431,12 +431,14 @@ function cargarDatosCandidato(){
 
 async function cargarOfertasPorEmpresa(){
     const url = "/puestos/findPuestosPorEmpresa"
+    const integranteLoggeado = obtenerDatosIntegrante();
     const empresaLoggeada = obtenerDatosEmpresa();
     const data = new FormData();
-    if(empresaLoggeada){
+    if(integranteLoggeado){
+        data.append("empresa_id",integranteLoggeado._id);
+    }else if(empresaLoggeada){
         data.append("empresa_id",empresaLoggeada._id);
     }
-    console.log(empresaLoggeada._id);
     try {
         const response = await fetch(url,{
             body : data,
@@ -445,8 +447,10 @@ async function cargarOfertasPorEmpresa(){
 
         if(response.ok){
             listaPuestosPorEmpresa = await response.json();
-            if(listaPuestosPorEmpresa){
+            if(this.window.location.pathname.endsWith("showOffers.html")){
                 cargarOfertasCreadas(listaPuestosPorEmpresa);
+            }else if(this.window.location.pathname.endsWith("invitarCandidatosPuesto.html")){
+                cargarSelectPuestos(listaPuestosPorEmpresa);
             }
         }else{
             console.log("Error al enviar los datos");
@@ -501,4 +505,282 @@ function cargarOfertasCreadas(puestosPorEmpresa){
 
         contenidoOfertasCreadas.appendChild(oferta);
     }
+}
+
+function popupConfirmacion(){
+    event.preventDefault();
+    const popup = document.querySelector("#popup");
+
+    popup.style.display = "flex";
+    setTimeout(function() {
+        popup.classList.add("mostrar");
+      }, 100);  
+
+    const opcionesEliminar = document.querySelector(".opciones-eliminar");
+    opcionesEliminar.addEventListener("click", (event) => {
+        event.preventDefault();
+        const botonClickeado = event.target;
+
+        if (botonClickeado.id === "opcion-si") {
+            console.log("Se hizo clic en el botón Sí");
+        } else if (botonClickeado.id === "opcion-no") {
+            console.log("Se hizo clic en el botón No");
+            setTimeout(function() {
+                popup.classList.remove("mostrar");
+            }, 100); 
+            popup.style.display = "none";
+        }
+    });
+}
+
+function cargarSelectPuestos(puestosPorEmpresa){
+    var selectPuestos = document.querySelector("select[name='puestos']");
+
+    for(var puesto of puestosPorEmpresa){
+        var opcionPuesto = document.createElement("option");
+
+        opcionPuesto.value = puesto._id;
+        opcionPuesto.innerText = puesto.nombre;
+
+        selectPuestos.appendChild(opcionPuesto);
+    }
+}
+
+//Validar campos vacios invitar candidato
+function validarFormularioInvitarCandidato() {
+    try {
+        event.preventDefault();
+        var nombreCandidato = document.getElementById("nombreCandidato");
+        var emailCandidato = document.getElementById("emailCandidato");
+        var puestos = document.getElementsByName("puestos")[0];
+        var camposIncompletos = false;
+
+        var errorNombreCandidato = document.getElementById("errorNombreCandidato");
+        var errorEmailCandidato = document.getElementById("errorEmailCandidato");
+        var errorRol = document.getElementById("errorRol");
+
+        //expresión regular para validar formato de correo
+        var regexEmail = new RegExp('[a-z0-9]+@[a-z]+.[a-z]{2,3}');
+
+        if (nombreCandidato.value === "") {
+            nombreCandidato.style.border = "1px solid var(--redError)";
+            errorNombreCandidato.innerText = "*Campo necesario";
+            errorNombreCandidato.style.display = "block";
+            camposIncompletos = true;
+        } else {
+            nombreCandidato.style.border = "0";
+            errorNombreCandidato.innerText = "";
+            errorNombreCandidato.style.display = "none";
+        }
+
+        if (emailCandidato.value === "") {
+            emailCandidato.style.border = "1px solid var(--redError)";
+            errorEmailCandidato.innerText = "*Campo necesario";
+            errorEmailCandidato.style.display = "block";
+            camposIncompletos = true;
+        } else if(regexEmail.test(emailCandidato.value)==false){
+            emailCandidato.style.border = "1px solid var(--redError)";
+            errorEmailCandidato.innerText = "*Ingrese un correo válido";
+            errorEmailCandidato.style.display = "block";
+            camposIncompletos = true;
+        }else{
+            emailCandidato.style.border = "0";
+            errorEmailCandidato.innerText = "";
+            errorEmailCandidato.style.display = "none";
+        }
+
+        var valorPuestos = puestos.value;
+        if (valorPuestos!="default") {
+            errorRol.innerText = "";
+            errorRol.style.display = "none";
+        }else{
+            errorRol.innerText = "*Debe seleccionar una opción";
+            errorRol.style.display = "block";
+            camposIncompletos = true;
+        }
+
+        // Si se encontraron campos incompletos, detener el envío del formulario
+        if (camposIncompletos) {
+            return false;
+        }else{
+            enviarInvitacionPuesto();
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function enviarInvitacionPuesto(){
+    const data = new FormData(document.querySelector("#form-invitar-puesto"));
+    const url = "/empresas/enviarInvitacionPuesto";
+    const integranteJSON = sessionStorage.getItem("datosIntegranteLoggeado");
+    const integranteObject = JSON.parse(integranteJSON);
+    const candidatoSeleccionadoJSON = sessionStorage.getItem("candidatoSeleccionado");
+    const candidatoSeleccionadoObject = JSON.parse(candidatoSeleccionadoJSON);
+    const select = document.querySelector('select[name="puestos"');
+    const puestoNombre = select.options[select.selectedIndex].innerText;
+
+    data.append("empresaId", integranteObject._id);
+    data.append("empresaNombre", integranteObject.nombre);
+    data.append("reclutaEmail", integranteObject.integrante[0].email);
+    data.append("puestoNombre", puestoNombre);
+    data.append("candidatoSeleccionadoId", candidatoSeleccionadoObject._id);
+
+    const temp = {};
+    data.forEach((value, key) =>{
+        temp[key] =value;
+    });
+    console.log(temp);
+
+    try {
+        const response = await fetch(url,{
+            body: data,
+            method: "POST"
+        });
+
+        if(response.ok){
+            var mensajeExito = document.querySelector("#mensajeExito");
+            mensajeExito.style.display = "flex";
+            setTimeout(function() {
+                mensajeExito.classList.add("mostrar");
+            }, 100); 
+            limpiarCamposInvitarCandidato();
+            setTimeout(function() {
+                mensajeExito.classList.remove("mostrar");
+            }, 3000); 
+            setTimeout(function() {
+                mensajeExito.style.display = "none";
+            }, 3500); 
+        }else{
+            console.log("Error al enviar los datos");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+//Validar campos vacios invitar candidato
+function validarFormularioInvitarEmpresa() {
+    try {
+        event.preventDefault();
+        var nombreCandidato = document.getElementById("nombreCandidato");
+        var emailCandidato = document.getElementById("emailCandidato");
+        var rolCandidato = document.getElementsByName("rolCandidato")[0];
+        var camposIncompletos = false;
+
+        var errorNombreCandidato = document.getElementById("errorNombreCandidato");
+        var errorEmailCandidato = document.getElementById("errorEmailCandidato");
+        var errorRol = document.getElementById("errorRol");
+
+        //expresión regular para validar formato de correo
+        var regexEmail = new RegExp('[a-z0-9]+@[a-z]+.[a-z]{2,3}');
+
+        if (nombreCandidato.value === "") {
+            nombreCandidato.style.border = "1px solid var(--redError)";
+            errorNombreCandidato.innerText = "*Campo necesario";
+            errorNombreCandidato.style.display = "block";
+            camposIncompletos = true;
+        } else {
+            nombreCandidato.style.border = "0";
+            errorNombreCandidato.innerText = "";
+            errorNombreCandidato.style.display = "none";
+        }
+
+        if (emailCandidato.value === "") {
+            emailCandidato.style.border = "1px solid var(--redError)";
+            errorEmailCandidato.innerText = "*Campo necesario";
+            errorEmailCandidato.style.display = "block";
+            camposIncompletos = true;
+        } else if(regexEmail.test(emailCandidato.value)==false){
+            emailCandidato.style.border = "1px solid var(--redError)";
+            errorEmailCandidato.innerText = "*Ingrese un correo válido";
+            errorEmailCandidato.style.display = "block";
+            camposIncompletos = true;
+        }else{
+            emailCandidato.style.border = "0";
+            errorEmailCandidato.innerText = "";
+            errorEmailCandidato.style.display = "none";
+        }
+
+        var valorRolSeleccionado = rolCandidato.value;
+        if (valorRolSeleccionado!="default") {
+            errorRol.innerText = "";
+            errorRol.style.display = "none";
+        }else{
+            errorRol.innerText = "*Debe seleccionar una opción";
+            errorRol.style.display = "block";
+            camposIncompletos = true;
+        }
+
+        // Si se encontraron campos incompletos, detener el envío del formulario
+        if (camposIncompletos) {
+            return false;
+        }else{
+            enviarInvitacionEmpresa();
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function enviarInvitacionEmpresa(){
+    const data = new FormData(document.querySelector("#form-invitar-empresa"));
+    const url = "/empresas/enviarInvitacionEmpresa";
+    const empresaJSON = sessionStorage.getItem("datosEmpresaLoggeada");
+    const empresaObject = JSON.parse(empresaJSON);
+    
+    data.append("empresaId", empresaObject._id);
+    data.append("empresaNombre", empresaObject.nombre);
+
+    const temp = {};
+    data.forEach((value, key) =>{
+        temp[key] =value;
+    });
+    console.log(temp);
+
+    try {
+        const response = await fetch(url,{
+            body: data,
+            method: "POST"
+        });
+
+        if(response.ok){
+            var mensajeExito = document.querySelector("#mensajeExito");
+            mensajeExito.style.display = "flex";
+            setTimeout(function() {
+                mensajeExito.classList.add("mostrar");
+            }, 100); 
+            limpiarCamposInvitarEmpresa();
+            setTimeout(function() {
+                mensajeExito.classList.remove("mostrar");
+            }, 3000); 
+            setTimeout(function() {
+                mensajeExito.style.display = "none";
+            }, 3500); 
+        }else{
+            console.log("Error al enviar los datos");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+function limpiarCamposInvitarCandidato(){
+    var nombreCandidato = document.getElementById("nombreCandidato");
+    var emailCandidato = document.getElementById("emailCandidato");
+    var puestos = document.getElementsByName("puestos")[0];
+
+    nombreCandidato.value = "";
+    emailCandidato.value = "";
+    puestos.value = "default";
+}
+
+function limpiarCamposInvitarEmpresa(){
+    var nombreCandidato = document.getElementById("nombreCandidato");
+    var emailCandidato = document.getElementById("emailCandidato");
+    var rolCandidato = document.getElementsByName("rolCandidato")[0];
+
+    nombreCandidato.value = "";
+    emailCandidato.value = "";
+    rolCandidato.value = "default";
 }

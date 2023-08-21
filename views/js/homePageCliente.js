@@ -100,7 +100,6 @@ async function cargarOfertas(){
 
         if(response.ok){
             listaOfertas = await response.json();
-            console.log(listaOfertas);
             cargarDatosOfertasHomePage(listaOfertas);
         }else{
             console.log("Error al enviar los datos");

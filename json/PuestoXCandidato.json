@@ -1,0 +1,17 @@
+[
+    {
+        "puesto_id": "64dc4f586611a623f5846819",
+        "candidato_id":"64dd358dbea9ae1884847486",
+        "estado":"Pendiente"
+    },
+    {
+        "puesto_id": "64dd28572236a9bad8c94f78",
+        "candidato_id":"64dd358dbea9ae1884847486",
+        "estado":"Pendiente"
+    },
+    {
+        "puesto_id": "64dc4f586611a623f584681b",
+        "candidato_id":"64dd358dbea9ae1884847486",
+        "estado":"Pendiente"
+    }
+]

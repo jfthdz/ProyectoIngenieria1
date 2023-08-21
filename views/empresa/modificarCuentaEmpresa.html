@@ -55,8 +55,8 @@
       </div>
     </nav>
     <header id="sub-menu" class="sub-header">
-      <div class="options">
-        <ul>
+      <div id="options" class="options">
+        <ul id="options-ul">
           <li><a href="../empresa/CrearOfertas.html">Crear oferta</a></li>
           <li>
             <a href="../empresa/showOffers.html">Mostrar ofertas creadas</a>
@@ -130,6 +130,20 @@
             Guardar cambios
             <img src="../../images/guardar-blanco.png" />
           </button>
+          <div class="container-eliminar">
+            <button onclick="popupConfirmacion()" class="opcion-eliminar">
+              Eliminar cuenta
+            </button>
+            <div id="popup" class="popup">
+              <div class="popuptext" id="myPopup">
+                <p>¿Está seguro que desea eliminar su cuenta?</p>
+                <div class="opciones-eliminar">
+                  <button id="opcion-si" class="opcion-si">Sí</button>
+                  <button id="opcion-no" class="opcion-no">Cancelar</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </form>
       </div>
     </section>

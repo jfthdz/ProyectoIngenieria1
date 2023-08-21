@@ -33,6 +33,18 @@ module.exports = function(){
         }
     }
 
+    this.findIntegranteEmpresaLogin = async function(email, password){
+        try {
+            let connection = await mongodb.connect();
+            let integrante = await connection.db().collection("Empresas").findOne({integrante:{$elemMatch:{email: email, pass: password}}});
+            await connection.close();
+
+            return integrante ? integrante : false;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     this.findEmpresaByEmail = async function(email){
         try {
             let connection = await mongodb.connect();
@@ -59,8 +71,9 @@ module.exports = function(){
 
     this.updatePassword = async function(userId, userNewPassword){
         try {
+            console.log(userId, userNewPassword);
             let connection = await mongodb.connect();
-            await connection.db().collection("Candidatos").updateOne({_id: new ObjectId(userId._id)},{$set:{password: userNewPassword}});
+            await connection.db().collection("Candidatos").updateOne({_id: new ObjectId(userId)},{$set:{password: userNewPassword}});
             await connection.close();
 
         } catch (error) {
