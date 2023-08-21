@@ -100,4 +100,16 @@ module.exports = function(){
             console.log(error);
         }
     }
+
+    this.postAplicarPuesto = async function(nuevoPuestoXCandidato){
+        try {
+            let connection = await mongodb.connect();
+            await connection.db().collection("PuestoXCandidato").insertOne(nuevoPuestoXCandidato);
+            await connection.close();
+
+            console.log(`Candidato agregado: ${nuevoPuestoXCandidato}`);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }

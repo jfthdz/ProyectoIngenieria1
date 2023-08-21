@@ -111,4 +111,25 @@ module.exports = function(appPuestos){
             res.send({message:"Hubo un error al actualizar el Puesto"});
         }
     });
+
+    appPuestos.post("/puestos/aplicarPuesto", async function(req,res){
+        try {
+            const puestoId = req.body.puestoId;
+            const candidatoId = req.body.candidatoId;
+
+            const nuevoPuestoXCandidato = {
+                puesto_id: puestoId,
+                candidato_id: candidatoId,
+                estado: "Pendiente"
+            };
+
+            await model.postAplicarPuesto(nuevoPuestoXCandidato);
+
+            res.send({message:"Aplico al puesto con exito"});
+        } catch (error) {
+            console.log(error);
+            console.log(req.body);
+            res.send({message:"Hubo un error en aplicar al puesto"});
+        }
+    });
 }

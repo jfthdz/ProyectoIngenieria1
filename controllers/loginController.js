@@ -22,6 +22,7 @@ module.exports = function(appLogin){
 
             let empresa = await model.findEmpresaLogin(email, pass);
             let candidato = await model.findCandidatoLogin(email, pass);
+            let integrante = await model.findIntegranteEmpresaLogin(email, pass);
 
             if(empresa){
                 empresa.userType = "empresa";
@@ -29,6 +30,10 @@ module.exports = function(appLogin){
             }else if(candidato){
                 candidato.userType = "candidato";
                 res.json(candidato);
+            }else if(integrante){
+                integrante.userType = "integrante";
+                console.log(integrante);
+                res.json(integrante);
             }else{
                 res.status(401).json({message: "Credenciales invalidos"});
             }
@@ -86,8 +91,10 @@ module.exports = function(appLogin){
             const userId = req.body.userId;
             const newPassword = req.body.newPassword;
 
-            await model.updatePassword(userId, newPassword);
+            console.log(userId, newPassword);
 
+            await model.updatePassword(userId, newPassword);
+            res.send({message:"Password actualizada correctamente", newPassword: newPassword});
         } catch (error) {
             console.error(error);
             res.send({message:"Hubo un error al obtener los datos de la cuenta"});

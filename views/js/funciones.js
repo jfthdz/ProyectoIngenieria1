@@ -32,92 +32,6 @@ function modificarImagen(){
     console.log(fotoPerfil);
 }
 
-//Validar campos vacios invitar candidato
-function validarFormularioInvitarCandidato() {
-    try {
-        event.preventDefault();
-        var nombreCandidato = document.getElementById("nombreCandidato");
-        var emailCandidato = document.getElementById("emailCandidato");
-        var rolCandidato = document.getElementsByName("rolCandidato")[0];
-        var camposIncompletos = false;
-
-        var errorNombreCandidato = document.getElementById("errorNombreCandidato");
-        var errorEmailCandidato = document.getElementById("errorEmailCandidato");
-        var errorRol = document.getElementById("errorRol");
-
-        //expresión regular para validar formato de correo
-        var regexEmail = new RegExp('[a-z0-9]+@[a-z]+.[a-z]{2,3}');
-
-        if (nombreCandidato.value === "") {
-            nombreCandidato.style.border = "1px solid var(--redError)";
-            errorNombreCandidato.innerText = "*Campo necesario";
-            errorNombreCandidato.style.display = "block";
-            camposIncompletos = true;
-        } else {
-            nombreCandidato.style.border = "0";
-            errorNombreCandidato.innerText = "";
-            errorNombreCandidato.style.display = "none";
-        }
-
-        if (emailCandidato.value === "") {
-            emailCandidato.style.border = "1px solid var(--redError)";
-            errorEmailCandidato.innerText = "*Campo necesario";
-            errorEmailCandidato.style.display = "block";
-            camposIncompletos = true;
-        } else if(regexEmail.test(emailCandidato.value)==false){
-            emailCandidato.style.border = "1px solid var(--redError)";
-            errorEmailCandidato.innerText = "*Ingrese un correo válido";
-            errorEmailCandidato.style.display = "block";
-            camposIncompletos = true;
-        }else{
-            emailCandidato.style.border = "0";
-            errorEmailCandidato.innerText = "";
-            errorEmailCandidato.style.display = "none";
-        }
-
-        var valorRolSeleccionado = rolCandidato.value;
-        if (valorRolSeleccionado!="default") {
-            errorRol.innerText = "";
-            errorRol.style.display = "none";
-        }else{
-            errorRol.innerText = "*Debe seleccionar una opción";
-            errorRol.style.display = "block";
-            camposIncompletos = true;
-        }
-
-        // Si se encontraron campos incompletos, detener el envío del formulario
-        if (camposIncompletos) {
-            return false;
-        }else{
-            var mensajeExito = document.querySelector("#mensajeExito");
-            mensajeExito.style.display = "flex";
-            setTimeout(function() {
-                mensajeExito.classList.add("mostrar");
-            }, 100); 
-            limpiarCamposInvitarCandidato();
-            setTimeout(function() {
-                mensajeExito.classList.remove("mostrar");
-            }, 3000); 
-            setTimeout(function() {
-                mensajeExito.style.display = "none";
-            }, 3500); 
-            eliminarDatosCandidatoSeleccionado();
-        }
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-function limpiarCamposInvitarCandidato(){
-    var nombreCandidato = document.getElementById("nombreCandidato");
-    var emailCandidato = document.getElementById("emailCandidato");
-    var rolCandidato = document.getElementsByName("rolCandidato")[0];
-
-    nombreCandidato.value = "";
-    emailCandidato.value = "";
-    rolCandidato.value = "default";
-}
-
 function cargarDatosUsuario() {
     try {
         var logoNav = document.querySelector("#nav_logo-buscoempleo");
@@ -173,6 +87,7 @@ function cargarDatosEmpresa() {
         var logoutBoton = document.querySelector("#divOpcionesNav > button");
         var imgPerfil = document.querySelector("#img-perfil");
         var empresaLoggeada = obtenerDatosEmpresa();
+        var integranteLoggeado = obtenerDatosIntegrante();
         var rutaFotoPeril;
     
         if (empresaLoggeada) {
@@ -183,7 +98,37 @@ function cargarDatosEmpresa() {
             document.querySelector("#barraBusquedaForm").action = "../empresa/mostrarCandidatos.html";
             opcionNav.style.display = "none";
             addFotoPerfil(rutaFotoPeril);
-            console.log("Loggeado!!!!");
+
+            const opcionInvitar = document.querySelector("#options > ul > li:nth-child(3) > a");
+            opcionInvitar.innerText = "Invitar usuario";
+            opcionInvitar.href = "../empresa/invitarCandidatosEmpresa.html"
+
+            console.log("Empresa loggeada!!!!");
+        }else if(integranteLoggeado){
+            rutaFotoPeril = integranteLoggeado.foto;
+            logoNav.href = "../empresa/HomePageLoggedEmpresa.html";
+            logoFooter.href = "../empresa/HomePageLoggedEmpresa.html";
+            opcionNav.disabled = true;
+            document.querySelector("#barraBusquedaForm").action = "../empresa/mostrarCandidatos.html";
+            opcionNav.style.display = "none";
+            addFotoPerfil(rutaFotoPeril);
+
+            const opcionInvitar = document.querySelector("#options > ul > li:nth-child(3) > a");
+            opcionInvitar.innerText = "Invitar candidato";
+            opcionInvitar.href = "../empresa/invitarCandidatosPuesto.html"
+
+            console.log("Integrante empresa loggeado!!!!");
+
+            if(integranteLoggeado.integrante[0].rol === "Recluta"){
+                const opciones = document.querySelector("#options-ul");
+                if (opciones) {
+                    const lisToRemove = opciones.querySelectorAll("li:nth-child(-n+2)");
+                  
+                    lisToRemove.forEach(li => {
+                        opciones.removeChild(li);
+                    });
+                }
+            }
         }else{
             logoNav.href = "../unlogged/HomePageUnlogged.html";
             logoFooter.href = "../unlogged/HomePageUnlogged.html";
@@ -201,10 +146,17 @@ function cargarDatosEmpresa() {
 function obtenerDatosEmpresa(){
     var datosEmpresaJSON = sessionStorage.getItem("datosEmpresaLoggeada");
     if(datosEmpresaJSON){
-        console.log("hay datos");
         return JSON.parse(datosEmpresaJSON);
     }else{
-        console.log("no hay");
+        return null;
+    }
+}
+
+function obtenerDatosIntegrante(){
+    var datosIntegranteJSON = sessionStorage.getItem("datosIntegranteLoggeado");
+    if(datosIntegranteJSON){
+        return JSON.parse(datosIntegranteJSON);
+    }else{
         return null;
     }
 }
@@ -323,8 +275,7 @@ function irModificarCuenta(){
 }
 
 function cerrarSesion(){
-    sessionStorage.removeItem("datosUsuarioLoggeado");
-    sessionStorage.removeItem("datosEmpresaLoggeada");
+    sessionStorage.clear();
     location.href = "../unlogged/HomePageUnlogged.html";
 }
 

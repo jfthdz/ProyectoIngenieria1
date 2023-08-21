@@ -202,3 +202,55 @@ async function cargarDatosOferta(){
         console.log(error);
     }
 }
+
+async function aplicarPuesto(){
+    const url = "/puestos/aplicarPuesto";
+    const data = new FormData();
+    const candidatoData = sessionStorage.getItem("datosUsuarioLoggeado");
+
+    if(candidatoData){
+        const puestoData = sessionStorage.getItem("ofertaSeleccionada");
+        const candidatoObjeto = JSON.parse(candidatoData);
+        const puestoObjeto = JSON.parse(puestoData);
+
+        data.append("candidatoId", candidatoObjeto._id);
+        data.append("puestoId", puestoObjeto._id);
+    
+        try {
+            const response = await fetch(url,{
+                body: data,
+                method: "POST"
+            });
+    
+            if(response.ok){
+                var mensajeExito = document.querySelector("#mensajeExito");
+                mensajeExito.style.display = "flex";
+                setTimeout(function() {
+                    mensajeExito.classList.add("mostrar");
+                }, 100); 
+                setTimeout(function() {
+                    mensajeExito.classList.remove("mostrar");
+                }, 3000); 
+                setTimeout(function() {
+                    mensajeExito.style.display = "none";
+                }, 3500);  
+            }else{
+                console.log("Error al enviar los datos");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }else{
+        var mensajeWarning = document.querySelector("#mensajeWarning");
+        mensajeWarning.style.display = "flex";
+        setTimeout(function() {
+            mensajeWarning.classList.add("mostrar");
+        }, 100); 
+        setTimeout(function() {
+            mensajeWarning.classList.remove("mostrar");
+        }, 3000); 
+        setTimeout(function() {
+            mensajeWarning.style.display = "none";
+        }, 3500);
+    }
+}

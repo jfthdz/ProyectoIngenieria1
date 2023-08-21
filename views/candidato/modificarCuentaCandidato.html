@@ -159,6 +159,20 @@
             Guardar cambios
             <img src="/images/guardar-blanco.png" />
           </button>
+          <div class="container-eliminar">
+            <button onclick="popupConfirmacion()" class="opcion-eliminar">
+              Eliminar mi perfil
+            </button>
+            <div id="popup" class="popup">
+              <div class="popuptext" id="myPopup">
+                <p>¿Está seguro que desea eliminar su perfil?</p>
+                <div class="opciones-eliminar">
+                  <button id="opcion-si" class="opcion-si">Sí</button>
+                  <button id="opcion-no" class="opcion-no">Cancelar</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </form>
       </div>
     </section>
