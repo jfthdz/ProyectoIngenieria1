@@ -216,3 +216,14 @@ module.exports = function(appEmpresas){
         }
     });
 }
+
+app.get('/api/invitaciones/:empresaId', async (req, res) => {
+    try {
+        const empresaId = req.params.empresaId;
+        const invitaciones = await getInvitacionesEmpresa(empresaId);
+        res.json(invitaciones);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+

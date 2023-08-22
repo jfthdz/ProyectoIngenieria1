@@ -3,6 +3,7 @@ let candidatoSeleccionado;
 let listaCandidatos = {};
 let listaPuestosPorEmpresa = {};
 
+
 // Validar formulario registrar empresa
 function validarFormularioEmpresa() {
     try {
@@ -775,12 +776,60 @@ function limpiarCamposInvitarCandidato(){
     puestos.value = "default";
 }
 
-function limpiarCamposInvitarEmpresa(){
-    var nombreCandidato = document.getElementById("nombreCandidato");
-    var emailCandidato = document.getElementById("emailCandidato");
-    var rolCandidato = document.getElementsByName("rolCandidato")[0];
+async function cargarInvitaciones(){
+    const url = "/api/InvitacionEmpresa"; 
 
-    nombreCandidato.value = "";
-    emailCandidato.value = "";
-    rolCandidato.value = "default";
+    try {
+        const response = await fetch(url);
+
+        if(response.ok){
+            const listaInvitaciones = await response.json();
+            if(listaInvitaciones){
+                mostrarInvitacionesEnTabla(listaInvitaciones); 
+            }
+        }else{
+            console.log("Error al obtener las invitaciones");
+        }
+    } catch (error) {
+        console.log(error);
+    }
 }
+
+function cargarInvitacionesEnTabla(invitaciones) {
+
+    const tabla = document.querySelector("#tablaCandidatos tbody");
+
+    // Limpiar las filas existentes
+    tabla.innerHTML = '';
+
+    for(const invitacion of invitaciones) {
+        const fila = document.createElement("tr");
+
+        // Crear celda para Candidato
+        const celdaCandidato = document.createElement("td");
+        celdaCandidato.innerText = `${invitacion.candidato.nombre} ${invitacion.candidato.apellidos}`;
+        fila.appendChild(celdaCandidato);
+
+        // Crear celda para Fecha
+        const celdaFecha = document.createElement("td");
+        celdaFecha.innerText = invitacion.fecha; 
+        fila.appendChild(celdaFecha);
+
+        // Crear celda para Puesto
+        const celdaPuesto = document.createElement("td");
+        celdaPuesto.innerText = invitacion.puesto; 
+        fila.appendChild(celdaPuesto);
+
+        // Crear celda para Estado
+        const celdaEstado = document.createElement("td");
+        celdaEstado.innerText = invitacion.estado; 
+        fila.appendChild(celdaEstado);
+
+        // Agregar la fila a la tabla
+        tabla.appendChild(fila);
+    }
+}
+document.addEventListener('DOMContentLoaded', cargarInvitaciones);
+
+
+

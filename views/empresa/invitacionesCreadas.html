@@ -81,26 +81,17 @@
     <section id="contenido">
       <div id="encabezadoContenido2" class="button-container">
         <div class="desplegable">
-          <button class="boton modern-button">Tipo de anuncio</button>
-          <div class="dropdown-content">
-            <a href="#">Anuncio 1</a>
-            <a href="#">Anuncio 2</a>
-            <a href="#">Anuncio 3</a>
-          </div>
+          <select id="estadoAnuncio">
+            <option value="todos">Todos</option>
+            <option value="Contratado">Contratado</option>
+            <option value="Pendiente">Pendiente</option>
+          </select>
         </div>
-
-        <div class="desplegable">
-          <button class="boton modern-button">Estado del anuncio</button>
-          <div class="dropdown-content">
-            <a href="#">Contratado</a>
-            <a href="#">Pendiente</a>
-          </div>
-        </div>
-
-        <button class="btn primary">Buscar</button>
-
-      <div id="contenidocentral">
-        <table class="modern-table">
+  
+     
+  
+        <div id="contenidocentral">
+          <table id="tablaCandidatos" class="modern-table">
           <thead>
             <tr>
               <th>Candidato</th>
@@ -111,39 +102,7 @@
           </thead>
 
           <tbody>
-            <tr>
-              <td>Juan Perez</td>
-              <td>3-11-2023</td>
-              <td>Ingeniero de Software</td>
-              <td>Contratado</td>
-            </tr>
-            <tr>
-              <td>Andrea Ramirez</td>
-              <td>6-11-2023</td>
-              <td>Analista de Sistemas</td>
-              <td>Pendiente</td>
-            </tr>
-            <tr>
-              <td>Marco Moles</td>
-              <td>9-11-2023</td>
-              <td>Desarrollador Web</td>
-              <td>Contratado</td>
-            </tr>
-
-            <tr>
-              <td>Antonio cales</td>
-              <td>11-11-2023</td>
-              <td>Desarrollador Web</td>
-              <td>Contratado</td>
-            </tr>
-
-            <tr>
-              <td>Julio Mora</td>
-              <td>7-11-2023</td>
-              <td>Desarrollador Web</td>
-              <td>Contratado</td>
-            </tr>
-            <!-- Agregar más filas según sea necesario -->
+          
           </tbody>
         </table>
       </div>
@@ -171,9 +130,9 @@
       </div>
       <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
     </footer>
-    <script src="../../js/funciones.js"></script>
-    <script>
-      cargarDatosEmpresa();
-    </script>
+    <script src="../../js/empresaCliente.js"></script>
+    <script>            
+      cargarInvitaciones();
+      </script>
   </body>
 </html>
