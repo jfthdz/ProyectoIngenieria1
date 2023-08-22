@@ -104,7 +104,13 @@ module.exports = function(){
     this.postAplicarPuesto = async function(nuevoPuestoXCandidato){
         try {
             let connection = await mongodb.connect();
-            await connection.db().collection("PuestoXCandidato").insertOne(nuevoPuestoXCandidato);
+            let invitado = await connection.db().collection("InvitacionPuesto").findOne({candidato_id: nuevoPuestoXCandidato.candidato_id, puesto_id: nuevoPuestoXCandidato.puesto_id});
+
+            if(invitado){
+                await connection.db().collection("InvitacionPuesto").updateOne({candidato_id: nuevoPuestoXCandidato.candidato_id, puesto_id: nuevoPuestoXCandidato.puesto_id},{$set:{estado:"Aceptada"}});
+            }else{
+                await connection.db().collection("PuestoXCandidato").insertOne(nuevoPuestoXCandidato);
+            }
             await connection.close();
 
             console.log(`Candidato agregado: ${nuevoPuestoXCandidato}`);

@@ -69,7 +69,7 @@ module.exports = function(){
                 email: email,
                 pass: passwordTemporal,
                 rol: rol,
-                estado: "Activo"
+                estado: "Inactivo"
             }
             const nuevaInvitacionEmpresa = {
                 empresa_id: empresaId,
@@ -100,6 +100,51 @@ module.exports = function(){
             await connection.db().collection("InvitacionPuesto").insertOne(nuevaInvitacionPuesto);
             await connection.close();
 
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    this.getCandidatosBySearch = async function(busqueda){
+        try {
+            let connection = await mongodb.connect();
+
+            const query = {estado: "Activo"};
+            if (busqueda) {
+                const palabrasClave = busqueda.split(" ").map(palabra => palabra.trim());
+                query.$or = [
+                    { nombre: { $regex: palabrasClave.join("|"), $options: "i" } },
+                    { apellidos: { $regex: palabrasClave.join("|"), $options: "i" } },
+                    { profesion: { $regex: palabrasClave.join("|"), $options: "i" } },
+                    { email: { $regex: palabrasClave.join("|"), $options: "i" } },
+                    {
+                        experiencia: {
+                            $elemMatch: {
+                                $or: [
+                                    { cargo: { $regex: palabrasClave.join("|"), $options: "i" } },
+                                    { empresa: { $regex: palabrasClave.join("|"), $options: "i" } },
+                                    { contenido: { $regex: palabrasClave.join("|"), $options: "i" } }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        estudio: {
+                            $elemMatch: {
+                                $or: [
+                                    { titulo: { $regex: palabrasClave.join("|"), $options: "i" } },
+                                    { institucion: { $regex: palabrasClave.join("|"), $options: "i" } }
+                                ]
+                            }
+                        }
+                    }
+                ];
+            }
+            console.log(query);
+            let candidatos = await connection.db().collection("Candidatos").find(query).toArray();
+            await connection.close();
+
+            return candidatos;
         } catch (error) {
             console.log(error);
         }

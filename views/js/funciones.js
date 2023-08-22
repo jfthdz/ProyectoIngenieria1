@@ -103,6 +103,16 @@ function cargarDatosEmpresa() {
             opcionInvitar.innerText = "Invitar usuario";
             opcionInvitar.href = "../empresa/invitarCandidatosEmpresa.html"
 
+            const opciones = document.querySelector("#options-ul");
+            const opcionUsuarios = document.createElement("li");
+            const aUsuarios = document.createElement("a");
+
+            aUsuarios.href = "/empresa/usuariosEmpresa.html";
+            aUsuarios.innerText = "Usuarios";
+
+            opcionUsuarios.appendChild(aUsuarios);
+            opciones.appendChild(opcionUsuarios);
+
             console.log("Empresa loggeada!!!!");
         }else if(integranteLoggeado){
             rutaFotoPeril = integranteLoggeado.foto;

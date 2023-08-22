@@ -45,29 +45,7 @@ module.exports = function(appEmpresas){
                 password: req.body.passwordEmpresa,
                 foto: fotoPerfilPath ? fotoPerfilPath : req.body.fotoPerfil,
                 descripcion: req.body.contenidoDescripcion,
-                integrante:[
-                    {
-                        id: 1,
-                        email: "",
-                        pass: "",
-                        rol: "Admin",
-                        estado: 0
-                    },
-                    {
-                        id: 2,
-                        email: "",
-                        pass: "",
-                        rol: "Manager",
-                        estado: 0
-                    },
-                    {
-                        id: 3,
-                        email: "",
-                        pass: "",
-                        rol: "Recluta",
-                        estado: 0
-                    },
-                ]
+                integrante:[]
             }; 
         
             await model.postEmpresa(nuevaEmpresa);
@@ -172,7 +150,6 @@ module.exports = function(appEmpresas){
 
     appEmpresas.post("/empresas/enviarInvitacionPuesto", async function(req, res){
         try {
-            const link = "http://localhost:3000/unlogged/inicioSesion.html";
             const nombre = req.body.nombreCandidato;
             const email = req.body.emailCandidato;
             const reclutaEmail = req.body.reclutaEmail;
@@ -181,6 +158,7 @@ module.exports = function(appEmpresas){
             const puestoId = req.body.puestos;
             const puestoNombre = req.body.puestoNombre;
             const candidatoSeleccionadoId = req.body.candidatoSeleccionadoId;
+            const link = `http://localhost:3000/candidato/mostrarOfertasTrabajo.html?barra-busqueda=${puestoNombre}`;
 
             const msg = {
                 to: [email, reclutaEmail],
@@ -213,6 +191,22 @@ module.exports = function(appEmpresas){
         } catch (error) {
             console.error(error);
             res.send({message:"Error al enviar la invitación"});
+        }
+    });
+
+    appEmpresas.get("/candidatos/getCandidatosBySearch", async function(req, res){
+        try {
+            const terminoBusqueda = req.query.search || "";
+            let candidatos = await model.getCandidatosBySearch(terminoBusqueda);
+
+            if(Object.keys(candidatos).length === 0){
+                res.status(204).json({message:"Hubo un error al obtener los datos de los candidatos"});
+            }else{
+                res.status(200).send(candidatos);
+            }
+        } catch (error) {
+            console.log(error);
+            res.send({message:"Hubo un error al obtener los datos de los candidatos"});            
         }
     });
 }
