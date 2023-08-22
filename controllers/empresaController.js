@@ -209,4 +209,28 @@ module.exports = function(appEmpresas){
             res.send({message:"Hubo un error al obtener los datos de los candidatos"});            
         }
     });
+
+    appEmpresas.post("/usuarios/getUsuarios", async function(req, res){
+        try {
+            const empresaId = req.body.empresaId;
+            let usuarios = await model.getUsuarios(empresaId);
+            res.send(usuarios);
+        } catch (error) {
+            console.log(error);
+            res.send({message:"Hubo un error al obtener los datos de los usuarios"});            
+        }
+    });
+
+    appEmpresas.post("/empresa/usuarios/deleteUser", async function(req, res){
+        try {
+            const empresaId = req.body.empresaId;
+            const userEmail = req.body.userEmail;
+            let usuarios = await model.deleteUser(empresaId, userEmail);
+
+            res.send(usuarios);
+        } catch (error) {
+            console.log(error);
+            res.send({message:"Hubo un error al obtener los datos de los usuarios"});            
+        }
+    });
 }

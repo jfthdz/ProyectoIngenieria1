@@ -66,6 +66,7 @@ module.exports = function(){
 
             const nuevoIntegrante = {
                 id: id,
+                nombre: nombre,
                 email: email,
                 pass: passwordTemporal,
                 rol: rol,
@@ -145,6 +146,30 @@ module.exports = function(){
             await connection.close();
 
             return candidatos;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    this.getUsuarios = async function(empresaId){
+        try {
+            let connection = await mongodb.connect();
+            let usuarios = await connection.db().collection("Empresas").find({_id: new ObjectId(empresaId)},{projection:{integrante: 1}}).toArray();
+            await connection.close();
+
+            return usuarios[0];
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    this.deleteUser = async function(empresaId, userEmail){
+        try {
+            let connection = await mongodb.connect();
+            const usuario = await connection.db().collection('Empresas').updateOne({_id: new ObjectId(empresaId)},{$pull: { integrante: { email: userEmail }}});
+            await connection.close();
+
+            console.log(`Se elimino el integrante: ${usuario.modifiedCount}`);
         } catch (error) {
             console.log(error);
         }

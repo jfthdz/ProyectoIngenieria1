@@ -81,26 +81,11 @@
     <div id="contenido">
       <div class="tabla-usuarios-empresa">
         <h2 class="user-header">Usuarios administrativos</h2>
-        <table class="modern-table">
+        <table id="tabla-usuarios" class="modern-table">
           <thead>
             <tr>
               <th>Usuario</th>
               <th>Rol</th>
-              <th>Correo</th>
-              <th>Estado</th>
-              <th>Accion</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-      <div class="tabla-empleados">
-        <h2 class="user-header">Lista de empleados</h2>
-        <table class="modern-table">
-          <thead>
-            <tr>
-              <th>Usuario</th>
-              <th>Puesto</th>
               <th>Correo</th>
               <th>Estado</th>
               <th>Accion</th>
@@ -133,11 +118,11 @@
       </div>
       <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
     </footer>
-    <script src="../../js/funciones.js"></script>
-
-    <!-- ver si se cambia-->
+    <script src="/js/funciones.js"></script>
+    <script src="/js/empresaCliente.js"></script>
     <script>
       cargarDatosEmpresa();
+      cargarUsuarios();
     </script>
   </body>
 </html>

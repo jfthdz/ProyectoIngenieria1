@@ -867,51 +867,78 @@ function limpiarCamposInvitarEmpresa(){
     rolCandidato.value = "default";
 }
 
-//Usuarios Empresa
-// Función para eliminar un usuario a través del API
-async function deleteUser() {
+async function cargarUsuarios(){
+    const url = "/usuarios/getUsuarios"
+    var empresaLoggeado = obtenerDatosEmpresa();
+    const empresa = new FormData();
+
+    empresa.append("empresaId", empresaLoggeado._id);
+
+    try {
+        const response = await fetch(url,{
+            method: "POST",
+            body: empresa
+        });
+
+        if(response.ok){
+            const usuarios = await response.json();
+            cargarLista(usuarios);
+        }else{
+            console.log("Error al enviar los datos");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// Función para agregar un usuario a la lista
+function cargarLista(listaUsuarios) {
+    var tabla =  document.querySelector("#tabla-usuarios tbody");
+    tabla.innerHTML = "";
+    let index = 1;
+
+    const integrantes = listaUsuarios.integrante;
+    for(let usuario of integrantes){
+        const nuevaFila = `<tr>
+        <td>${usuario.nombre}</td>
+        <td>${usuario.rol}</td>
+        <td>${usuario.email}</td>
+        <td>${usuario.estado}</td>
+        <td class="boton-accion"></td>
+        </tr>`;
+        tabla.innerHTML += nuevaFila;
+
+        const td = document.querySelector(`#tabla-usuarios > tbody > tr:nth-child(${index}) > td.boton-accion`);
+        const botonEliminar = document.createElement("button");
+        botonEliminar.classList.add("boton-contenido");
+        botonEliminar.innerText = "Eliminar";
+        botonEliminar.onclick = function() {
+            deleteUser(usuario.email);
+        };
+        td.appendChild(botonEliminar);
+        index++;
+    }
+}
+
+async function deleteUser(userEmail) {
   try {
-    const url = "usuarios/borrarUsuario"
+    const empresaLoggeado = obtenerDatosEmpresa();
+    const url = "usuarios/deleteUser";
+    const user = new FormData();
+    user.append("userEmail", userEmail);
+    user.append("empresaId", empresaLoggeado._id);
+    
     const response = await fetch(url, {
-        body: usuarioData,
+        body: user,
         method: "POST",
     });
 
     if (response.ok) {
-
-    } else {
-      alert("Error al eliminar el usuario.");
+        location.reload();
+    }else {
+        console.log("Error al eliminar el usuario.");
     }
   } catch (error) {
     console.error(error);
-    alert("Error de conexión con el servidor.");
   }
-}
-
-// Función para agregar un usuario a la lista
-function addUser(listaUsuarios, listaEmpleados) {
-  const userItem = document.createElement("li");
-  userItem.className = "user-item";
-  userItem.innerHTML = `
-    <div class="user-details">
-      <span class="user-title">Nombres:</span>
-      <span class="name">${name}</span>
-    </div>
-    <div class="user-details">
-      <span class="user-title">Apellidos:</span>
-      <span class="last-name">${lastName}</span>
-    </div>
-    <div class="user-details">
-      <span class="user-title">Puesto:</span>
-      <span class="position">${position}</span>
-    </div>
-    <div class="user-actions">
-      <span class="delete-btn" data-userid="${userId}">Eliminar</span>
-    </div>
-  `;
-  const deleteBtn = userItem.querySelector(".delete-btn");
-  deleteBtn.addEventListener("click", () => {
-    deleteUser(deleteBtn.dataset.userid);
-  });
-  userList.appendChild(userItem);
 }
