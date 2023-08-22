@@ -3,6 +3,53 @@ let candidatoSeleccionado;
 let listaCandidatos = {};
 let listaPuestosPorEmpresa = {};
 
+window.addEventListener("DOMContentLoaded", function(){
+    if(this.window.location.pathname.endsWith("mostrarCandidatos.html")){
+        const terminoBusqueda = new URLSearchParams(this.window.location.search).get("barra-busqueda");
+        if(terminoBusqueda){
+            console.log("encontro busqueda");
+            obtenerCandidatosPorBusqueda(terminoBusqueda);
+        }else{
+            cargarCandidatos();
+        }
+    }
+});
+
+async function obtenerCandidatosPorBusqueda(terminoBusqueda){
+    const url = `/candidatos/getCandidatosBySearch?search=${encodeURIComponent(terminoBusqueda)}`;
+
+    try {
+        const response = await fetch(url);
+
+        if(response.status === 200){
+            listaCandidatos = await response.json();
+            setTimeout(function() {
+                cargarMostrarCandidatos(listaCandidatos);
+            }, 100);
+        }else if(response.status === 204){
+            resultNotFound();
+        }else{
+            console.log("Error al enviar los datos");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+function resultNotFound(){
+    const tituloPag = document.querySelector("#titulo-mostrar-candidatos");
+    const contenidoOpciones = document.querySelector("#contenido > div");
+    const notFound = document.createElement("h3");
+    const txt = document.createElement("p");
+
+    tituloPag.innerText = "";
+    notFound.innerText = "No hay ningún candidato que coincida con tu búsqueda...";
+    txt.innerText = "Por favor inténtalo de nuevo cambiando tu búsqueda.";
+
+    contenidoOpciones.appendChild(notFound);
+    contenidoOpciones.appendChild(txt);
+}
+
 // Validar formulario registrar empresa
 function validarFormularioEmpresa() {
     try {
@@ -383,46 +430,81 @@ async function guardarCandidatoSeleccionado(candidatoId){
 
 function cargarDatosCandidato(){
     try {
-        var nombreCandidato = document.querySelector("#nombre-candidato");
-        var profesionCandidato = document.querySelector("#profesion-candidato");
-        
-        var tituloExperiencia = document.querySelector("#titulo-experiencia");
-        var empresaExperiencia = document.querySelector("#empresa-experiencia");
-        var contenidoExperiencia = document.querySelector("#contenido-experiencia");
-        var fechaInicioExp = document.querySelector("#fecha-inicio-exp");
-        var fechaFinalExp = document.querySelector("#fecha-final-exp");
-    
-        var tituloEstudios = document.querySelector("#titulo-estudios");
-        var institucionEstudios = document.querySelector("#institucion-estudios");
-        var fechaInicioEst = document.querySelector("#fecha-inicio-est");
-        var fechaFinalEst = document.querySelector("#fecha-final-est");
-    
+        const contenido = document.querySelector(".descripcion-contenido");
         var candidato = obtenerDatosCandidatoSeleccionado();
-        var rutaFotoCandidato = candidato.foto;
     
         if(candidato){
+            const nombreCandidato = document.querySelector("#nombre-candidato");
+            const profesionCandidato = document.querySelector("#profesion-candidato");
+            const rutaFotoCandidato = candidato.foto;
+
             addFotoCandidato(rutaFotoCandidato);
             nombreCandidato.innerText = `${candidato.nombre} ${candidato.apellidos}`;
             profesionCandidato.innerText = candidato.profesion;
-            tituloExperiencia.innerText = candidato.expTitulo;
-            empresaExperiencia.innerText += " "+candidato.expEmpresa;
-            contenidoExperiencia.innerText = candidato.expContenido;
-            fechaInicioExp.innerText = candidato.expFechaInicio;
-            fechaFinalExp.innerText = candidato.expFechaFinal;
-            tituloEstudios.innerText = candidato.estTitulo;
-            institucionEstudios.innerText += " "+candidato.estInstitucion;
-            fechaInicioEst.innerText = candidato.estFechaInicio;
-            fechaFinalEst.innerText = candidato.estFechaFinal;
-            
-           /* if(candidato.expActualmente){
-                fechaFinalEst.textContent = "Actualmente";
-            }
-            if(candidato.estActualmente){
-                fechaFinalExp.textContent = "Actualmente";
-            } */
 
-            console.log(candidato);
-            
+            if(candidato.experiencia.length > 0){
+                if(candidato.experiencia[0].cargo != ""){
+
+                    const experienciaLaboral = document.createElement("h2");
+                    experienciaLaboral.innerText = "Experiencia laboral";
+                    contenido.appendChild(experienciaLaboral);
+
+                    for(let index=0; index < candidato.experiencia.length; index++){
+                        const divExperiencia = document.createElement("div");
+                        const tituloExperiencia = document.createElement("h3");
+                        const empresaExperiencia = document.createElement("p");
+                        const contenidoExperiencia = document.createElement("p");
+                        const fechas = document.createElement("p");
+
+                        tituloExperiencia.innerText = "Cargo: "+ candidato.experiencia[index].cargo;
+                        empresaExperiencia.innerText = "Empresa: "+candidato.experiencia[index].empresa;
+                        contenidoExperiencia.innerText = candidato.experiencia[index].contenido;
+                        fechas.innerText = `${candidato.experiencia[index].fecha_inicio} - ${candidato.experiencia[0].fecha_final}`;
+
+                        divExperiencia.appendChild(tituloExperiencia);
+                        divExperiencia.appendChild(empresaExperiencia);
+                        divExperiencia.appendChild(contenidoExperiencia);
+                        divExperiencia.appendChild(fechas);
+
+                        contenido.appendChild(divExperiencia);
+                    }
+                }
+            }else{
+                const notFound = document.createElement("p");
+                notFound.innerText = 'Este candidato no posee datos en "Experiencia".';
+                contenido.appendChild(notFound);
+            }
+
+            if(candidato.estudio.length > 0){
+                if(candidato.estudio[0].titulo != ""){
+
+                    const estudios = document.createElement("h2");
+                    estudios.innerText = "Estudios"
+                    contenido.appendChild(estudios)
+
+                    for(let index=0; index < candidato.estudio.length; index++){
+                        const divEstudio = document.createElement("div");
+                        const tituloEstudios = document.createElement("h3");
+                        const institucionEstudios = document.createElement("p");
+                        const fechas = document.createElement("p");
+
+                        tituloEstudios.innerText = "Título adquirido: "+candidato.estudio[index].titulo;
+                        institucionEstudios.innerText = "Institución: "+candidato.estudio[index].institucion;
+                        fechas.innerText = `${candidato.estudio[index].fecha_inicio} - ${candidato.estudio[0].fecha_final}`;
+
+                        divEstudio.appendChild(tituloEstudios);
+                        divEstudio.appendChild(institucionEstudios);
+                        divEstudio.appendChild(fechas);
+
+                        contenido.appendChild(divEstudio);
+                    }
+                }
+            }else{
+                const notFound = document.createElement("p");
+                notFound.innerText = 'Este candidato no posee datos en "Estudios".';
+                contenido.appendChild(notFound)
+            }
+        
         }
     } catch (error) {
         console.log(error);
@@ -476,7 +558,7 @@ function cargarOfertasCreadas(puestosPorEmpresa){
         var PlusTitulo = document.createElement("h3");
         var ofertaPlus = document.createElement("p");
         var ofertaUbicacion = document.createElement("p");
-        
+
         oferta.classList.add("descripcion-contenido");
         infoTitulo.classList.add("info-titulo");
 
@@ -783,4 +865,80 @@ function limpiarCamposInvitarEmpresa(){
     nombreCandidato.value = "";
     emailCandidato.value = "";
     rolCandidato.value = "default";
+}
+
+async function cargarUsuarios(){
+    const url = "/usuarios/getUsuarios"
+    var empresaLoggeado = obtenerDatosEmpresa();
+    const empresa = new FormData();
+
+    empresa.append("empresaId", empresaLoggeado._id);
+
+    try {
+        const response = await fetch(url,{
+            method: "POST",
+            body: empresa
+        });
+
+        if(response.ok){
+            const usuarios = await response.json();
+            cargarLista(usuarios);
+        }else{
+            console.log("Error al enviar los datos");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// Función para agregar un usuario a la lista
+function cargarLista(listaUsuarios) {
+    var tabla =  document.querySelector("#tabla-usuarios tbody");
+    tabla.innerHTML = "";
+    let index = 1;
+
+    const integrantes = listaUsuarios.integrante;
+    for(let usuario of integrantes){
+        const nuevaFila = `<tr>
+        <td>${usuario.nombre}</td>
+        <td>${usuario.rol}</td>
+        <td>${usuario.email}</td>
+        <td>${usuario.estado}</td>
+        <td class="boton-accion"></td>
+        </tr>`;
+        tabla.innerHTML += nuevaFila;
+
+        const td = document.querySelector(`#tabla-usuarios > tbody > tr:nth-child(${index}) > td.boton-accion`);
+        const botonEliminar = document.createElement("button");
+        botonEliminar.classList.add("boton-contenido");
+        botonEliminar.innerText = "Eliminar";
+        botonEliminar.onclick = function() {
+            deleteUser(usuario.email);
+        };
+        td.appendChild(botonEliminar);
+        index++;
+    }
+}
+
+async function deleteUser(userEmail) {
+  try {
+    const empresaLoggeado = obtenerDatosEmpresa();
+    const url = "usuarios/deleteUser";
+    const user = new FormData();
+    user.append("userEmail", userEmail);
+    user.append("empresaId", empresaLoggeado._id);
+    
+    const response = await fetch(url, {
+        body: user,
+        method: "POST",
+    });
+
+    if (response.ok) {
+        location.reload();
+    }else {
+        console.log("Error al eliminar el usuario.");
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }

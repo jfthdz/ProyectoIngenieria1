@@ -36,7 +36,13 @@ module.exports = function(){
     this.findIntegranteEmpresaLogin = async function(email, password){
         try {
             let connection = await mongodb.connect();
-            let integrante = await connection.db().collection("Empresas").findOne({integrante:{$elemMatch:{email: email, pass: password}}});
+            let hasntLogged = await connection.db().collection("InvitacionEmpresa").findOne({email: email, hasLogged: false});
+
+            if(hasntLogged){
+                await connection.db().collection("InvitacionEmpresa").updateOne({email: email, hasLogged: false},{$set:{hasLogged: true, estado: "Aceptada"}});
+                await connection.db().collection("Empresas").updateOne({"integrante.email": email, "integrante.pass": password},{$set: {"integrante.$.estado": "Activo"}});
+            }
+            const integrante = await connection.db().collection("Empresas").findOne({integrante:{$elemMatch:{email: email, pass: password}}});
             await connection.close();
 
             return integrante ? integrante : false;

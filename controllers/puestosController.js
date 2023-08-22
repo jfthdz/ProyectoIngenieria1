@@ -120,7 +120,7 @@ module.exports = function(appPuestos){
             const nuevoPuestoXCandidato = {
                 puesto_id: puestoId,
                 candidato_id: candidatoId,
-                estado: "Pendiente"
+                estado: "Enviada"
             };
 
             await model.postAplicarPuesto(nuevoPuestoXCandidato);
