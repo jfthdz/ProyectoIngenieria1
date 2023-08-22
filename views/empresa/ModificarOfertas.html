@@ -81,14 +81,13 @@
     <section id="contenido">
       <div class="form">
         <div id="mensajeExito">
-          <h2>¡Oferta de empleo creada con éxito!</h2>
+          <h2>¡Oferta de empleo modificada con éxito!</h2>
         </div>
-        <h1>Crear oferta laboral</h1>
+        <h1>Modificar oferta laboral</h1>
         <form
-          id="form-add-Puesto"
-          action="registrarCrearEmpresa()"
+          id="form-modificar-puesto"
           method="post"
-          onsubmit="return validarFormularioCrearOferta()"
+          onsubmit="return validarFormularioModificarOferta()"
         >
           <h2>Datos necesarios</h2>
           <div class="container-opciones">
@@ -148,7 +147,7 @@
           <input type="text" name="ubicacionOferta" id="ubicacionOferta" />
           <span id="errorUbicacionOferta" class="error"></span>
           <button id="botonCrearOferta" type="submit">
-            Crear mi oferta laboral
+            Guardar cambios
             <img src="../../images/guardar-blanco.png" />
           </button>
         </form>
@@ -181,8 +180,7 @@
     <script src="/js/empresaCliente.js"></script>
     <script>
       cargarDatosEmpresa();
-      cargarFormularioModificarPuesto()
-
+      cargarFormularioModificarPuesto();
     </script>
   </body>
 </html>

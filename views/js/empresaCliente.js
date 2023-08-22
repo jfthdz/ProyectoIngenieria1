@@ -819,7 +819,6 @@ function limpiarCamposInvitarEmpresa(){
 }
 
 /*Código Alonso editar oferta*/
-
 function cargarFormularioModificarPuesto(){
     var campoNombrePuesto = document.querySelector("#tituloOferta");
     var campoRangoSalarialInicial = document.querySelector("#rangoInicialOferta");
@@ -829,19 +828,18 @@ function cargarFormularioModificarPuesto(){
     var campoAptitudesPlus = document.querySelector("textarea[name='plus']");
     var campoUbicacionOferta = document.querySelector("#ubicacionOferta"); 
    
-
     const ofertaSeleccionada = obtenerDatosOfertaSeleccionada();
-    var empresaLoggeado = obtenerDatosEmpresa();
-    var rutaFotoPeril;
-
     if(ofertaSeleccionada){
+        const inputString = ofertaSeleccionada.rango_salarial;
+        const regex = /(\d[\d,\.]*)/g;
+        const [rangoInicial, rangoMaximo] = (inputString.match(regex) || []).map(value => parseFloat(value.replace(/[^\d\.]/g, "").replace(/\./g, "")));
+
         campoNombrePuesto.value=ofertaSeleccionada.nombre;
-        campoRangoSalarialInicial.value=ofertaSeleccionada.rango_salarial;
-        campoRangoSalarialMaximo.innerText=ofertaSeleccionada.rango_salarial;
         campoRequisitoMinimo.innerHTML=ofertaSeleccionada.requisito_minimo;
         campoRequisitoDeseable.innerText=ofertaSeleccionada.requisito_deseable;
         campoAptitudesPlus.innerText=ofertaSeleccionada.aptitudes_plus;
-        campoUbicacionOferta.innerText=ofertaSeleccionada.ubicacion_oferta;
-
+        campoRangoSalarialInicial.value= "¢ "+rangoInicial;
+        campoRangoSalarialMaximo.value= "¢ "+rangoMaximo;
+        campoUbicacionOferta.value=ofertaSeleccionada.ubicacion_oferta;
     }
 }
