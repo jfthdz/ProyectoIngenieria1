@@ -354,7 +354,7 @@ async function cargarCandidatos(){
 
         if(response.ok){
             listaCandidatos = await response.json();
-            if(this.window.location.pathname.endsWith("MostrarCandidatos.html")){
+            if(this.window.location.pathname.endsWith("mostrarCandidatos.html")){
                 cargarMostrarCandidatos(listaCandidatos);
             }
         }else{
