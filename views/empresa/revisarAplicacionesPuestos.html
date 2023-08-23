@@ -79,91 +79,65 @@
     </header>
 
     <section id="contenido">
-      <h1>Listado de postulaciones</h1>
-      <section id="contenido12">
-        <div id="encabezadoContenido12">
-          <div id="ordenarPor2">
-            Ordenar
-            <select name="ordenar2">
-              <option value="puesto">Puesto</option>
-              <option value="candidato">Candidato</option>
-              <option value="experiencia">Experiencia</option>
-              <option value="estado">Estado</option>
-            </select>
-          </div>
+      <div class="form">
+        <h1 id="titulo-reportes">Aplicaciones a mis puestos</h1>
+        <form
+          id="form-filtrar-invitaciones"
+          method="POST"
+          onsubmit="return filtrarAplicantes()"
+        >
+          <h3 id="titulo-filtrar">Filtrar por:</h3>
+          <div id="filtrar-invitaciones">
+            <div>
+              <p>Puesto:</p>
+              <input type="text" name="puesto" id="puesto" />
+            </div>
 
-          <div id="buscar2">
-            Buscar
-            <input type="text" name="buscar2" placeholder="Buscar por" />
-          </div>
+            <div>
+              <p>Candidato:</p>
+              <input type="text" name="nombreCandidato" id="nombreCandidato" />
+            </div>
 
-          <button class="btn primary">Buscar</button>
-        </div>
-        <div id="contenidocentral12">
-          <table class="modern-table">
-            <thead>
-              <tr>
-                <th>Puesto</th>
-                <th>Candidato</th>
-                <th>Experiencia</th>
-                <th>Estado</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Ingeniero de Software</td>
-                <td>Juan Perez</td>
-                <td>5 años</td>
-                <td>Contratado</td>
-              </tr>
-              <tr>
-                <td>Analista de Sistemas</td>
-                <td>Andrea Ramirez</td>
-                <td>3 años</td>
-                <td>Pendiente</td>
-              </tr>
-              <tr>
-                <td>Desarrollador Web</td>
-                <td>Marco Moles</td>
-                <td>2 años</td>
-                <td>Contratado</td>
-              </tr>
-              <tr>
-                <td>Desarrollador Web</td>
-                <td>Antonio Cales</td>
-                <td>4 años</td>
-                <td>Contratado</td>
-              </tr>
-              <tr>
-                <td>Desarrollador Web</td>
-                <td>Julio Mora</td>
-                <td>7 años</td>
-                <td>Contratado</td>
-              </tr>
-              <tr>
-                <td>Desarrollador Web</td>
-                <td>Julio Mora</td>
-                <td>7 años</td>
-                <td>Contratado</td>
-              </tr>
-              <tr>
-                <td>Desarrollador Web</td>
-                <td>Julio Mora</td>
-                <td>7 años</td>
-                <td>Contratado</td>
-              </tr>
-              <tr>
-                <td>Desarrollador Web</td>
-                <td>Julio Mora</td>
-                <td>7 años</td>
-                <td>Contratado</td>
-              </tr>
-              <!-- Agregar más filas según sea necesario -->
-            </tbody>
-          </table>
-        </div>
-        <!--#contenidocentral12-->
-      </section>
+            <div>
+              <p>Años experiencia:</p>
+              <input type="text" name="experiencia" id="experiencia" />
+            </div>
+
+            <div>
+              <p>Fecha:</p>
+              <input type="text" name="fecha" id="fecha" />
+            </div>
+
+            <div>
+              <p>Estado:</p>
+              <input type="text" name="estado" id="estado" />
+            </div>
+          </div>
+          <div class="boton-filtro">
+            <button type="submit">Filtrar</button>
+          </div>
+          <span id="errorFiltro" class="error"></span>
+        </form>
+      </div>
+
+      <div id="contenidocentral12">
+        <table id="tablaAplicantes" class="modern-table">
+          <thead>
+            <tr>
+              <th>Puesto</th>
+              <th>Candidato</th>
+              <th>Experiencia</th>
+              <th>Fecha</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <p id="sinResultados" style="display: none">
+          Ningún aplicante cumple con la búsqueda. Por favor inténtelo de nuevo.
+        </p>
+      </div>
     </section>
 
     <footer id="footer_buscoempleo" class="footer">
@@ -188,8 +162,12 @@
       <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
     </footer>
     <script src="../../js/funciones.js"></script>
+    <script src="../../js/empresaCliente.js"></script>
     <script>
       cargarDatosEmpresa();
+      cargarOfertasPorEmpresa();
+      cargarCandidatos();
+      cargarAplicantes();
     </script>
   </body>
 </html>

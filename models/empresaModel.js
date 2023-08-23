@@ -87,19 +87,104 @@ module.exports = function(){
         }
     }
 
-    this.addInvitacionPuesto = async function(empresaId, puestoId, candidatoSeleccionadoId){
+    this.addInvitacionPuesto = async function(empresaId, puestoId, candidatoSeleccionadoId, recluta){
         try {
             let connection = await mongodb.connect();
+            const fechaActual = new Date();
+            const fechaFormato = fechaActual.toISOString().split('T')[0];
 
             const nuevaInvitacionPuesto = {
                 empresa_id: empresaId,
                 puesto_id: puestoId,
                 candidato_id: candidatoSeleccionadoId,
+                fecha_creacion: fechaFormato,
+                recluta: recluta,
                 estado: "Pendiente"
             }
             await connection.db().collection("InvitacionPuesto").insertOne(nuevaInvitacionPuesto);
             await connection.close();
 
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    this.getInvitacionesEmpresa = async function(empresaId){
+        try {
+            let connection = await mongodb.connect();
+            let invitaciones = await connection.db().collection("InvitacionPuesto").find({empresa_id: empresaId}).toArray();
+            await connection.close();
+
+            return invitaciones;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    this.getAplicantes = async function(empresaId){
+        try {
+            let connection = await mongodb.connect();
+            let aplicantes = await connection.db().collection("PuestoXCandidato").find({empresa_id: empresaId}).toArray();
+            await connection.close();
+
+            return aplicantes;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    this.deleteAplication = async function(empresaId, candidatoId, puestoId){
+        try {
+            let connection = await mongodb.connect();
+            const aplicacion = await connection.db().collection('PuestoXCandidato').deleteOne({empresa_id: empresaId, candidato_id: candidatoId, puesto_id: puestoId});
+            await connection.close();
+
+            console.log(`Se elimino la aplicacion: ${aplicacion.modifiedCount}`);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    this.aceptarAplication = async function(candidatoId, puestoId){
+        try {
+            let connection = await mongodb.connect();
+            const aplicacion = await connection.db().collection('PuestoXCandidato').updateOne({candidato_id: candidatoId, puesto_id: puestoId}, {$set:{estado:"Aceptada"}});
+            await connection.close();
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    this.revisandoAplication = async function(candidatoId, puestoId){
+        try {
+            let connection = await mongodb.connect();
+            const aplicacion = await connection.db().collection('PuestoXCandidato').updateOne({candidato_id: candidatoId, puesto_id: puestoId}, {$set:{estado:"En revisión"}});
+            await connection.close();
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    this.rechazarAplication = async function(candidatoId, puestoId){
+        try {
+            let connection = await mongodb.connect();
+            const aplicacion = await connection.db().collection('PuestoXCandidato').updateOne({candidato_id: candidatoId, puesto_id: puestoId}, {$set:{estado:"Rechazada"}});
+            await connection.close();
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    this.deleteInvitacion = async function(empresaId, candidatoId, puestoId){
+        try {
+            let connection = await mongodb.connect();
+            const aplicacion = await connection.db().collection('InvitacionPuesto').deleteOne({empresa_id: empresaId, candidato_id: candidatoId, puesto_id: puestoId});
+            await connection.close();
+
+            console.log(`Se elimino la invitacion: ${aplicacion.modifiedCount}`);
         } catch (error) {
             console.log(error);
         }

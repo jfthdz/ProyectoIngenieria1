@@ -215,6 +215,7 @@ async function aplicarPuesto(){
 
         data.append("candidatoId", candidatoObjeto._id);
         data.append("puestoId", puestoObjeto._id);
+        data.append("empresaId", puestoObjeto.empresa_id);
     
         try {
             const response = await fetch(url,{

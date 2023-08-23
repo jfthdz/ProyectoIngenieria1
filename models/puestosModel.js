@@ -107,7 +107,7 @@ module.exports = function(){
             await connection.db().collection("PuestoXCandidato").insertOne(nuevoPuestoXCandidato);
             await connection.close();
 
-            console.log(`Candidato agregado: ${nuevoPuestoXCandidato}`);
+            console.log(`Aplicacion hecha`);
         } catch (error) {
             console.log(error);
         }

@@ -79,34 +79,66 @@
     </header>
 
     <section id="contenido">
-      <div id="encabezadoContenido2" class="button-container">
-        <div class="desplegable">
-          <select id="estadoAnuncio">
-            <option value="todos">Todos</option>
-            <option value="Contratado">Contratado</option>
-            <option value="Pendiente">Pendiente</option>
-          </select>
-        </div>
-  
-     
-  
-        <div id="contenidocentral">
-          <table id="tablaCandidatos" class="modern-table">
+      <div class="form">
+        <h1 id="titulo-reportes">Invitaciones creadas</h1>
+        <form
+          id="form-filtrar-invitaciones"
+          method="POST"
+          onsubmit="return filtrarInvitaciones()"
+        >
+          <h3 id="titulo-filtrar">Filtrar por:</h3>
+          <div id="filtrar-invitaciones">
+            <div>
+              <p>Nombre del candidato:</p>
+              <input type="text" name="nombreCandidato" id="nombreCandidato" />
+            </div>
+
+            <div>
+              <p>Fecha:</p>
+              <input type="text" name="fecha" id="fecha" />
+            </div>
+
+            <div>
+              <p>Puesto:</p>
+              <input type="text" name="puesto" id="puesto" />
+            </div>
+
+            <div>
+              <p>Recluta:</p>
+              <input type="text" name="recluta" id="recluta" />
+            </div>
+
+            <div>
+              <p>Estado:</p>
+              <input type="text" name="estado" id="estado" />
+            </div>
+          </div>
+          <div class="boton-filtro">
+            <button type="submit">Filtrar</button>
+          </div>
+          <span id="errorFiltro" class="error"></span>
+        </form>
+      </div>
+
+      <div id="contenidocentral">
+        <table id="tablaCandidatos" class="modern-table">
           <thead>
             <tr>
               <th>Candidato</th>
               <th>Fecha</th>
               <th>Puesto</th>
+              <th>Recluta</th>
               <th>Estado</th>
+              <th>Acción</th>
             </tr>
           </thead>
-
-          <tbody>
-          
-          </tbody>
+          <tbody></tbody>
         </table>
+        <p id="sinResultados" style="display: none">
+          Ninguna invitación cumple con la búsqueda. Por favor inténtelo de
+          nuevo.
+        </p>
       </div>
-      <!--#contenidocentral-->
     </section>
 
     <footer id="footer_buscoempleo" class="footer">
@@ -130,9 +162,13 @@
       </div>
       <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
     </footer>
+    <script src="../../js/funciones.js"></script>
     <script src="../../js/empresaCliente.js"></script>
-    <script>            
+    <script>
+      cargarDatosEmpresa();
+      cargarOfertasPorEmpresa();
+      cargarCandidatos();
       cargarInvitaciones();
-      </script>
+    </script>
   </body>
 </html>
