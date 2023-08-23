@@ -482,11 +482,11 @@ function cargarOfertasCreadas(puestosPorEmpresa){
         const aEliminar = document.createElement("a");
         const aEditar = document.createElement("a");
         
-        /*const divEliminar = document.createElement ("div");
-        const divEditar = document.createElement ("div");*/
+        const divBotones = document.createElement ("div");
 
+        divBotones.classList.add("div-botones");
         botonEliminar.classList.add("boton-eliminar");
-        botonEditar.classList.add("boton-editar"); 
+        botonEditar.classList.add("boton-contenido"); 
         oferta.classList.add("descripcion-contenido");
         infoTitulo.classList.add("info-titulo");
 
@@ -503,23 +503,16 @@ function cargarOfertasCreadas(puestosPorEmpresa){
         
         botonEliminar.innerText = "Eliminar";
         botonEditar.innerText = "Editar";
-        
         aEliminar.href = "";
         aEditar.href= "../empresa/ModificarOfertas.html";
-
-        /*divEliminar.href = "";
-        divEditar.href= "../empresa/ModificarOfertas.html";*/
         
         const puestoId = puesto._id.toString();
-
         botonEditar.onclick = function() {
             guardarOfertaSeleccionada(puestoId);
         };
-
         botonEliminar.onclick = function() {
             eliminarOfertaSeleccionada(puestoId);
         };
-
 
         oferta.appendChild(ofertaTitulo);
         infoTitulo.appendChild(ofertaRangoSalarial);
@@ -535,19 +528,12 @@ function cargarOfertasCreadas(puestosPorEmpresa){
 
         aEliminar.appendChild(botonEliminar);
         aEditar.appendChild(botonEditar);
+        divBotones.appendChild(aEliminar);
+        divBotones.appendChild(aEditar);
 
-        /*divEliminar.append(botonEliminar);
-        divEditar.appendChild(botonEditar);*/
-
-
-       oferta.appendChild(aEliminar);
-        oferta.appendChild(aEditar);
-
-        /*oferta.appendChild(divEliminar);
-        oferta.appendChild(divEditar);*/
+        oferta.appendChild(divBotones);
 
         contenidoOfertasCreadas.appendChild(oferta);
-
     }
 }
 
