@@ -66,10 +66,11 @@ module.exports = function(){
 
             const nuevoIntegrante = {
                 id: id,
+                nombre: nombre,
                 email: email,
                 pass: passwordTemporal,
                 rol: rol,
-                estado: "Activo"
+                estado: "Inactivo"
             }
             const nuevaInvitacionEmpresa = {
                 empresa_id: empresaId,
@@ -161,23 +162,12 @@ module.exports = function(){
             let connection = await mongodb.connect();
             const aplicacion = await connection.db().collection('PuestoXCandidato').updateOne({candidato_id: candidatoId, puesto_id: puestoId}, {$set:{estado:"En revisión"}});
             await connection.close();
-
+          
         } catch (error) {
             console.log(error);
         }
     }
-
-    this.rechazarAplication = async function(candidatoId, puestoId){
-        try {
-            let connection = await mongodb.connect();
-            const aplicacion = await connection.db().collection('PuestoXCandidato').updateOne({candidato_id: candidatoId, puesto_id: puestoId}, {$set:{estado:"Rechazada"}});
-            await connection.close();
-
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
+  
     this.deleteInvitacion = async function(empresaId, candidatoId, puestoId){
         try {
             let connection = await mongodb.connect();
@@ -185,6 +175,88 @@ module.exports = function(){
             await connection.close();
 
             console.log(`Se elimino la invitacion: ${aplicacion.modifiedCount}`);
+          } catch (error) {
+            console.log(error);
+        }
+    }
+  
+   this.rechazarAplication = async function(candidatoId, puestoId){
+        try {
+            let connection = await mongodb.connect();
+            const aplicacion = await connection.db().collection('PuestoXCandidato').updateOne({candidato_id: candidatoId, puesto_id: puestoId}, {$set:{estado:"Rechazada"}});
+            await connection.close();
+          
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    this.getCandidatosBySearch = async function(busqueda){
+        try {
+            let connection = await mongodb.connect();
+
+            const query = {estado: "Activo"};
+            if (busqueda) {
+                const palabrasClave = busqueda.split(" ").map(palabra => palabra.trim());
+                query.$or = [
+                    { nombre: { $regex: palabrasClave.join("|"), $options: "i" } },
+                    { apellidos: { $regex: palabrasClave.join("|"), $options: "i" } },
+                    { profesion: { $regex: palabrasClave.join("|"), $options: "i" } },
+                    { email: { $regex: palabrasClave.join("|"), $options: "i" } },
+                    {
+                        experiencia: {
+                            $elemMatch: {
+                                $or: [
+                                    { cargo: { $regex: palabrasClave.join("|"), $options: "i" } },
+                                    { empresa: { $regex: palabrasClave.join("|"), $options: "i" } },
+                                    { contenido: { $regex: palabrasClave.join("|"), $options: "i" } }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        estudio: {
+                            $elemMatch: {
+                                $or: [
+                                    { titulo: { $regex: palabrasClave.join("|"), $options: "i" } },
+                                    { institucion: { $regex: palabrasClave.join("|"), $options: "i" } }
+                                ]
+                            }
+                        }
+                    }
+                ];
+            }
+            console.log(query);
+            let candidatos = await connection.db().collection("Candidatos").find(query).toArray();
+            await connection.close();
+
+            return candidatos;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+    this.getUsuarios = async function(empresaId){
+        try {
+            let connection = await mongodb.connect();
+            let usuarios = await connection.db().collection("Empresas").find({_id: new ObjectId(empresaId)},{projection:{integrante: 1}}).toArray();
+            await connection.close();
+
+            return usuarios[0];
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    
+    this.deleteUser = async function(empresaId, userEmail){
+        try {
+            let connection = await mongodb.connect();
+            const usuario = await connection.db().collection('Empresas').updateOne({_id: new ObjectId(empresaId)},{$pull: { integrante: { email: userEmail }}});
+            await connection.close();
+
+            console.log(`Se elimino el integrante: ${usuario.modifiedCount}`);
         } catch (error) {
             console.log(error);
         }

@@ -45,29 +45,7 @@ module.exports = function(appEmpresas){
                 password: req.body.passwordEmpresa,
                 foto: fotoPerfilPath ? fotoPerfilPath : req.body.fotoPerfil,
                 descripcion: req.body.contenidoDescripcion,
-                integrante:[
-                    {
-                        id: 1,
-                        email: "",
-                        pass: "",
-                        rol: "Admin",
-                        estado: 0
-                    },
-                    {
-                        id: 2,
-                        email: "",
-                        pass: "",
-                        rol: "Manager",
-                        estado: 0
-                    },
-                    {
-                        id: 3,
-                        email: "",
-                        pass: "",
-                        rol: "Recluta",
-                        estado: 0
-                    },
-                ]
+                integrante:[]
             }; 
         
             await model.postEmpresa(nuevaEmpresa);
@@ -172,7 +150,6 @@ module.exports = function(appEmpresas){
 
     appEmpresas.post("/empresas/enviarInvitacionPuesto", async function(req, res){
         try {
-            const link = "http://localhost:3000/unlogged/inicioSesion.html";
             const nombre = req.body.nombreCandidato;
             const email = req.body.emailCandidato;
             const reclutaEmail = req.body.reclutaEmail;
@@ -182,6 +159,7 @@ module.exports = function(appEmpresas){
             const puestoNombre = req.body.puestoNombre;
             const candidatoSeleccionadoId = req.body.candidatoSeleccionadoId;
             const recluta = req.body.recluta;
+            const link = `http://localhost:3000/candidato/mostrarOfertasTrabajo.html?barra-busqueda=${puestoNombre}`;
 
             const msg = {
                 to: [email, reclutaEmail],
@@ -303,6 +281,46 @@ module.exports = function(appEmpresas){
             let invitacion = await model.deleteInvitacion(empresaId, candidatoId, puestoId);
 
             res.send(invitacion);
+          } catch (error) {
+            console.log(error);
+            res.send({message:"Hubo un error al obtener los datos de los usuarios"});            
+        }
+    });
+  
+    appEmpresas.post("/empresa/usuarios/deleteUser", async function(req, res){
+        try {
+            const empresaId = req.body.empresaId;
+            const userEmail = req.body.userEmail;
+            let usuarios = await model.deleteUser(empresaId, userEmail);
+
+            res.send(usuarios);
+          } catch (error) {
+            console.log(error);
+            res.send({message:"Hubo un error al obtener los datos de los usuarios"});            
+        }
+    });
+          
+    appEmpresas.get("/candidatos/getCandidatosBySearch", async function(req, res){
+        try {
+            const terminoBusqueda = req.query.search || "";
+            let candidatos = await model.getCandidatosBySearch(terminoBusqueda);
+
+            if(Object.keys(candidatos).length === 0){
+                res.status(204).json({message:"Hubo un error al obtener los datos de los candidatos"});
+            }else{
+                res.status(200).send(candidatos);
+            }
+        } catch (error) {
+            console.log(error);
+            res.send({message:"Hubo un error al obtener los datos de los candidatos"});            
+        }
+    });
+
+    appEmpresas.post("/usuarios/getUsuarios", async function(req, res){
+        try {
+            const empresaId = req.body.empresaId;
+            let usuarios = await model.getUsuarios(empresaId);
+            res.send(usuarios);
         } catch (error) {
             console.log(error);
             res.send({message:"Hubo un error al obtener los datos de los usuarios"});            

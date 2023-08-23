@@ -126,6 +126,7 @@ module.exports = function(appPuestos){
                 empresa_id: empresaId,
                 fecha_aplicacion: fechaFormato,
                 estado: "Pendiente"
+
             };
 
             console.log(nuevoPuestoXCandidato);
