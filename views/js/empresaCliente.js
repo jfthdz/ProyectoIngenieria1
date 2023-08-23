@@ -695,6 +695,7 @@ function validarFormularioInvitarCandidato() {
 async function enviarInvitacionPuesto(){
     const data = new FormData(document.querySelector("#form-invitar-puesto"));
     const url = "/empresas/enviarInvitacionPuesto";
+    const empresaLoggeada = obtenerDatosEmpresa();
     const integranteJSON = sessionStorage.getItem("datosIntegranteLoggeado");
     const integranteObject = JSON.parse(integranteJSON);
     const candidatoSeleccionadoJSON = sessionStorage.getItem("candidatoSeleccionado");
@@ -702,12 +703,12 @@ async function enviarInvitacionPuesto(){
     const select = document.querySelector('select[name="puestos"');
     const puestoNombre = select.options[select.selectedIndex].innerText;
 
-    data.append("empresaId", integranteObject._id);
-    data.append("empresaNombre", integranteObject.nombre);
-    data.append("reclutaEmail", integranteObject.integrante[0].email);
+    data.append("empresaId", empresaLoggeada._id);
+    data.append("empresaNombre", empresaLoggeada.nombre);
+    data.append("reclutaEmail", integranteObject ? integranteObject.integrante[0].email : empresaLoggeada.correo);
     data.append("puestoNombre", puestoNombre);
     data.append("candidatoSeleccionadoId", candidatoSeleccionadoObject._id);
-    data.append("recluta",integranteObject.integrante[0].nombre);
+    data.append("recluta",integranteObject ? integranteObject.integrante[0].nombre : empresaLoggeada.nombre);
 
     const temp = {};
     data.forEach((value, key) =>{
