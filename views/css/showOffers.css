@@ -243,3 +243,38 @@ a {
     opacity: 70%;
     cursor: pointer;
 }
+
+.boton-eliminar {
+    border: 0;
+    width: 150px;
+    padding: 8px 0;
+    color:white;
+    font-size: 0.9rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    background-color:#9f0000;
+    align-items: center;
+}
+
+.boton-eliminar:hover {
+    opacity: 70%;
+    cursor: pointer;
+}
+
+.boton-editar {
+    display:inline-block;
+    border: 0;
+    width: 150px;
+    padding: 8px 0;
+    color: rgb(0, 0, 0);
+    font-size: 0.9rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    background-color:#edd327;
+    align-items: center;
+}
+
+.boton-editar:hover {
+    opacity: 70%;
+    cursor: pointer;
+}

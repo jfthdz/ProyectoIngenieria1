@@ -478,11 +478,15 @@ function cargarOfertasCreadas(puestosPorEmpresa){
         const ofertaUbicacion = document.createElement("p");
         const botonEliminar = document.createElement("button");
         const botonEditar = document.createElement("button");
-        const aEliminar = document.createElement("a");
-        const aEditar = document.createElement("a");  
         
-        botonEliminar.classList.add("boton-contenido");
-        botonEditar.classList.add("boton-contenido"); 
+        const aEliminar = document.createElement("a");
+        const aEditar = document.createElement("a");
+        
+        /*const divEliminar = document.createElement ("div");
+        const divEditar = document.createElement ("div");*/
+
+        botonEliminar.classList.add("boton-eliminar");
+        botonEditar.classList.add("boton-editar"); 
         oferta.classList.add("descripcion-contenido");
         infoTitulo.classList.add("info-titulo");
 
@@ -496,11 +500,15 @@ function cargarOfertasCreadas(puestosPorEmpresa){
         PlusTitulo.innerText = "Aptitudes plus";
         ofertaPlus.innerText = puesto.aptitudes_plus;
         ofertaUbicacion.innerText = "Ubicación: "+puesto.ubicacion_oferta;
+        
         botonEliminar.innerText = "Eliminar";
         botonEditar.innerText = "Editar";
         
         aEliminar.href = "";
         aEditar.href= "../empresa/ModificarOfertas.html";
+
+        /*divEliminar.href = "";
+        divEditar.href= "../empresa/ModificarOfertas.html";*/
         
         const puestoId = puesto._id.toString();
 
@@ -527,8 +535,16 @@ function cargarOfertasCreadas(puestosPorEmpresa){
 
         aEliminar.appendChild(botonEliminar);
         aEditar.appendChild(botonEditar);
-        oferta.appendChild(aEliminar);
+
+        /*divEliminar.append(botonEliminar);
+        divEditar.appendChild(botonEditar);*/
+
+
+       oferta.appendChild(aEliminar);
         oferta.appendChild(aEditar);
+
+        /*oferta.appendChild(divEliminar);
+        oferta.appendChild(divEditar);*/
 
         contenidoOfertasCreadas.appendChild(oferta);
 
