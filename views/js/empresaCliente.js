@@ -354,7 +354,7 @@ async function cargarCandidatos(){
 
         if(response.ok){
             listaCandidatos = await response.json();
-            if(listaCandidatos){
+            if(this.window.location.pathname.endsWith("MostrarCandidatos.html")){
                 cargarMostrarCandidatos(listaCandidatos);
             }
         }else{
@@ -707,12 +707,12 @@ async function enviarInvitacionPuesto(){
     data.append("reclutaEmail", integranteObject.integrante[0].email);
     data.append("puestoNombre", puestoNombre);
     data.append("candidatoSeleccionadoId", candidatoSeleccionadoObject._id);
+    data.append("recluta",integranteObject.integrante[0].nombre);
 
     const temp = {};
     data.forEach((value, key) =>{
         temp[key] =value;
     });
-    console.log(temp);
 
     try {
         const response = await fetch(url,{
@@ -857,11 +857,448 @@ function limpiarCamposInvitarCandidato(){
     puestos.value = "default";
 }
 
+async function cargarInvitaciones(){
+    const url = "/empresa/getInvitacionesPuesto"; 
+    var empresaLoggeado = obtenerDatosEmpresa();
+    const empresa = new FormData();
+
+    empresa.append("empresaId", empresaLoggeado._id);
+
+    try {
+        const response = await fetch(url,{
+            body: empresa,
+            method: "POST"
+        });
+
+        if(response.ok){
+            const listaInvitaciones = await response.json();
+            if(listaInvitaciones){
+                cargarInvitacionesTabla(listaInvitaciones); 
+            }
+        }else{
+            console.log("Error al obtener las invitaciones");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+function cargarInvitacionesTabla(invitaciones) {
+    const tabla = document.querySelector("#tablaCandidatos tbody");
+    tabla.innerHTML = '';
+
+    for(let invitacion of invitaciones) {
+        setTimeout(function() {
+            const candidato = listaCandidatos.find(candidato => candidato._id === invitacion.candidato_id);
+            const puesto = listaPuestosPorEmpresa.find(puesto => puesto._id === invitacion.puesto_id);
+            const fila = document.createElement("tr");
+    
+            const celdaCandidato = document.createElement("td");
+            celdaCandidato.innerText = `${candidato.nombre} ${candidato.apellidos}`;
+            fila.appendChild(celdaCandidato);
+    
+            const celdaFecha = document.createElement("td");
+            celdaFecha.innerText = invitacion.fecha_creacion; 
+            fila.appendChild(celdaFecha);
+    
+            const celdaPuesto = document.createElement("td");
+            celdaPuesto.innerText = puesto.nombre; 
+            fila.appendChild(celdaPuesto);
+
+            const celdaRecluta = document.createElement("td");
+            celdaRecluta.innerText = invitacion.recluta ? invitacion.recluta : "N/D"; 
+            fila.appendChild(celdaRecluta);
+    
+            const celdaEstado = document.createElement("td");
+            celdaEstado.innerText = invitacion.estado; 
+            fila.appendChild(celdaEstado);
+
+            const celdaAcciones = document.createElement("td");
+            const botonEliminar = document.createElement("button");
+            botonEliminar.innerText = "Eliminar";
+            botonEliminar.onclick = function() {
+                eliminarInvitacion(candidato._id, puesto._id);
+            };
+            celdaAcciones.appendChild(botonEliminar);
+            fila.appendChild(celdaAcciones);
+    
+            tabla.appendChild(fila);
+        }, 100);
+    }
+}
+
+function filtrarInvitaciones(){
+    try {
+        event.preventDefault();
+        const nombreCandidato = document.querySelector("#nombreCandidato");
+        const fecha = document.querySelector("#fecha");
+        const puesto = document.querySelector("#puesto");
+        const estado = document.querySelector("#estado");
+        const recluta = document.querySelector("#recluta");
+        var errorFiltro = document.querySelector("#errorFiltro");
+        var camposIncompletos = false;
+
+        if (nombreCandidato.value === "" && fecha.value === "" && puesto.value === "" && estado.value === "" && recluta.value === "") {
+            nombreCandidato.style.border = "1px solid var(--redError)";
+            fecha.style.border = "1px solid var(--redError)";
+            puesto.style.border = "1px solid var(--redError)";
+            estado.style.border = "1px solid var(--redError)";
+            recluta.style.border = "1px solid var(--redError)";
+            errorFiltro.innerText = "*Se necesita al menos un filtro.";
+            errorFiltro.style.display = "block";
+            camposIncompletos = true;
+        } else {
+            nombreCandidato.style.border = "0";
+            fecha.style.border = "0";
+            puesto.style.border = "0";
+            estado.style.border = "0";
+            recluta.style.border = "0";
+            errorFiltro.innerText = "";
+            errorFiltro.style.display = "none";
+        }
+
+        if (camposIncompletos) {
+            return false;
+        }else{
+            const tabla = document.querySelector("#tablaCandidatos");
+            const filas = document.querySelectorAll("#tablaCandidatos tbody tr");
+            const mensajeSinResultados = document.querySelector("#sinResultados");
+            const filtroNombre = nombreCandidato.value.toLowerCase();
+            const filtroFecha = fecha.value.toLowerCase();
+            const filtroPuesto = puesto.value.toLowerCase();
+            const filtroEstado = estado.value.toLowerCase();
+            const filtroRecluta = recluta.value.toLowerCase();
+            let hayResultados = false;
+
+            filas.forEach((fila) => {
+                const candidato = fila.querySelector("td:first-child").textContent.toLowerCase();
+                const fecha = fila.querySelector("td:nth-child(2)").textContent.toLowerCase();
+                const puesto = fila.querySelector("td:nth-child(3)").textContent.toLowerCase();
+                const recluta = fila.querySelector("td:nth-child(4)").textContent.toLowerCase();
+                const estado = fila.querySelector("td:last-child").textContent.toLowerCase();
+        
+                const cumpleFiltros =
+                    candidato.includes(filtroNombre) &&
+                    fecha.includes(filtroFecha) &&
+                    puesto.includes(filtroPuesto) &&
+                    estado.includes(filtroEstado) &&
+                    recluta.includes(filtroRecluta);
+
+                    if (cumpleFiltros) {
+                        fila.style.display = "";
+                        hayResultados = true;
+                    } else {
+                        fila.style.display = "none";
+                    }
+            });
+            mensajeSinResultados.style.display = hayResultados ? "none" : "block";
+            tabla.style.display = hayResultados ? "" : "none";
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function cargarAplicantes(){
+    const url = "/empresa/getAplicantes"; 
+    var empresaLoggeado = obtenerDatosEmpresa();
+    const empresa = new FormData();
+
+    empresa.append("empresaId", empresaLoggeado._id);
+
+    try {
+        const response = await fetch(url,{
+            body: empresa,
+            method: "POST"
+        });
+
+        if(response.ok){
+            const listaAplicantes = await response.json();
+            if(listaAplicantes){
+                cargarAplicantesTabla(listaAplicantes); 
+            }
+        }else{
+            console.log("Error al obtener los aplicantes");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+function cargarAplicantesTabla(listaAplicantes) {
+    const tabla = document.querySelector("#tablaAplicantes tbody");
+    tabla.innerHTML = '';
+
+    for(let aplicante of listaAplicantes) {
+        setTimeout(function() {
+            const candidato = listaCandidatos.find(candidato => candidato._id === aplicante.candidato_id);
+            const puesto = listaPuestosPorEmpresa.find(puesto => puesto._id === aplicante.puesto_id);
+            const fila = document.createElement("tr");
+    
+            const celdaPuesto = document.createElement("td");
+            celdaPuesto.innerText = puesto.nombre; 
+            fila.appendChild(celdaPuesto);
+
+            const celdaCandidato = document.createElement("td");
+            celdaCandidato.innerHTML = `<a id="${candidato._id}" href="../empresa/candidato.html">${candidato.nombre} ${candidato.apellidos}</a>`;
+            fila.appendChild(celdaCandidato);
+
+
+            const fechaInicio = new Date(candidato.experiencia[0].fecha_inicio);
+            const fechaFinal = new Date(candidato.experiencia[0].fecha_final);
+            const diferenciaEnMilisegundos = fechaFinal - fechaInicio;
+            const añosDeExperiencia = diferenciaEnMilisegundos / (1000 * 60 * 60 * 24 * 365);
+            const añosCompletos = Math.floor(añosDeExperiencia);
+
+            const celdaExperiencia = document.createElement("td");
+            celdaExperiencia.innerText = añosCompletos+ " años"; 
+            fila.appendChild(celdaExperiencia);
+            
+            const celdaFecha = document.createElement("td");
+            celdaFecha.innerText = aplicante.fecha_aplicacion; 
+            fila.appendChild(celdaFecha);
+    
+            const celdaEstado = document.createElement("td");
+            celdaEstado.innerText = aplicante.estado; 
+            fila.appendChild(celdaEstado);
+
+            const celdaAcciones = document.createElement("td");
+            if(aplicante.estado === "Pendiente" || aplicante.estado === "En revisión"){
+                const botonAceptar = document.createElement("button");
+                const botonRevision = document.createElement("button");
+                const botonRechazar = document.createElement("button");
+                botonAceptar.innerText = "Aceptar";
+                botonRevision.innerText = "En revisión";
+                botonRechazar.innerText = "Rechazar";
+    
+                botonAceptar.onclick = function() {
+                    aceptarAplicacion(candidato._id, puesto._id);
+                };
+                botonRevision.onclick = function() {
+                    revisandoAplicacion(candidato._id, puesto._id);
+                };
+                botonRechazar.onclick = function() {
+                    rechazarAplicacion(candidato._id, puesto._id);
+                };
+    
+                celdaAcciones.appendChild(botonAceptar);
+                celdaAcciones.appendChild(botonRevision);
+                celdaAcciones.appendChild(botonRechazar);
+            }else{
+                const botonEliminar = document.createElement("button");
+                botonEliminar.innerText = "Eliminar";
+
+                botonEliminar.onclick = function() {
+                    eliminarAplicacion(candidato._id, puesto._id);
+                };
+                celdaAcciones.appendChild(botonEliminar);
+            }
+
+            fila.appendChild(celdaAcciones);
+    
+            tabla.appendChild(fila);
+        }, 100);
+    }
+}
+
+function filtrarAplicantes(){
+    try {
+        event.preventDefault();
+        const nombreCandidato = document.querySelector("#nombreCandidato");
+        const fecha = document.querySelector("#fecha");
+        const puesto = document.querySelector("#puesto");
+        const estado = document.querySelector("#estado");
+        const experiencia = document.querySelector("#experiencia");
+        var errorFiltro = document.querySelector("#errorFiltro");
+        var camposIncompletos = false;
+
+        if (nombreCandidato.value === "" && fecha.value === "" && puesto.value === "" && estado.value === "" && experiencia.value === "") {
+            nombreCandidato.style.border = "1px solid var(--redError)";
+            fecha.style.border = "1px solid var(--redError)";
+            puesto.style.border = "1px solid var(--redError)";
+            estado.style.border = "1px solid var(--redError)";
+            experiencia.style.border = "1px solid var(--redError)";
+            errorFiltro.innerText = "*Se necesita al menos un filtro.";
+            errorFiltro.style.display = "block";
+            camposIncompletos = true;
+        } else {
+            nombreCandidato.style.border = "0";
+            fecha.style.border = "0";
+            puesto.style.border = "0";
+            estado.style.border = "0";
+            experiencia.style.border = "0";
+            errorFiltro.innerText = "";
+            errorFiltro.style.display = "none";
+        }
+
+        if (camposIncompletos) {
+            return false;
+        }else{
+            const tabla = document.querySelector("#tablaAplicantes");
+            const filas = document.querySelectorAll("#tablaAplicantes tbody tr");
+            const mensajeSinResultados = document.querySelector("#sinResultados");
+            const filtroNombre = nombreCandidato.value.toLowerCase();
+            const filtroFecha = fecha.value.toLowerCase();
+            const filtroPuesto = puesto.value.toLowerCase();
+            const filtroEstado = estado.value.toLowerCase();
+            const filtroExperiencia = experiencia.value.toLowerCase();
+            let hayResultados = false;
+
+            filas.forEach((fila) => {
+                const puesto = fila.querySelector("td:first-child").textContent.toLowerCase();
+                const candidato = fila.querySelector("td:nth-child(2)").textContent.toLowerCase();
+                const experiencia = fila.querySelector("td:nth-child(3)").textContent.toLowerCase();
+                const fecha = fila.querySelector("td:nth-child(4)").textContent.toLowerCase();
+                const estado = fila.querySelector("td:nth-child(5)").textContent.toLowerCase();
+        
+                const cumpleFiltros =
+                    candidato.includes(filtroNombre) &&
+                    fecha.includes(filtroFecha) &&
+                    puesto.includes(filtroPuesto) &&
+                    estado.includes(filtroEstado) &&
+                    experiencia.includes(filtroExperiencia);
+
+                    if (cumpleFiltros) {
+                        fila.style.display = "";
+                        hayResultados = true;
+                    } else {
+                        fila.style.display = "none";
+                    }
+            });
+            mensajeSinResultados.style.display = hayResultados ? "none" : "block";
+            tabla.style.display = hayResultados ? "" : "none";
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function aceptarAplicacion(candidatoId, puestoId){
+    try {
+        const empresaLoggeado = obtenerDatosEmpresa();
+        const url = "/empresas/aceptarAplicacion";
+        const data = new FormData();
+        data.append("candidatoId", candidatoId);
+        data.append("empresaId", empresaLoggeado._id);
+        data.append("puestoId", puestoId);
+        
+        const response = await fetch(url, {
+            body: data,
+            method: "POST",
+        });
+
+        if (response.ok) {
+            location.reload();
+        }else {
+            console.log("Error al eliminar la aplicación.");
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function revisandoAplicacion(candidatoId, puestoId){
+    try {
+        const empresaLoggeado = obtenerDatosEmpresa();
+        const url = "/empresas/revisionAplication";
+        const data = new FormData();
+        data.append("candidatoId", candidatoId);
+        data.append("empresaId", empresaLoggeado._id);
+        data.append("puestoId", puestoId);
+        
+        const response = await fetch(url, {
+            body: data,
+            method: "POST",
+        });
+
+        if (response.ok) {
+            location.reload();
+        }else {
+            console.log("Error al eliminar la aplicación.");
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function rechazarAplicacion(candidatoId, puestoId){
+    try {
+        const empresaLoggeado = obtenerDatosEmpresa();
+        const url = "/empresas/rechazarAplication";
+        const data = new FormData();
+        data.append("candidatoId", candidatoId);
+        data.append("empresaId", empresaLoggeado._id);
+        data.append("puestoId", puestoId);
+        
+        const response = await fetch(url, {
+            body: data,
+            method: "POST",
+        });
+
+        if (response.ok) {
+            location.reload();
+        }else {
+            console.log("Error al eliminar la aplicación.");
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function eliminarAplicacion(candidatoId, puestoId){
+    try {
+        const empresaLoggeado = obtenerDatosEmpresa();
+        const url = "/empresas/borrarAplicacion";
+        const data = new FormData();
+        data.append("candidatoId", candidatoId);
+        data.append("empresaId", empresaLoggeado._id);
+        data.append("puestoId", puestoId);
+        
+        const response = await fetch(url, {
+            body: data,
+            method: "POST",
+        });
+
+        if (response.ok) {
+            location.reload();
+        }else {
+            console.log("Error al eliminar la aplicación.");
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function eliminarInvitacion(candidatoId, puestoId){
+    try {
+        const empresaLoggeado = obtenerDatosEmpresa();
+        const url = "/empresas/eliminarInvitacion";
+        const data = new FormData();
+        data.append("candidatoId", candidatoId);
+        data.append("empresaId", empresaLoggeado._id);
+        data.append("puestoId", puestoId);
+        
+        const response = await fetch(url, {
+            body: data,
+            method: "POST",
+        });
+
+        if (response.ok) {
+            location.reload();
+        }else {
+            console.log("Error al eliminar la invitación.");
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
 function limpiarCamposInvitarEmpresa(){
     var nombreCandidato = document.getElementById("nombreCandidato");
     var emailCandidato = document.getElementById("emailCandidato");
     var rolCandidato = document.getElementsByName("rolCandidato")[0];
-
+  
     nombreCandidato.value = "";
     emailCandidato.value = "";
     rolCandidato.value = "default";

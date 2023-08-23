@@ -802,39 +802,28 @@ input[type="radio"] {
 /* fabian  */
 .button-container {
     margin: 20px 30px 20px 0;
-    /* Espacio alrededor de los botones */
 }
 
 .boton {
     margin: 0 85px 0 0;
-    /* Espacio entre los botones */
     background-color: #918e8e;
-    /* Color de fondo del botón */
     color: white;
-    /* Color de texto del botón */
     border: none;
-    /* Eliminar borde del botón */
     cursor: pointer;
-    /* Cambiar el cursor a pointer cuando se pasa sobre el botón */
     transition: 0.3s;
-    /* Efecto de transición suave al pasar el mouse sobre el botón */
     padding: 15px;
 }
 
 .boton:hover {
     background-color: #a04594;
-    /* Color de fondo del botón al pasar el mouse sobre él */
 }
 
 .modern-table {
+    border-radius: 5px;
     background-color: #f2f2f2;
-    /* Color de fondo de la tabla */
     color: #333;
-    /* Color de texto de la tabla */
     width: 100%;
-    /* Asegura que la tabla ocupa todo el espacio disponible */
     margin: 20px 0;
-    /* Espacio alrededor de la tabla */
 }
 
 .modern-table th,
@@ -845,12 +834,10 @@ input[type="radio"] {
 
 .modern-table tbody tr:nth-child(even) {
     background-color: #e6e6e6;
-    /* Color de fondo para las filas pares */
 }
 
 .modern-table tbody tr:nth-child(odd) {
     background-color: #fff;
-    /* Color de fondo para las filas impares */
 }
 
 .desplegable {
@@ -865,33 +852,23 @@ input[type="radio"] {
     min-width: 160px;
     z-index: 1;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    /* Sombra alrededor del menú desplegable */
     background-color: #f9f9f9;
-    /* Color de fondo del menú desplegable */
 }
 
 .dropdown-content a {
     color: black;
-    /* Color de texto de los enlaces en el menú desplegable */
     padding: 12px 16px;
-    /* Espacio alrededor de los enlaces en el menú desplegable */
     text-decoration: none;
-    /* Eliminar subrayado de los enlaces en el menú desplegable */
     display: block;
-    /* Los enlaces en el menú desplegable se muestran en bloque */
 }
 
 .dropdown-content a:hover {
     background-color: #f1f1f1;
-    /* Color de fondo de los enlaces al pasar el mouse sobre ellos en el menú desplegable */
 }
 
 .desplegable:hover .dropdown-content {
     display: block;
-    /* Mostrar el menú desplegable al pasar el mouse sobre el botón */
 }
-
-/*fabian*/
 
 /* Estilos para el encabezado del contenido */
 #encabezadoContenido12 {
@@ -900,6 +877,27 @@ input[type="radio"] {
     align-items: center;
     font-size: 25px;
 
+}
+
+#estadoAnuncio{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 25px;
+    border-radius: 10px;
+    padding: 10px 20px;
+    background-color: #8458B3;
+    font-size: 20px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 20px 30px 20px 0;
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 #buscar2 {
@@ -966,12 +964,12 @@ input[type="radio"] {
 .primary {
     background-color: #8458B3;
     border: 2px solid #8458B3;
-    color: white; /* Agrega color de texto blanco */
+    color: white; 
 }
 
 .primary:hover {
-    background: #5E3784; /* Cambia el color de fondo en el hover */
-    border: 2px solid #5E3784; /* Cambia el color del borde en el hover */
+    background: #5E3784; 
+    border: 2px solid #5E3784; 
 } 
 
 #encabezadoContenido12 div {
@@ -983,7 +981,6 @@ input[type="radio"] {
 #encabezadoContenido12 div input[type="text"] {
     margin-left: 10px;
     font-size: 16px;
-    /* Tamaño de letra para Ordenar por y Buscar */
 }
 
 /* Estilos para el botón "Ir" */
@@ -996,7 +993,6 @@ input[type="radio"] {
     cursor: pointer;
     transition: 0.3s;
     font-size: 16px;
-    /* Tamaño de letra para el botón "Ir" */
 }
 
 #encabezadoContenido12 div input[type="submit"]:hover {
@@ -1019,14 +1015,12 @@ input[type="radio"] {
     text-align: left;
     padding: 10px;
     font-size: 16px;
-    /* Tamaño de letra para los encabezados de la tabla */
 }
 
 #tabla2 tbody td {
     border: 1px solid #ddd;
     padding: 10px;
     font-size: 14px;
-    /* Tamaño de letra para los datos de la tabla */
 }
 
 #tabla2 tbody tr:nth-child(even) {
@@ -1100,6 +1094,64 @@ input[type="radio"] {
 
 .form textarea {
     height: 15vh;
+}
+
+#form-filtrar-invitaciones{
+    margin: 0;
+    padding: 20px;
+    
+}
+
+#form-filtrar-invitaciones h3::after {
+    content: "";
+    width: 200px;
+    margin-top: 10px;
+    display: block;
+    position: absolute;
+    height: 3px;
+    background: var(--lightpurple);
+    transition: opacity 300ms ease-in-out;
+}
+
+#filtrar-invitaciones{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    max-width: 100%;
+}
+
+#filtrar-invitaciones input{
+    width: 90%;
+}
+
+#titulo-reportes{
+    margin-top: 0;
+}
+
+.boton-filtro{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.boton-filtro button{
+    border: 0;
+    width: 150px;
+    padding: 8.7px 0;
+    color: white;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    background-color: var(--purple);
+}
+
+.boton-filtro button:hover{
+    opacity: 70%;
+    cursor: pointer;
+}
+
+#titulo-filtrar{
+    margin-top: 0;
 }
 
 .subir-foto {
