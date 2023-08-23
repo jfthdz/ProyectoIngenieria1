@@ -131,15 +131,22 @@ module.exports = function(appPuestos){
 
     appPuestos.post("/puestos/aplicarPuesto", async function(req,res){
         try {
+            const fechaActual = new Date();
+            const fechaFormato = fechaActual.toISOString().split('T')[0];
             const puestoId = req.body.puestoId;
             const candidatoId = req.body.candidatoId;
+            const empresaId = req.body.empresaId;
 
             const nuevoPuestoXCandidato = {
                 puesto_id: puestoId,
                 candidato_id: candidatoId,
+                empresa_id: empresaId,
+                fecha_aplicacion: fechaFormato,
                 estado: "Pendiente"
+
             };
 
+            console.log(nuevoPuestoXCandidato);
             await model.postAplicarPuesto(nuevoPuestoXCandidato);
 
             res.send({message:"Aplico al puesto con exito"});

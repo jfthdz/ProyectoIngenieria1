@@ -14,7 +14,6 @@ module.exports = function(){
             let candidatos = await connection.db().collection("Candidatos").find().toArray();
             await connection.close();
 
-            console.log(candidatos);
             return candidatos;
         } catch (error) {
             console.log(error);
