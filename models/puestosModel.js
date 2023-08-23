@@ -88,14 +88,25 @@ module.exports = function(){
         }
     }
 
-    //Cambiar el Update para los Puestos
-    this.updatePuesto = async function(puestoData){
+    this.updatePuesto = async function(puestoId, puestoModificado){
         try {
             let connection = await mongodb.connect();
-            await connection.db().collection("Puestos").insertOne(puestoData);
+            await connection.db().collection("Puestos").updateOne({_id: new ObjectId(puestoId)},{$set:puestoModificado});
             await connection.close();
 
-            console.log(`Puesto agregado: ${puestoData}`);
+            console.log(`Puesto modificado: ${puestoId}`);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    this.deletePuesto = async function(puestoId){
+        try {
+            let connection = await mongodb.connect();
+            await connection.db().collection("Puestos").deleteOne({_id: new ObjectId(puestoId)});
+            await connection.close();
+
+            console.log(`Puesto eliminado: ${puestoId}`);
         } catch (error) {
             console.log(error);
         }

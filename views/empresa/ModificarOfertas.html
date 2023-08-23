@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="../../css/showOffers.css" />
+    <link rel="stylesheet" href="../../css/styles.css" />
     <link rel="shortcut icon" href="../../images/logo_tituloPagina.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,7 +15,7 @@
     <title>Busco Empleo</title>
   </head>
   <body>
-    <nav class="nav_buscoempleo nav">
+    <nav id="sub-menu" class="nav_buscoempleo nav">
       <a
         id="nav_logo-buscoempleo"
         href="../unlogged/HomePageUnlogged.html"
@@ -54,7 +54,7 @@
         </button>
       </div>
     </nav>
-    <header id="sub-menu" class="sub-header">
+    <header class="sub-header">
       <div id="options" class="options">
         <ul id="options-ul">
           <li><a href="../empresa/CrearOfertas.html">Crear oferta</a></li>
@@ -78,10 +78,81 @@
       </div>
     </header>
 
-    <div id="contenido">
-      <h1>Ofertas creadas</h1>
-      <div id="ofertas-creadas"></div>
-    </div>
+    <section id="contenido">
+      <div class="form">
+        <div id="mensajeExito">
+          <h2>¡Oferta de empleo modificada con éxito!</h2>
+        </div>
+        <h1>Modificar oferta laboral</h1>
+        <form
+          id="form-modificar-puesto"
+          method="post"
+          onsubmit="return validarFormularioModificarOferta()"
+        >
+          <h2>Datos necesarios</h2>
+          <div class="container-opciones">
+            <label
+              class="opcionEstado"
+              onclick="cambiarEstado('publico')"
+              for="publico"
+            >
+              Pública
+            </label>
+            <label
+              class="opcionEstado"
+              onclick="cambiarEstado('privado')"
+              for="privado"
+            >
+              Privada
+            </label>
+          </div>
+          <span id="errorEstado" class="error"></span>
+          <p>Título</p>
+          <input type="text" name="tituloOferta" id="tituloOferta" />
+          <span id="errorTituloOferta" class="error"></span>
+          <p>Requisitos mínimos</p>
+          <textarea
+            type="text"
+            name="reqMinimos"
+            id="reqMinimos"
+            rows="1"
+          ></textarea>
+          <span id="errorReqMinimos" class="error"></span>
+          <p>Requisitos deseables</p>
+          <textarea
+            type="text"
+            name="reqDeseables"
+            id="reqDeseables"
+          ></textarea>
+          <span id="errorReqDeseables" class="error"></span>
+          <p>Aptitudes plus</p>
+          <textarea type="text" name="plus" id="plus"></textarea>
+          <span id="errorPlus" class="error"></span>
+          <p>Rango salarial</p>
+          <input
+            type="text"
+            placeholder="Escriba el salario inicial"
+            name="rangoInicialOferta"
+            id="rangoInicialOferta"
+          />
+          <span id="errorRangoInicialOferta" class="error"></span>
+          <input
+            type="text"
+            placeholder="Escriba el salario máximo"
+            name="rangoMaximoOferta"
+            id="rangoMaximoOferta"
+          />
+          <span id="errorRangoMaximoOferta" class="error"></span>
+          <p>Ubicación</p>
+          <input type="text" name="ubicacionOferta" id="ubicacionOferta" />
+          <span id="errorUbicacionOferta" class="error"></span>
+          <button id="botonCrearOferta" type="submit">
+            Guardar cambios
+            <img src="../../images/guardar-blanco.png" />
+          </button>
+        </form>
+      </div>
+    </section>
 
     <footer id="footer_buscoempleo" class="footer">
       <div class="footer_first">
@@ -105,11 +176,11 @@
       <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
     </footer>
     <script src="/js/funciones.js"></script>
-    <script src="/js/empresaCliente.js"></script>
     <script src="/js/addPuestoCliente.js"></script>
+    <script src="/js/empresaCliente.js"></script>
     <script>
       cargarDatosEmpresa();
-      cargarOfertasPorEmpresa();
+      cargarFormularioModificarPuesto();
     </script>
   </body>
 </html>

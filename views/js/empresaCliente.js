@@ -546,18 +546,29 @@ function cargarOfertasCreadas(puestosPorEmpresa){
     var contenidoOfertasCreadas = document.querySelector("#ofertas-creadas");
 
     for(var puesto of puestosPorEmpresa){
-        var oferta = document.createElement("div");
-        var ofertaTitulo = document.createElement("h2");
-        var infoTitulo = document.createElement("div");
-        var ofertaRangoSalarial = document.createElement("p");
-        var ofertaFechaCreacion = document.createElement("p");
-        var ReqMinimoTitulo = document.createElement("h3");
-        var ofertaReqMinimo = document.createElement("p");
-        var ReqDeseableTitulo = document.createElement("h3");
-        var ofertaReqDeseable = document.createElement("p");
-        var PlusTitulo = document.createElement("h3");
-        var ofertaPlus = document.createElement("p");
-        var ofertaUbicacion = document.createElement("p");
+        const oferta = document.createElement("div");
+        const ofertaTitulo = document.createElement("h2");
+        const infoTitulo = document.createElement("div");
+        const ofertaRangoSalarial = document.createElement("p");
+        const ofertaFechaCreacion = document.createElement("p");
+        const ReqMinimoTitulo = document.createElement("h3");
+        const ofertaReqMinimo = document.createElement("p");
+        const ReqDeseableTitulo = document.createElement("h3");
+        const ofertaReqDeseable = document.createElement("p");
+        const PlusTitulo = document.createElement("h3");
+        const ofertaPlus = document.createElement("p");
+        const ofertaUbicacion = document.createElement("p");
+        const botonEliminar = document.createElement("button");
+        const botonEditar = document.createElement("button");
+        
+        const aEliminar = document.createElement("a");
+        const aEditar = document.createElement("a");
+        
+        const divBotones = document.createElement ("div");
+
+        divBotones.classList.add("div-botones");
+        botonEliminar.classList.add("boton-eliminar");
+        botonEditar.classList.add("boton-contenido"); 
 
         oferta.classList.add("descripcion-contenido");
         infoTitulo.classList.add("info-titulo");
@@ -572,6 +583,19 @@ function cargarOfertasCreadas(puestosPorEmpresa){
         PlusTitulo.innerText = "Aptitudes plus";
         ofertaPlus.innerText = puesto.aptitudes_plus;
         ofertaUbicacion.innerText = "Ubicación: "+puesto.ubicacion_oferta;
+        
+        botonEliminar.innerText = "Eliminar";
+        botonEditar.innerText = "Editar";
+        aEliminar.href = "";
+        aEditar.href= "../empresa/ModificarOfertas.html";
+        
+        const puestoId = puesto._id.toString();
+        botonEditar.onclick = function() {
+            guardarOfertaSeleccionada(puestoId);
+        };
+        botonEliminar.onclick = function() {
+            eliminarOfertaSeleccionada(puestoId);
+        };
 
         oferta.appendChild(ofertaTitulo);
         infoTitulo.appendChild(ofertaRangoSalarial);
@@ -585,8 +609,20 @@ function cargarOfertasCreadas(puestosPorEmpresa){
         oferta.appendChild(ofertaPlus);
         oferta.appendChild(ofertaUbicacion);
 
+        aEliminar.appendChild(botonEliminar);
+        aEditar.appendChild(botonEditar);
+        divBotones.appendChild(aEliminar);
+        divBotones.appendChild(aEditar);
+
+        oferta.appendChild(divBotones);
+
         contenidoOfertasCreadas.appendChild(oferta);
     }
+}
+
+async function guardarOfertaSeleccionada(ofertaId){
+    ofertaSeleccionada = await listaPuestosPorEmpresa.find(puesto => puesto._id === ofertaId);
+    sessionStorage.setItem(`ofertaSeleccionada`,JSON.stringify(ofertaSeleccionada));
 }
 
 function popupConfirmacion(){
@@ -1303,6 +1339,31 @@ function limpiarCamposInvitarEmpresa(){
     nombreCandidato.value = "";
     emailCandidato.value = "";
     rolCandidato.value = "default";
+}
+
+function cargarFormularioModificarPuesto(){
+    var campoNombrePuesto = document.querySelector("#tituloOferta");
+    var campoRangoSalarialInicial = document.querySelector("#rangoInicialOferta");
+    var campoRangoSalarialMaximo = document.querySelector("#rangoMaximoOferta"); 
+    var campoRequisitoMinimo = document.querySelector("#reqMinimos"); 
+    var campoRequisitoDeseable = document.querySelector("textarea[name='reqDeseables']");
+    var campoAptitudesPlus = document.querySelector("textarea[name='plus']");
+    var campoUbicacionOferta = document.querySelector("#ubicacionOferta"); 
+   
+    const ofertaSeleccionada = obtenerDatosOfertaSeleccionada();
+    if(ofertaSeleccionada){
+        const inputString = ofertaSeleccionada.rango_salarial;
+        const regex = /(\d[\d,\.]*)/g;
+        const [rangoInicial, rangoMaximo] = (inputString.match(regex) || []).map(value => parseFloat(value.replace(/[^\d\.]/g, "").replace(/\./g, "")));
+
+        campoNombrePuesto.value=ofertaSeleccionada.nombre;
+        campoRequisitoMinimo.innerHTML=ofertaSeleccionada.requisito_minimo;
+        campoRequisitoDeseable.innerText=ofertaSeleccionada.requisito_deseable;
+        campoAptitudesPlus.innerText=ofertaSeleccionada.aptitudes_plus;
+        campoRangoSalarialInicial.value= "¢ "+rangoInicial;
+        campoRangoSalarialMaximo.value= "¢ "+rangoMaximo;
+        campoUbicacionOferta.value=ofertaSeleccionada.ubicacion_oferta;
+    }
 }
 
 async function cargarUsuarios(){

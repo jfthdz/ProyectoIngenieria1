@@ -91,24 +91,41 @@ module.exports = function(appPuestos){
 
     appPuestos.post("/puestos/updatePuestos", async function(req,res){
         try {
-            //Utilizar el HTLM de CrearOfertas como base 
-            const nuevoPuesto = {
-                tituloOferta: req.body.tituloOfertaPuesto,
-                descripcionOferta: req.body.descripcionOfertaPuesto,
-                rangoInicialOferta: req.body.rangoInicialOfertaPuesto,
-                rangoMaximoOferta: req.body.erangoMaximoOfertaPuesto,
-                ubicacionOferta: req.body.ubicacionOfertaPuesto
+            const puestoId = req.body.puestoId;
+            const puestoModificado = {
+                nombre: req.body.tituloOferta,
+                requisito_minimo: req.body.reqMinimos,
+                requisito_deseable: req.body.reqDeseables,
+                aptitudes_plus: req.body.plus,
+                rango_salarial: `¢ ${req.body.rangoInicialOferta} a ${req.body.rangoMaximoOferta}`,
+                ubicacion_oferta: req.body.ubicacionOferta,
+                disponible : true,
+                tipo: req.body.tipo,
             }; 
 
-            await model.postPuesto(updatePuesto);
+            await model.updatePuesto(puestoId, puestoModificado);
 
-            console.log(updatePuesto);
             res.send({message:"Puesto actualizado con exito"});
 
         } catch (error) {
             console.log(error);
             console.log(req.body);
             res.send({message:"Hubo un error al actualizar el Puesto"});
+        }
+    });
+
+    appPuestos.post("/puestos/deletePuesto", async function(req,res){
+        try {
+            const puestoId = req.body.puestoId;
+
+            await model.deletePuesto(puestoId);
+
+            res.send({message:"Puesto eliminado con exito"});
+
+        } catch (error) {
+            console.log(error);
+            console.log(req.body);
+            res.send({message:"Hubo un error al eliminar el puesto"});
         }
     });
 
