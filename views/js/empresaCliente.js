@@ -2,6 +2,7 @@
 let candidatoSeleccionado;
 let listaCandidatos = {};
 let listaPuestosPorEmpresa = {};
+let listaEmpresas = {};
 
 window.addEventListener("DOMContentLoaded", function(){
     if(this.window.location.pathname.endsWith("mostrarCandidatos.html")){
@@ -63,7 +64,8 @@ function validarFormularioEmpresa() {
         var errorEmailEmpresa = document.getElementById("errorEmailEmpresa");
         var errorPasswordEmpresa = document.getElementById("errorPasswordEmpresa");
 
-        // Expresión regular para validar formato de correo
+        const emailEmpresaExiste = listaEmpresas.find(empresa => empresa.correo === emailEmpresa.value);
+        const emailCandidatoExiste = listaCandidatos.find(candidato => candidato.email === emailEmpresa.value);
         var regexEmail = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
 
         if (nombreEmpresa.value === "") {
@@ -76,7 +78,7 @@ function validarFormularioEmpresa() {
             errorNombreEmpresa.innerText = "";
             errorNombreEmpresa.style.display = "none";
         }
-
+        
         if (emailEmpresa.value === "") {
             emailEmpresa.style.border = "1px solid var(--redError)";
             errorEmailEmpresa.innerText = "*Campo necesario";
@@ -87,7 +89,12 @@ function validarFormularioEmpresa() {
             errorEmailEmpresa.innerText = "*Ingrese un correo válido";
             errorEmailEmpresa.style.display = "block";
             camposIncompletos = true;
-        } else {
+        } else if (emailEmpresaExiste || emailCandidatoExiste) {
+            emailEmpresa.style.border = "1px solid var(--redError)";
+            errorEmailEmpresa.innerText = "*Este correo ya se encuentra en uso";
+            errorEmailEmpresa.style.display = "block";
+            camposIncompletos = true;
+        }else {
             emailEmpresa.style.border = "0";
             errorEmailEmpresa.innerText = "";
             errorEmailEmpresa.style.display = "none";
@@ -131,6 +138,22 @@ function limpiarCamposRegistrarEmpresa() {
     textAreaAgregarDescripcion.value = "";
 }
 
+async function obtenerEmpresas(){
+    const url = "/empresas/getEmpresas"
+
+    try {
+        const response = await fetch(url);
+
+        if(response.ok){
+            listaEmpresas = await response.json();
+        }else{
+            console.log("Error al enviar los datos");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 async function registrarEmpresa() {
     const empresaData = new FormData(document.querySelector("#form-registrar-empresa"));
     const url = "/empresas/addEmpresa";
@@ -139,12 +162,6 @@ async function registrarEmpresa() {
         const fotoPorDefecto = "/images/fotoPerfilDefault.jpeg";
         empresaData.set("fotoPerfil", fotoPorDefecto);
     }
-
-    const empresaObject = {};
-    empresaData.forEach((value, key) =>{
-        empresaObject[key]= value;
-    });
-    console.log(empresaObject);
 
     try {
         const response = await fetch(url,{
@@ -574,7 +591,7 @@ function cargarOfertasCreadas(puestosPorEmpresa){
         infoTitulo.classList.add("info-titulo");
 
         ofertaTitulo.innerText = puesto.nombre;
-        ofertaRangoSalarial.innerText = puesto.rango_salarial;
+        ofertaRangoSalarial.innerText = `₡ ${puesto.rango_inicial} a ${puesto.rango_final}`;
         ofertaFechaCreacion.innerText = "Publicado el "+puesto.fecha_creacion;
         ReqMinimoTitulo.innerText = "Requisitos mínimos";
         ofertaReqMinimo.innerText = puesto.requisito_minimo;
@@ -625,6 +642,27 @@ async function guardarOfertaSeleccionada(ofertaId){
     sessionStorage.setItem(`ofertaSeleccionada`,JSON.stringify(ofertaSeleccionada));
 }
 
+async function eliminarOfertaSeleccionada(puestoId){
+    try {
+        const url = "/puestos/eliminarPuesto";
+        const data = new FormData();
+        data.append("puestoId", puestoId);
+        
+        const response = await fetch(url, {
+            body: data,
+            method: "POST",
+        });
+
+        if (response.ok) {
+            location.reload();
+        }else {
+            console.log("Error al eliminar la invitación.");
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 function popupConfirmacion(){
     event.preventDefault();
     const popup = document.querySelector("#popup");
@@ -641,6 +679,7 @@ function popupConfirmacion(){
 
         if (botonClickeado.id === "opcion-si") {
             console.log("Se hizo clic en el botón Sí");
+            eliminarCuentaEmpresa();
         } else if (botonClickeado.id === "opcion-no") {
             console.log("Se hizo clic en el botón No");
             setTimeout(function() {
@@ -649,6 +688,28 @@ function popupConfirmacion(){
             popup.style.display = "none";
         }
     });
+}
+
+async function eliminarCuentaEmpresa(){
+    try {
+        const empresaLoggeado = obtenerDatosEmpresa();
+        const url = "/empresas/borrarCuentaEmpresa";
+        const data = new FormData();
+        data.append("empresaId", empresaLoggeado._id);
+        
+        const response = await fetch(url, {
+            body: data,
+            method: "POST",
+        });
+    
+        if (response.ok) {
+            location.href = "/unlogged/HomePageUnlogged.html";
+        }else {
+            console.log("Error al eliminar el usuario.");
+        }
+      } catch (error) {
+        console.error(error);
+      }
 }
 
 function cargarSelectPuestos(puestosPorEmpresa){
@@ -739,8 +800,8 @@ async function enviarInvitacionPuesto(){
     const select = document.querySelector('select[name="puestos"');
     const puestoNombre = select.options[select.selectedIndex].innerText;
 
-    data.append("empresaId", empresaLoggeada._id);
-    data.append("empresaNombre", empresaLoggeada.nombre);
+    data.append("empresaId", empresaLoggeada ? empresaLoggeada._id : integranteObject._id);
+    data.append("empresaNombre", empresaLoggeada ? empresaLoggeada.nombre : integranteObject.nombre);
     data.append("reclutaEmail", integranteObject ? integranteObject.integrante[0].email : empresaLoggeada.correo);
     data.append("puestoNombre", puestoNombre);
     data.append("candidatoSeleccionadoId", candidatoSeleccionadoObject._id);
@@ -750,6 +811,7 @@ async function enviarInvitacionPuesto(){
     data.forEach((value, key) =>{
         temp[key] =value;
     });
+    console.log(temp);
 
     try {
         const response = await fetch(url,{
@@ -897,9 +959,10 @@ function limpiarCamposInvitarCandidato(){
 async function cargarInvitaciones(){
     const url = "/empresa/getInvitacionesPuesto"; 
     var empresaLoggeado = obtenerDatosEmpresa();
+    var integranteLoggeado = obtenerDatosIntegrante();
     const empresa = new FormData();
 
-    empresa.append("empresaId", empresaLoggeado._id);
+    empresa.append("empresaId", empresaLoggeado ? empresaLoggeado._id : integranteLoggeado._id);
 
     try {
         const response = await fetch(url,{
@@ -1039,9 +1102,10 @@ function filtrarInvitaciones(){
 async function cargarAplicantes(){
     const url = "/empresa/getAplicantes"; 
     var empresaLoggeado = obtenerDatosEmpresa();
+    var integranteLoggeado = obtenerDatosIntegrante();
     const empresa = new FormData();
 
-    empresa.append("empresaId", empresaLoggeado._id);
+    empresa.append("empresaId", empresaLoggeado ? empresaLoggeado._id : integranteLoggeado._id);
 
     try {
         const response = await fetch(url,{
@@ -1109,13 +1173,13 @@ function cargarAplicantesTabla(listaAplicantes) {
                 botonRechazar.innerText = "Rechazar";
     
                 botonAceptar.onclick = function() {
-                    aceptarAplicacion(candidato._id, puesto._id);
+                    aceptarAplicacion(candidato._id, puesto._id, candidato.email, candidato.nombre, puesto.nombre);
                 };
                 botonRevision.onclick = function() {
                     revisandoAplicacion(candidato._id, puesto._id);
                 };
                 botonRechazar.onclick = function() {
-                    rechazarAplicacion(candidato._id, puesto._id);
+                    rechazarAplicacion(candidato._id, puesto._id, candidato.email, candidato.nombre, puesto.nombre);
                 };
     
                 celdaAcciones.appendChild(botonAceptar);
@@ -1210,15 +1274,26 @@ function filtrarAplicantes(){
     }
 }
 
-async function aceptarAplicacion(candidatoId, puestoId){
+async function aceptarAplicacion(candidatoId, puestoId, candidatoEmail, candidatoNombre, puestoNombre){
     try {
         const empresaLoggeado = obtenerDatosEmpresa();
+        const integranteLoggeado = obtenerDatosIntegrante();
         const url = "/empresas/aceptarAplicacion";
         const data = new FormData();
         data.append("candidatoId", candidatoId);
-        data.append("empresaId", empresaLoggeado._id);
+        data.append("empresaId", empresaLoggeado ? empresaLoggeado._id : integranteLoggeado._id);
         data.append("puestoId", puestoId);
-        
+        data.append("candidatoEmail", candidatoEmail);
+        data.append("candidatoNombre", candidatoNombre);
+        data.append("puestoNombre", puestoNombre);
+        data.append("reclutaEmail", empresaLoggeado ? empresaLoggeado.integrante[0].email : integranteLoggeado.integrante[0].email);
+
+        const temp = {};
+        data.forEach((value, key) =>{
+            temp[key] =value;
+        });
+        console.log(temp);
+
         const response = await fetch(url, {
             body: data,
             method: "POST",
@@ -1237,10 +1312,11 @@ async function aceptarAplicacion(candidatoId, puestoId){
 async function revisandoAplicacion(candidatoId, puestoId){
     try {
         const empresaLoggeado = obtenerDatosEmpresa();
+        var integranteLoggeado = obtenerDatosIntegrante();
         const url = "/empresas/revisionAplication";
         const data = new FormData();
         data.append("candidatoId", candidatoId);
-        data.append("empresaId", empresaLoggeado._id);
+        data.append("empresaId", empresaLoggeado ? empresaLoggeado._id : integranteLoggeado._id);
         data.append("puestoId", puestoId);
         
         const response = await fetch(url, {
@@ -1258,14 +1334,19 @@ async function revisandoAplicacion(candidatoId, puestoId){
     }
 }
 
-async function rechazarAplicacion(candidatoId, puestoId){
+async function rechazarAplicacion(candidatoId, puestoId, candidatoEmail, candidatoNombre, puestoNombre){
     try {
         const empresaLoggeado = obtenerDatosEmpresa();
+        var integranteLoggeado = obtenerDatosIntegrante();
         const url = "/empresas/rechazarAplication";
         const data = new FormData();
         data.append("candidatoId", candidatoId);
-        data.append("empresaId", empresaLoggeado._id);
+        data.append("empresaId", empresaLoggeado ? empresaLoggeado._id : integranteLoggeado._id);
         data.append("puestoId", puestoId);
+        data.append("candidatoEmail", candidatoEmail);
+        data.append("candidatoNombre", candidatoNombre);
+        data.append("puestoNombre", puestoNombre);
+        data.append("reclutaEmail", empresaLoggeado ? empresaLoggeado.integrante[0].email : integranteLoggeado.integrante[0].email);
         
         const response = await fetch(url, {
             body: data,
@@ -1285,10 +1366,11 @@ async function rechazarAplicacion(candidatoId, puestoId){
 async function eliminarAplicacion(candidatoId, puestoId){
     try {
         const empresaLoggeado = obtenerDatosEmpresa();
+        var integranteLoggeado = obtenerDatosIntegrante();
         const url = "/empresas/borrarAplicacion";
         const data = new FormData();
         data.append("candidatoId", candidatoId);
-        data.append("empresaId", empresaLoggeado._id);
+        data.append("empresaId", empresaLoggeado ? empresaLoggeado._id : integranteLoggeado._id);
         data.append("puestoId", puestoId);
         
         const response = await fetch(url, {
@@ -1309,10 +1391,11 @@ async function eliminarAplicacion(candidatoId, puestoId){
 async function eliminarInvitacion(candidatoId, puestoId){
     try {
         const empresaLoggeado = obtenerDatosEmpresa();
+        var integranteLoggeado = obtenerDatosIntegrante();
         const url = "/empresas/eliminarInvitacion";
         const data = new FormData();
         data.append("candidatoId", candidatoId);
-        data.append("empresaId", empresaLoggeado._id);
+        data.append("empresaId", empresaLoggeado ? empresaLoggeado._id : integranteLoggeado._id);
         data.append("puestoId", puestoId);
         
         const response = await fetch(url, {
@@ -1352,16 +1435,13 @@ function cargarFormularioModificarPuesto(){
    
     const ofertaSeleccionada = obtenerDatosOfertaSeleccionada();
     if(ofertaSeleccionada){
-        const inputString = ofertaSeleccionada.rango_salarial;
-        const regex = /(\d[\d,\.]*)/g;
-        const [rangoInicial, rangoMaximo] = (inputString.match(regex) || []).map(value => parseFloat(value.replace(/[^\d\.]/g, "").replace(/\./g, "")));
 
         campoNombrePuesto.value=ofertaSeleccionada.nombre;
         campoRequisitoMinimo.innerHTML=ofertaSeleccionada.requisito_minimo;
         campoRequisitoDeseable.innerText=ofertaSeleccionada.requisito_deseable;
         campoAptitudesPlus.innerText=ofertaSeleccionada.aptitudes_plus;
-        campoRangoSalarialInicial.value= "¢ "+rangoInicial;
-        campoRangoSalarialMaximo.value= "¢ "+rangoMaximo;
+        campoRangoSalarialInicial.value= ofertaSeleccionada.rango_inicial;
+        campoRangoSalarialMaximo.value= ofertaSeleccionada.rango_final;
         campoUbicacionOferta.value=ofertaSeleccionada.ubicacion_oferta;
     }
 }

@@ -12,7 +12,7 @@ module.exports = function(){
     this.findEmpresaLogin = async function(email, password){
         try {
             let connection = await mongodb.connect();
-            let empresa = await connection.db().collection("Empresas").findOne({correo: email, password: password});
+            let empresa = await connection.db().collection("Empresas").findOne({correo: email, password: password, estado: "Activo"});
             await connection.close();
 
             return empresa ? empresa : false;
@@ -42,7 +42,7 @@ module.exports = function(){
                 await connection.db().collection("InvitacionEmpresa").updateOne({email: email, hasLogged: false},{$set:{hasLogged: true, estado: "Aceptada"}});
                 await connection.db().collection("Empresas").updateOne({"integrante.email": email, "integrante.pass": password},{$set: {"integrante.$.estado": "Activo"}});
             }
-            const integrante = await connection.db().collection("Empresas").findOne({integrante:{$elemMatch:{email: email, pass: password}}});
+            const integrante = await connection.db().collection("Empresas").findOne({integrante:{$elemMatch:{email: email, pass: password}}, estado: "Activo"});
             await connection.close();
 
             return integrante ? integrante : false;

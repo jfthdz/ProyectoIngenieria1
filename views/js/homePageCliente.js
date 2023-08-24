@@ -145,7 +145,7 @@ function cargarDatosOfertasHomePage(puestos){
         card.setAttribute("data-id",puesto._id);
         tituloPuesto.innerText = puesto.nombre;
         empresa.innerText = nombreEmpresa;
-        rangoSalarial.innerText = puesto.rango_salarial;
+        rangoSalarial.innerText = `₡ ${puesto.rango_inicial} a ${puesto.rango_final}`;
         card.appendChild(divFotoEmpresa);
         card.appendChild(tituloPuesto);
         card.appendChild(empresa);

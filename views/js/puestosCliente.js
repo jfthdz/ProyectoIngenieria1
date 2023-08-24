@@ -124,7 +124,7 @@ function cargarMostrarOfertas(ofertas){
 
         opcionTituloPuesto.innerText = oferta.nombre;
         opcionEmpresa.innerText = nombreEmpresa;
-        opcionRangoSalarial.innerText = oferta.rango_salarial;
+        opcionRangoSalarial.innerText = `₡ ${oferta.rango_inicial} a ${oferta.rango_final}`;
         opcionBotonLink.href = "../candidato/ofertasTrabajo.html";
         botonVer.innerText = "Ver";
         const ofertaId = oferta._id.toString();
@@ -190,7 +190,7 @@ async function cargarDatosOferta(){
                 tituloPuesto.innerText = puesto.nombre;
                 empresaPuesto.innerText = "Empresa: "+nombreEmpresa;
                 fechaPuesto.innerText += "Publicado el "+puesto.fecha_creacion;
-                empresaRangoSalarial.innerText = puesto.rango_salarial;
+                empresaRangoSalarial.innerText = `₡ ${puesto.rango_inicial} a ${puesto.rango_final}`;
                 ubicacionPuesto.innerText = puesto.ubicacion_oferta;
     
                 contenidoReqMinimo.innerText = puesto.requisito_minimo;

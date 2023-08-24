@@ -171,10 +171,10 @@ module.exports = function(){
     this.deleteInvitacion = async function(empresaId, candidatoId, puestoId){
         try {
             let connection = await mongodb.connect();
-            const aplicacion = await connection.db().collection('InvitacionPuesto').deleteOne({empresa_id: empresaId, candidato_id: candidatoId, puesto_id: puestoId});
+            const invitacion = await connection.db().collection('InvitacionPuesto').deleteOne({empresa_id: empresaId, candidato_id: candidatoId, puesto_id: puestoId});
             await connection.close();
 
-            console.log(`Se elimino la invitacion: ${aplicacion.modifiedCount}`);
+            console.log(`Se elimino la invitacion: ${invitacion.modifiedCount}`);
           } catch (error) {
             console.log(error);
         }
@@ -257,6 +257,18 @@ module.exports = function(){
             await connection.close();
 
             console.log(`Se elimino el integrante: ${usuario.modifiedCount}`);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    this.borrarCuentaEmpresa = async function(empresaId){
+        try {
+            let connection = await mongodb.connect();
+            const empresa = await connection.db().collection('Empresas').updateOne({_id: new ObjectId(empresaId)},{$set: { Estado: "Inactivo"}});
+            await connection.close();
+
+            console.log(`Se innactivo la empresa: ${empresa.modifiedCount}`);
         } catch (error) {
             console.log(error);
         }

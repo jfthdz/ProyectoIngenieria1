@@ -72,89 +72,60 @@
     </header>
 
     <section id="contenido">
-      <div id="encabezadoContenido2" class="button-container">
-        <div class="desplegable">
-          <button class="boton modern-button">Mis Postulaciones</button>
-          <div class="dropdown-content">
-            <a href="#">Activa</a>
-            <a href="#">En proceso</a>
-            <a href="#">Cancelada</a>
+      <div class="form">
+        <h1 id="titulo-reportes">Mis aplicaciones</h1>
+        <form
+          id="form-filtrar-invitaciones"
+          method="POST"
+          onsubmit="return filtrarAplicaciones()"
+        >
+          <h3 id="titulo-filtrar">Filtrar por:</h3>
+          <div id="filtrar-invitaciones">
+            <div>
+              <p>Puesto:</p>
+              <input type="text" name="puesto" id="puesto" />
+            </div>
+
+            <div>
+              <p>Empresa:</p>
+              <input type="text" name="empresa" id="empresa" />
+            </div>
+
+            <div>
+              <p>Fecha de aplicación:</p>
+              <input type="text" name="fecha" id="fecha" />
+            </div>
+
+            <div>
+              <p>Estado:</p>
+              <input type="text" name="estado" id="estado" />
+            </div>
+
+            <div class="boton-filtro">
+              <button type="submit">Filtrar</button>
+            </div>
           </div>
-        </div>
+          <span id="errorFiltro" class="error"></span>
+        </form>
       </div>
 
-      <div id="contenidocentral">
-        <table class="modern-table">
+      <div id="contenidocentral12">
+        <table id="tablaAplicaciones" class="modern-table">
           <thead>
             <tr>
-              <th>Detalle</th>
+              <th>Puesto</th>
+              <th>Empresa</th>
+              <th>Fecha</th>
               <th>Estado</th>
-              <th>Vacante</th>
               <th>Acciones</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>
-                <strong>Detalle de la oferta:</strong><br />
-                <em>Descripción de la oferta de trabajo 1.</em><br />
-                <em>Requisitos: habilidades, experiencia, etc.</em>
-              </td>
-              <td>En revisión</td>
-              <td>Ingeniero de Software</td>
-              <td>
-                <a href="#">Eliminar</a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <em>Descripción de la oferta de trabajo 2.</em><br />
-                <em>Requisitos: habilidades, experiencia, etc.</em>
-              </td>
-              <td>Aceptada</td>
-              <td>Analista de Sistemas</td>
-              <td>
-                <a href="#">Eliminar</a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <em>Descripción de la oferta de trabajo 3.</em><br />
-                <em>Requisitos: habilidades, experiencia, etc.</em>
-              </td>
-              <td>Denegada</td>
-              <td>Desarrollador Web</td>
-              <td>
-                <a href="#">Eliminar</a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <em>Descripción de la oferta de trabajo 4.</em><br />
-                <em>Requisitos: habilidades, experiencia, etc.</em>
-              </td>
-              <td>Aceptada</td>
-              <td>Desarrollador Web</td>
-              <td>
-                <a href="#">Eliminar</a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <em>Descripción de la oferta de trabajo 5.</em><br />
-                <em>Requisitos: habilidades, experiencia, etc.</em>
-              </td>
-              <td>Enviada</td>
-              <td>Desarrollador Web</td>
-              <td>
-                <a href="#">Eliminar</a>
-              </td>
-            </tr>
-            <!-- Agregar más filas según sea necesario -->
-          </tbody>
+          <tbody></tbody>
         </table>
+        <p id="sinResultados" style="display: none">
+          Ningún aplicante cumple con la búsqueda. Por favor inténtelo de nuevo.
+        </p>
       </div>
-      <!--#contenidocentral-->
     </section>
 
     <footer id="footer_buscoempleo" class="footer">
@@ -178,9 +149,13 @@
       </div>
       <p class="footer_last">&copy; 2023 Desarrollado por BitByte Solutions</p>
     </footer>
-    <script src="../../js/funciones.js"></script>
+    <script src="/js/funciones.js"></script>
+    <script src="/js/candidatoCliente.js"></script>
     <script>
       cargarDatosUsuario();
+      obtenerPuestos();
+      obtenerEmpresas();
+      cargarAplicaciones();
     </script>
   </body>
 </html>
