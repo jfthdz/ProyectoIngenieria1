@@ -265,7 +265,7 @@ module.exports = function(){
     this.borrarCuentaEmpresa = async function(empresaId){
         try {
             let connection = await mongodb.connect();
-            const empresa = await connection.db().collection('Empresas').updateOne({_id: new ObjectId(empresaId)},{$set: { Estado: "Inactivo"}});
+            const empresa = await connection.db().collection('Empresas').updateOne({_id: new ObjectId(empresaId)},{$set: { estado: "Inactivo"}});
             await connection.close();
 
             console.log(`Se innactivo la empresa: ${empresa.modifiedCount}`);
