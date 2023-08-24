@@ -39,7 +39,9 @@ module.exports = function(){
                     {requisito_minimo: {$regex: palabrasClave.join("|"), $options:"i"}},
                     {requisito_deseable: {$regex: palabrasClave.join("|"), $options:"i"}},
                     {aptitudes_plus: {$regex: palabrasClave.join("|"), $options:"i"}},
-                    {ubicacion_oferta: {$regex: palabrasClave.join("|"), $options:"i"}}
+                    {ubicacion_oferta: {$regex: palabrasClave.join("|"), $options:"i"}},
+                    {rango_inicial: {$regex: palabrasClave.join("|"), $options:"i"}},
+                    {rango_final: {$regex: palabrasClave.join("|"), $options:"i"}}
                 ];
             }
             console.log(query);
@@ -126,6 +128,18 @@ module.exports = function(){
 
             console.log(`Aplicacion hecha`);
         } catch (error) {
+            console.log(error);
+        }
+    }
+
+    this.eliminarPuesto = async function(puestoId){
+        try {
+            let connection = await mongodb.connect();
+            const puesto = await connection.db().collection('Puestos').deleteOne({_id: new ObjectId(puestoId)});
+            await connection.close();
+
+            console.log(`Se elimino la invitacion: ${puesto.modifiedCount}`);
+          } catch (error) {
             console.log(error);
         }
     }

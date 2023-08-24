@@ -158,4 +158,16 @@ module.exports = function(appPuestos){
             res.send({message:"Hubo un error en aplicar al puesto"});
         }
     });
+
+    appPuestos.post("/puestos/eliminarPuesto", async function(req, res){
+        try {
+            const puestoId = req.body.puestoId;
+            let puesto = await model.eliminarPuesto(puestoId);
+
+            res.send(puesto);
+          } catch (error) {
+            console.log(error);
+            res.send({message:"Hubo un error al obtener los datos de los usuarios"});            
+        }
+    });
 }

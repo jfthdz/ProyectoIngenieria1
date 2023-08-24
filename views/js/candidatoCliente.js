@@ -1,3 +1,58 @@
+let listaEmpresas = {};
+let listaCandidatos = {};
+let listaPuestos = {};
+
+async function obtenerEmpresas(){
+    const url = "/empresas/getEmpresas"
+
+    try {
+        const response = await fetch(url);
+
+        if(response.ok){
+            listaEmpresas = await response.json();
+        }else{
+            console.log("Error al enviar los datos");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function cargarCandidatos(){
+    const url = "/candidatos/getCandidatos"
+
+    try {
+        const response = await fetch(url);
+
+        if(response.ok){
+            listaCandidatos = await response.json();
+            if(this.window.location.pathname.endsWith("mostrarCandidatos.html")){
+                cargarMostrarCandidatos(listaCandidatos);
+            }
+        }else{
+            console.log("Error al enviar los datos");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function obtenerPuestos(){
+    const url = "/puestos/getPuestos"
+
+    try {
+        const response = await fetch(url);
+
+        if(response.ok){
+            listaPuestos = await response.json();
+        }else{
+            console.log("Error al enviar los datos");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 //Funciones en Registrar candidato
 function habilitarCamposExperiencia(){
     event.preventDefault();
@@ -112,7 +167,8 @@ async function validarFormulario() {
         var errorPassword = document.getElementById("errorPassword");
         var errorProfesion = document.getElementById("errorProfesion");
 
-        //expresión regular para validar formato de correo
+        const emailEmpresaExiste = listaEmpresas.find(empresa => empresa.correo === email.value);
+        const emailCandidatoExiste = listaCandidatos.find(candidato => candidato.email === email.value);
         var regexEmail = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
 
         if (nombre.value === "") {
@@ -154,6 +210,11 @@ async function validarFormulario() {
         } else if(regexEmail.test(email.value)==false){
             email.style.border = "1px solid var(--redError)";
             errorEmail.innerText = "*Ingrese un correo válido";
+            errorEmail.style.display = "block";
+            camposIncompletos = true;
+        }else if (emailEmpresaExiste || emailCandidatoExiste) {
+            email.style.border = "1px solid var(--redError)";
+            errorEmail.innerText = "*Este correo ya se encuentra en uso";
             errorEmail.style.display = "block";
             camposIncompletos = true;
         }else{
@@ -200,6 +261,8 @@ async function validarFormulario() {
             primerCampoIncompleto = password;
             } else if (profesion.value === "") {
             primerCampoIncompleto = profesion;
+            } else if (emailEmpresaExiste || emailCandidatoExiste) {
+            primerCampoIncompleto = email;
             }
 
             // Hacer scroll al primer campo incompleto
@@ -686,4 +749,389 @@ function popupConfirmacion(){
             popup.style.display = "none";
         }
     });
+}
+
+async function cargarAplicaciones(){
+    const url = "/candidato/getAplicacionesCandidato"; 
+    var usuarioLoggeado = obtenerDatosUsuario();
+    const usuario = new FormData();
+
+    usuario.append("userId", usuarioLoggeado._id);
+
+    try {
+        const response = await fetch(url,{
+            body: usuario,
+            method: "POST"
+        });
+
+        if(response.ok){
+            const listaAplicaciones = await response.json();
+            if(listaAplicaciones){
+                cargarAplicacionesTabla(listaAplicaciones, usuarioLoggeado._id); 
+            }
+        }else{
+            console.log("Error al obtener las aplicaciones hechas");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+function cargarAplicacionesTabla(listaAplicaciones, userId) {
+    const tabla = document.querySelector("#tablaAplicaciones tbody");
+    tabla.innerHTML = '';
+
+    for(let aplicacion of listaAplicaciones) {
+        setTimeout(function() {
+            const empresa = listaEmpresas.find(empresa => empresa._id === aplicacion.empresa_id);
+            const puesto = listaPuestos.find(puesto => puesto._id === aplicacion.puesto_id);
+            const fila = document.createElement("tr");
+    
+            const celdaPuesto = document.createElement("td");
+            celdaPuesto.innerText = puesto.nombre; 
+            fila.appendChild(celdaPuesto);
+
+            const celdaEmpresa = document.createElement("td");
+            celdaEmpresa.innerHTML = empresa.nombre;
+            fila.appendChild(celdaEmpresa);
+
+            const celdaFecha = document.createElement("td");
+            celdaFecha.innerText = aplicacion.fecha_aplicacion; 
+            fila.appendChild(celdaFecha);
+    
+            const celdaEstado = document.createElement("td");
+            celdaEstado.innerText = aplicacion.estado; 
+            fila.appendChild(celdaEstado);
+
+            const celdaAcciones = document.createElement("td");
+            const botonEliminar = document.createElement("button");
+            botonEliminar.innerText = "Eliminar";
+            botonEliminar.onclick = function() {
+                eliminarAplicacion(userId, puesto._id);
+            };
+            celdaAcciones.appendChild(botonEliminar);
+
+            fila.appendChild(celdaAcciones);
+    
+            tabla.appendChild(fila);
+        }, 100);
+    }
+}
+
+function filtrarAplicaciones(){
+    try {
+        event.preventDefault();
+        const puesto = document.querySelector("#puesto");
+        const empresa = document.querySelector("#empresa");
+        const fecha = document.querySelector("#fecha");
+        const estado = document.querySelector("#estado");
+        var errorFiltro = document.querySelector("#errorFiltro");
+        var camposIncompletos = false;
+
+        if (empresa.value === "" && fecha.value === "" && puesto.value === "" && estado.value === "") {
+            empresa.style.border = "1px solid var(--redError)";
+            fecha.style.border = "1px solid var(--redError)";
+            puesto.style.border = "1px solid var(--redError)";
+            estado.style.border = "1px solid var(--redError)";
+            errorFiltro.innerText = "*Se necesita al menos un filtro.";
+            errorFiltro.style.display = "block";
+            camposIncompletos = true;
+        } else {
+            empresa.style.border = "0";
+            fecha.style.border = "0";
+            puesto.style.border = "0";
+            estado.style.border = "0";
+            errorFiltro.innerText = "";
+            errorFiltro.style.display = "none";
+        }
+
+        if (camposIncompletos) {
+            return false;
+        }else{
+            const tabla = document.querySelector("#tablaAplicaciones");
+            const filas = document.querySelectorAll("#tablaAplicaciones tbody tr");
+            const mensajeSinResultados = document.querySelector("#sinResultados");
+            const filtroEmpresa = empresa.value.toLowerCase();
+            const filtroFecha = fecha.value.toLowerCase();
+            const filtroPuesto = puesto.value.toLowerCase();
+            const filtroEstado = estado.value.toLowerCase();
+            let hayResultados = false;
+
+            filas.forEach((fila) => {
+                const puesto = fila.querySelector("td:first-child").textContent.toLowerCase();
+                const empresa = fila.querySelector("td:nth-child(2)").textContent.toLowerCase();
+                const fecha = fila.querySelector("td:nth-child(3)").textContent.toLowerCase();
+                const estado = fila.querySelector("td:nth-child(4)").textContent.toLowerCase();
+        
+                const cumpleFiltros =
+                    empresa.includes(filtroEmpresa) &&
+                    fecha.includes(filtroFecha) &&
+                    puesto.includes(filtroPuesto) &&
+                    estado.includes(filtroEstado);
+
+                    if (cumpleFiltros) {
+                        fila.style.display = "";
+                        hayResultados = true;
+                    } else {
+                        fila.style.display = "none";
+                    }
+            });
+            mensajeSinResultados.style.display = hayResultados ? "none" : "block";
+            tabla.style.display = hayResultados ? "" : "none";
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function eliminarAplicacion(userId, puestoId){
+    try {
+        const url = "/candidato/borrarAplicacion";
+        const data = new FormData();
+        data.append("userId", userId);
+        data.append("puestoId", puestoId);
+        
+        const response = await fetch(url, {
+            body: data,
+            method: "POST",
+        });
+
+        if (response.ok) {
+            location.reload();
+        }else {
+            console.log("Error al eliminar la aplicación.");
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function cargarInvitaciones(){
+    const url = "/candidato/getInvitacionesCandidato"; 
+    var usuarioLoggeado = obtenerDatosUsuario();
+    const usuario = new FormData();
+
+    usuario.append("userId", usuarioLoggeado._id);
+
+    try {
+        const response = await fetch(url,{
+            body: usuario,
+            method: "POST"
+        });
+
+        if(response.ok){
+            const listaInvitaciones = await response.json();
+            if(listaInvitaciones){
+                cargarInvitacionesTabla(listaInvitaciones, usuarioLoggeado._id); 
+            }
+        }else{
+            console.log("Error al obtener las invitaciones");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+function cargarInvitacionesTabla(listaInvitaciones, userId) {
+    const tabla = document.querySelector("#tablaInvitaciones tbody");
+    tabla.innerHTML = '';
+
+    for(let invitacion of listaInvitaciones) {
+        setTimeout(function() {
+            const empresa = listaEmpresas.find(empresa => empresa._id === invitacion.empresa_id);
+            const puesto = listaPuestos.find(puesto => puesto._id === invitacion.puesto_id);
+            const fila = document.createElement("tr");
+    
+            const celdaPuesto = document.createElement("td");
+            celdaPuesto.innerText = puesto.nombre; 
+            fila.appendChild(celdaPuesto);
+
+            const celdaEmpresa = document.createElement("td");
+            celdaEmpresa.innerHTML = empresa.nombre;
+            fila.appendChild(celdaEmpresa);
+
+            const celdaFecha = document.createElement("td");
+            celdaFecha.innerText = invitacion.fecha_creacion; 
+            fila.appendChild(celdaFecha);
+    
+            const celdaEstado = document.createElement("td");
+            celdaEstado.innerText = invitacion.estado; 
+            fila.appendChild(celdaEstado);
+
+            const celdaAcciones = document.createElement("td");
+            if(invitacion.estado === "Aceptada" || invitacion.estado === "Rechazada"){
+                const botonEliminar = document.createElement("button");
+                botonEliminar.innerText = "Eliminar";
+
+                botonEliminar.onclick = function() {
+                    eliminarInvitacion(userId, puesto._id);
+                };
+                celdaAcciones.appendChild(botonEliminar);
+            }else{
+                const botonAceptar = document.createElement("button");
+                const botonRechazar = document.createElement("button");
+                botonAceptar.innerText = "Aceptar";
+                botonRechazar.innerText = "Rechazar";
+    
+                botonAceptar.onclick = function() {
+                    aceptarInvitacion(puesto._id, puesto.nombre);
+                };
+                botonRechazar.onclick = function() {
+                    rechazarInvitacion(puesto._id, puesto.nombre);
+                };
+    
+                celdaAcciones.appendChild(botonAceptar);
+                celdaAcciones.appendChild(botonRechazar);
+            }
+
+            fila.appendChild(celdaAcciones);
+    
+            tabla.appendChild(fila);
+        }, 100);
+    }
+}
+
+function filtrarInvitaciones(){
+    try {
+        event.preventDefault();
+        const puesto = document.querySelector("#puesto");
+        const empresa = document.querySelector("#empresa");
+        const fecha = document.querySelector("#fecha");
+        const estado = document.querySelector("#estado");
+        var errorFiltro = document.querySelector("#errorFiltro");
+        var camposIncompletos = false;
+
+        if (empresa.value === "" && fecha.value === "" && puesto.value === "" && estado.value === "") {
+            empresa.style.border = "1px solid var(--redError)";
+            fecha.style.border = "1px solid var(--redError)";
+            puesto.style.border = "1px solid var(--redError)";
+            estado.style.border = "1px solid var(--redError)";
+            errorFiltro.innerText = "*Se necesita al menos un filtro.";
+            errorFiltro.style.display = "block";
+            camposIncompletos = true;
+        } else {
+            empresa.style.border = "0";
+            fecha.style.border = "0";
+            puesto.style.border = "0";
+            estado.style.border = "0";
+            errorFiltro.innerText = "";
+            errorFiltro.style.display = "none";
+        }
+
+        if (camposIncompletos) {
+            return false;
+        }else{
+            const tabla = document.querySelector("#tablaInvitaciones");
+            const filas = document.querySelectorAll("#tablaInvitaciones tbody tr");
+            const mensajeSinResultados = document.querySelector("#sinResultados");
+            const filtroEmpresa = empresa.value.toLowerCase();
+            const filtroFecha = fecha.value.toLowerCase();
+            const filtroPuesto = puesto.value.toLowerCase();
+            const filtroEstado = estado.value.toLowerCase();
+            let hayResultados = false;
+
+            filas.forEach((fila) => {
+                const puesto = fila.querySelector("td:first-child").textContent.toLowerCase();
+                const empresa = fila.querySelector("td:nth-child(2)").textContent.toLowerCase();
+                const fecha = fila.querySelector("td:nth-child(3)").textContent.toLowerCase();
+                const estado = fila.querySelector("td:nth-child(4)").textContent.toLowerCase();
+        
+                const cumpleFiltros =
+                    empresa.includes(filtroEmpresa) &&
+                    fecha.includes(filtroFecha) &&
+                    puesto.includes(filtroPuesto) &&
+                    estado.includes(filtroEstado);
+
+                    if (cumpleFiltros) {
+                        fila.style.display = "";
+                        hayResultados = true;
+                    } else {
+                        fila.style.display = "none";
+                    }
+            });
+            mensajeSinResultados.style.display = hayResultados ? "none" : "block";
+            tabla.style.display = hayResultados ? "" : "none";
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function eliminarInvitacion(userId, puestoId){
+    try {
+        const url = "/candidato/borrarInvitacion";
+        const data = new FormData();
+        data.append("userId", userId);
+        data.append("puestoId", puestoId);
+        
+        const response = await fetch(url, {
+            body: data,
+            method: "POST",
+        });
+
+        if (response.ok) {
+            location.reload();
+        }else {
+            console.log("Error al eliminar la invitación.");
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function aceptarInvitacion(puestoId, puestoNombre){
+    try {
+        const usuarioLoggeado = obtenerDatosUsuario();
+        const url = "/candidato/aceptarInvitacion";
+        const data = new FormData();
+        data.append("userId", usuarioLoggeado._id);
+        data.append("puestoId", puestoId);
+        data.append("userNombre", usuarioLoggeado.nombre);
+        data.append("puestoNombre", puestoNombre);
+
+        const temp = {};
+        data.forEach((value, key) =>{
+            temp[key] =value;
+        });
+        console.log(temp);
+        
+        const response = await fetch(url, {
+            body: data,
+            method: "POST",
+        });
+
+        if (response.ok) {
+            location.reload();
+        }else {
+            console.log("Error al aceptar la invitación.");
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function rechazarInvitacion(puestoId, puestoNombre){
+    try {
+        const usuarioLoggeado = obtenerDatosUsuario();
+        const url = "/candidato/rechazarInvitacion";
+        const data = new FormData();
+        data.append("userId", usuarioLoggeado._id);
+        data.append("puestoId", puestoId);
+        data.append("userNombre", usuarioLoggeado.nombre);
+        data.append("puestoNombre", puestoNombre);
+        data.append("userEmail", usuarioLoggeado.email);
+        
+        const response = await fetch(url, {
+            body: data,
+            method: "POST",
+        });
+
+        if (response.ok) {
+            location.reload();
+        }else {
+            console.log("Error al rechazar la invitación.");
+        }
+    } catch (error) {
+        console.error(error);
+    }
 }

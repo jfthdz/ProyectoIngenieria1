@@ -221,7 +221,9 @@ function addFotoPerfil(rutaFoto){
     var fotoPerfilNav = document.querySelector("#divOpcionesNav img");
     fotoPerfilNav.style.display = "block";
 
-    if(rutaFoto){
+    if(rutaFoto === "/images/fotoPerfilDefault.jpeg"){
+        fotoPerfilNav.src = "/images/fotoPerfilDefault.jpeg";
+    }else if(rutaFoto){
         const partes = rutaFoto.split("\\");
         const indiceUploads = partes.indexOf("uploads");
         const rutaCorredida = partes.slice(indiceUploads).join("/");
@@ -235,7 +237,9 @@ function addFotoPerfil(rutaFoto){
 function addFotoPerfilModificarCandidato(rutaFoto){
     var fotoPerfilModificar = document.querySelector("#img-perfil-modificar");
 
-    if(rutaFoto){
+    if(rutaFoto === "/images/fotoPerfilDefault.jpeg"){
+        fotoPerfilModificar.src = "/images/fotoPerfilDefault.jpeg";
+    }else if(rutaFoto){
         const partes = rutaFoto.split("\\");
         const indiceUploads = partes.indexOf("uploads");
         const rutaCorredida = partes.slice(indiceUploads).join("/");
@@ -249,7 +253,9 @@ function addFotoPerfilModificarCandidato(rutaFoto){
 function addFotoCandidato(rutaFoto){
     var fotoPerfilCandidato = document.querySelector("#img-perfil-candidato");
 
-    if(rutaFoto){
+    if(rutaFoto === "/images/fotoPerfilDefault.jpeg"){
+        fotoPerfilCandidato.src = "/images/fotoPerfilDefault.jpeg";
+    }else if(rutaFoto){
         const partes = rutaFoto.split("\\");
         const indiceUploads = partes.indexOf("uploads");
         const rutaCorredida = partes.slice(indiceUploads).join("/");
@@ -263,7 +269,9 @@ function addFotoCandidato(rutaFoto){
 function addFotoEmpresaOfertaTrabajo(rutaFoto){
     var fotoPerfilEmpresa = document.querySelector("#img-perfil-contenido");
 
-    if(rutaFoto){
+    if(rutaFoto === "/images/fotoPerfilDefault.jpeg"){
+        fotoPerfilEmpresa.src = "/images/fotoPerfilDefault.jpeg";
+    }else if(rutaFoto){
         const partes = rutaFoto.split("\\");
         const indiceUploads = partes.indexOf("uploads");
         const rutaCorredida = partes.slice(indiceUploads).join("/");

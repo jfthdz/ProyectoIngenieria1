@@ -45,7 +45,8 @@ module.exports = function(appEmpresas){
                 password: req.body.passwordEmpresa,
                 foto: fotoPerfilPath ? fotoPerfilPath : req.body.fotoPerfil,
                 descripcion: req.body.contenidoDescripcion,
-                integrante:[]
+                integrante:[],
+                estado: "Activo"
             }; 
         
             await model.postEmpresa(nuevaEmpresa);
@@ -235,6 +236,56 @@ module.exports = function(appEmpresas){
         try {
             const candidatoId = req.body.candidatoId;
             const puestoId = req.body.puestoId;
+            const candidatoEmail = req.body.candidatoEmail;
+            const puestoNombre = req.body.puestoNombre;
+            const candidatoNombre = req.body.candidatoNombre;
+            const reclutaEmail = req.body.reclutaEmail;
+
+            const msg1 = {
+                to: candidatoEmail,
+                from: {
+                    name: "Busco Empleo",
+                    email: process.env.FROM_EMAIL,
+                },
+                subject: "Actualización de aplicación - Busco Empleo",
+                text: `\nHola, un gusto saludarle ${candidatoNombre}.\n
+                    Esperamos que este teniendo un buen día. Queríamos informarte que han aceptado tu aplicación en el puesto ${puestoNombre} en la aplicación BUSCO EMPLEO.\n\n
+                    ¡Felicidades por esta nueva oportunidad, esperamos que tu experiencia en tu nuevo puesto sea excelente!\n\n
+                    Saludos cordiales,
+                    -El equipo de Busco Empleo`,
+                html: `
+                    <p>Hola, un gusto saludarle ${candidatoNombre}.</p>
+                    <p>Esperamos que este teniendo un buen día. Queríamos informarte que han aceptado tu aplicación en el puesto <strong>${puestoNombre}</strong> en la aplicación <strong>BUSCO EMPLEO</strong>.</p>
+                    <p>¡Felicidades por esta nueva oportunidad, esperamos que tu experiencia en tu nuevo puesto sea excelente!</p>
+                    <p>Saludos cordiales,</p>
+                    <p><strong>El equipo de Busco Empleo</strong></p>
+                    `,
+            };
+
+            const msg2 = {
+                to: reclutaEmail,
+                from: {
+                    name: "Busco Empleo",
+                    email: process.env.FROM_EMAIL,
+                },
+                subject: "Candidato/a aceptó la invitación - Busco Empleo",
+                text: `\nHola,\n
+                    Queríamos informarte que has aceptado la aplicación del candidato ${candidatoNombre}, para el puesto ${puestoNombre} en la aplicación BUSCO EMPLEO.\n\n
+                    ¡Esperamos que esta sea una excelente adición para tu equipo!
+                    Saludos cordiales,\n
+                    -El equipo de Busco Empleo`,
+                html: `
+                    <p>Hola,</p>
+                    <p>Queríamos informarte que has aceptado la aplicación del candidato <strong>${candidatoNombre}</strong>, para el puesto <strong>${puestoNombre}</strong> en la aplicación <strong>BUSCO EMPLEO</strong>.</p>
+                    <p>¡Esperamos que esta sea una excelente adición para tu equipo!</p>
+                    <p>Saludos cordiales,</p>
+                    <p><strong>El equipo de Busco Empleo</strong></p>
+                    `,
+            };
+            await sgMail.send(msg1);
+            await sgMail.send(msg2);
+
+
             let aplicacion = await model.aceptarAplication(candidatoId, puestoId);
             console.log("Aceptada");
 
@@ -263,6 +314,55 @@ module.exports = function(appEmpresas){
         try {
             const candidatoId = req.body.candidatoId;
             const puestoId = req.body.puestoId;
+            const candidatoEmail = req.body.candidatoEmail;
+            const puestoNombre = req.body.puestoNombre;
+            const candidatoNombre = req.body.candidatoNombre;
+            const reclutaEmail = req.body.reclutaEmail;
+
+            const msg1 = {
+                to: candidatoEmail,
+                from: {
+                    name: "Busco Empleo",
+                    email: process.env.FROM_EMAIL,
+                },
+                subject: "Actualización de aplicación - Busco Empleo",
+                text: `\nHola, un gusto saludarle ${candidatoNombre}.\n
+                    Queríamos informarte que han decidido rechazar tu aplicación para el puesto ${puestoNombre} en la aplicación BUSCO EMPLEO.\n\n
+                    Agradecemos tu consideración y te deseamos éxito en tus futuras oportunidades.\n\n
+                    Saludos cordiales,
+                    -El equipo de Busco Empleo`,
+                html: `
+                    <p>Hola, un gusto saludarle ${candidatoNombre}.</p>
+                    <p>Queríamos informarte que han decidido rechazar tu aplicación para el puesto <strong>${puestoNombre}</strong> en la aplicación <strong>BUSCO EMPLEO</strong>.</p>
+                    <p>Agradecemos tu consideración y te deseamos éxito en tus futuras oportunidades.</p>
+                    <p>Saludos cordiales,</p>
+                    <p><strong>El equipo de Busco Empleo</strong></p>
+                    `,
+            };
+
+            const msg2 = {
+                to: reclutaEmail,
+                from: {
+                    name: "Busco Empleo",
+                    email: process.env.FROM_EMAIL,
+                },
+                subject: "Candidato/a aceptó la invitación - Busco Empleo",
+                text: `\nHola,\n
+                    Queríamos informarte que has decidido rechazar la aplicación del candidato ${candidatoNombre}, para el puesto ${puestoNombre} en la aplicación BUSCO EMPLEO.\n\n
+                    Agradecemos tu interés y esperamos que encuentres al candidato adecuado en el futuro.\n\n
+                    Saludos cordiales,\n
+                    -El equipo de Busco Empleo`,
+                html: `
+                    <p>Hola,</p>
+                    <p>Queríamos informarte que has decidido rechazar la aplicación del candidato <strong>${candidatoNombre}</strong>, para el puesto <strong>${puestoNombre}</strong> en la aplicación <strong>BUSCO EMPLEO</strong>.</p>
+                    <p>Agradecemos tu interés y esperamos que encuentres al candidato adecuado en el futuro.\n\n</p>
+                    <p>Saludos cordiales,</p>
+                    <p><strong>El equipo de Busco Empleo</strong></p>
+                    `,
+            };
+            await sgMail.send(msg1);
+            await sgMail.send(msg2);
+
             let aplicacion = await model.rechazarAplication(candidatoId, puestoId);
             console.log("Rechazada");
 
@@ -321,6 +421,19 @@ module.exports = function(appEmpresas){
             const empresaId = req.body.empresaId;
             let usuarios = await model.getUsuarios(empresaId);
             res.send(usuarios);
+        } catch (error) {
+            console.log(error);
+            res.send({message:"Hubo un error al obtener los datos de los usuarios"});            
+        }
+    });
+
+    appEmpresas.post("/empresas/borrarCuentaEmpresa", async function(req, res){
+        try {
+            const empresaId = req.body.empresaId;
+            let empresa = await model.borrarCuentaEmpresa(empresaId);
+            console.log("Cuenta innactivada");
+
+            res.send(empresa);
         } catch (error) {
             console.log(error);
             res.send({message:"Hubo un error al obtener los datos de los usuarios"});            
